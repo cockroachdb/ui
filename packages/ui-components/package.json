@@ -1,0 +1,30 @@
+{
+  "name": "@cockroachlabs/ui-components",
+  "version": "0.1.0",
+  "description": "UI Components is a reusable component library. It provides the core components for the Cockroach design system.",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel ./src --out-dir ./lib --ignore **/__tests__/** --extensions .js,.jsx,.ts,.tsx",
+    "clean": "rm -rf  ./lib/*",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "chokidar 'src/**/*.{js,jsx,ts,tsx}' --initial --command 'npm run build'"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "dependencies": {
+    "@types/react": "^16.9.17",
+    "react": "^16.12.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/plugin-proposal-class-properties": "^7.8.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.8.0",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.0",
+    "astroturf": "^0.10.2",
+    "chokidar-cli": "^2.1.0",
+    "typescript": "^3.7.4"
+  }
+}
