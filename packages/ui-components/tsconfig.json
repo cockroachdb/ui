@@ -3,7 +3,8 @@
     "outDir": "./lib/",
     "sourceMap": true,
     "noImplicitAny": true,
-    "module": "commonjs",
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "target": "es6",
     "jsx": "react",
     "esModuleInterop": true
