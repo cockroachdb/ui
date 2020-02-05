@@ -26,8 +26,7 @@ module.exports = {
         use: ["style-loader", "css-loader?modules=true", "sass-loader"],
       },
       {
-        test: /\.tsx?$/,
-        type: "javascript/esm",
+        test: /\.(ts|js)x?$/,
         use: [
           "babel-loader",
           {
