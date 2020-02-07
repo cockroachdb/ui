@@ -1,0 +1,13 @@
+# this file
+.npmignore
+
+# all things git
+.git*
+
+# source
+src/
+
+# build configs
+webpack.config.js
+tsconfig.json
+babel.config.js
