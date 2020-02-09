@@ -1,57 +1,33 @@
-import React from "react";
-import { css } from "astroturf";
+import React, { FunctionComponent } from "react";
+import classNames from "classnames/bind";
 
-const styles = css`
-  @import "../styles/tokens.scss";
+import styles from "./Badge.module.scss";
 
-  .badge {
-    display: inline-block;
-    width: fit-content;
-    padding: crl-gutters(0.25) crl-gutters(0.75);
-    border-radius: 3px;
-    vertical-align: crl-gutters(0.5);
-    text-transform: uppercase;
-    text-align: center;
-    white-space: nowrap;
-  }
+interface BadgeProps {
+  content: string;
+  intent?: "default" | "success" | "warning" | "danger";
+  noTransform?: boolean;
+}
 
-  .default {
-    background: $crl-neutral-2;
-    color: $crl-base-text--dark;
-  }
+const cx = classNames.bind(styles);
 
-  .success {
-    background: rgba($crl-green-1, 0.3);
-    color: $crl-base-green;
-  }
+const Badge: FunctionComponent<BadgeProps> = props => {
+  const { content, intent, noTransform } = props;
 
-  .warning {
-    background: rgba($crl-orange-1, 0.3);
-    color: $crl-base-yellow;
-  }
-
-  .danger {
-    background: rgba($crl-base-red, 0.3);
-    color: $crl-base-red;
-  }
-
-  .lowercase {
-    text-transform: none;
-  }
-`;
-
-export default function Badge(props: {
-  message: string;
-  type?: "default" | "success" | "warning" | "danger";
-  lowercase?: boolean;
-}) {
   return (
     <div
-      className={`${styles.badge} ${
-        props.type ? styles[props.type] : styles.default
-      } ${props.lowercase ? styles.lowercase : null}`}
+      className={cx("badge", intent, {
+        noTransform,
+      })}
     >
-      {props.message}
+      {content}
     </div>
   );
-}
+};
+
+Badge.defaultProps = {
+  intent: "default",
+  noTransform: false,
+};
+
+export default Badge;
