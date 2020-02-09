@@ -2,6 +2,10 @@
   "name": "@cockroachlabs/ui-components",
   "version": "0.1.0-alpha.20200207",
   "description": "UI Components is a reusable component library. It provides the core components for the Cockroach design system.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cockroachdb/ui"
+  },
   "main": "dist/main.js",
   "scripts": {
     "build": "webpack --display-error-details",
