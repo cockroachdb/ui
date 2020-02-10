@@ -11,7 +11,7 @@
     "build": "webpack --display-error-details",
     "clean": "rm -rf  ./dist/*",
     "test": "jest --watch",
-    "watch": "chokidar 'src/**/*.{js,jsx,ts,tsx}' --initial --command 'npm run build'",
+    "watch": "webpack",
     "test:once": "jest"
   },
   "keywords": [],
@@ -33,7 +33,6 @@
     "@types/react": "^16.9.17",
     "astroturf": "^0.10.2",
     "babel-loader": "^8.0.6",
-    "chokidar-cli": "^2.1.0",
     "classnames": "^2.2.6",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
