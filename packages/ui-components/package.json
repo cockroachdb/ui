@@ -10,9 +10,9 @@
   "scripts": {
     "build": "webpack --display-error-details",
     "clean": "rm -rf  ./dist/*",
-    "test": "jest",
+    "test": "jest --watch",
     "watch": "chokidar 'src/**/*.{js,jsx,ts,tsx}' --initial --command 'npm run build'",
-    "watch-test": "jest --watch"
+    "test:once": "jest"
   },
   "keywords": [],
   "license": "MIT",
