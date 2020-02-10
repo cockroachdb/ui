@@ -1,4 +1,5 @@
 const path = require("path");
+const WebpackBar = require("webpackbar");
 
 module.exports = {
   mode: "development",
@@ -18,6 +19,7 @@ module.exports = {
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
   },
+
   module: {
     rules: [
       {
@@ -44,6 +46,14 @@ module.exports = {
       },
     ],
   },
+
+  plugins: [
+    new WebpackBar({
+      name: "ui-components",
+      color: "cyan",
+      profile: true,
+    }),
+  ],
 
   // When importing a module whose path matches one of the following, just
   // assume a corresponding global variable exists and use that instead.
