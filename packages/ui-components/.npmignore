@@ -7,7 +7,9 @@
 # source
 src/
 
+# source maps
+*/**/*.js.map
+
 # build configs
-webpack.config.js
+*.config.js
 tsconfig.json
-babel.config.js
