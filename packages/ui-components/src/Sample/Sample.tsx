@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from "react";
 import classNames from "classnames/bind";
-import isUndefined from "lodash/isUndefined";
 
 import styles from "./Sample.module.scss";
 
@@ -15,7 +14,7 @@ const Sample: FunctionComponent<SampleProps> = props => {
   const { content, tint, children } = props;
   const classnames = cx("sample", tint);
 
-  if (!isUndefined(children)) {
+  if (children !== undefined) {
     return <div className={classnames}>{children}</div>;
   }
 
