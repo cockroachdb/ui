@@ -25,18 +25,14 @@ test("A sample can render content using props", () => {
 test("A sample can change its appearance based on intent", () => {
   const wrapper = renderSubject();
 
-  // default
   expect(wrapper.prop("className")).toBe("sample default");
 
-  // success
   wrapper.setProps({ tint: "red" });
   expect(wrapper.prop("className")).toBe("sample red");
 
-  // warning
   wrapper.setProps({ tint: "green" });
   expect(wrapper.prop("className")).toBe("sample green");
 
-  // danger
   wrapper.setProps({ tint: "blue" });
   expect(wrapper.prop("className")).toBe("sample blue");
 });

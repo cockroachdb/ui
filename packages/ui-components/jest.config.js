@@ -1,3 +1,7 @@
 module.exports = {
-  projects: ["jest.testing.config.js", "jest.lint.config.js"],
+  projects: [
+    "jest.tsc.config.js",
+    "jest.testing.config.js",
+    "jest.lint.config.js",
+  ],
 };
