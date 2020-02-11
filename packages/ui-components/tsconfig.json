@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "outDir": "./lib/",
     "sourceMap": true,
     "noImplicitAny": true,
     "module": "ESNext",

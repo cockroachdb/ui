@@ -10,6 +10,10 @@ src/
 # source maps
 */**/*.js.map
 
-# build configs
+# eslint
+.eslintignore
+.eslintrc
+
+# project configs
 *.config.js
 tsconfig.json
