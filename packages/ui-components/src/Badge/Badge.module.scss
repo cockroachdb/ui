@@ -1,0 +1,43 @@
+@import "../styles/tokens.scss";
+
+.badge {
+  display: inline-block;
+  width: fit-content;
+  padding: crl-gutters(0.25) crl-gutters(0.75);
+  border-radius: 3px;
+  vertical-align: crl-gutters(0.5);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.intent--neutral {
+  background: $crl-neutral-2;
+  color: $crl-base-text--dark;
+}
+
+.intent--success {
+  background: rgba($crl-green-1, 0.3);
+  color: $crl-base-green;
+}
+
+.intent--warning {
+  background: rgba($crl-orange-1, 0.3);
+  color: $crl-base-yellow;
+}
+
+.intent--danger {
+  background: rgba($crl-base-red, 0.3);
+  color: $crl-base-red;
+}
+
+.noTransform {
+  text-transform: none;
+}
+
+.transformCase--none {
+  text-transform: none;
+}
+
+.transformCase--uppercase {
+  text-transform: uppercase;
+}
