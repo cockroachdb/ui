@@ -49,7 +49,6 @@
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",
     "jest-runner-eslint": "^0.7.6",
-    "jest-runner-tsc": "^1.6.0",
     "node-sass": "^4.13.1",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
