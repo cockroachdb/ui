@@ -1,0 +1,27 @@
+.sample {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  width: auto;
+  width: fit-content;
+}
+
+.default {
+  background-color: lightgrey;
+  color: #333;
+}
+
+.red {
+  background-color: lightcoral;
+  color: red;
+}
+
+.green {
+  background-color: lightgreen;
+  color: green;
+}
+
+.blue {
+  background-color: lightskyblue;
+  color: blue;
+}
