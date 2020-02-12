@@ -10,8 +10,11 @@ interface SampleProps {
 
 const cx = classNames.bind(styles);
 
-const Sample: FunctionComponent<SampleProps> = props => {
-  const { content, tint, children } = props;
+const Sample: FunctionComponent<SampleProps> = ({
+  content,
+  tint = "default",
+  children,
+}) => {
   const classnames = cx("sample", tint);
 
   if (children !== undefined) {
@@ -19,10 +22,6 @@ const Sample: FunctionComponent<SampleProps> = props => {
   }
 
   return <div className={classnames}>{content}</div>;
-};
-
-Sample.defaultProps = {
-  tint: "default",
 };
 
 export default Sample;
