@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Badge content can render using children 1`] = `
+<div
+  className="badge intent--neutral transformCase--uppercase"
+>
+  child content
+</div>
+`;
+
+exports[`Badge content can render using content prop 1`] = `
+<div
+  className="badge intent--neutral transformCase--uppercase"
+>
+  test
+</div>
+`;
+
+exports[`Badge content if empty shouldn't render 1`] = `""`;
+
+exports[`Badge content rendered by children should override content from the content prop 1`] = `
+<div
+  className="badge intent--neutral transformCase--uppercase"
+>
+  child content
+</div>
+`;

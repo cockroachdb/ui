@@ -15,24 +15,25 @@ const renderSubject = (overrideProps?: BadgeProps) => {
 describe("Badge content", () => {
   test("can render using content prop", () => {
     const wrapper = renderSubject({ content: "test" });
-    expect(wrapper.prop("children")).toBe("test");
+    expect(wrapper).toMatchSnapshot();
   });
 
   test("can render using children", () => {
     const wrapper = shallow(<Badge>child content</Badge>);
-    expect(wrapper.prop("children")).toBe("child content");
+    expect(wrapper).toMatchSnapshot();
   });
 
   test("rendered by children should override content from the content prop", () => {
     const wrapper = shallow(
       <Badge content="prop content">child content</Badge>,
     );
-    expect(wrapper.prop("children")).toBe("child content");
+    expect(wrapper).toMatchSnapshot();
   });
 
   test("if empty shouldn't render", () => {
     const wrapper = shallow(<Badge />);
     expect(wrapper.isEmptyRender()).toBe(true);
+    expect(wrapper).toMatchSnapshot();
   });
 });
 
