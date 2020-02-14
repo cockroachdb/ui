@@ -1,13 +1,15 @@
 @import "../styles/tokens.scss";
 
 .badge {
-  display: inline-block;
-  width: fit-content;
-  padding: crl-gutters(0.25) crl-gutters(0.75);
   border-radius: 3px;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 14px;
+  padding: crl-gutters(0.25) crl-gutters(0.75);
   vertical-align: crl-gutters(0.5);
   text-align: center;
   white-space: nowrap;
+  width: fit-content;
 }
 
 .intent--neutral {
