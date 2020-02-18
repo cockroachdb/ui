@@ -1,24 +1,25 @@
 {
   "name": "storybook-ui-components",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "Storybook supporting ui-components as a component catalog",
   "main": "index.js",
-  "private": true,
   "scripts": {
-    "build": "build-storybook -c .storybook -o public",
-    "storybook": "start-storybook -p 6006"
+    "test": "jest",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cockroachdb/ui.git"
   },
+  "author": "Nathan Stilwell <nathanstilwell@cockroachlabs.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/cockroachdb/ui/issues"
   },
   "homepage": "https://github.com/cockroachdb/ui#readme",
   "dependencies": {
-    "@cockroachlabs/ui-components": "^0.1.1"
+    "@cockroachlabs/ui-components": "next"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
