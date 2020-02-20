@@ -3,7 +3,7 @@
 
 const objectToClassNames = (
   obj: { [key: string]: string },
-  delimiter = "--",
+  delimiter = "-",
 ): string =>
   Object.keys(obj)
     .reduce((acc, key) => [`${key}${delimiter}${obj[key]}`, ...acc], [])

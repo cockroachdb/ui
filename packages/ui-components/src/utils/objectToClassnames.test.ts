@@ -7,7 +7,7 @@ describe("objectToClassnames", () => {
 
   test("should return a className string for a given prop", () => {
     const className = objectToClassnames({ foo: "bar" });
-    expect(className).toBe("foo--bar");
+    expect(className).toBe("foo-bar");
   });
 
   test("should return a className string for several props", () => {
@@ -17,9 +17,9 @@ describe("objectToClassnames", () => {
       biff: "boop",
     });
 
-    expect(className).toContain("foo--bar");
-    expect(className).toContain("baz--bim");
-    expect(className).toContain("biff--boop");
+    expect(className).toContain("foo-bar");
+    expect(className).toContain("baz-bim");
+    expect(className).toContain("biff-boop");
   });
 
   test("should return a className string with a custom delimiter", () => {
