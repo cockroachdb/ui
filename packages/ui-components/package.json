@@ -11,9 +11,9 @@
     "build": "webpack --display-error-details",
     "clean": "rm -rf  ./dist/*",
     "lint": "eslint ./src/**/*.{tsx,ts,js} --format=codeframe",
-    "test": "jest --watch",
+    "test": "jest",
     "watch": "webpack",
-    "test:once": "jest"
+    "test:watch": "jest --watch"
   },
   "keywords": [],
   "license": "MIT",
