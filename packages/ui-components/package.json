@@ -9,11 +9,11 @@
   "main": "dist/main.js",
   "scripts": {
     "build": "webpack --display-error-details",
+    "ci": "jest --ci -i",
     "clean": "rm -rf  ./dist/*",
     "lint": "eslint ./src/**/*.{tsx,ts,js} --format=codeframe",
-    "test": "jest",
-    "watch": "webpack",
-    "test:watch": "jest --watch"
+    "test": "jest --watch",
+    "watch": "webpack"
   },
   "keywords": [],
   "license": "MIT",
