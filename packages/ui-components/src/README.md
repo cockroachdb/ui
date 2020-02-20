@@ -1,3 +1,3 @@
 # Components
 
-- [Sample component](Sample/README.md)
+- [Badge](Badge/README.md)

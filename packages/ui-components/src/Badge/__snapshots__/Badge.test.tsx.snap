@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Badge content can render using children 1`] = `
+<div
+  className="badge transformCase-uppercase intent-neutral"
+>
+  child content
+</div>
+`;
+
+exports[`Badge content if empty shouldn't render 1`] = `""`;
