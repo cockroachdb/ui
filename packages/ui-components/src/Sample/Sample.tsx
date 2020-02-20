@@ -1,6 +1,8 @@
 import React, { FunctionComponent } from "react";
 import classNames from "classnames/bind";
 
+import objectToClassnames from "../utils/objectToClassnames";
+
 import styles from "./Sample.module.scss";
 
 interface SampleProps {
@@ -15,7 +17,7 @@ const Sample: FunctionComponent<SampleProps> = ({
   tint = "default",
   children,
 }) => {
-  const classnames = cx("sample", tint);
+  const classnames = cx("sample", objectToClassnames({ tint }));
 
   if (children !== undefined) {
     return <div className={classnames}>{children}</div>;
