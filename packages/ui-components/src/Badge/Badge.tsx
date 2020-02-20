@@ -1,6 +1,8 @@
 import React, { FunctionComponent } from "react";
 import classNames from "classnames/bind";
 
+import objectToClassnames from "../utils/objectToClassnames";
+
 import styles from "./Badge.module.scss";
 
 type BadgeCase = "none" | "uppercase";
@@ -21,14 +23,7 @@ const Badge: FunctionComponent<BadgeProps> = ({
   children,
   ...props
 }) => {
-  const classnames = cx("badge", {
-    "intent--success": intent === "success",
-    "intent--danger": intent === "danger",
-    "intent--warning": intent === "warning",
-    "intent--neutral": intent === "neutral",
-    "transformCase--uppercase": transformCase === "uppercase",
-    "transformCase--none": transformCase === "none",
-  });
+  const classnames = cx("badge", objectToClassnames({ intent, transformCase }));
 
   if (children !== undefined) {
     return (

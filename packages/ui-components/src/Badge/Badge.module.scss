@@ -12,22 +12,22 @@
   width: fit-content;
 }
 
-.intent--neutral {
+.intent-neutral {
   background: $crl-neutral-2;
   color: $crl-base-text--dark;
 }
 
-.intent--success {
+.intent-success {
   background: rgba($crl-green-1, 0.3);
   color: $crl-base-green;
 }
 
-.intent--warning {
+.intent-warning {
   background: rgba($crl-orange-1, 0.3);
   color: $crl-base-yellow;
 }
 
-.intent--danger {
+.intent-danger {
   background: rgba($crl-base-red, 0.3);
   color: $crl-base-red;
 }
@@ -36,10 +36,10 @@
   text-transform: none;
 }
 
-.transformCase--none {
+.transformCase-none {
   text-transform: none;
 }
 
-.transformCase--uppercase {
+.transformCase-uppercase {
   text-transform: uppercase;
 }

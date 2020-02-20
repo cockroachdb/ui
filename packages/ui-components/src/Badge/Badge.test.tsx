@@ -40,7 +40,7 @@ describe("Badge content", () => {
 describe("Badge Intent prop", () => {
   test("will be neutral by default", () => {
     const wrapper = renderSubject({ content: "intent test" });
-    expect(wrapper.prop("className")).toContain("intent--neutral");
+    expect(wrapper.prop("className")).toContain("intent-neutral");
   });
 
   test("will change the display of a badge", () => {
@@ -48,23 +48,23 @@ describe("Badge Intent prop", () => {
 
     // success
     wrapper.setProps({ intent: "success" });
-    expect(wrapper.prop("className")).toContain("intent--success");
+    expect(wrapper.prop("className")).toContain("intent-success");
 
     // warning
     wrapper.setProps({ intent: "warning" });
-    expect(wrapper.prop("className")).toContain("intent--warning");
+    expect(wrapper.prop("className")).toContain("intent-warning");
 
     // danger
     wrapper.setProps({ intent: "danger" });
-    expect(wrapper.prop("className")).toContain("intent--danger");
+    expect(wrapper.prop("className")).toContain("intent-danger");
 
     // neutral
     wrapper.setProps({ intent: "neutral" });
-    expect(wrapper.prop("className")).toContain("intent--neutral");
+    expect(wrapper.prop("className")).toContain("intent-neutral");
   });
 });
 
 test("A badge can render the text case provided by content via a prop", () => {
   const wrapper = renderSubject({ transformCase: "none" });
-  expect(wrapper.prop("className")).toContain("transformCase--none");
+  expect(wrapper.prop("className")).toContain("transformCase-none");
 });
