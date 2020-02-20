@@ -3,9 +3,10 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
     "target": "es6",
     "jsx": "react",
     "esModuleInterop": true
-  }
+  },
+  "exclude": ["dist", "node_modules"]
 }

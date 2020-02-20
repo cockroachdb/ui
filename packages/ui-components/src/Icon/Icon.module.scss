@@ -1,0 +1,61 @@
+.icon {
+  display: inline-flex;
+  margin: auto;
+
+  &:disabled {
+    pointer-events: none;
+  }
+}
+
+.size-large {
+  height: 64px;
+  width: 64px;
+}
+
+.size-medium {
+  height: 24px;
+  width: 24px;
+}
+
+.size-default {
+  height: 16px;
+  width: 16px;
+}
+
+.size-small {
+  height: 12px;
+  width: 12px;
+}
+
+.size-tiny {
+  height: 8px;
+  width: 8px;
+}
+
+.tint-blue {
+  fill: #0788ff;
+}
+
+.tint-green {
+  fill: #37a806;
+}
+
+.tint-purple {
+  fill: #542abd;
+}
+
+.tint-red {
+  fill: #ff3b4e;
+}
+
+.tint-white {
+  fill: white;
+}
+
+.tint-neutral {
+  fill: #242a35;
+}
+
+.tint-inherit {
+  fill: currentColor;
+}
