@@ -1,0 +1,33 @@
+{
+  "name": "@cockroachlabs/icons",
+  "version": "0.1.0-prerelease.0",
+  "description": "Icons for Cockroach UI exported as React Components",
+  "files": [
+    "dist/main.js",
+    "dist/main.d.ts"
+  ],
+  "scripts": {
+    "build": "webpack --mode development",
+    "build:watch": "webpack --watch --mode development",
+    "clean": "rimraf dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Nathan Stilwell <nathanstilwell@cockroachlabs.com",
+  "license": "MIT",
+  "devDependencies": {
+    "@svgr/webpack": "^5.1.0",
+    "@types/react": "^16.9.20",
+    "copy-webpack-plugin": "^5.1.1",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "react": "^16.12.0"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0"
+  }
+}

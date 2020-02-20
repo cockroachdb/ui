@@ -17,6 +17,9 @@
   },
   "keywords": [],
   "license": "MIT",
+  "dependencies": {
+    "@cockroachlabs/icons": "0.1.0-prerelease.0"
+  },
   "devDependencies": {
     "@babel/cli": "^7.8.3",
     "@babel/core": "^7.8.3",
