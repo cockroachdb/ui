@@ -9,10 +9,9 @@ import React from "react";
 import { Badge } from "@cockroachlabs/ui-components";
 
 export const SomeExampleReact = () => (
-  <Badge content="Sample 1" />
   <Badge>Sample 2</Badge>
-  <Badge content="Successful sample" intent="success" />
-  <Badge content="Dangerous sample" intent="danger" />
+  <Badge intent="success">Successful sample</Badge>
+  <Badge intent="danger">Dangerous sample</Badge>
   <Badget transformCase="none">Meaningful Case Sample v10.3.7-Alpha.0876b</Badge>
 );
 ```
@@ -24,12 +23,6 @@ These are the properties that can be provided to the `Badge` component.
 ### `children?: ReactNode`
 
 The content displayed inside the Badge.
-
-This prop is **optional**.
-
-### `content?: String`
-
-A shorthand property used to display content inside the sample
 
 This prop is **optional**.
 

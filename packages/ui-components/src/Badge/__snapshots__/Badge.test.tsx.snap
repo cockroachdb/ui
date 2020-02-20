@@ -8,20 +8,4 @@ exports[`Badge content can render using children 1`] = `
 </div>
 `;
 
-exports[`Badge content can render using content prop 1`] = `
-<div
-  className="badge transformCase-uppercase intent-neutral"
->
-  test
-</div>
-`;
-
 exports[`Badge content if empty shouldn't render 1`] = `""`;
-
-exports[`Badge content rendered by children should override content from the content prop 1`] = `
-<div
-  className="badge transformCase-uppercase intent-neutral"
->
-  child content
-</div>
-`;

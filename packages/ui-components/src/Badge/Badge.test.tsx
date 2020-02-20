@@ -1,32 +1,11 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import Badge, { BadgeProps } from "./Badge";
-
-const defaultProps = {
-  content: "foo",
-};
-
-const renderSubject = (overrideProps?: BadgeProps) => {
-  const props = Object.assign(defaultProps, overrideProps);
-  return shallow(<Badge {...props} />);
-};
+import Badge from "./Badge";
 
 describe("Badge content", () => {
-  test("can render using content prop", () => {
-    const wrapper = renderSubject({ content: "test" });
-    expect(wrapper).toMatchSnapshot();
-  });
-
   test("can render using children", () => {
     const wrapper = shallow(<Badge>child content</Badge>);
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  test("rendered by children should override content from the content prop", () => {
-    const wrapper = shallow(
-      <Badge content="prop content">child content</Badge>,
-    );
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -39,12 +18,12 @@ describe("Badge content", () => {
 
 describe("Badge Intent prop", () => {
   test("will be neutral by default", () => {
-    const wrapper = renderSubject({ content: "intent test" });
+    const wrapper = shallow(<Badge>intent test</Badge>);
     expect(wrapper.prop("className")).toContain("intent-neutral");
   });
 
   test("will change the display of a badge", () => {
-    const wrapper = renderSubject({ content: "intent test" });
+    const wrapper = shallow(<Badge>intent test</Badge>);
 
     // success
     wrapper.setProps({ intent: "success" });
@@ -65,6 +44,8 @@ describe("Badge Intent prop", () => {
 });
 
 test("A badge can render the text case provided by content via a prop", () => {
-  const wrapper = renderSubject({ transformCase: "none" });
+  const wrapper = shallow(
+    <Badge transformCase="none">transformCase test</Badge>,
+  );
   expect(wrapper.prop("className")).toContain("transformCase-none");
 });
