@@ -4,9 +4,10 @@
 const objectToClassNames = (
   obj: { [key: string]: string },
   delimiter = "-",
-): string =>
-  Object.keys(obj)
-    .reduce((acc, key) => [`${key}${delimiter}${obj[key]}`, ...acc], [])
-    .join(" ");
+): string[] =>
+  Object.keys(obj).reduce(
+    (acc, key) => [`${key}${delimiter}${obj[key]}`, ...acc],
+    [],
+  );
 
 export default objectToClassNames;

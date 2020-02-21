@@ -5,9 +5,18 @@ describe("objectToClassnames", () => {
     expect(typeof objectToClassnames).toBe("function");
   });
 
-  test("should return a className string for a given prop", () => {
+  test("should return an array", () => {
+    const className = objectToClassnames({
+      foo: "bar",
+      baz: "bim",
+      boof: "boof",
+    });
+    expect(Array.isArray(className)).toBe(true);
+  });
+
+  test("should return a className array for a given prop", () => {
     const className = objectToClassnames({ foo: "bar" });
-    expect(className).toBe("foo-bar");
+    expect(className).toStrictEqual(["foo-bar"]);
   });
 
   test("should return a className string for several props", () => {

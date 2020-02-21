@@ -2,7 +2,7 @@
 
 ## `objectToClassnames(object, delimiter?)`
 
-`objectToClassnames` takes an object of strings and joins its keys and values using a provided delimiter (`-` by default) returning a single joined string. The base case here is to take a config object for creating CSS classnames.
+`objectToClassnames` takes an object of strings and joins its keys and values using a provided delimiter (`-` by default) returning an array of strings; The base case here is to take a config object for creating CSS classnames.
 
 ```javascript
 import { objectToClassnames } from "utils";
@@ -13,7 +13,7 @@ const properties = {
 };
 
 const classnames = objectToClassnames(properties);
-// classnames = "tint-exubrant size-medium"
+// classnames = ["tint-exubrant", "size-medium"]
 ```
 
 ## Params
@@ -35,7 +35,7 @@ const obj = {
 };
 
 const classnames = objectToClassnames(obj, "(ಠ_ಠ)");
-// classnames is "foo(ಠ_ಠ)bar baz(ಠ_ಠ)bim"
+// classnames is ["foo(ಠ_ಠ)bar", "baz(ಠ_ಠ)bim"]
 ```
 
 This prop is **optional**.
