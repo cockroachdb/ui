@@ -30,5 +30,8 @@
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.3.0",
     "typescript": ">=2.8.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
