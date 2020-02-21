@@ -8,22 +8,16 @@ WIP
 > git clone https://github.com/cockroachdb/ui/
 ```
 
-The UI repo is a monorepo managed by [Lerna](https://lerna.js.org/). Once you clone the repo, be sure to [bootstrap](). _In the following examples, I'm using `npx`. If you do this very often you may consider installing Lerna globally (`npm i -g lerna`)._
+The UI repo is a monorepo managed by [Lerna](https://lerna.js.org/). Once you clone the repo, be sure to [bootstrap](https://github.com/lerna/lerna/tree/master/commands/bootstrap). _In the following examples, I'm using `npx`. If you do this very often you may consider installing Lerna globally (`npm i -g lerna`)._
 
 ```
 > cd path/to/ui
 > npx lerna bootstrap
 ```
 
-## Branch and develop
+## Fork and Develop
 
-Create a branch for your work. When you are ready, create a [pull-request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/proposing-changes-to-your-work-with-pull-requests) for your work.
-
-```
-> git checkout -b package-name--branch-name-describing-work
-```
-
-Branch names should contain the name of the package you are working on as well as a description of the work you are doing.
+When contributing, we suggest contributors make a [personal fork](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/working-with-forks) to work with before submitting a [pull-request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/proposing-changes-to-your-work-with-pull-requests).
 
 ## Publishing
 
@@ -54,7 +48,7 @@ lerna info Assuming all packages changed
 
 If you have permission to publish, Lerna will
 
-- publish the package with the chosen version to npm
+- publish the package to npm
 - commit the version increase to github and push the change
 - add a [git tag](https://git-scm.com/book/en/v2/Git-Basics-Tagging) for the published version
 
