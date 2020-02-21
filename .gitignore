@@ -34,3 +34,7 @@ node_modules
 # Local TODO lists
 TODO
 *.todo
+
+# Static generated site
+public
+.now
