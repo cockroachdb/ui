@@ -37,6 +37,10 @@ module.exports = {
         "react/prop-types": "off",
         "@typescript-eslint/explicit-function-return-type": "off",
         "react/display-name": "off",
+        "@typescript-eslint/no-empty-function": [
+          "error",
+          { allow: ["arrowFunctions"] },
+        ],
       },
     },
   ],
