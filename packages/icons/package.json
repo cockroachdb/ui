@@ -13,7 +13,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Nathan Stilwell <nathanstilwell@cockroachlabs.com",
   "license": "MIT",
   "devDependencies": {
     "@svgr/webpack": "^5.1.0",
