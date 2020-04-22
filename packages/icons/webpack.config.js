@@ -2,6 +2,7 @@ const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
 
 const config = {
+  mode: "none",
   entry: "./src/index.ts",
   output: {
     path: path.resolve(__dirname, "dist"),
