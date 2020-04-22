@@ -27,6 +27,7 @@ const names = [
   "Check",
   "CircleInfoFilled",
   "Copy",
+  "CreditCard",
   "Download",
   "EllipsisVertical",
   "Ellipsis",
@@ -34,6 +35,7 @@ const names = [
   "ErrorCircle" ,
   "EyeOff" ,
   "Eye" ,
+  "Gcp",
   "InfoFilled" ,
   "Info" ,
   "Invalid" ,
@@ -52,6 +54,7 @@ const names = [
   "Terminal",
   "Time",
   "User",
+  "Visa",
   "World",
 ];
 
@@ -76,6 +79,11 @@ const IconDisplay = ({ children, backgroundColor = "transparent" }) => (
     {children}
   </div>
 );
+
+const IconLabel = ({ text }) => (
+  <code style={{ fontFamily: "monospace", fontSize: "12px" }}>{text}</code>
+);
+
 const IconFrame = ({ children }) => (
   <div
     style={{
@@ -91,14 +99,21 @@ const IconFrame = ({ children }) => (
   </div>
 );
 
-const IconLabel = ({ text }) => (
-  <code style={{ fontFamily: "monospace", fontSize: "12px" }}>{text}</code>
+const IconBounding = ({ children }) => (
+  <div
+    style={{
+      height: "44px",
+      width: "55px",
+    }}
+  >
+    {children}
+  </div>
 );
 
 const svgStyle = {
-  height: "36px",
   fill: "black",
-  width: "54px",
+  maxHeight: "100%",
+  maxWidth: "100%",
 };
 
 export const Sample = () => (
@@ -121,7 +136,9 @@ export const Sample = () => (
             <IconDisplay key={name}>
               <IconLabel text={name} />
               <IconFrame>
-                <Element style={svgStyle} />
+                <IconBounding>
+                  <Element style={svgStyle} />
+                </IconBounding>
               </IconFrame>
             </IconDisplay>
           );
