@@ -1,23 +1,25 @@
 {
   "name": "@cockroachlabs/icons",
-  "version": "0.1.0-prerelease.0",
+  "version": "0.1.0",
   "description": "Icons for Cockroach UI exported as React Components",
   "files": [
-    "dist/main.js",
-    "dist/main.d.ts"
+    "dist/index.js",
+    "dist/index.d.ts"
   ],
+  "main": "dist/index.js",
   "scripts": {
     "build": "webpack",
     "build:watch": "webpack --watch",
     "clean": "rimraf dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node notests.js"
   },
-  "keywords": [],
   "license": "MIT",
   "devDependencies": {
     "@svgr/webpack": "^5.1.0",
     "@types/react": "^16.9.20",
+    "chalk": "^4.0.0",
     "copy-webpack-plugin": "^5.1.1",
+    "node-emoji": "^1.10.0",
     "react": "^16.12.0",
     "rimraf": "^3.0.2",
     "webpack": "^4.41.6",

@@ -6,7 +6,7 @@ const config = {
   entry: "./src/index.ts",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "main.js",
+    filename: "index.js",
     library: "uiComponents",
     libraryTarget: "umd",
   },
@@ -18,7 +18,7 @@ const config = {
       },
     ],
   },
-  plugins: [new CopyPlugin([{ from: "src/index.ts", to: "main.d.ts" }])],
+  plugins: [new CopyPlugin([{ from: "src/index.ts", to: "index.d.ts" }])],
   externals: {
     react: {
       commonjs: "react",
