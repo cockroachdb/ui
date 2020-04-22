@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/cockroachdb/ui#readme",
   "dependencies": {
-    "@cockroachlabs/ui-components": "^0.1.1"
+    "@cockroachlabs/ui-components": "^0.1.1",
+    "@cockroachlabs/icons": "0.1.0-prerelease.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
