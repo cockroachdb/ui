@@ -1,7 +1,5 @@
 # How to contribute
 
-WIP
-
 ## Clone the repo
 
 ```
@@ -21,17 +19,17 @@ When contributing, we suggest contributors make a [personal fork](https://help.g
 
 ## Publishing
 
-When work has been merged to master, use [Lerna to publish](https://lerna.js.org/#command-publish).
+When work has been merged to master, use [Lerna to publish](https://lerna.js.org/#command-publish). Since you are working on a fork, you most likely want to publish to the `upstream` [remote](https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes) by providing [`--git-remote`](https://github.com/lerna/lerna/tree/master/commands/version#--git-remote-name) switch to the `publish` command.
 
-```
+```text
 > cd path/to/ui
-> lerna publish
+> npx lerna publish --git-remote upstream
 ```
 
-Lerna will ask you about how you would like to increase the version. We try to stick to [semantic versioning](https://semver.org/), so if you have questions about what the next version should be ask one of the [code owners](https://github.com/cockroachdb/ui/blob/master/CODEOWNERS).
+Lerna will ask you about how you would like to increase the version. We try to stick to [semantic versioning](https://semver.org/), so if you have questions about what the next version should be ask one of the [code owners](https://github.com/cockroachdb/ui/blob/master/CODEOWNERS). 
 
-```
-  > npx lerna publish
+```text
+  > npx lerna publish --git-remote upstream
 lerna notice cli v3.20.2
 lerna info versioning independent
 lerna info Assuming all packages changed
@@ -56,7 +54,7 @@ If you have permission to publish, Lerna will
 
 If you have changes that are experimental that you would like to publish to npm, you should publish these changes using a [prerelease version](https://semver.org/#spec-item-9). You can do this with Lerna by choosing `Custom Prerelease` when publishing. For simplicity's sake you should use the prerelease identifier `prerelease` if possible. If you are publishing a prerelease version you should also use the `--dist-tag next` option when invoking `lerna publish` (see [here](https://medium.com/@mbostock/prereleases-and-npm-e778fc5e2420) for details).
 
-```
+```text
 > npx lerna publish --dist-tag next
 lerna notice cli v3.20.2
 lerna info versioning independent
