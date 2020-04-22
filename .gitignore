@@ -1,3 +1,6 @@
+# File system
+.DS_Store
+
 # Package distribution
 dist
 
