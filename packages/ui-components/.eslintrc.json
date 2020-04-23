@@ -1,0 +1,3 @@
+{
+  "extends": "@cockroachlabs/eslint-config"
+}
