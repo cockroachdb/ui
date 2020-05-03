@@ -1,11 +1,9 @@
 import React, { FunctionComponent, ReactElement } from "react";
-import { withKnobs } from "@storybook/addon-knobs";
 
 import * as Icons from "@cockroachlabs/icons";
 
 export default {
   title: "Icons",
-  decorators: [withKnobs],
 };
 
 const names: Array<string> = [
