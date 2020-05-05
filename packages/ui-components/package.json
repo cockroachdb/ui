@@ -13,7 +13,8 @@
     "clean": "rm -rf  ./dist/*",
     "lint": "eslint ./src/**/*.{tsx,ts,js} --format=codeframe",
     "test": "jest --watch",
-    "watch": "webpack"
+    "watch": "webpack",
+    "start": "npm run watch"
   },
   "keywords": [],
   "license": "MIT",

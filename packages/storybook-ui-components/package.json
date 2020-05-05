@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "build": "build-storybook -c .storybook -o public",
-    "storybook": "start-storybook -p 6006"
+    "storybook": "start-storybook -p 6006",
+    "start": "npm run storybook"
   },
   "repository": {
     "type": "git",
