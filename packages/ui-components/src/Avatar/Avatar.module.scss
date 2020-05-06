@@ -1,0 +1,99 @@
+@import "../styles/tokens.scss";
+
+// TODO (koorosh): Probably has to be extracted to tokens.
+@mixin selectable-border($color) {
+  box-sizing: border-box;
+  border: 2px solid $color;
+}
+
+.avatar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: Source Sans Pro, sans-serif; // TODO (koorosh): replace with fonts from tokes
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  user-select: none;
+}
+
+.intent-default {
+  background: $crl-neutral-2;
+  color: $crl-neutral-7;
+}
+
+.intent-active {
+  background: $crl-blue-1;
+  color: $crl-base-blue;
+}
+
+.intent-pending {
+  background: $crl-orange-1;
+  color: $crl-orange-4;
+}
+
+.intent-invalid {
+  background: $crl-red-1;
+  color: $crl-red-4;
+}
+
+.size-l {
+  width: 40px;
+  height: 40px;
+  font-size: 14px;
+  letter-spacing: 0.1px;
+}
+
+.size-m {
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+}
+
+.size-s {
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  letter-spacing: 0.1px;
+}
+
+.size-xs {
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  letter-spacing: 0.1px;
+}
+
+.disabled {
+  background: $crl-neutral-2;
+  color: $crl-base-text--light;
+
+  &:focus, &:hover {
+    border: none;
+  }
+}
+
+.selectable:not(.disabled) {
+  &:focus, &:hover {
+    &.intent-default {
+      @include selectable-border($crl-neutral-7);
+    }
+
+    &.intent-active {
+      @include selectable-border($crl-base-blue);
+    }
+
+    &.intent-pending {
+      @include selectable-border($crl-orange-4);
+    }
+
+    &.intent-invalid {
+      @include selectable-border($crl-red-4);
+    }
+  }
+}
