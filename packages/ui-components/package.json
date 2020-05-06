@@ -9,12 +9,12 @@
   "main": "dist/main.js",
   "scripts": {
     "build": "webpack --display-error-details",
+    "build:watch": "webpack --watch",
     "ci": "jest --ci -i",
     "clean": "rm -rf  ./dist/*",
     "lint": "eslint ./src/**/*.{tsx,ts,js} --format=codeframe",
     "test": "jest --watch",
-    "watch": "webpack",
-    "start": "npm run watch"
+    "start": "npm run build:watch"
   },
   "keywords": [],
   "license": "MIT",
