@@ -1,5 +1,5 @@
-import React from "react";
-import { withKnobs, select } from "@storybook/addon-knobs";
+import React, { FunctionComponent, ReactElement } from "react";
+import { withKnobs } from "@storybook/addon-knobs";
 
 import * as Icons from "@cockroachlabs/icons";
 
@@ -8,7 +8,7 @@ export default {
   decorators: [withKnobs],
 };
 
-const names = [
+const names: Array<string> = [
   "ArrowLeft",
   "Aws",
   "Backup",
@@ -32,15 +32,15 @@ const names = [
   "EllipsisVertical",
   "Ellipsis",
   "ErrorCirleFilled",
-  "ErrorCircle" ,
-  "EyeOff" ,
-  "Eye" ,
+  "ErrorCircle",
+  "EyeOff",
+  "Eye",
   "Gcp",
-  "InfoFilled" ,
-  "Info" ,
-  "Invalid" ,
-  "List" ,
-  "LockFilled" ,
+  "InfoFilled",
+  "Info",
+  "Invalid",
+  "List",
+  "LockFilled",
   "Lock",
   "MinusCircle",
   "Minus",
@@ -58,7 +58,9 @@ const names = [
   "World",
 ];
 
-const IconDisplaySection = ({ children }) => (
+const IconDisplaySection: FunctionComponent<{
+  children: Array<ReactElement | null>;
+}> = ({ children }) => (
   <section
     style={{
       display: "flex",
@@ -70,21 +72,28 @@ const IconDisplaySection = ({ children }) => (
   </section>
 );
 
-const IconDisplay = ({ children, backgroundColor = "transparent" }) => (
-  <div style={{
-    textAlign: "center",
-    backgroundColor: backgroundColor,
-    margin: "1rem",
-  }}>
+const IconDisplay: FunctionComponent<{
+  children: Array<ReactElement>;
+  backgroundColor?: string;
+}> = ({ children, backgroundColor = "transparent" }) => (
+  <div
+    style={{
+      textAlign: "center",
+      backgroundColor: backgroundColor,
+      margin: "1rem",
+    }}
+  >
     {children}
   </div>
 );
 
-const IconLabel = ({ text }) => (
+const IconLabel: FunctionComponent<{ text: string }> = ({ text }) => (
   <code style={{ fontFamily: "monospace", fontSize: "12px" }}>{text}</code>
 );
 
-const IconFrame = ({ children }) => (
+const IconFrame: FunctionComponent<{
+  children: ReactElement | Array<ReactElement>;
+}> = ({ children }) => (
   <div
     style={{
       alignItems: "center",
@@ -99,7 +108,9 @@ const IconFrame = ({ children }) => (
   </div>
 );
 
-const IconBounding = ({ children }) => (
+const IconBounding: FunctionComponent<{
+  children: ReactElement | Array<ReactElement>;
+}> = ({ children }) => (
   <div
     style={{
       height: "44px",
@@ -110,22 +121,25 @@ const IconBounding = ({ children }) => (
   </div>
 );
 
-const svgStyle = {
+const svgStyle: { [styleProp: string]: string } = {
   fill: "black",
   maxHeight: "100%",
   maxWidth: "100%",
 };
 
-export const Sample = () => (
+export const Sample: FunctionComponent<{}> = () => (
   <section>
     <h1>Icons</h1>
     <div>
-      These icons come from <strong>@cockroachlabs/icons</strong>, a 
-      separate package from ui-components in the UI repo.
+      These icons come from <strong>@cockroachlabs/icons</strong>, a separate
+      package from ui-components in the UI repo.
     </div>
     <div>
-      [<a href="https://www.npmjs.com/package/@cockroachlabs/icons">NPM Package</a>]
-      [<a href="https://github.com/cockroachdb/ui">UI repo</a>]
+      [
+      <a href="https://www.npmjs.com/package/@cockroachlabs/icons">
+        NPM Package
+      </a>
+      ] [<a href="https://github.com/cockroachdb/ui">UI repo</a>]
     </div>
     <section>
       <IconDisplaySection>
