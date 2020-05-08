@@ -1,6 +1,6 @@
 # storybook-ui-components
 
-<a href="https://core-components.crdb.io/" target="_blank"><img src="https://raw.githubusercontent.com/storybooks/brand/master/badge/badge-storybook.svg"></a>
+<a href="https://core-components.crdb.io/" target="_blank"><img src="https://raw.githubusercontent.com/storybooks/brand/master/badge/badge-storybook.svg"></a> ![](https://github.com/cockroachdb/ui/workflows/Build%20and%20Deploy%20Storybook/badge.svg)
 
 A way to develop `@cockroachlabs/ui-components` in isolation.
 
