@@ -7,7 +7,7 @@ on:
   push:
     branches: [ master ]
     paths: 
-      - '/packages/storybook-ui-components/**'
+      - 'packages/storybook-ui-components/**'
 
 # Environment variables available to all jobs and steps in this workflow
 env:
