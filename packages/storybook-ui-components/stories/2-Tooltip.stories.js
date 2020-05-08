@@ -24,12 +24,13 @@ export const Example = () => {
   const rowStyle = {
     display: "table-row",
   };
+  
   return (
     <section>
       <h1>Tooltip</h1>
       <section>
         <h3>Positions</h3>
-        <div style={{ display: "table" }}>
+        <div style={{ display: "table", margin: "0 auto" }}>
           <div style={rowStyle}>
             <Tooltip position="left" content={text}>
               <div style={styles}>Left</div>
@@ -74,6 +75,38 @@ export const Example = () => {
           </div>
         </div>
       </section>
+      <section>
+        <h3>STYLES</h3>
+
+        <div style={{ display: "table", margin: "0 auto 100px auto" }}>
+          <div style={{ display: "table-row"}}>
+            <Tooltip
+              position="bottom"
+              style="default"
+              visible={true}
+              content={text}
+            >
+              <div style={{...styles, width: "110px",}}>default</div>
+            </Tooltip>
+            <Tooltip
+              position="bottom"
+              style="dark"
+              visible={true}
+              content={text}
+            >
+              <div style={{...styles, width: "110px",}}>dark</div>
+            </Tooltip>
+            <Tooltip
+              position="bottom"
+              style="light"
+              visible={true}
+              content={text}
+            >
+              <div style={{...styles, width: "110px",}}>light</div>
+            </Tooltip>
+          </div>
+        </div>
+      </section>
     </section>
   );
 };
@@ -103,7 +136,8 @@ export const Demo = () => (
         ],
         "bottom"
       )}
-      //visible={true}
+      style={select("Style", ["default", "dark", "light"], "default")}
+      visible={true}
       content={text(
         "Text",
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
