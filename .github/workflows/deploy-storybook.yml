@@ -41,8 +41,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - run: cd packages/storybook-ui-components/
-    - run: npm run build
+    - name: Build storybook
+      run: npm run build
+      working-directory: ./packages/storybook-ui-components
     
     - name: Deploy
       run: gsutil cp -r public/* gs://core-components.crdb.io
+      working-directory: ./packages/storybook-ui-components
