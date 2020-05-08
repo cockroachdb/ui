@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tooltip renders 1`] = `
+<ForwardRef(Tooltip)
+  arrowContent={
+    <div
+      className="crl-tooltip-arrow-inner"
+    />
+  }
+  overlay={
+    <div
+      id="content"
+    >
+      test
+    </div>
+  }
+  overlayClassName="default"
+  placement="bottom"
+  prefixCls="crl-tooltip"
+>
+  <div
+    id="hoverme"
+  >
+    hover me
+  </div>
+</ForwardRef(Tooltip)>
+`;

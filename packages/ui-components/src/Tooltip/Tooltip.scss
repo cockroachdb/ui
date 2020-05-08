@@ -1,86 +1,99 @@
-// @import "../styles/tokens.scss";
-
+@import "../styles/tokens.scss";
 
 //
 // Tooltips
 // --------------------------------------------------
 
-$font-size-base         : 12px;
-$line-height-base       : 1.5;
-$border-radius-base     : 3px;
-$overlay-shadow         : 0 0 4px rgba(0, 0, 0, 0.17);
-//** Tooltip text color
-$tooltip-color: #333333;
-//** Tooltip background color
-$tooltip-bg: #ffffff;
-$tooltip-opacity: 1;
-
+$border-radius-base: 3px;
 $tooltip-border-width: 1px;
-$tooltip-border-color: #b1b1b1;
-$tooltip-shadow-width: 1px;
-
+$tooltip-shadow-width: 0px;
 $tooltip-arrow-width: 6px;
-$tooltip-arrow-color: $tooltip-border-color;
-$tooltip-arrow-inner-color: $tooltip-bg;
+
+@mixin crl-tooltip-style( $bg, $border, $color ) {
+  .crl-tooltip-inner {
+    border-color: $border;
+    background-color: $bg;
+    color: $color;
+  }
+  .crl-tooltip-arrow{
+    border-color: $border;
+  }
+  .crl-tooltip-arrow-inner {
+    border-color: $bg;
+  }
+}
+
+//
+// Default style
+// --------------------------------------------------
+.default {
+  @include crl-tooltip-style($crl-neutral-6,$crl-neutral-6, $crl-base-white)
+}
+//
+// Dark style
+// --------------------------------------------------
+.dark {
+  @include crl-tooltip-style($crl-base-black, $crl-base-black, $crl-base-white)
+}
+//
+// Light style
+// --------------------------------------------------
+.light {
+  @include crl-tooltip-style($crl-base-white, $crl-neutral-2, $crl-base-text);
+}
+
 
 // Base class
-.tooltip {
+.crl-tooltip {
   position: absolute;
   z-index: 1070;
   display: block;
   visibility: visible;
-  line-height: $line-height-base;
-  font-size: $font-size-base;
-  background-color:rgba(0, 0, 0, 0.05);
   padding: $tooltip-shadow-width;
-  opacity: $tooltip-opacity;
-
+  &-hidden {
+    display: none;
+  }
   // Wrapper for the tooltip content
   &-inner {
+    @include crl-depth(1);
     padding: 8px 10px;
-    color: $tooltip-color;
     text-align: left;
     text-decoration: none;
-    background-color: $tooltip-bg;
     border-radius: $border-radius-base;
     min-height: 24px;
     max-width: 300px;
-    border:$tooltip-border-width solid $tooltip-border-color;
+    border: $tooltip-border-width solid;
   }
 
   // Arrows
   &-arrow,
-  &-arrow-inner{
+  &-arrow-inner {
     position: absolute;
     width: 0;
     height: 0;
-    border-color: transparent;
     border-style: solid;
   }
-}
 
-
-.tooltip-hidden {
-  display: none;
-}
-
-.tooltip {
   &-placement-top &-arrow,
   &-placement-topLeft &-arrow,
-  &-placement-topRight &-arrow{
+  &-placement-topRight &-arrow {
     bottom: -$tooltip-arrow-width + $tooltip-shadow-width;
     margin-left: -$tooltip-arrow-width;
     border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
-    border-top-color: $tooltip-arrow-color;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
   }
 
   &-placement-top &-arrow-inner,
   &-placement-topLeft &-arrow-inner,
-  &-placement-topRight &-arrow-inner{
+  &-placement-topRight &-arrow-inner {
     bottom: $tooltip-border-width;
     margin-left: -$tooltip-arrow-width;
     border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
-    border-top-color: $tooltip-arrow-inner-color;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
   }
 
   &-placement-top &-arrow {
@@ -100,8 +113,11 @@ $tooltip-arrow-inner-color: $tooltip-bg;
   &-placement-rightBottom &-arrow {
     left: -$tooltip-arrow-width + $tooltip-shadow-width;
     margin-top: -$tooltip-arrow-width;
-    border-width: $tooltip-arrow-width $tooltip-arrow-width $tooltip-arrow-width 0;
-    border-right-color: $tooltip-arrow-color;
+    border-width: $tooltip-arrow-width $tooltip-arrow-width $tooltip-arrow-width
+      0;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
   }
 
   &-placement-right &-arrow-inner,
@@ -109,8 +125,11 @@ $tooltip-arrow-inner-color: $tooltip-bg;
   &-placement-rightBottom &-arrow-inner {
     left: $tooltip-border-width;
     margin-top: -$tooltip-arrow-width;
-    border-width: $tooltip-arrow-width $tooltip-arrow-width $tooltip-arrow-width 0;
-    border-right-color: $tooltip-arrow-inner-color;
+    border-width: $tooltip-arrow-width $tooltip-arrow-width $tooltip-arrow-width
+      0;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
   }
 
   &-placement-right &-arrow {
@@ -131,8 +150,11 @@ $tooltip-arrow-inner-color: $tooltip-bg;
   &-placement-leftBottom &-arrow {
     right: -$tooltip-arrow-width + $tooltip-shadow-width;
     margin-top: -$tooltip-arrow-width;
-    border-width: $tooltip-arrow-width 0 $tooltip-arrow-width $tooltip-arrow-width;
-    border-left-color: $tooltip-arrow-color;
+    border-width: $tooltip-arrow-width 0 $tooltip-arrow-width
+      $tooltip-arrow-width;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
   }
 
   &-placement-left &-arrow-inner,
@@ -140,8 +162,11 @@ $tooltip-arrow-inner-color: $tooltip-bg;
   &-placement-leftBottom &-arrow-inner {
     right: $tooltip-border-width;
     margin-top: -$tooltip-arrow-width;
-    border-width: $tooltip-arrow-width 0 $tooltip-arrow-width $tooltip-arrow-width;
-    border-left-color: $tooltip-arrow-inner-color;
+    border-width: $tooltip-arrow-width 0 $tooltip-arrow-width
+      $tooltip-arrow-width;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
   }
 
   &-placement-left &-arrow {
@@ -160,10 +185,12 @@ $tooltip-arrow-inner-color: $tooltip-bg;
   &-placement-bottom &-arrow,
   &-placement-bottomLeft &-arrow,
   &-placement-bottomRight &-arrow {
-    top: -$tooltip-arrow-width + $tooltip-shadow-width;;
+    top: -$tooltip-arrow-width + $tooltip-shadow-width;
     margin-left: -$tooltip-arrow-width;
     border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
-    border-bottom-color: $tooltip-arrow-color;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    border-left-color: transparent;
   }
 
   &-placement-bottom &-arrow-inner,
@@ -172,7 +199,9 @@ $tooltip-arrow-inner-color: $tooltip-bg;
     top: $tooltip-border-width;
     margin-left: -$tooltip-arrow-width;
     border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
-    border-bottom-color: $tooltip-arrow-inner-color;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    border-left-color: transparent;
   }
 
   &-placement-bottom &-arrow {
