@@ -1,43 +1,42 @@
 [back to components](../README.md)
 
-# Badge
+# Tooltip
 
-A Badge is a styled text element used to highlight informative elements or act as a label for other visual elements.
+A Tooltip is a styled popover element that can be shown on hover.
 
 ```javascript
 import React from "react";
-import { Badge } from "@cockroachlabs/ui-components";
+import { Tooltip } from "@cockroachlabs/ui-components";
 
 export const SomeExampleReact = () => (
-  <Badge>Sample 2</Badge>
-  <Badge intent="success">Successful sample</Badge>
-  <Badge intent="danger">Dangerous sample</Badge>
-  <Badget transformCase="none">Meaningful Case Sample v10.3.7-Alpha.0876b</Badge>
+  <Tooltip content={"Tooltip content"}>
+    <div id="hoverme">hover me</div>
+  </Tooltip>
 );
 ```
 
 ## Properties
 
-These are the properties that can be provided to the `Badge` component.
+These are the properties that can be provided to the `Tooltip` component.
 
-### `children?: ReactNode`
+### `children: ReactNode`
 
-The content displayed inside the Badge.
+The content hover on what will trigger display of tooltip.
+
+This prop is **required**.
+
+### `position?: Enum("left", "right", "top", "bottom", "topLeft", "topRight", "bottomLeft", "bottomRight";)`
+
+**default value: `bottom`**
+
+Placement of tooltip around anchor content.
 
 This prop is **optional**.
 
-### `intent?: Enum("neutral", "success", "warning", "danger")`
+### `style?: Enum("default", "light", "dark")`
 
-**default value: `neutral`**
+**default value: `default`**
 
-Intent will alter the visual style of the Badge by changing the `background-color` and `color` properties of the rendered element.
-
-This prop is **optional**.
-
-### `transformCase?: Enum("uppercase", "none")`
-
-**default value: `uppercase`**
-
-This prop alters the letter case of the content of the Badge. The default value is uppercase, but can be set to `none` if the case of content is meaningful and should not be transformed.
+Will alter the visual style of the Tooltip by changing the `background-color`, `color`, `border-color` properties of the rendered element.
 
 This prop is **optional**.

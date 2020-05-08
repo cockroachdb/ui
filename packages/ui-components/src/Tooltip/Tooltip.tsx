@@ -13,27 +13,33 @@ type TooltipPosition =
   | "bottomLeft"
   | "bottomRight";
 
-interface BadgeProps {
+type TooltipStyle = "default" | "light" | "dark";
+
+interface TooltipProps {
   position?: TooltipPosition;
+  style?: TooltipStyle;
   content: ReactElement | string;
 }
 
-const Tooltip: FunctionComponent<BadgeProps> = ({
+const Tooltip: FunctionComponent<TooltipProps> = ({
   position = "bottom",
+  style = "default",
   children,
   content,
   ...props
 }) => {
   if (!content) {
-    return null;
+    return <>{children}</>;
   }
 
   return (
     <RCtooltip
       {...props}
-      prefixCls={"tooltip"}
+      prefixCls={"crl-tooltip"}
       placement={position}
       overlay={content}
+      overlayClassName={style}
+      arrowContent={<div className="crl-tooltip-arrow-inner" />}
     >
       {typeof children === "string" ? (
         <span>{children}</span>
