@@ -1,0 +1,17 @@
+@import "../styles/tokens.scss";
+
+$input-height: 40px;
+$input-border-spacing: 3px;
+$border-width: 1px;
+$input-number-width: 160px;
+$input-text-width: 280px;
+
+// state, hoverColor, focusColor
+$state-colors:
+  "active" $crl-neutral-5 $crl-base-blue,
+  "invalid" $crl-base-red,
+  "disabled" $crl-base-text--light;
+
+@function exclBorderWidth($total-width: 0, $spacing: $input-border-spacing, $border: $border-width) {
+  @return $total-width - ($border + $spacing) * 2;
+}

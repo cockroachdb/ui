@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { BaseInput, InputProps, NumberInput, TextInput } from "./Input";
+import { BaseInput, InputProps, NumberInput, TextInput } from "./index";
 
 describe("BaseInput", () => {
   describe("Default props", () => {
@@ -9,7 +9,7 @@ describe("BaseInput", () => {
       const props = wrapper.props();
       expect(props.disabled).toBeFalsy();
       expect(props.value).toEqual("");
-      expect(props.className).toEqual("input");
+      expect(props.className).toEqual("input active");
       expect(props.name).toBeUndefined();
       expect(props.style).toBeUndefined();
       expect(props.type).toEqual("text");
@@ -59,7 +59,7 @@ describe("TextInput", () => {
       expect(props.initialValue).toBeUndefined();
       expect(props.autoComplete).toBeUndefined();
       expect(props.value).toBeUndefined();
-      expect(props.className).toBeUndefined();
+      expect(props.className).toEqual("container");
       expect(props.name).toBeUndefined();
       expect(props.style).toBeUndefined();
     });
@@ -96,9 +96,9 @@ describe("NumberInput", () => {
       const wrapper = shallow<HTMLDivElement>(
         <NumberInput initialValue={-1} onChange={onChangeSpyFn} />,
       );
-      wrapper.find("div.spin-button-up").simulate("click");
-      wrapper.find("div.spin-button-up").simulate("click");
-      wrapper.find("div.spin-button-up").simulate("click");
+      wrapper.find(".spin-button-up").simulate("click");
+      wrapper.find(".spin-button-up").simulate("click");
+      wrapper.find(".spin-button-up").simulate("click");
       const inputWrapper = wrapper.find(BaseInput);
 
       expect(onChangeSpyFn).toHaveBeenLastCalledWith(expectedValue);
@@ -111,9 +111,9 @@ describe("NumberInput", () => {
       const wrapper = shallow<HTMLDivElement>(
         <NumberInput initialValue={1} onChange={onChangeSpyFn} />,
       );
-      wrapper.find("div.spin-button-down").simulate("click");
-      wrapper.find("div.spin-button-down").simulate("click");
-      wrapper.find("div.spin-button-down").simulate("click");
+      wrapper.find(".spin-button-down").simulate("click");
+      wrapper.find(".spin-button-down").simulate("click");
+      wrapper.find(".spin-button-down").simulate("click");
       const inputWrapper = wrapper.find(BaseInput);
 
       expect(inputWrapper.prop("value")).toEqual(expectedValue);

@@ -1,0 +1,77 @@
+@import "../styles/tokens.scss";
+@import "./constants.scss";
+
+// ".container" class is responsible to style up outer borders
+// and width, height sizes of input component.
+// it can be applied to <input/> element itself or to wrapper <div>
+// element in case NumberInput is rendered.
+.container {
+  border-radius: $input-border-spacing;
+  height: exclBorderWidth($input-height, 0);
+  display: inline-flex;
+  background-color: $crl-base-white;
+
+  &.active {
+    border: solid $border-width $crl-neutral-4;
+    background-color: $crl-base-white;
+    color: initial;
+
+    &:hover {
+      border: solid $border-width $crl-neutral-5;
+    }
+
+    &:focus-within {
+      border: solid $border-width $crl-base-blue;
+      // Outline params are borrowed from default outline styles for input element
+      // and applied to div element.
+      outline: $crl-base-blue auto 3px;
+      outline-offset: -2px;
+    }
+  }
+
+  &.invalid {
+    border: solid $border-width $crl-base-red;
+    background-color: $crl-red-1;
+    color: $crl-base-red;
+
+    &:focus-within, &:hover {
+      border: solid $border-width $crl-base-red;
+    }
+  }
+
+  &.disabled {
+    background: $crl-neutral-1;
+    color: $crl-base-text--light;
+    border: solid $border-width $crl-neutral-3;
+    cursor: default;
+
+    &:focus, &:hover {
+      border: solid $border-width $crl-neutral-3;
+    }
+  }
+}
+
+$input-side-padding: crl-gutters(1.5);
+// ".input" removes most styling from element because it is responsibility of `.container` class.
+.input {
+  font-family: Source Sans Pro, sans-serif; // TODO (koorosh): replace with token value
+  font-size: 14px; // TODO (koorosh): replace with token value (default font size)
+  line-height: 22px;
+  border: none;
+  outline: none;
+  padding: 0 $input-side-padding;
+  position: relative;
+  background-color: inherit;
+  color: inherit;
+
+  &:focus, &:hover {
+    border: none;
+    outline: none;
+  }
+}
+
+.container.input {
+  min-width: exclBorderWidth($input-text-width, $input-side-padding);
+}
+
+

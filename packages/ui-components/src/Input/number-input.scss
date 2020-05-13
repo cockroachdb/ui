@@ -1,0 +1,83 @@
+@import "../styles/tokens.scss";
+@import "./constants.scss";
+
+// remove default arrow spinner for input (number type)
+.input[type="number"]::-webkit-outer-spin-button,
+.input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  pointer-events: none;
+}
+
+// remove default arrow spinner for input -- Firefox browser
+.input[type=number] {
+  -moz-appearance: textfield;
+}
+
+// Following block describes styles for "Up" and "Down" buttons
+// in Number Input element.
+.container {
+  .spin-buttons-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+    position: relative;
+    right: 0;
+    width: 32px;
+  }
+
+  .spin-button {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 0;
+    background-color: inherit;
+
+    > svg {
+      width: 8px;
+      opacity: 0.6;
+
+      :hover > &, :focus-within > & {
+        opacity: 1;
+      }
+    }
+  }
+
+  // Depending on .container's state (active, invalid, or disabled)
+  // we need to change colors for 'up' and 'down' buttons (Number Input)
+  // component.
+  // iterate over all element states (active, invalid, disabled) and
+  // depending on assigned state for parent (.container) class it
+  // customizes colors for "up" and "down" buttons for Number input.
+  @each $state, $hoverColor, $focusColor in $state-colors {
+    &.#{$state} .spin-button > svg {
+      fill: $hoverColor;
+    }
+
+    @if $focusColor {
+      &.#{$state}:focus-within .spin-button > svg {
+        fill: $focusColor;
+      }
+    }
+  }
+
+  &.number-type {
+    // Add extra space inside of container to make sure that inner element
+    // doesn't overlap rounded borders and outline with inner shadows
+    height: exclBorderWidth($input-height);
+    padding: $input-border-spacing;
+    min-width: exclBorderWidth($input-number-width);
+
+    > .input {
+      width: 100%;
+    }
+  }
+}
+
+
