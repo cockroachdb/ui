@@ -1,0 +1,54 @@
+{
+  "color": {
+    "font": {
+      "base": { "value": "{color.core.neutral.6.value}" },
+      "light": { "value": "{color.core.neutral.5.value}" },
+      "dark": { "value": "{color.core.neutral.7.value}" },
+      "danger": { "value": "{color.base.red.value}" },
+
+      "inverse": {
+        "base": { "value": "{color.base.white.value}" }
+      },
+
+      "link": {
+        "base": { "value": "{color.base.blue.value}" },
+        "hover": { "value": "{color.core.blue.4.value}" },
+
+        "inverse": {
+          "link": { "value": "{color.base.white.value}" }
+        }
+      },
+
+      "button": {
+        "primary": {
+          "base": { "value": "{color.base.white.value}" },
+          "hover": { "value": "{color.base.white.value}" },
+          "active": { "value": "{color.base.white.value}" },
+          "focused": { "value": "{color.base.white.value}" },
+          "disabled": { "value": "{color.base.white.value}" }
+        },
+        "secondary": {
+          "base": { "value": "{color.font.dark.value}" },
+          "hover": { "value": "{color.core.neutral.8.value}" },
+          "active": { "value": "{color.font.dark.value}" },
+          "focused": { "value": "{color.font.dark.value}" },
+          "disabled": { "value": "{color.font.light.value}" }
+        },
+        "flat": {
+          "base": { "value": "{color.font.link.base.value}" },
+          "hover": { "value": "{color.font.link.hover.value}" },
+          "active": { "value": "{color.font.link.base.value}" },
+          "focused": { "value": "{color.font.link.base.value}" },
+          "disabled": { "value": "{color.core.neutral.4.value}" }
+        },
+        "danger": {
+          "base": { "value": "{color.base.white.value}" },
+          "hover": { "value": "{color.base.white.value}" },
+          "active": { "value": "{color.base.white.value}" },
+          "focused": { "value": "{color.base.white.value}" },
+          "disabled": { "value": "{color.base.white.value}" }
+        }
+      }
+    }
+  }
+}

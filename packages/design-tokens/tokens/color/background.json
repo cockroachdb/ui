@@ -1,0 +1,39 @@
+{
+  "color": {
+    "background": {
+      "base": { "value": "{color.base.white.value}" },
+      "alt": { "value": "{color.core.neutral.1.value}" },
+      "inverse": { "value": "{color.core.neutral.6.value}" },
+      "success": { "value": "{color.base.green.value}" },
+      "error": { "value": "{color.base.red.value}" },
+      "warning": { "value": "{color.base.orange.value}" },
+      "info": { "value": "{color.base.blue.value}" },
+
+      "button": {
+        "primary": {
+          "base": { "value": "{color.base.green.value}" },
+          "hover": { "value": "{color.base.green.value}" },
+          "active": { "value": "{color.base.green.value}" },
+          "focused": { "value": "{color.base.green.value}" },
+          "disabled": { "value": "{color.base.green.value}" }
+        },
+
+        "secondary": {
+          "base": { "value": "{color.base.white.value}" },
+          "hover": { "value": "{color.core.neutral.1.value}" },
+          "active": { "value": "{color.core.neutral.1.value}" },
+          "focused": { "value": "{color.core.neutral.1.value}" },
+          "disabled": { "value": "{color.core.neutral.1.value}" }
+        },
+
+        "danger": {
+          "base": { "value": "{color.base.red.value}" },
+          "hover": { "value": "{color.base.red.value}" },
+          "active": { "value": "{color.base.red.value}" },
+          "focused": { "value": "{color.base.red.value}" },
+          "disabled": { "value": "{color.base.red.value}" }
+        }
+      }
+    }
+  }
+}

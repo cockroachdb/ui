@@ -1,0 +1,25 @@
+{
+  "name": "@cockroachlabs/design-tokens",
+  "version": "0.0.1",
+  "description": "Design tokens for Cockroach Labs.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cockroachdb/ui"
+  },
+  "keywords": [
+    "tokens"
+  ],
+  "main": "build.js",
+  "scripts": {
+    "build": "node_modules/.bin/style-dictionary build",
+    "clean": "rm -rf build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "style-dictionary": "^2.10.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
