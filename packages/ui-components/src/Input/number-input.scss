@@ -70,14 +70,7 @@
   &.number-type {
     // Add extra space inside of container to make sure that inner element
     // doesn't overlap rounded borders and outline with inner shadows
-    height: exclBorderWidth($input-height);
-    padding: $input-border-spacing;
     min-width: exclBorderWidth($input-number-width);
-
-    > .input {
-      width: 100%;
-    }
+    width: exclBorderWidth($input-number-width);
   }
 }
-
-

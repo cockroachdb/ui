@@ -1,5 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
+import { Search } from "@cockroachlabs/icons";
 import { BaseInput, InputProps, NumberInput, TextInput } from "./index";
 
 describe("BaseInput", () => {
@@ -53,13 +54,14 @@ describe("TextInput", () => {
   describe("Default props", () => {
     it("provides correct default values to inner <input /> element", () => {
       const wrapper = shallow<InputProps>(<TextInput />);
-      const props = wrapper.props();
+      const inputWrapper = wrapper.find(BaseInput);
+      const props = inputWrapper.props();
       expect(props.disabled).toBeFalsy();
       expect(props.type).toEqual("text");
       expect(props.initialValue).toBeUndefined();
       expect(props.autoComplete).toBeUndefined();
       expect(props.value).toBeUndefined();
-      expect(props.className).toEqual("container");
+      expect(props.className).toBeUndefined();
       expect(props.name).toBeUndefined();
       expect(props.style).toBeUndefined();
     });
@@ -119,5 +121,19 @@ describe("NumberInput", () => {
       expect(inputWrapper.prop("value")).toEqual(expectedValue);
       expect(onChangeSpyFn).toHaveBeenLastCalledWith(expectedValue);
     });
+  });
+});
+
+describe("Input with prefixed Icon", () => {
+  it("renders Icon with TextInput component", () => {
+    const wrapper = shallow(<TextInput prefix={<Search />} />);
+    const prefixWrapper = wrapper.find(Search);
+    expect(prefixWrapper).toBeDefined();
+  });
+
+  it("renders Icon with NumberInput component", () => {
+    const wrapper = shallow(<NumberInput prefix={<Search />} />);
+    const prefixWrapper = wrapper.find(Search);
+    expect(prefixWrapper).toBeDefined();
   });
 });
