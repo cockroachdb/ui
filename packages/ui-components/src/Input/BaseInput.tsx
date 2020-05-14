@@ -21,6 +21,7 @@ export interface InputProps<T = string | number> {
   name?: string;
   disabled?: boolean;
   invalid?: boolean;
+  prefix?: React.ReactNode;
 }
 
 const cx = classNames.bind(styles);
@@ -54,8 +55,6 @@ export const BaseInput: React.FC<InputProps> = ({
   const onChangeHandler = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       const nextValue = event.target.value;
-      setDirtyState(true);
-      setValue(nextValue);
       if (onChange && !disabled) {
         onChange(nextValue);
       }

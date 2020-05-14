@@ -7,9 +7,12 @@
 // element in case NumberInput is rendered.
 .container {
   border-radius: $input-border-spacing;
-  height: exclBorderWidth($input-height, 0);
+  height: exclBorderWidth($input-height);
   display: inline-flex;
   background-color: $crl-base-white;
+  min-width: exclBorderWidth($input-text-width);
+  width: exclBorderWidth($input-text-width);
+  padding: $input-border-spacing;
 
   &.active {
     border: solid $border-width $crl-neutral-4;
@@ -51,7 +54,6 @@
   }
 }
 
-$input-side-padding: crl-gutters(1.5);
 // ".input" removes most styling from element because it is responsibility of `.container` class.
 .input {
   font-family: Source Sans Pro, sans-serif; // TODO (koorosh): replace with token value
@@ -59,10 +61,11 @@ $input-side-padding: crl-gutters(1.5);
   line-height: 22px;
   border: none;
   outline: none;
-  padding: 0 $input-side-padding;
+  padding: 0 crl-gutters(1.5);
   position: relative;
   background-color: inherit;
   color: inherit;
+  width: 100%;
 
   &:focus, &:hover {
     border: none;
@@ -70,8 +73,20 @@ $input-side-padding: crl-gutters(1.5);
   }
 }
 
-.container.input {
-  min-width: exclBorderWidth($input-text-width, $input-side-padding);
+// Prefix component styles. Set constant width/height
+// and apply colors based on container's state.
+.container {
+  .prefix {
+    width: 14px; // TODO (koorosh): has to be the same as font-size
+    min-width: 14px;
+    height: 14px;
+    min-height: 14px;
+    margin: auto 0 auto 8px;
+  }
+
+  @each $state, $hoverColor, $focusColor in $state-colors {
+    &.#{$state} .prefix > svg {
+      fill: $hoverColor;
+    }
+  }
 }
-
-

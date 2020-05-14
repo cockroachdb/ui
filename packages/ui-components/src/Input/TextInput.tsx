@@ -1,18 +1,15 @@
 import React from "react";
 import { BaseInput, InputProps } from "./BaseInput";
-import classNames from "classnames/bind";
-import styles from "./styles.module.scss";
+import { InputPrefix, InputWrapper } from "./helpers";
 
 export type TextInputProps = Omit<InputProps<string>, "type">;
 
-const cx = classNames.bind(styles);
-
 export const TextInput: React.FC<TextInputProps> = props => {
+  const { prefix, disabled, invalid } = props;
   return (
-    <BaseInput
-      {...props}
-      type="text"
-      className={cx("container", props.className)}
-    />
+    <InputWrapper disabled={disabled} invalid={invalid}>
+      <InputPrefix>{prefix}</InputPrefix>
+      <BaseInput {...props} type="text" />
+    </InputWrapper>
   );
 };

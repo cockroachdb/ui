@@ -4,27 +4,22 @@ import { CaretUp, CaretDown } from "@cockroachlabs/icons";
 import isNumber from "../utils/isNumber";
 import { BaseInput, InputProps } from "./BaseInput";
 import styles from "./styles.module.scss";
+import { InputPrefix, InputWrapper } from "./helpers";
 
 const cx = classNames.bind(styles);
 
 export type NumberInputProps = Omit<InputProps<number>, "type">;
 
-interface InputWrapperProps {
-  className?: string;
-}
-
-const InputWrapper: React.FC<InputWrapperProps> = ({ children, className }) => {
-  return <div className={cx(className)}>{children}</div>;
-};
-
 export const NumberInput: React.FC<NumberInputProps> = ({
   onChange,
   value: outerValue,
   initialValue,
+  prefix,
+  invalid,
+  disabled,
   ...props
 }) => {
-  const { invalid, disabled, className } = props;
-  const [value, setValue] = useState<number>(outerValue || initialValue);
+  const [value, setValue] = useState<number>(outerValue || initialValue || 0);
   const onSpinClickHandler = useCallback(
     (increase: -1 | 1) => () => {
       if (disabled) {
@@ -49,23 +44,16 @@ export const NumberInput: React.FC<NumberInputProps> = ({
     [onChange],
   );
 
-  const wrapperClassName = cx(
-    "container",
-    "number-type",
-    {
-      active: !invalid && !disabled,
-      disabled: disabled,
-      invalid: invalid,
-    },
-    className,
-  );
   const spinButtonsGroupClassName = cx("spin-buttons-group");
   const spinButton = cx("spin-button");
 
   return (
-    <InputWrapper className={wrapperClassName}>
+    <InputWrapper disabled={disabled} invalid={invalid} className="number-type">
+      <InputPrefix>{prefix}</InputPrefix>
       <BaseInput
         {...props}
+        disabled={disabled}
+        invalid={invalid}
         onChange={onChangeHandler}
         value={value}
         initialValue={initialValue}
