@@ -1,0 +1,91 @@
+@import "../styles/tokens.scss";
+
+//
+// Tooltips
+// --------------------------------------------------
+
+$border-radius-base: 3px;
+$tooltip-border-width: 1px;
+$tooltip-shadow-width: 0px;
+
+$tooltip-arrow-width: 10px;
+$tooltip-arrow-half-width: 5px;
+
+// Base class
+.Tooltip {
+
+  @include crl-depth(1);
+  padding: 8px 10px;
+  text-align: left;
+  text-decoration: none;
+  border-radius: $border-radius-base;
+  border: $tooltip-border-width solid;
+  max-width: 300px;
+  display: none;
+  position: absolute;
+
+  &[data-show] {
+    display: block;
+  }
+
+  &[data-popper-placement^='top'] > .arrow {
+    bottom: -$tooltip-arrow-half-width;
+  }
+
+  &[data-popper-placement^='bottom'] > .arrow {
+    top: -$tooltip-arrow-half-width;
+  }
+
+  &[data-popper-placement^='left'] > .arrow {
+    right: -$tooltip-arrow-half-width;
+  }
+  
+  &[data-popper-placement^='right'] > .arrow {
+    left: -$tooltip-arrow-half-width;
+  }
+}
+
+.arrow, .arrow::before{
+  position: absolute;
+  width: $tooltip-arrow-width;
+  height: $tooltip-arrow-width;
+  z-index: -4;  
+}
+
+.arrow::before{
+  content: '';
+  display: block;
+  transform: rotate(45deg);
+  border: $tooltip-border-width solid;
+  @include crl-depth(1);
+}
+
+@mixin crl-tooltip-style($bg, $border, $color) {
+  border-color: $border;
+  background-color: $bg;
+  color: $color;
+  .arrow::before {
+    border-color: $border;
+    background-color: $bg;
+  }
+}
+
+//
+// Default style
+// --------------------------------------------------
+.default {
+  @include crl-tooltip-style($crl-neutral-6, $crl-neutral-6, $crl-base-white);
+}
+//
+// Dark style
+// --------------------------------------------------
+.dark {
+  @include crl-tooltip-style($crl-base-black, $crl-base-black, $crl-base-white);
+}
+//
+// Light style
+// --------------------------------------------------
+.light {
+  @include crl-tooltip-style($crl-base-white, $crl-neutral-2, $crl-base-text);
+}
+
