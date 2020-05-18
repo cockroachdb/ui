@@ -1,6 +1,6 @@
-name: Node.js CI
+name: Pull Request CI
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -12,11 +12,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npx lerna bootstrap
-      - run: npx lerna run ci --stream
+      
+      - name: Lerna bootstrap
+        run: npx lerna bootstrap
+
+      - name: Build packages
+        run: npx lerna run build
+
+      - name: Continuous Integration for all packages
+        run: npx lerna run ci --stream
         env:
           CI: true
