@@ -1,63 +1,15 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es5",
     "lib": ["es5", "es6", "es7", "es2017", "dom"],
-    "esModuleInterop": true,
-    "sourceMap": true,
     "allowJs": false,
-    "jsx": "react",
-    "moduleResolution": "node",
     "rootDir": "stories",
     "baseUrl": "stories",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-
-    /**
-      TODO(j-low): set noImplicitAny to `true`
-
-      Explanation: setting noImplicitAny to `true` creates a problem where
-      we import the `@cockroachlabs/ui-components` subpackage. Specifically it throws
-      the following error:
-
-      ```
-      Could not find a declaration file for module '@cockroachlabs/ui-components'
-      ...implicitly has an 'any' type.
-
-      Try `npm install @types/cockroachlabs__ui-components` if it exists or add
-      a new declaration (.d.ts) file containing `declare module '@cockroachlabs/ui-components';`
-      ```
-
-      To solve this is issue seems to require reconfiguring Webpack and Typescript
-      in `ui-components` to generate a full module declaration which is included in
-      the output bundle (https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html#including-declarations-in-your-npm-package).
-
-      The reason this done at this time is because it is not immediately clear how to
-      do this easily.  Though Typescript can be configured to generate per-file typings
-      declarations (https://www.typescriptlang.org/docs/handbook/compiler-options.html), it that
-      does not automatically handle the step of rolling those per-file declarations up into
-      a single top-level comprehensive module declaration (which you could in turn make Webpack aware
-      of to deposit as a separate file in the output bundle).
-
-      It turns out this has been a known issue in the Typescript community for some time and has
-      generated quite a bit of discussion (https://github.com/microsoft/TypeScript/issues/4433)
-      however the problem appears overall difficult and a generalized solution remains elusive.
-
-      As a starting point for work that builds on the integration of Typescript into our Storybook
-      setup, there are a couple packages that attempt to tackle this and seem worth investigating:
-      - https://github.com/timocov/dts-bundle-generator
-      - https://github.com/Swatinem/rollup-plugin-dts
-
-      In the interest of not getting completely bogged-down I've opted to punt on the aforementioned
-      and have filed an issue (https://github.com/cockroachdb/ui/issues/53) to address this.
-    */
-    "noImplicitAny": false,
-
-    "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true,
-    "declaration": false,
+    "declaration": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
