@@ -9,16 +9,17 @@ export default {
 };
 
 export const Example = () => {
-  const text = <span>Tooltip Text</span>;
+  const text = <span>reasonble tooltip text,<br/>some more text</span>;
 
   const styles = {
     display: "table-cell",
-    height: "60px",
+    height: "80px",
     width: "80px",
     textAlign: "center",
     background: "#f6f6f6",
     verticalAlign: "middle",
     border: "5px solid white",
+    boxSizing: "border-box"
   };
 
   const rowStyle = {
@@ -32,45 +33,45 @@ export const Example = () => {
         <h3>Positions</h3>
         <div style={{ display: "table", margin: "0 auto" }}>
           <div style={rowStyle}>
-            <Tooltip position="left" content={text}>
+            <Tooltip placement="left" content={text}>
               <div style={styles}>Left</div>
             </Tooltip>
-            <Tooltip position="top" content={text}>
+            <Tooltip placement="top" content={text}>
               <div style={styles}>Top</div>
             </Tooltip>
-            <Tooltip position="bottom" content={text}>
+            <Tooltip placement="bottom" content={text}>
               <div style={styles}>Bottom</div>
             </Tooltip>
-            <Tooltip position="right" content={text}>
+            <Tooltip placement="right" content={text}>
               <div style={styles}>Right</div>
             </Tooltip>
           </div>
           <div style={rowStyle}>
-            <Tooltip position="leftTop" content={text}>
-              <div style={styles}>Left Top</div>
+            <Tooltip placement="top-start" content={text}>
+              <div style={styles}>Top start</div>
             </Tooltip>
-            <Tooltip position="leftBottom" content={text}>
-              <div style={styles}>Left Bottom</div>
+            <Tooltip placement="top-end" content={text}>
+              <div style={styles}>Top end</div>
             </Tooltip>
-            <Tooltip position="rightTop" content={text}>
-              <div style={styles}>Right Top</div>
+            <Tooltip placement="right-start" content={text}>
+              <div style={styles}>Right start</div>
             </Tooltip>
-            <Tooltip position="rightBottom" content={text}>
-              <div style={styles}>Right Bottom</div>
+            <Tooltip placement="right-end" content={text}>
+              <div style={styles}>Right end</div>
             </Tooltip>
           </div>
           <div style={rowStyle}>
-            <Tooltip position="topLeft" content={text}>
-              <div style={styles}>Top Left</div>
+            <Tooltip placement="left-start" content={text}>
+              <div style={styles}>Left start</div>
             </Tooltip>
-            <Tooltip position="topRight" content={text}>
-              <div style={styles}>Top Right</div>
+            <Tooltip placement="left-end" content={text}>
+              <div style={styles}>Left end</div>
             </Tooltip>
-            <Tooltip position="bottomLeft" content={text}>
-              <div style={styles}>Bottom Left</div>
+            <Tooltip placement="bottom-start" content={text}>
+              <div style={styles}>Bottom start</div>
             </Tooltip>
-            <Tooltip position="bottomRight" content={text}>
-              <div style={styles}>Bottom Right</div>
+            <Tooltip placement="bottom-end" content={text}>
+              <div style={styles}>Bottom end</div>
             </Tooltip>
           </div>
         </div>
@@ -81,28 +82,28 @@ export const Example = () => {
         <div style={{ display: "table", margin: "0 auto 100px auto" }}>
           <div style={{ display: "table-row"}}>
             <Tooltip
-              position="bottom"
+              placement="bottom"
               style="default"
               visible={true}
               content={text}
             >
-              <div style={{...styles, width: "110px",}}>default</div>
+              <div style={{...styles, width: "200px",}}>default</div>
             </Tooltip>
             <Tooltip
-              position="bottom"
+              placement="bottom"
               style="dark"
               visible={true}
               content={text}
             >
-              <div style={{...styles, width: "110px",}}>dark</div>
+              <div style={{...styles, width: "200px",}}>dark</div>
             </Tooltip>
             <Tooltip
-              position="bottom"
+              placement="bottom"
               style="light"
               visible={true}
               content={text}
             >
-              <div style={{...styles, width: "110px",}}>light</div>
+              <div style={{...styles, width: "200px",}}>light</div>
             </Tooltip>
           </div>
         </div>
@@ -122,17 +123,21 @@ export const Demo = () => (
     }}
   >
     <Tooltip
-      position={select(
+      placement={select(
         "Position",
         [
           "left",
+          "left-start",
+          "left-end",
           "right",
+          "right-start",
+          "right-end",
           "top",
+          "top-start",
+          "top-end",
           "bottom",
-          "topLeft",
-          "topRight",
-          "bottomLeft",
-          "bottomRight",
+          "bottom-start",
+          "bottom-end",
         ],
         "bottom"
       )}

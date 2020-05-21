@@ -13,7 +13,6 @@ $tooltip-arrow-half-width: 5px;
 
 // Base class
 .Tooltip {
-
   @include crl-depth(1);
   padding: 8px 10px;
   text-align: left;
@@ -21,52 +20,69 @@ $tooltip-arrow-half-width: 5px;
   border-radius: $border-radius-base;
   border: $tooltip-border-width solid;
   max-width: 300px;
-  display: none;
+  visibility: hidden;
   position: absolute;
 
   &[data-show] {
-    display: block;
+    visibility: visible;
   }
 
-  &[data-popper-placement^='top'] > .arrow {
+  &[data-popper-placement^="top"] > .arrow,
+  &[data-popper-placement^="top"] > .arrowInner {
     bottom: -$tooltip-arrow-half-width;
   }
 
-  &[data-popper-placement^='bottom'] > .arrow {
+  &[data-popper-placement^="bottom"] > .arrow,
+  &[data-popper-placement^="bottom"] > .arrowInner {
     top: -$tooltip-arrow-half-width;
   }
 
-  &[data-popper-placement^='left'] > .arrow {
+  &[data-popper-placement^="left"] > .arrow,
+  &[data-popper-placement^="left"] > .arrowInner {
     right: -$tooltip-arrow-half-width;
   }
-  
-  &[data-popper-placement^='right'] > .arrow {
+
+  &[data-popper-placement^="right"] > .arrow,
+  &[data-popper-placement^="right"] > .arrowInner {
     left: -$tooltip-arrow-half-width;
   }
 }
 
-.arrow, .arrow::before{
+.arrow,
+.arrowInner {
   position: absolute;
   width: $tooltip-arrow-width;
   height: $tooltip-arrow-width;
-  z-index: -4;  
+  &:before {
+    content: "";
+    position: absolute;
+    width: $tooltip-arrow-width;
+    height: $tooltip-arrow-width;
+    transform: rotate(45deg);
+    border: $tooltip-border-width solid;
+  }
 }
 
-.arrow::before{
-  content: '';
-  display: block;
-  transform: rotate(45deg);
-  border: $tooltip-border-width solid;
+.arrow:before {
   @include crl-depth(1);
+  z-index: -5;
+}
+
+.arrowInner:before {
+  z-index: 5;
 }
 
 @mixin crl-tooltip-style($bg, $border, $color) {
   border-color: $border;
   background-color: $bg;
   color: $color;
-  .arrow::before {
+  .arrow:before {
     border-color: $border;
     background-color: $bg;
+  }
+  .arrowInner:before {
+    background-color: $bg;
+    border-color: transparent;
   }
 }
 
@@ -88,4 +104,3 @@ $tooltip-arrow-half-width: 5px;
 .light {
   @include crl-tooltip-style($crl-base-white, $crl-neutral-2, $crl-base-text);
 }
-

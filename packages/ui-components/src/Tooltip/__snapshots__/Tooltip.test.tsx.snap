@@ -1,27 +1,60 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Tooltip renders 1`] = `
-<ForwardRef(Tooltip)
-  arrowContent={
-    <div
-      className="crl-tooltip-arrow-inner"
-    />
-  }
-  overlay={
+<Fragment>
+  <div
+    id="hoverme"
+    key=".0"
+    onMouseOut={[Function]}
+    onMouseOver={[Function]}
+  >
+    hover me
+  </div>
+  <div
+    className="function classNames () {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(this && this[arg] || arg);
+			} else if (Array.isArray(arg)) {
+				classes.push(classNames.apply(this, arg));
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(this && this[key] || key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	} Tooltip"
+    data-jest="tooltip"
+    style={
+      Object {
+        "left": "0",
+        "position": "absolute",
+        "top": "0",
+      }
+    }
+  >
     <div
       id="content"
     >
       test
     </div>
-  }
-  overlayClassName="default"
-  placement="bottom"
-  prefixCls="crl-tooltip"
->
-  <div
-    id="hoverme"
-  >
-    hover me
+    <div
+      className="arrow"
+    />
+    <div
+      className="arrowInner"
+    />
   </div>
-</ForwardRef(Tooltip)>
+</Fragment>
 `;
