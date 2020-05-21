@@ -32,28 +32,28 @@ const Tooltip: FunctionComponent<TooltipProps> = ({
   children,
   content,
   visible = false,
-  ...props
 }) => {
-  if (!content) {
-    return <>{children}</>;
-  }
-
   const [referenceElement, setReferenceElement] = useState(null);
   const [popperElement, setPopperElement] = useState(null);
   const [arrowElement, setArrowElement] = useState(null);
-  const { styles, attributes, forceUpdate } = usePopper(referenceElement, popperElement, {
+
+  const { styles, attributes } = usePopper(referenceElement, popperElement, {
     placement,
     modifiers: [
       { name: "arrow", options: { element: arrowElement } },
-      { name: "offset", options: { offset: [0, 8] } },
+      { name: "offset", options: { offset: [0, 10] } },
       {
-        name: 'computeStyles',
+        name: "computeStyles",
         options: {
           gpuAcceleration: false, // true by default
         },
       },
     ],
   });
+
+  if (!content) {
+    return <>{children}</>;
+  }
 
   const classnames = classNames(css[style], css.Tooltip);
   if (visible && popperElement) {
@@ -71,11 +71,9 @@ const Tooltip: FunctionComponent<TooltipProps> = ({
         ref: setReferenceElement,
         onMouseOver: () => {
           popperElement.setAttribute("data-show", "");
-          setTimeout(() => {
-            forceUpdate()
-          }, 100);
         },
         onMouseOut: () => {
+          if (visible) return;
           popperElement.removeAttribute("data-show");
         },
       },
@@ -90,30 +88,15 @@ const Tooltip: FunctionComponent<TooltipProps> = ({
         className={classnames}
         ref={setPopperElement}
         style={styles.popper}
+        data-jest="tooltip"
         {...attributes.popper}
       >
         {content}
         <div className={css.arrow} ref={setArrowElement} style={styles.arrow} />
+        <div className={css.arrowInner} style={styles.arrow} />
       </div>
     </>
   );
-
-  //return (
-  // <RCtooltip
-  //   {...props}
-  //   prefixCls={"crl-tooltip"}
-  //   placement={position}
-  //   overlay={content}
-  //   overlayClassName={style}
-  //   arrowContent={<div className="crl-tooltip-arrow-inner" />}
-  // >
-  //   {typeof children === "string" ? (
-  //     <span>{children}</span>
-  //   ) : (
-  //     (children as ReactElement)
-  //   )}
-  // </RCtooltip>
-  //);
 };
 
 export default Tooltip;

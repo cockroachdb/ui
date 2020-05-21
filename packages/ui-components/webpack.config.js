@@ -28,11 +28,6 @@ module.exports = {
         use: ["style-loader", "css-loader?modules=true", "sass-loader"],
       },
       {
-        test: /\.scss$/,
-        exclude: [/node_modules/, /\.module.scss$/],
-        use: ["style-loader", "css-loader", "sass-loader"],
-      },
-      {
         test: /\.(ts|js)x?$/,
         use: [
           "babel-loader",
