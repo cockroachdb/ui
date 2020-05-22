@@ -10,6 +10,7 @@ describe("Avatar", () => {
       const className = wrapper.prop("className");
       expect(className).toContain("intent-default");
       expect(className).toContain("size-l");
+      expect(className).toContain("transformCase-uppercase");
       expect(className).not.toContain("disabled");
       expect(className).not.toContain("selectable");
     });
