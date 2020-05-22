@@ -9,7 +9,7 @@ describe("Avatar", () => {
       const wrapper = shallow(<Avatar>CL</Avatar>);
       const className = wrapper.prop("className");
       expect(className).toContain("intent-default");
-      expect(className).toContain("size-l");
+      expect(className).toContain("size-default");
       expect(className).toContain("transformCase-uppercase");
       expect(className).not.toContain("disabled");
       expect(className).not.toContain("selectable");
@@ -61,7 +61,7 @@ describe("Avatar", () => {
   });
 
   describe("Size prop", () => {
-    const sizes: AvatarSize[] = ["xs", "s", "m", "l"];
+    const sizes: AvatarSize[] = ["default", "small"];
 
     sizes.forEach(size => {
       it("applies correct classNames depending on size", () => {
