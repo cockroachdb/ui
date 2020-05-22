@@ -41,32 +41,18 @@
   color: $crl-red-4;
 }
 
-.size-l {
+.size-default {
   width: 40px;
   height: 40px;
   font-size: 14px;
   letter-spacing: 0.1px;
 }
 
-.size-m {
+.size-small {
   width: 32px;
   height: 32px;
   font-size: 12px;
   letter-spacing: 0.3px;
-}
-
-.size-s {
-  width: 24px;
-  height: 24px;
-  font-size: 14px;
-  letter-spacing: 0.1px;
-}
-
-.size-xs {
-  width: 16px;
-  height: 16px;
-  font-size: 10px;
-  letter-spacing: 0.1px;
 }
 
 .noTransform {

@@ -12,7 +12,7 @@ export default {
 const baseConfig = {
   intent: "default",
   children: "jb",
-  size: "l",
+  size: "default",
   disabled: false,
   selectable: false,
   onClick: () => console.log("click"),
@@ -53,14 +53,9 @@ const withIntentSelectable = withIntentNotSelectable.map(c => ({
   selectable: true,
 }));
 
-const withIntentSelectableSizeM = withIntentSelectable.map(c => ({
+const withIntentSelectableSmallSize = withIntentSelectable.map(c => ({
   ...c,
-  size: "m",
-}));
-
-const withIntentSelectableSizeS = withIntentSelectable.map(c => ({
-  ...c,
-  size: "s",
+  size: "small",
 }));
 
 const Container = ({ children }) => (
@@ -87,9 +82,7 @@ const ItemWrapper = ({ children, title }) => (
 
 export const example = () => (
   <section>
-    <h3>Size L</h3>
-    <h4>Hover on avatar to see changes (for selectable items only)</h4>
-
+    <h3>Default size</h3>
     <Container>
       {withIntentNotSelectable.map(({ description, ...props }, idx) => (
         <ItemWrapper title={description} key={idx}>
@@ -97,7 +90,7 @@ export const example = () => (
         </ItemWrapper>
       ))}
     </Container>
-
+    <h4>Hover on avatar to see changes (for selectable items only)</h4>
     <Container>
       {withIntentSelectable.map(({ description, ...props }, idx) => (
         <ItemWrapper title={description} key={idx}>
@@ -106,17 +99,9 @@ export const example = () => (
       ))}
     </Container>
 
-    <h3>Size M</h3>
+    <h3>Small size</h3>
     <Container>
-      {withIntentSelectableSizeM.map(({ description, ...props }, idx) => (
-        <ItemWrapper title={description} key={idx}>
-          <Avatar {...props} />
-        </ItemWrapper>
-      ))}
-    </Container>
-    <h3>Size S</h3>
-    <Container>
-      {withIntentSelectableSizeS.map(({ description, ...props }, idx) => (
+      {withIntentSelectableSmallSize.map(({ description, ...props }, idx) => (
         <ItemWrapper title={description} key={idx}>
           <Avatar {...props} />
         </ItemWrapper>
@@ -127,7 +112,7 @@ export const example = () => (
 
 export const demo = () => (
   <Avatar
-    size={select("Size", ["xs", "s", "m", "l"], "l")}
+    size={select("Size", ["default", "small"], "default")}
     disabled={boolean("Disabled", false)}
     intent={select(
       "Intent",

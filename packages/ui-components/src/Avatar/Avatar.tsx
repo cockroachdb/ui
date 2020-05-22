@@ -14,7 +14,7 @@ export interface AvatarProps {
   transformCase?: AvatarCase;
 }
 
-export type AvatarSize = "xs" | "s" | "m" | "l";
+export type AvatarSize = "default" | "small";
 export type AvatarIntent = "default" | "active" | "pending" | "invalid";
 export type AvatarCase = "none" | "uppercase";
 
@@ -23,7 +23,7 @@ const cx = classNames.bind(styles);
 const Avatar: React.FC<AvatarProps> = ({
   children,
   intent = "default",
-  size = "l",
+  size = "default",
   disabled = false,
   selectable = false,
   onClick,
