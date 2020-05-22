@@ -12,6 +12,10 @@
 // remove default arrow spinner for input -- Firefox browser
 .input[type=number] {
   -moz-appearance: textfield;
+  @include firefox-only {
+    width: -moz-available;
+    overflow-x: auto
+  }
 }
 
 // Following block describes styles for "Up" and "Down" buttons
@@ -25,6 +29,7 @@
     position: relative;
     right: 0;
     width: 32px;
+    min-width: 32px;
   }
 
   .spin-button {

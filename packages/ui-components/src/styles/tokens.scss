@@ -122,6 +122,16 @@ $crl-base-divider: $crl-neutral-5;
   }
 }
 
+@mixin firefox-only {
+  @at-root {
+    @-moz-document url-prefix() {
+      & {
+        @content;
+      }
+    }
+  }
+}
+
 /**
  Variables
 */
