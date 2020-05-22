@@ -69,6 +69,18 @@
   letter-spacing: 0.1px;
 }
 
+.noTransform {
+  text-transform: none;
+}
+
+.transformCase-none {
+  text-transform: none;
+}
+
+.transformCase-uppercase {
+  text-transform: uppercase;
+}
+
 .disabled {
   background: $crl-neutral-2;
   color: $crl-base-text--light;

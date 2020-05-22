@@ -136,6 +136,7 @@ export const demo = () => (
     )}
     onClick={action("button-click")}
     selectable={boolean("Selectable", true)}
+    transformCase={select("transformCase", ["none", "uppercase"], "uppercase")}
   >
     {text("Text", "RL")}
   </Avatar>

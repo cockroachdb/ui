@@ -11,10 +11,12 @@ export interface AvatarProps {
   disabled?: boolean;
   selectable?: boolean;
   onClick?: () => void;
+  transformCase?: AvatarCase;
 }
 
 export type AvatarSize = "xs" | "s" | "m" | "l";
 export type AvatarIntent = "default" | "active" | "pending" | "invalid";
+export type AvatarCase = "none" | "uppercase";
 
 const cx = classNames.bind(styles);
 
@@ -25,15 +27,16 @@ const Avatar: React.FC<AvatarProps> = ({
   disabled = false,
   selectable = false,
   onClick,
+  transformCase = "uppercase",
 }) => {
   const classnames = useMemo(
     () =>
-      cx("avatar", objectToClassnames({ size }), {
+      cx("avatar", objectToClassnames({ size, transformCase }), {
         disabled,
         selectable: !disabled && selectable,
         [`intent-${intent}`]: !disabled,
       }),
-    [intent, size, disabled, selectable],
+    [intent, size, disabled, selectable, transformCase],
   );
 
   const onClickHandler = useCallback(() => {
