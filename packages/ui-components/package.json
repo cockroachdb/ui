@@ -8,13 +8,14 @@
   },
   "main": "dist/main.js",
   "scripts": {
-    "build": "webpack --display-error-details",
+    "build": "npm run clean && npm run compile && webpack --display-error-details",
     "build:watch": "webpack --watch",
     "ci": "jest --ci -i",
-    "clean": "rm -rf  ./dist/*",
+    "clean": "rimraf dist",
     "lint": "eslint ./src/**/*.{tsx,ts,js} --format=codeframe",
     "test": "jest --watch",
-    "start": "npm run build:watch"
+    "start": "npm run build:watch",
+    "compile": "tsc -p tsconfig.build.json"
   },
   "keywords": [],
   "license": "MIT",
@@ -54,6 +55,7 @@
     "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "rimraf": "^3.0.2",
     "sass-loader": "^8.0.2",
     "source-map-loader": "^0.2.4",
     "style-loader": "^1.1.3",

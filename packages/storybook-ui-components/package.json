@@ -7,7 +7,9 @@
   "scripts": {
     "build": "build-storybook -c .storybook -o dist",
     "storybook": "start-storybook -p 6006",
-    "start": "npm run storybook"
+    "start": "npm run storybook",
+    "clean": "rimraf dist",
+    "compile": "tsc -p tsconfig.build.json"
   },
   "repository": {
     "type": "git",
@@ -30,6 +32,7 @@
     "@storybook/addons": "^5.3.18",
     "@storybook/react": "^5.3.18",
     "babel-loader": "^8.1.0",
+    "rimraf": "^3.0.2",
     "ts-loader": "^7.0.3",
     "typescript": "^3.8.3"
   }
