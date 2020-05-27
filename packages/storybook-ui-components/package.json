@@ -9,7 +9,7 @@
     "storybook": "start-storybook -p 6006",
     "start": "npm run storybook",
     "clean": "rimraf dist",
-    "compile": "tsc -p tsconfig.build.json"
+    "compile": "tsc -b tsconfig.json"
   },
   "repository": {
     "type": "git",

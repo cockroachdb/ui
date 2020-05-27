@@ -878,16 +878,6 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@cockroachlabs/icons@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@cockroachlabs/icons/-/icons-0.1.1.tgz#691940350d32678aac6fcf3307054bd30f49e7a0"
-  integrity sha512-d7N8uJMGmrj11O1kPm/wLgZz7GBsqoQbOoeiLnkiQWfbg2oKfDPax5VvhDwCvvEN8YiL9VHAL0aGSjEFhB+55A==
-
-"@cockroachlabs/ui-components@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@cockroachlabs/ui-components/-/ui-components-0.1.2.tgz#46abc56108e5fc3346c4844cb0fc63b23b4b553c"
-  integrity sha512-KSemH7NEsuT2FGTDmHky9KWh75VUNXhkdIky/rds8Hs5c9BMlyzUVLHPcYTCnFtSbuQVe3PDjJlhUTYCEUi7eg==
-
 "@emotion/cache@^10.0.27", "@emotion/cache@^10.0.9":
   version "10.0.29"
   resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-10.0.29.tgz#87e7e64f412c060102d589fe7c6dc042e6f9d1e0"
@@ -6942,6 +6932,13 @@ rimraf@^2.2.8, rimraf@^2.5.4, rimraf@^2.6.3, rimraf@^2.7.1:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.7.1.tgz#35797f13a7fdadc566142c29d4f07ccad483e3ec"
   integrity sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==
+  dependencies:
+    glob "^7.1.3"
+
+rimraf@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-3.0.2.tgz#f1a5402ba6220ad52cc1282bac1ae3aa49fd061a"
+  integrity sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==
   dependencies:
     glob "^7.1.3"
 

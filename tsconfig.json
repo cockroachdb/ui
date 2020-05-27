@@ -4,10 +4,7 @@
     "baseUrl": "./packages",
     "paths": {
       "@cockroachlabs/ui-components": ["ui-components/src"],
-      "@cockroachlabs/storbook-ui-components": [
-        "storybook-ui-components/stories"
-      ],
-      "@cockroachlabs/icons*": ["icons/src"]
+      "@cockroachlabs/icons": ["icons/src"]
     }
   }
 }

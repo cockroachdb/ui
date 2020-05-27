@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "composite": true,
     "lib": ["es5", "es6", "es7", "es2017", "dom"],
     "allowJs": false,
     "rootDir": "stories",
@@ -14,5 +15,9 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
+  "references": [
+    { "path": "../ui-components/tsconfig.json" },
+    { "path": "../icons/tsconfig.json" }
+  ],
   "include": ["stories/**/*.tsx"]
 }
