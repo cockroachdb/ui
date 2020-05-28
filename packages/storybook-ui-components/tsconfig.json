@@ -52,7 +52,7 @@
       In the interest of not getting completely bogged-down I've opted to punt on the aforementioned
       and have filed an issue (https://github.com/cockroachdb/ui/issues/53) to address this.
     */
-    "noImplicitAny": false,
+    "noImplicitAny": true,
 
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent, ReactElement } from "react";
 import { withKnobs, text, select } from "@storybook/addon-knobs";
 import { Badge } from "@cockroachlabs/ui-components";
 
@@ -8,15 +8,21 @@ export default {
   decorators: [withKnobs],
 };
 
-const BadgeDisplaySection = ({ children }) => (
+const BadgeDisplaySection: FunctionComponent<{
+  children: Array<ReactElement | null>;
+}> = ({ children }) => (
   <section style={{ display: "flex", justifyContent: "flex-start" }}>
     {children}
   </section>
 );
-const BadgeDisplay = ({ children }) => (
+const BadgeDisplay: FunctionComponent<{
+  children: Array<ReactElement | null>;
+}> = ({ children }) => (
   <div style={{ margin: "0rem 1rem", textAlign: "center" }}>{children}</div>
 );
-const Label = ({ children }) => (
+const Label: FunctionComponent<{
+  children: string;
+}> = ({ children }) => (
   <div style={{ marginBottom: "1rem" }}>
     <code>{children}</code>
   </div>

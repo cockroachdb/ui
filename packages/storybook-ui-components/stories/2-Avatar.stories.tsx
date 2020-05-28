@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent, ReactElement } from "react";
 import { withKnobs, text, boolean, select } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import { Avatar } from "@cockroachlabs/ui-components";
@@ -58,7 +58,9 @@ const withIntentSelectableSmallSize = withIntentSelectable.map(c => ({
   size: "small",
 }));
 
-const Container = ({ children }) => (
+const Container: FunctionComponent<{
+  children: ReactElement;
+}> = ({ children }) => (
   <div
     style={{
       display: "flex",
@@ -71,7 +73,10 @@ const Container = ({ children }) => (
   </div>
 );
 
-const ItemWrapper = ({ children, title }) => (
+const ItemWrapper: FunctionComponent<{
+  children: ReactElement;
+  title: string;
+}> = ({ children, title }) => (
   <div
     style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
   >
