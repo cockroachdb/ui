@@ -3,11 +3,21 @@
   "platforms": {
     "scss": {
       "transformGroup": "scss",
-      "buildPath": "build/web/",
+      "buildPath": "dist/web/",
       "files": [
         {
-          "destination": "_colors.scss",
+          "destination": "_tokens.scss",
           "format": "scss/variables"
+        }
+      ]
+    },
+    "js": {
+      "transformGroup": "js",
+      "buildPath": "dist/web/",
+      "files": [
+        {
+          "format": "javascript/es6",
+          "destination": "tokens.js"
         }
       ]
     }
