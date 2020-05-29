@@ -13,23 +13,23 @@
 }
 
 .intent-neutral {
-  background: $crl-neutral-2;
-  color: $crl-base-text--dark;
+  background: $color-background-badge-neutral;
+  color: $color-font-badge-neutral;
 }
 
 .intent-success {
-  background: rgba($crl-green-1, 0.3);
-  color: $crl-base-green;
+  background: $color-background-badge-success;
+  color: $color-font-badge-success;
 }
 
 .intent-warning {
-  background: rgba($crl-orange-1, 0.3);
-  color: $crl-base-yellow;
+  background: $color-background-badge-warning;
+  color: $color-font-badge-warning;
 }
 
 .intent-danger {
-  background: rgba($crl-base-red, 0.3);
-  color: $crl-base-red;
+  background: $color-background-badge-danger;
+  color: $color-font-badge-danger;
 }
 
 .noTransform {
