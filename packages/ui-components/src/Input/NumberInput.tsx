@@ -14,7 +14,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
   onChange,
   value: outerValue,
   initialValue,
-  prefix,
+  prefixIcon,
   invalid,
   disabled,
   ...props
@@ -49,7 +49,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
 
   return (
     <InputWrapper disabled={disabled} invalid={invalid} className="number-type">
-      <InputPrefix>{prefix}</InputPrefix>
+      <InputPrefix>{prefixIcon}</InputPrefix>
       <BaseInput
         {...props}
         disabled={disabled}

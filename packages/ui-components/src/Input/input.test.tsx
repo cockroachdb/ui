@@ -66,6 +66,21 @@ describe("TextInput", () => {
       expect(props.style).toBeUndefined();
     });
   });
+
+  it("applies native <input> props and event handlers", () => {
+    const onSubmitSpyFn = jasmine.createSpy();
+    const wrapper = shallow<HTMLDivElement>(
+      <TextInput onSubmit={onSubmitSpyFn} aria-label="number-input-el" />,
+    );
+    const inputElWrapper = wrapper
+      .find(BaseInput)
+      .dive()
+      .find("input")
+      .at(0);
+    inputElWrapper.simulate("submit");
+    expect(onSubmitSpyFn).toHaveBeenCalled();
+    expect(inputElWrapper.prop("aria-label")).toEqual("number-input-el");
+  });
 });
 
 describe("NumberInput", () => {
@@ -88,6 +103,21 @@ describe("NumberInput", () => {
       const inputWrapper = wrapper.find(BaseInput);
       inputWrapper.prop("onChange")("abc");
       expect(onChangeSpyFn).not.toHaveBeenCalled();
+    });
+
+    it("applies native <input> props and event handlers", () => {
+      const onSubmitSpyFn = jasmine.createSpy();
+      const wrapper = shallow<HTMLDivElement>(
+        <NumberInput onSubmit={onSubmitSpyFn} aria-label="number-input-el" />,
+      );
+      const inputElWrapper = wrapper
+        .find(BaseInput)
+        .dive()
+        .find("input")
+        .at(0);
+      inputElWrapper.simulate("submit");
+      expect(onSubmitSpyFn).toHaveBeenCalled();
+      expect(inputElWrapper.prop("aria-label")).toEqual("number-input-el");
     });
   });
 
@@ -126,13 +156,13 @@ describe("NumberInput", () => {
 
 describe("Input with prefixed Icon", () => {
   it("renders Icon with TextInput component", () => {
-    const wrapper = shallow(<TextInput prefix={<Search />} />);
+    const wrapper = shallow(<TextInput prefixIcon={<Search />} />);
     const prefixWrapper = wrapper.find(Search);
     expect(prefixWrapper).toBeDefined();
   });
 
   it("renders Icon with NumberInput component", () => {
-    const wrapper = shallow(<NumberInput prefix={<Search />} />);
+    const wrapper = shallow(<NumberInput prefixIcon={<Search />} />);
     const prefixWrapper = wrapper.find(Search);
     expect(prefixWrapper).toBeDefined();
   });
