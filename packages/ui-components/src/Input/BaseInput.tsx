@@ -9,7 +9,7 @@ import React, {
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 
-export interface InputProps<T = string | number> {
+type OwnInputProps<T = string | number> = {
   type?: T extends string ? "text" : "number";
   initialValue?: T;
   value?: T;
@@ -21,8 +21,16 @@ export interface InputProps<T = string | number> {
   name?: string;
   disabled?: boolean;
   invalid?: boolean;
-  prefix?: React.ReactNode;
-}
+  prefixIcon?: React.ReactNode;
+};
+
+type NativeInputProps<T> = Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  keyof OwnInputProps<T>
+>;
+
+export type InputProps<T = string | number> = NativeInputProps<T> &
+  OwnInputProps<T>;
 
 const cx = classNames.bind(styles);
 
@@ -38,6 +46,7 @@ export const BaseInput: React.FC<InputProps> = ({
   onChange,
   disabled = false,
   invalid = false,
+  ...props
 }) => {
   const [value, setValue] = useState<string | number>(
     outerValue || initialValue,
@@ -78,6 +87,7 @@ export const BaseInput: React.FC<InputProps> = ({
 
   return (
     <input
+      {...props}
       name={name}
       type={type}
       value={value}

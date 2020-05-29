@@ -44,7 +44,7 @@ export const SearchInput = () => {
       onChange={setValue}
       invalid={boolean("invalid", false)}
       placeholder={text("Placeholder", "Search...")}
-      prefix={<Search />}
+      prefixIcon={<Search />}
     />
   );
 };
@@ -58,7 +58,7 @@ export const NumberInputWithIcon = () => {
       onChange={setValue}
       invalid={boolean("invalid", false)}
       placeholder={text("Placeholder", "Counter...")}
-      prefix={<Search />}
+      prefixIcon={<Search />}
     />
   );
 };
