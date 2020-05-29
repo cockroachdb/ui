@@ -14,6 +14,7 @@
         "9": { "value": "#060c12" }
       },
       "blue": {
+        "0": { "value": "#e6edfe" },
         "1": { "value": "#e0eefb" },
         "2": { "value": "#74bdfd" },
         "3": { "value": "#0788ff" },
