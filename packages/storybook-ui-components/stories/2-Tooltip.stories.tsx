@@ -9,9 +9,15 @@ export default {
 };
 
 export const Example = () => {
-  const text = <span>reasonble tooltip text,<br/>some more text</span>;
+  const text = (
+    <span>
+      reasonble tooltip text,
+      <br />
+      some more text
+    </span>
+  );
 
-  const styles = {
+  const styles: React.CSSProperties = {
     display: "table-cell",
     height: "80px",
     width: "80px",
@@ -19,13 +25,13 @@ export const Example = () => {
     background: "#f6f6f6",
     verticalAlign: "middle",
     border: "5px solid white",
-    boxSizing: "border-box"
+    boxSizing: "border-box",
   };
 
-  const rowStyle = {
+  const rowStyle: React.CSSProperties = {
     display: "table-row",
   };
-  
+
   return (
     <section>
       <h1>Tooltip</h1>
@@ -80,14 +86,14 @@ export const Example = () => {
         <h3>STYLES</h3>
 
         <div style={{ display: "table", margin: "0 auto 100px auto" }}>
-          <div style={{ display: "table-row"}}>
+          <div style={{ display: "table-row" }}>
             <Tooltip
               placement="bottom"
               style="default"
               visible={true}
               content={text}
             >
-              <div style={{...styles, width: "200px",}}>default</div>
+              <div style={{ ...styles, width: "200px" }}>default</div>
             </Tooltip>
             <Tooltip
               placement="bottom"
@@ -95,7 +101,7 @@ export const Example = () => {
               visible={true}
               content={text}
             >
-              <div style={{...styles, width: "200px",}}>dark</div>
+              <div style={{ ...styles, width: "200px" }}>dark</div>
             </Tooltip>
             <Tooltip
               placement="bottom"
@@ -103,7 +109,7 @@ export const Example = () => {
               visible={true}
               content={text}
             >
-              <div style={{...styles, width: "200px",}}>light</div>
+              <div style={{ ...styles, width: "200px" }}>light</div>
             </Tooltip>
           </div>
         </div>
