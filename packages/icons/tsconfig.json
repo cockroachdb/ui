@@ -3,7 +3,7 @@
     "allowJs": false,
     "sourceMap": false,
     "noImplicitAny": true,
-    "module": "ESNext",
+    "module": "commonjs",
     "moduleResolution": "Node",
     "target": "es6",
     "jsx": "react",
