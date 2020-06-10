@@ -1,11 +1,21 @@
 {
   "compilerOptions": {
-    "sourceMap": true,
-    "noImplicitAny": true,
+    "allowJs": false,
+    "emitDeclarationOnly": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "jsx": "react",
     "module": "ESNext",
     "moduleResolution": "Node",
+    "noImplicitAny": true,
+    "outDir": "./dist/types",
     "target": "es6",
-    "jsx": "react",
-    "esModuleInterop": true
-  }
+    "skipLibCheck": true,
+    "sourceMap": false,
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.*"
+  ],
 }

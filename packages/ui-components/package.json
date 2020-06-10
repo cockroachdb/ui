@@ -7,12 +7,16 @@
     "url": "https://github.com/cockroachdb/ui"
   },
   "main": "dist/main.js",
+  "types": "dist/types/index.d.ts",
   "scripts": {
-    "build": "webpack --display-error-details",
+    "build": "npm-run-all build:typescript build:bundle",
+    "build:bundle": "webpack --display-error-details",
+    "build:typescript": "tsc",
     "build:watch": "webpack --watch",
     "ci": "jest --ci -i",
     "clean": "rm -rf  ./dist/*",
     "lint": "eslint ./src/**/*.{tsx,ts,js} --format=codeframe",
+    "prepublishOnly": "npm-run-all clean build",
     "test": "jest --watch",
     "start": "npm run build:watch"
   },
@@ -54,6 +58,7 @@
     "jest-enzyme": "^7.1.2",
     "jest-runner-eslint": "^0.7.6",
     "node-sass": "^4.13.1",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",

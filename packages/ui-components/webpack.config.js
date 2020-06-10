@@ -4,7 +4,7 @@ const WebpackBar = require("webpackbar");
 module.exports = {
   mode: "development",
 
-  entry: "./src/index.js",
+  entry: "./src/index.ts",
 
   output: {
     path: path.resolve(__dirname, "dist"),
