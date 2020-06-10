@@ -2,6 +2,9 @@
   "name": "@cockroachlabs/icons",
   "version": "0.1.1",
   "description": "Icons for Cockroach UI exported as React Components",
+  "files": [
+    "dist/"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -10,6 +13,7 @@
     "build:generate": "svgr --typescript --icon -d src/components svg",
     "build:watch": "tsc --watch",
     "clean": "rimraf dist src/components",
+    "prepublishOnly": "npm-run-all clean build",
     "test": "node notests.js",
     "start": "npm run build:watch"
   },
