@@ -3,28 +3,30 @@
   "version": "0.1.1",
   "description": "Icons for Cockroach UI exported as React Components",
   "files": [
-    "dist/index.js",
-    "dist/index.d.ts"
+    "dist/"
   ],
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "webpack",
-    "build:watch": "webpack --watch",
-    "clean": "rimraf dist",
+    "build": "npm-run-all build:generate build:typescript",
+    "build:typescript": "tsc",
+    "build:generate": "svgr --typescript --icon -d src/components svg",
+    "build:watch": "tsc --watch",
+    "clean": "rimraf dist src/components",
+    "prepublishOnly": "npm-run-all clean build",
     "test": "node notests.js",
     "start": "npm run build:watch"
   },
   "license": "MIT",
   "devDependencies": {
-    "@svgr/webpack": "^5.1.0",
+    "@svgr/cli": "^5.4.0",
     "@types/react": "^16.9.20",
     "chalk": "^4.0.0",
-    "copy-webpack-plugin": "^5.1.1",
     "node-emoji": "^1.10.0",
+    "npm-run-all": "^4.1.5",
     "react": "^16.12.0",
     "rimraf": "^3.0.2",
-    "webpack": "^4.41.6",
-    "webpack-cli": "^3.3.11"
+    "typescript": "^3.9.5"
   },
   "peerDependencies": {
     "react": "^16.12.0"

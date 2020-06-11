@@ -1,8 +1,7 @@
 # @cockroachlabs/icons
 > a package containing Cockroach Labs icons as SVG for consumption by other components
 
-This package serves as a store for SVG icons utilizing [@svgr/webpack](https://github.com/gregberge/svgr/tree/master/packages/webpack) to export them as React components.
-The SVGs are stored in the [/svg](https://github.com/cockroachdb/ui/tree/master/packages/icons/svg) directory and exported from [src/index.ts](https://github.com/cockroachdb/ui/blob/master/packages/icons/src/index.ts).
+This package serves as a store for SVG icons that are converted and published as React components.
 
 *Example Usage*
 
@@ -36,3 +35,5 @@ Each Icon component will render an `<svg />` element with an unbounded size and 
   
   <CheckCircleFilled style={{ fill: "green", height: "24px", width: "24px" }} />
 ```
+
+see [CONTRIBUTING](./CONTRIBUTING.md) for information on how the components are built.
