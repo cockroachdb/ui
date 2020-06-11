@@ -1,3 +1,3 @@
-export * from "./Badge";
-export * from "./Avatar";
-export * from "./Input";
+export * from "./Badge/Badge";
+export * from "./Avatar/Avatar";
+export * from "./Input/";

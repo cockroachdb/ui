@@ -5,17 +5,17 @@ import objectToClassnames from "../utils/objectToClassnames";
 
 import styles from "./Badge.module.scss";
 
-type BadgeCase = "none" | "uppercase";
-type BadgeIntent = "neutral" | "success" | "warning" | "danger";
+export type BadgeCase = "none" | "uppercase";
+export type BadgeIntent = "neutral" | "success" | "warning" | "danger";
 
-interface BadgeProps {
+export interface BadgeProps {
   intent?: BadgeIntent;
   transformCase?: BadgeCase;
 }
 
 const cx = classNames.bind(styles);
 
-const Badge: FunctionComponent<BadgeProps> = ({
+export const Badge: FunctionComponent<BadgeProps> = ({
   intent = "neutral",
   transformCase = "uppercase",
   children,
