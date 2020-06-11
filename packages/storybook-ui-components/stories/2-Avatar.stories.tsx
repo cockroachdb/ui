@@ -1,7 +1,11 @@
 import React, { FunctionComponent, ReactElement } from "react";
 import { withKnobs, text, boolean, select } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
-import { Avatar } from "@cockroachlabs/ui-components";
+import { Avatar, AvatarProps } from "@cockroachlabs/ui-components";
+
+interface AvatarDisplay {
+  description: string;
+}
 
 export default {
   title: "Avatar",
@@ -9,7 +13,7 @@ export default {
   decorators: [withKnobs],
 };
 
-const baseConfig = {
+const baseConfig:AvatarProps = {
   intent: "default",
   children: "jb",
   size: "default",
@@ -18,7 +22,7 @@ const baseConfig = {
   onClick: () => console.log("click"),
 };
 
-const intentConfigs = [
+const intentConfigs:Partial<AvatarDisplay & AvatarProps>[] = [
   {
     description: "Default",
     intent: "default",
@@ -53,14 +57,12 @@ const withIntentSelectable = withIntentNotSelectable.map(c => ({
   selectable: true,
 }));
 
-const withIntentSelectableSmallSize = withIntentSelectable.map(c => ({
+const withIntentSelectableSmallSize:Partial<AvatarDisplay & AvatarProps>[] = withIntentSelectable.map(c => ({
   ...c,
   size: "small",
 }));
 
-const Container: FunctionComponent<{
-  children: ReactElement;
-}> = ({ children }) => (
+const Container: FunctionComponent = ({ children }) => (
   <div
     style={{
       display: "flex",
@@ -75,7 +77,7 @@ const Container: FunctionComponent<{
 
 const ItemWrapper: FunctionComponent<{
   children: ReactElement;
-  title: string;
+  title?: string;
 }> = ({ children, title }) => (
   <div
     style={{ display: "flex", flexDirection: "column", alignItems: "center" }}

@@ -10,7 +10,7 @@ export default {
 };
 
 export const Number = () => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState<number | undefined>();
   return (
     <NumberInput
       initialValue={number("Initial value", 0)}
@@ -23,7 +23,7 @@ export const Number = () => {
 };
 
 export const Text = () => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState<string | undefined>();
   return (
     <TextInput
       initialValue={text("Initial value", "some text")}
@@ -36,7 +36,7 @@ export const Text = () => {
 };
 
 export const SearchInput = () => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState<string | undefined>();
   return (
     <TextInput
       value={value}
@@ -50,7 +50,7 @@ export const SearchInput = () => {
 };
 
 export const NumberInputWithIcon = () => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState<number | undefined>();
   return (
     <NumberInput
       value={value}

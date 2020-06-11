@@ -20,7 +20,7 @@ export type AvatarCase = "none" | "uppercase";
 
 const cx = classNames.bind(styles);
 
-const Avatar: React.FC<AvatarProps> = ({
+export const Avatar: React.FC<AvatarProps> = ({
   children,
   intent = "default",
   size = "default",
