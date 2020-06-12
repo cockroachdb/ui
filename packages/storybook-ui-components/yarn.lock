@@ -878,15 +878,17 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@cockroachlabs/icons@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@cockroachlabs/icons/-/icons-0.1.1.tgz#691940350d32678aac6fcf3307054bd30f49e7a0"
-  integrity sha512-d7N8uJMGmrj11O1kPm/wLgZz7GBsqoQbOoeiLnkiQWfbg2oKfDPax5VvhDwCvvEN8YiL9VHAL0aGSjEFhB+55A==
+"@cockroachlabs/icons@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@cockroachlabs/icons/-/icons-0.2.1.tgz#a8fcc05bbca1d434276a17be557b73e74c8d782f"
+  integrity sha512-hBhJ4343DBAxT5Zk2WmRdVJ+sfktZhrHNaTSFJs3XDDM2yXSPwdMphKN+NpPcH2z+SyyQZouzW3V3phMUNFMLw==
 
-"@cockroachlabs/ui-components@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@cockroachlabs/ui-components/-/ui-components-0.1.2.tgz#46abc56108e5fc3346c4844cb0fc63b23b4b553c"
-  integrity sha512-KSemH7NEsuT2FGTDmHky9KWh75VUNXhkdIky/rds8Hs5c9BMlyzUVLHPcYTCnFtSbuQVe3PDjJlhUTYCEUi7eg==
+"@cockroachlabs/ui-components@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@cockroachlabs/ui-components/-/ui-components-0.1.4.tgz#7ee8f7ae1731d29f35e9901375fa5c3f1570ab17"
+  integrity sha512-HKg1v2aTy3piLUrmBXJbiKXIUKtxEOKkAJcIL/0kTjKDSC2i0UzbxxAJHP8QZw09K4By5v/EK1F0G59vlwhZQg==
+  dependencies:
+    "@cockroachlabs/icons" "^0.2.1"
 
 "@emotion/cache@^10.0.27", "@emotion/cache@^10.0.9":
   version "10.0.29"
