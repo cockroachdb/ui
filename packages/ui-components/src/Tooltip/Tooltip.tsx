@@ -3,7 +3,7 @@ import { usePopper } from "react-popper";
 import classNames from "classnames/bind";
 import css from "./Tooltip.module.scss";
 
-type TooltipPosition =
+export type TooltipPosition =
   | "left"
   | "left-start"
   | "left-end"
@@ -17,16 +17,16 @@ type TooltipPosition =
   | "bottom-start"
   | "bottom-end";
 
-type TooltipStyle = "default" | "light" | "dark";
+export type TooltipStyle = "default" | "light" | "dark";
 
-interface TooltipProps {
+export interface TooltipProps {
   placement?: TooltipPosition;
   style?: TooltipStyle;
   content: ReactElement | string;
   visible?: boolean;
 }
 
-const Tooltip: FunctionComponent<TooltipProps> = ({
+export const Tooltip: FunctionComponent<TooltipProps> = ({
   placement = "bottom",
   style = "default",
   children,
