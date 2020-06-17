@@ -5,6 +5,7 @@ name: Build and Deploy Storybook
 # but only for the master branch
 on:
   push:
+    if: github.repository_owner == "cockroachdb"
     branches: [ master ]
     paths: 
       - 'packages/storybook-ui-components/**'
