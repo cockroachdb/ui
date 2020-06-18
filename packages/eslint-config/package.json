@@ -17,7 +17,8 @@
   "license": "MIT",
   "dependencies": {
     "@typescript-eslint/parser": "^2.6.1",
-    "eslint-config-prettier": "^6.11.0"
+    "eslint-config-prettier": "^6.11.0",
+    "snyk": "^1.345.1"
   },
   "devDependencies": {
     "eslint": ">=6",
@@ -33,5 +34,10 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn run snyk-protect"
+  },
+  "snyk": true
 }
