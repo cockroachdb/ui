@@ -37,9 +37,9 @@ export const Example = () => {
 
       <h1>Tooltips</h1>
 
-      <div style={{ margin: "2rem 0" }}>Use tooltips to identify or add a small amount of information to an element. Tooltips can be used to help users understand the meaning of terminology used in the UI, show the full version of truncated text, or help users understand the meaning of icons.
+      <div style={{ margin: "2rem 0", fontSize: "14px", color: "#475872", maxWidth:"600px", lineHeight:"24px" }}>Use tooltips to identify or add a small amount of information to an element. Tooltips can be used to help users understand the meaning of terminology used in the UI, show the full version of truncated text, or help users understand the meaning of icons.
 
-The position of tooltips is flexible and will change depending on how close the element is to the edge of the screen. Tooltip text wraps when the content is wider than the max-width. </div>
+          <p>The position of tooltips is flexible and will change depending on how close the element is to the edge of the screen. Tooltip text wraps when the content is wider than the max-width. </p> </div>
       <section>
         <h1>Positions</h1>
         <div style={{ display: "table", margin: "0 auto" }}>

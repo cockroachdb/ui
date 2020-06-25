@@ -92,10 +92,9 @@ export const example = () => (
 
     <h1>Avatar</h1>
 
-    <div style={{ margin: "2rem 0" }}>Use round avatars to quickly identify users. User initials are used in place of an image. Avatar can be used on its own or in conjunction with the full username.
-
-There are 5 avatar states (default, active, pending, invalid and disabled) and 2 avatar sizes (large and small). </div>
-    <h3>Default size</h3>
+    <div style={{ margin: "2rem 0", fontSize: "14px", color: "#475872", maxWidth:"600px", lineHeight:"24px"}}>Use round avatars to quickly identify users. User initials are used in place of an image. Avatar can be used on its own or in conjunction with the full username.
+      </div>
+    <h4>Default size</h4>
     <Container>
       {withIntentNotSelectable.map(({ description, ...props }, idx) => (
         <ItemWrapper title={description} key={idx}>
@@ -103,7 +102,7 @@ There are 5 avatar states (default, active, pending, invalid and disabled) and 2
         </ItemWrapper>
       ))}
     </Container>
-    <h3>Hover on avatar to see changes (for selectable items only)</h3>
+    <h4>Hover on avatar to see changes (for selectable items only)</h4>
     <Container>
       {withIntentSelectable.map(({ description, ...props }, idx) => (
         <ItemWrapper title={description} key={idx}>
@@ -112,7 +111,7 @@ There are 5 avatar states (default, active, pending, invalid and disabled) and 2
       ))}
     </Container>
 
-    <h3>Small size</h3>
+    <h4>Small size</h4>
     <Container>
       {withIntentSelectableSmallSize.map(({ description, ...props }, idx) => (
         <ItemWrapper title={description} key={idx}>

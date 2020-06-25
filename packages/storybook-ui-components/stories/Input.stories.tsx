@@ -32,7 +32,7 @@ export const Number = () => {
 
       <h1>Number Input</h1>
 
-      <div style={{ margin: "2rem 0" }}>Number fields can be used for inputs that require a numerical value. Optional number controls let users increase or decrease the value of the input (use based on what you think will help the user).</div>
+      <div style={{ margin: "2rem 0", fontSize: "14px", color: "#475872", maxWidth:"600px", lineHeight:"24px" }}>Number fields can be used for inputs that require a numerical value. Optional number controls let users increase or decrease the value of the input (use based on what you think will help the user).</div>
 
       <NumberInput
         initialValue={number("Initial value", 0)}
@@ -53,7 +53,7 @@ export const Text = () => {
 
       <h1>Text Input</h1>
 
-      <div style={{ margin: "2rem 0" }}>Use text fields in forms to help people enter, select, and search for text. Text fields are normally found within a form but can also be part of a modal, search, or card. Common text input types include: usernames, descriptions, emails, addresses, and plain text searches.</div>
+      <div style={{ margin: "2rem 0", fontSize: "14px", color: "#475872", maxWidth:"600px", lineHeight:"24px" }}>Use text fields in forms to help people enter, select, and search for text. Text fields are normally found within a form but can also be part of a modal, search, or card. Common text input types include: usernames, descriptions, emails, addresses, and plain text searches.</div>
 
 
       <TextInput
@@ -75,7 +75,7 @@ export const SearchInput = () => {
 
         <h1>Text Input With Icon</h1>
 
-        <div style={{ margin: "2rem 0" }}>Use an optional icon within the text input.</div>
+        <div style={{ margin: "2rem 0", fontSize: "14px", color: "#475872", maxWidth:"600px", lineHeight:"24px" }}>Use an optional icon within the text input.</div>
 
       <TextInput
         value={value}
@@ -97,7 +97,7 @@ export const NumberInputWithIcon = () => {
 
         <h1>Number Input With Icon</h1>
 
-        <div style={{ margin: "2rem 0" }}>Use an optional icon within the number input.</div>
+        <div style={{ margin: "2rem 0", fontSize: "14px", color: "#475872", maxWidth:"600px", lineHeight:"24px" }}>Use an optional icon within the number input.</div>
 
       <NumberInput
         value={value}

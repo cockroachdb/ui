@@ -18,7 +18,7 @@ const BadgeDisplaySection: FunctionComponent<{
 const BadgeDisplay: FunctionComponent<{
   children: Array<ReactElement | null>;
 }> = ({ children }) => (
-  <div style={{ margin: "0rem 1rem", textAlign: "center", fontFamily: "Opensans" }}>{children}</div>
+  <div style={{ margin: "0rem 1rem", textAlign: "center",}}>{children}</div>
 );
 const Label: FunctionComponent<{
   children: string;
@@ -33,14 +33,15 @@ export const Example = () => (
 
     <h1>Badges</h1>
 
-    <div style={{ margin: "2rem 0", fontSize: "14px" }}>Use badges to visually label UI objects for quick recognition, status indication or navigation. Badges can be all-caps or lowercase. There are 5 badge intents:
+    <div style={{ margin: "2rem 0", fontSize: "14px", color: "#475872", maxWidth:"600px", lineHeight:"24px"}}>Use badges to visually label UI objects for quick recognition, status indication or navigation. Badges can be all-caps or lowercase. There are 5 badge intents:
 
-
-      <p> Neutral - Use to indicate a default state </p>
-      <p> Informative - Use to indicate an informative state </p>
-      <p> Success - Use to indicate a successful state </p>
-      <p> Warning -  Use to indicate that there is something that requires attention </p>
-      <p> Danger - Use to indicate a failed state. </p></div>
+      <ul>
+      <li> <strong>Neutral:</strong> Use to indicate a default state </li>
+      <li> <strong>Informative:</strong> Use to indicate an informative state </li>
+      <li> <strong>Success:</strong> Use to indicate a successful state </li>
+      <li> <strong>Warning:</strong>  Use to indicate that there is something that requires attention </li>
+      <li> <strong>Danger:</strong> Use to indicate a failed state. </li>
+      </ul></div>
 
     <section>
       <h4>Intents</h4>

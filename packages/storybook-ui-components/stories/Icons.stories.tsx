@@ -132,17 +132,16 @@ export const Sample: FunctionComponent<{}> = () => (
 
     <h1>Icons</h1>
 
-    <div style={{ margin: "2rem 0" }}>Icons are visual representations of commands, objects, or common actions and are used to provide visual context and enhance usability. They should be simple, yet bold enough to grab attention.
-
-      These icons come from <strong>@cockroachlabs/icons</strong>, a separate
-      package from ui-components in the UI repo.
+    <div style={{ margin: "2rem 0", fontSize: "14px", color: "#475872", maxWidth:"600px", lineHeight:"24px"}}>Icons are visual representations of commands, objects, or common actions and are used to provide visual context and enhance usability. They should be simple, yet bold enough to grab attention.
     </div>
-    <div>
-      [
-      <a href="https://www.npmjs.com/package/@cockroachlabs/icons">
-        NPM Package
-      </a>
-      ] [<a href="https://github.com/cockroachdb/ui">UI repo</a>]
+    <div style={{ margin: "2rem 0", fontSize: "14px", color: "#475872", maxWidth:"600px"}}>
+    These icons come from <strong>@cockroachlabs/icons</strong>, a separate
+    package from ui-components in the UI repo:&nbsp;
+      <a href="https://www.npmjs.com/package/@cockroachlabs/icons" style={{color: "#0788FF"}}>
+        <strong>NPM Package</strong>
+      </a>&nbsp; &nbsp;
+       <a href="https://github.com/cockroachdb/ui" style={{color: "#0788FF"}}><strong>UI repo</strong></a>
+      <p> </p>
     </div>
     <section>
       <IconDisplaySection>
