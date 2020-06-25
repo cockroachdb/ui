@@ -12,7 +12,7 @@ export default {
 export const Number = () => {
   const [value, setValue] = useState<number | undefined>();
   return (
-    <section style={{ marginLeft: "25px", fontFamily: "Opensans"}}>
+    <section style={{ marginLeft: "25px", fontFamily: "Opensans", color: "#394455"}}>
       {/**
        * Note from Nathan to design friends:
        *
@@ -30,9 +30,9 @@ export const Number = () => {
        * of the "style object" is the same as it would appear in a CSS file. Ping me for questions.
       */}
 
-      <h1>Example Number Input header</h1>
+      <h1>Number Input</h1>
 
-      <div style={{ margin: "2rem 0" }}>Use this input for whole numbers. Use arrow selector for small numbers and type within input for larger numbers.</div>
+      <div style={{ margin: "2rem 0" }}>Number fields can be used for inputs that require a numerical value. Optional number controls let users increase or decrease the value of the input (use based on what you think will help the user).</div>
 
       <NumberInput
         initialValue={number("Initial value", 0)}
@@ -49,40 +49,66 @@ export const Number = () => {
 export const Text = () => {
   const [value, setValue] = useState<string | undefined>();
   return (
-    <TextInput
-      initialValue={text("Initial value", "some text")}
-      value={value}
-      disabled={boolean("disabled", false)}
-      onChange={setValue}
-      invalid={boolean("invalid", false)}
-    />
+    <section style={{ marginLeft: "25px", fontFamily: "Opensans", color: "#394455"}}>
+
+      <h1>Text Input</h1>
+
+      <div style={{ margin: "2rem 0" }}>Use text fields in forms to help people enter, select, and search for text. Text fields are normally found within a form but can also be part of a modal, search, or card. Common text input types include: usernames, descriptions, emails, addresses, and plain text searches.</div>
+
+
+      <TextInput
+        initialValue={text("Initial value", "some text")}
+        value={value}
+        disabled={boolean("disabled", false)}
+        onChange={setValue}
+        invalid={boolean("invalid", false)}
+      />
+
+    </section>
   );
 };
 
 export const SearchInput = () => {
   const [value, setValue] = useState<string | undefined>();
   return (
-    <TextInput
-      value={value}
-      disabled={boolean("disabled", false)}
-      onChange={setValue}
-      invalid={boolean("invalid", false)}
-      placeholder={text("Placeholder", "Search...")}
-      prefixIcon={<Search />}
-    />
+      <section style={{ marginLeft: "25px", fontFamily: "Opensans", color: "#394455"}}>
+
+        <h1>Text Input With Icon</h1>
+
+        <div style={{ margin: "2rem 0" }}>Use an optional icon within the text input.</div>
+
+      <TextInput
+        value={value}
+        disabled={boolean("disabled", false)}
+        onChange={setValue}
+        invalid={boolean("invalid", false)}
+        placeholder={text("Placeholder", "Search...")}
+        prefixIcon={<Search />}
+      />
+
+    </section>
   );
 };
 
 export const NumberInputWithIcon = () => {
   const [value, setValue] = useState<number | undefined>();
   return (
-    <NumberInput
-      value={value}
-      disabled={boolean("disabled", false)}
-      onChange={setValue}
-      invalid={boolean("invalid", false)}
-      placeholder={text("Placeholder", "Counter...")}
-      prefixIcon={<Search />}
-    />
+      <section style={{ marginLeft: "25px", fontFamily: "Opensans", color: "#394455"}}>
+
+        <h1>Number Input With Icon</h1>
+
+        <div style={{ margin: "2rem 0" }}>Use an optional icon within the number input.</div>
+
+      <NumberInput
+        value={value}
+        disabled={boolean("disabled", false)}
+        onChange={setValue}
+        invalid={boolean("invalid", false)}
+        placeholder={text("Placeholder", "Counter...")}
+        prefixIcon={<Search />}
+      />
+
+    </section>
+
   );
 };

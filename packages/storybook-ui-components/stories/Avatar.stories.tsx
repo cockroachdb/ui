@@ -88,7 +88,13 @@ const ItemWrapper: FunctionComponent<{
 );
 
 export const example = () => (
-  <section>
+  <section style={{ marginLeft: "25px", fontFamily: "Opensans", color: "#394455"}}>
+
+    <h1>Avatar</h1>
+
+    <div style={{ margin: "2rem 0" }}>Use round avatars to quickly identify users. User initials are used in place of an image. Avatar can be used on its own or in conjunction with the full username.
+
+There are 5 avatar states (default, active, pending, invalid and disabled) and 2 avatar sizes (large and small). </div>
     <h3>Default size</h3>
     <Container>
       {withIntentNotSelectable.map(({ description, ...props }, idx) => (
@@ -97,7 +103,7 @@ export const example = () => (
         </ItemWrapper>
       ))}
     </Container>
-    <h4>Hover on avatar to see changes (for selectable items only)</h4>
+    <h3>Hover on avatar to see changes (for selectable items only)</h3>
     <Container>
       {withIntentSelectable.map(({ description, ...props }, idx) => (
         <ItemWrapper title={description} key={idx}>

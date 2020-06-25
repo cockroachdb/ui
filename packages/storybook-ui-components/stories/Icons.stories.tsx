@@ -128,9 +128,12 @@ const svgStyle: { [styleProp: string]: string } = {
 };
 
 export const Sample: FunctionComponent<{}> = () => (
-  <section>
+  <section style={{ marginLeft: "25px", fontFamily: "Opensans", color: "#394455"}}>
+
     <h1>Icons</h1>
-    <div>
+
+    <div style={{ margin: "2rem 0" }}>Icons are visual representations of commands, objects, or common actions and are used to provide visual context and enhance usability. They should be simple, yet bold enough to grab attention.
+
       These icons come from <strong>@cockroachlabs/icons</strong>, a separate
       package from ui-components in the UI repo.
     </div>
