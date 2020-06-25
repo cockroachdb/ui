@@ -1,0 +1,14 @@
+{
+  "color": {
+    "base": {
+      "white": { "value": "{color.core.neutral.0.value}" },
+      "black": { "value": "{color.core.neutral.9.value}" },
+      "blue": { "value": "{color.core.blue.3.value}" },
+      "purple": { "value": "{color.core.purple.3.value}" },
+      "green": { "value": "{color.core.green.3.value}" },
+      "yellow": { "value": "{color.core.yellow.3.value}" },
+      "orange": { "value": "{color.core.orange.3.value}" },
+      "red": { "value": "{color.core.red.3.value}" }
+    }
+  }
+}
