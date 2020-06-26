@@ -1,6 +1,6 @@
 {
   "name": "@cockroachlabs/eslint-config",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Shared eslint config for Cockroach Labs.",
   "repository": {
     "type": "git",
@@ -21,8 +21,8 @@
   },
   "devDependencies": {
     "eslint": ">=6",
-    "typescript": ">=2.8.0",
-    "snyk": "^1.345.1"
+    "snyk": "^1.345.1",
+    "typescript": ">=2.8.0"
   },
   "peerDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.6.1",
