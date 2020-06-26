@@ -3,7 +3,7 @@
 /**
  Mixins
 */
-@mixin crl-depth($n_: 1, $color_: $crl-blue-5) {
+@mixin crl-depth($n_: 1, $color_: $color-core-blue-5) {
   /**
       Desc:
         This mixin sets the `box-shadow` property
