@@ -28,23 +28,22 @@ The `iconName` prop should be a valid icon name from the [icons package](https:/
 
 The `size` prop will alter the pixel dimensions of the icon. The default size is `16 x 16` pixels. Other size options are
 
-value | size
------ | ----
-`large` | `64 x 64`
-`medium` | `24 x 24`
-`small` | `12 x 12 `
-`tiny` | `8 x 8`
+| value    | size      |
+| -------- | --------- |
+| `large`  | `64 x 64` |
+| `medium` | `24 x 24` |
+| `small`  | `12 x 12` |
+| `tiny`   | `8 x 8`   |
 
 ### `tint?: Enum("blue", "green", "purple", "red", "white", "neutral", "inherit")`
 
 The `tint` prop will alter the fill color of the rendered icon. The color values of the possible tint property values are,
 
-tint     | fill color
--------- | ----------
-`blue`   | `#0788ff`
-`green`  | `#37a806`
-`purple` | `#542abd`
-`red`    | `#ff3b4e`
-`white`  | `#fff`
-`neutral`| `#242a35`
-`inherit`| [`currentcolor`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/color)
+| tint      | fill color                                                                         |
+| --------- | ---------------------------------------------------------------------------------- |
+| `blue`    | `#0788ff`                                                                          |
+| `green`   | `#37a806`                                                                          |
+| `red`     | `#ff3b4e`                                                                          |
+| `white`   | `#fff`                                                                             |
+| `neutral` | `#242a35`                                                                          |
+| `inherit` | [`currentcolor`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/color) |

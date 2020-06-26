@@ -1,7 +1,8 @@
-import React from "react";
+import React, { FunctionComponent, ReactElement } from "react";
 import { withKnobs, select } from "@storybook/addon-knobs";
 
-import { Icon } from "@cockroachlabs/ui-components";
+import * as Icons from "@cockroachlabs/icons";
+import { Icon, IconSize, IconTint } from "@cockroachlabs/ui-components";
 
 export default {
   title: "Icon",
@@ -9,7 +10,9 @@ export default {
   decorators: [withKnobs],
 };
 
-const IconDisplaySection = ({ children }) => (
+const IconDisplaySection: FunctionComponent<{
+  children: Array<ReactElement | null>;
+}> = ({ children }) => (
   <section
     style={{
       display: "flex",
@@ -21,7 +24,10 @@ const IconDisplaySection = ({ children }) => (
   </section>
 );
 
-const IconDisplay = ({ children, backgroundColor = "transparent" }) => (
+const IconDisplay: FunctionComponent<{
+  children: Array<ReactElement | null>;
+  backgroundColor?: string;
+}> = ({ children, backgroundColor = "transparent" }) => (
   <div
     style={{
       textAlign: "center",
@@ -32,7 +38,9 @@ const IconDisplay = ({ children, backgroundColor = "transparent" }) => (
     {children}
   </div>
 );
-const IconFrame = ({ children }) => (
+const IconFrame: FunctionComponent<{
+  children: ReactElement;
+}> = ({ children }) => (
   <div
     style={{ display: "flex", height: "75px", width: "75px", margin: "auto" }}
   >
@@ -40,11 +48,13 @@ const IconFrame = ({ children }) => (
   </div>
 );
 
-const IconLabel = ({ text }) => (
+const IconLabel: FunctionComponent<{
+  text: string;
+}> = ({ text }) => (
   <code style={{ fontFamily: "monospace", fontSize: "12px" }}>{text}</code>
 );
 
-const IconNames = [
+const IconNames: Array<keyof typeof Icons> = [
   "ArrowLeft",
   "Backup",
   "CancelCircleFilled",
@@ -65,15 +75,15 @@ const IconNames = [
   "Download",
   "EllipsisVertical",
   "Ellipsis",
-  "ErrorCirleFilled",
-  "ErrorCircle" ,
-  "EyeOff" ,
-  "Eye" ,
-  "InfoFilled" ,
-  "Info" ,
-  "Invalid" ,
-  "List" ,
-  "LockFilled" ,
+  "ErrorCircleFilled",
+  "ErrorCircle",
+  "EyeOff",
+  "Eye",
+  "InfoFilled",
+  "Info",
+  "Invalid",
+  "List",
+  "LockFilled",
   "Lock",
   "MinusCircle",
   "Minus",
@@ -89,8 +99,15 @@ const IconNames = [
   "User",
   "World",
 ];
-const sizes = ["large", "default", "small", "tiny"];
-const tints = ["blue", "green", "purple", "red", "white", "default"];
+const sizes: Array<IconSize> = ["large", "medium", "default", "small", "tiny"];
+const tints: Array<IconTint> = [
+  "blue",
+  "green",
+  "red",
+  "white",
+  "neutral",
+  "inherit",
+];
 
 export const Example = () => (
   <section>
@@ -100,7 +117,7 @@ export const Example = () => (
     <section>
       <h2>Icon Names</h2>
       <IconDisplaySection>
-        {IconNames.map(name => (
+        {IconNames.map((name) => (
           <IconDisplay key={name}>
             <IconLabel text={name} />
             <IconFrame>
@@ -114,7 +131,7 @@ export const Example = () => (
     <section>
       <h2>Icon Sizes</h2>
       <IconDisplaySection>
-        {sizes.map(size => (
+        {sizes.map((size) => (
           <IconDisplay key={size}>
             <IconLabel text={size} />
             <IconFrame>
@@ -128,7 +145,7 @@ export const Example = () => (
     <section>
       <h2>Icon Tints</h2>
       <IconDisplaySection>
-        {tints.map(tint => (
+        {tints.map((tint) => (
           <IconDisplay key={tint} backgroundColor="#c0c6d9">
             <IconLabel text={tint} />
             <IconFrame>
@@ -145,6 +162,6 @@ export const Demo = () => (
   <Icon
     iconName={select("Icon Name", IconNames, "Plus")}
     size={select("Size", sizes, "default")}
-    tint={select("Tint", tints, "default")}
+    tint={select("Tint", tints, "neutral")}
   />
 );

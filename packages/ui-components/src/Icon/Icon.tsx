@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useMemo } from "react";
 import classNames from "classnames/bind";
 import get from "lodash/get";
 
@@ -7,38 +7,46 @@ import styles from "./Icon.module.scss";
 
 import objectToClassnames from "../utils/objectToClassnames";
 
-type IconSize = "large" | "medium" | "default" | "small" | "tiny";
-type IconTint =
+export type IconSize = "large" | "medium" | "default" | "small" | "tiny";
+
+export type IconTint =
   | "blue"
   | "green"
-  | "purple"
   | "red"
   | "white"
   | "neutral"
   | "inherit";
 
-export interface IconProps {
+type OwnIconProps = {
   iconName: keyof typeof Icons;
   size?: IconSize;
   tint?: IconTint;
-}
+};
+
+type NativeIconProps = Omit<React.SVGProps<SVGSVGElement>, keyof OwnIconProps>;
+
+export type IconProps = NativeIconProps & OwnIconProps;
 
 const cx = classNames.bind(styles);
 
-const Icon: FunctionComponent<IconProps> = ({
+export const Icon: FunctionComponent<IconProps> = ({
   iconName,
   size = "default",
   tint = "neutral",
-  ...unhandledProps
+  className,
+  ...props
 }) => {
-  const classnames = cx("icon", objectToClassnames({ size, tint }));
+  const classnames = useMemo(
+    () => cx("icon", objectToClassnames({ size, tint }), className),
+    [className, size, tint],
+  );
   const Element = get(Icons, iconName, null);
 
   if (Element === null) {
     return null;
   }
 
-  return <Element className={classnames} {...unhandledProps} />;
+  return <Element className={classnames} {...props} />;
 };
 
 export default Icon;

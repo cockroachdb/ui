@@ -61,9 +61,6 @@ describe("Icon tint prop", () => {
     wrapper.setProps({ tint: "green" });
     expect(wrapper.prop("className")).toContain("tint-green");
 
-    wrapper.setProps({ tint: "purple" });
-    expect(wrapper.prop("className")).toContain("tint-purple");
-
     wrapper.setProps({ tint: "red" });
     expect(wrapper.prop("className")).toContain("tint-red");
 
