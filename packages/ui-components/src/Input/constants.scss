@@ -8,9 +8,9 @@ $input-text-width: 280px;
 
 // state, hoverColor, focusColor
 $state-colors:
-  "active" $crl-neutral-5 $crl-base-blue,
-  "invalid" $crl-base-red,
-  "disabled" $crl-base-text--light;
+  "active" $color-core-neutral-5 $color-base-blue,
+  "invalid" $color-base-red,
+  "disabled" $color-font-4;
 
 @function exclBorderWidth($total-width: 0, $spacing: $input-border-spacing, $border: $border-width) {
   @return $total-width - ($border + $spacing) * 2;

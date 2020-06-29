@@ -1,92 +1,9 @@
-/**
- This set of variables should always reflect
- the up-to-date set of color values defined
- in our design system palette.
-
- Note: whenever possible use base tone alias variables (see bottom)
- in favor of Palette variables for readability and consistency
-*/
-
-/* Palette */
-// Neutral
-$crl-neutral-0: #ffffff;
-$crl-neutral-1: #f5f7fa;
-$crl-neutral-2: #e7ecf3;
-$crl-neutral-3: #d6dbe7;
-$crl-neutral-4: #c0c6d9;
-$crl-neutral-5: #7e89a9;
-$crl-neutral-6: #475872;
-$crl-neutral-7: #394455;
-$crl-neutral-8: #242a35;
-$crl-neutral-9: #060c12;
-
-// Blue
-$crl-blue-1: #e0eefb;
-$crl-blue-2: #74bdfd;
-$crl-blue-3: #0788ff;
-$crl-blue-4: #005fb3;
-$crl-blue-5: #00294d;
-
-// Purple
-$crl-purple-1: #cec0f2;
-$crl-purple-2: #8c6be1;
-$crl-purple-3: #542abd;
-$crl-purple-4: #005fb3;
-$crl-purple-5: #00294d;
-
-// Green
-$crl-green-1: #b4f1aa;
-$crl-green-2: #76de49;
-$crl-green-3: #37a806;
-$crl-green-4: #237300;
-$crl-green-5: #123d00;
-
-// Yellow
-$crl-yellow-1: #fff4c8;
-$crl-yellow-2: #ffe066;
-$crl-yellow-3: #ffcd02;
-$crl-yellow-4: #cca300;
-$crl-yellow-5: #655b04;
-
-// Orange
-$crl-orange-1: #fef1da;
-$crl-orange-2: #ffd099;
-$crl-orange-3: #ffa53b;
-$crl-orange-4: #b26000;
-$crl-orange-5: #644004;
-
-// Red
-$crl-red-1: #ffe5e8;
-$crl-red-2: #ff808c;
-$crl-red-3: #ff3b4e;
-$crl-red-4: #c32534;
-$crl-red-5: #99000f;
-
-/*
- Base tone aliases
- */
-// Palette
-$crl-base-white: $crl-neutral-0;
-$crl-base-black: $crl-neutral-9;
-$crl-base-blue: $crl-blue-3;
-$crl-base-purple: $crl-purple-3;
-$crl-base-green: $crl-green-3;
-$crl-base-yellow: $crl-yellow-3;
-$crl-base-orange: $crl-orange-3;
-$crl-base-red: $crl-red-3;
-
-// Text
-$crl-base-text: $crl-neutral-6;
-$crl-base-text--light: $crl-neutral-5;
-$crl-base-text--dark: $crl-neutral-7;
-
-// UI elements
-$crl-base-divider: $crl-neutral-5;
+@import "~@cockroachlabs/design-tokens/dist/web/tokens";
 
 /**
  Mixins
 */
-@mixin crl-depth($n_: 1, $color_: $crl-blue-5) {
+@mixin crl-depth($n_: 1, $color_: $color-core-blue-5) {
   /**
       Desc:
         This mixin sets the `box-shadow` property

@@ -22,23 +22,23 @@
 }
 
 .intent-default {
-  background: $crl-neutral-2;
-  color: $crl-neutral-7;
+  background: $color-background-avatar-default;
+  color: $color-core-neutral-7;
 }
 
 .intent-active {
-  background: $crl-blue-1;
-  color: $crl-base-blue;
+  background: $color-background-avatar-focus;
+  color: $color-base-blue;
 }
 
 .intent-pending {
-  background: $crl-orange-1;
-  color: $crl-orange-4;
+  background: $color-background-avatar-pending;
+  color: $color-core-orange-4;
 }
 
 .intent-invalid {
-  background: $crl-red-1;
-  color: $crl-red-4;
+  background: $color-background-avatar-invalid;
+  color: $color-core-red-4;
 }
 
 .size-default {
@@ -68,8 +68,8 @@
 }
 
 .disabled {
-  background: $crl-neutral-2;
-  color: $crl-base-text--light;
+  background: $color-background-avatar-disabled;
+  color: $color-font-avatar-disabled;
 
   &:focus, &:hover {
     border: none;
@@ -79,19 +79,19 @@
 .selectable:not(.disabled) {
   &:focus, &:hover {
     &.intent-default {
-      @include selectable-border($crl-neutral-7);
+      @include selectable-border($color-border-avatar-default);
     }
 
     &.intent-active {
-      @include selectable-border($crl-base-blue);
+      @include selectable-border($color-border-avatar-focus);
     }
 
     &.intent-pending {
-      @include selectable-border($crl-orange-4);
+      @include selectable-border($color-border-avatar-pending);
     }
 
     &.intent-invalid {
-      @include selectable-border($crl-red-4);
+      @include selectable-border($color-border-avatar-invalid);
     }
   }
 }

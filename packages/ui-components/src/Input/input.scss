@@ -9,47 +9,47 @@
   border-radius: $input-border-spacing;
   height: exclBorderWidth($input-height);
   display: inline-flex;
-  background-color: $crl-base-white;
+  background-color: $color-background-base;
   min-width: exclBorderWidth($input-text-width);
   width: exclBorderWidth($input-text-width);
   padding: $input-border-spacing;
 
   &.active {
-    border: solid $border-width $crl-neutral-4;
-    background-color: $crl-base-white;
+    border: solid $border-width $color-core-neutral-4;
+    background-color: $color-background-base;
     color: initial;
 
     &:hover {
-      border: solid $border-width $crl-neutral-5;
+      border: solid $border-width $color-core-neutral-5;
     }
 
     &:focus-within {
-      border: solid $border-width $crl-base-blue;
+      border: solid $border-width $color-base-blue;
       // Outline params are borrowed from default outline styles for input element
       // and applied to div element.
-      outline: $crl-base-blue auto 3px;
+      outline: $color-base-blue auto 3px;
       outline-offset: -2px;
     }
   }
 
   &.invalid {
-    border: solid $border-width $crl-base-red;
-    background-color: $crl-red-1;
-    color: $crl-base-red;
+    border: solid $border-width $color-base-red;
+    background-color: $color-core-red-1;
+    color: $color-base-red;
 
     &:focus-within, &:hover {
-      border: solid $border-width $crl-base-red;
+      border: solid $border-width $color-base-red;
     }
   }
 
   &.disabled {
-    background: $crl-neutral-1;
-    color: $crl-base-text--light;
-    border: solid $border-width $crl-neutral-3;
+    background: $color-core-neutral-1;
+    color: $color-font-4;
+    border: solid $border-width $color-core-neutral-3;
     cursor: default;
 
     &:focus, &:hover {
-      border: solid $border-width $crl-neutral-3;
+      border: solid $border-width $color-core-neutral-3;
     }
   }
 }

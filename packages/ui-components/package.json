@@ -35,6 +35,7 @@
     "@babel/preset-env": "^7.8.3",
     "@babel/preset-react": "^7.8.3",
     "@babel/preset-typescript": "^7.8.0",
+    "@cockroachlabs/design-tokens": "0.0.2",
     "@cockroachlabs/eslint-config": "^0.1.4",
     "@types/classnames": "^2.2.9",
     "@types/enzyme": "^3.10.5",
