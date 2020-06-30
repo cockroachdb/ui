@@ -71,13 +71,15 @@
   background: $color-background-avatar-disabled;
   color: $color-font-avatar-disabled;
 
-  &:focus, &:hover {
+  &:focus,
+  &:hover {
     border: none;
   }
 }
 
 .selectable:not(.disabled) {
-  &:focus, &:hover {
+  &:focus,
+  &:hover {
     &.intent-default {
       @include selectable-border($color-border-avatar-default);
     }
