@@ -2,6 +2,7 @@ import React, { FunctionComponent, ReactElement } from "react";
 import { withKnobs, text, boolean, select } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import { Avatar, AvatarProps } from "@cockroachlabs/ui-components";
+import { StoryContainer, StoryDescription } from "../layout";
 
 interface AvatarDisplay {
   description: string;
@@ -88,12 +89,12 @@ const ItemWrapper: FunctionComponent<{
 );
 
 export const example = () => (
-  <section style={{ marginLeft: "25px", fontFamily: "Opensans", color: "#394455"}}>
+  <StoryContainer>
 
     <h1>Avatar</h1>
 
-    <div style={{ margin: "2rem 0", fontSize: "14px", color: "#475872", maxWidth:"600px", lineHeight:"24px"}}>Use round avatars to quickly identify users. User initials are used in place of an image. Avatar can be used on its own or in conjunction with the full username.
-      </div>
+    <StoryDescription>Use round avatars to quickly identify users. User initials are used in place of an image. Avatar can be used on its own or in conjunction with the full username.
+      </StoryDescription>
     <h4>Default size</h4>
     <Container>
       {withIntentNotSelectable.map(({ description, ...props }, idx) => (
@@ -119,7 +120,8 @@ export const example = () => (
         </ItemWrapper>
       ))}
     </Container>
-  </section>
+    </StoryContainer>
+
 );
 
 export const demo = () => (

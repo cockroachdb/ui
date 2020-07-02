@@ -1,6 +1,7 @@
 import React, { FunctionComponent, ReactElement } from "react";
 import { withKnobs, text, select } from "@storybook/addon-knobs";
 import { Badge } from "@cockroachlabs/ui-components";
+import { StoryContainer, StoryDescription } from "../layout";
 
 export default {
   title: "Badge",
@@ -29,19 +30,19 @@ const Label: FunctionComponent<{
 );
 
 export const Example = () => (
-  <section style={{ marginLeft: "25px", fontFamily: "Opensans", color: "#394455"}}>
+  <StoryContainer>
 
     <h1>Badges</h1>
 
-    <div style={{ margin: "2rem 0", fontSize: "14px", color: "#475872", maxWidth:"600px", lineHeight:"24px"}}>Use badges to visually label UI objects for quick recognition, status indication or navigation. Badges can be all-caps or lowercase. There are 5 badge intents:
+    <StoryDescription>Use badges to visually label UI objects for quick recognition, status indication or navigation. Badges can be all-caps or lowercase. There are 5 badge intents:
 
       <ul>
       <li> <strong>Neutral:</strong> Use to indicate a default state </li>
-      <li> <strong>Informative:</strong> Use to indicate an informative state </li>
       <li> <strong>Success:</strong> Use to indicate a successful state </li>
       <li> <strong>Warning:</strong>  Use to indicate that there is something that requires attention </li>
       <li> <strong>Danger:</strong> Use to indicate a failed state. </li>
-      </ul></div>
+      </ul>
+    </StoryDescription>
 
     <section>
       <h4>Intents</h4>
@@ -78,7 +79,7 @@ export const Example = () => (
         </BadgeDisplay>
       </BadgeDisplaySection>
     </section>
-  </section>
+  </StoryContainer>
 );
 
 export const Demo = () => (

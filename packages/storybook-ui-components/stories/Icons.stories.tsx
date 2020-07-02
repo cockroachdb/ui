@@ -2,6 +2,7 @@ import React, { FunctionComponent, ReactElement } from "react";
 import { withKnobs } from "@storybook/addon-knobs";
 
 import * as Icons from "@cockroachlabs/icons";
+import { StoryContainer, StoryDescription } from "../layout";
 
 export default {
   title: "Icons",
@@ -128,21 +129,20 @@ const svgStyle: { [styleProp: string]: string } = {
 };
 
 export const Sample: FunctionComponent<{}> = () => (
-  <section style={{ marginLeft: "25px", fontFamily: "Opensans", color: "#394455"}}>
+  <StoryContainer>
 
     <h1>Icons</h1>
 
-    <div style={{ margin: "2rem 0", fontSize: "14px", color: "#475872", maxWidth:"600px", lineHeight:"24px"}}>Icons are visual representations of commands, objects, or common actions and are used to provide visual context and enhance usability. They should be simple, yet bold enough to grab attention.
-    </div>
-    <div style={{ margin: "2rem 0", fontSize: "14px", color: "#475872", maxWidth:"600px"}}>
+    <StoryDescription>Icons are visual representations of commands, objects, or common actions and are used to provide visual context and enhance usability. They should be simple, yet bold enough to grab attention.
+    <p>
     These icons come from <strong>@cockroachlabs/icons</strong>, a separate
     package from ui-components in the UI repo:&nbsp;
       <a href="https://www.npmjs.com/package/@cockroachlabs/icons" style={{color: "#0788FF"}}>
         <strong>NPM Package</strong>
       </a>&nbsp; &nbsp;
        <a href="https://github.com/cockroachdb/ui" style={{color: "#0788FF"}}><strong>UI repo</strong></a>
-      <p> </p>
-    </div>
+      </p>
+    </StoryDescription>
     <section>
       <IconDisplaySection>
         {names.map(name => {
@@ -161,5 +161,5 @@ export const Sample: FunctionComponent<{}> = () => (
         })}
       </IconDisplaySection>
     </section>
-  </section>
+  </StoryContainer>
 );

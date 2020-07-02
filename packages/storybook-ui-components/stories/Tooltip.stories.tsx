@@ -1,6 +1,7 @@
 import React from "react";
 import { withKnobs, text, select } from "@storybook/addon-knobs";
 import { Tooltip } from "@cockroachlabs/ui-components";
+import { StoryContainer, StoryDescription } from "../layout";
 
 export default {
   title: "Tooltip",
@@ -33,13 +34,15 @@ export const Example = () => {
   };
 
   return (
-    <section style={{ marginLeft: "25px", fontFamily: "Opensans", color: "#394455"}}>
+    <StoryContainer>
 
       <h1>Tooltips</h1>
 
-      <div style={{ margin: "2rem 0", fontSize: "14px", color: "#475872", maxWidth:"600px", lineHeight:"24px" }}>Use tooltips to identify or add a small amount of information to an element. Tooltips can be used to help users understand the meaning of terminology used in the UI, show the full version of truncated text, or help users understand the meaning of icons.
+      <StoryDescription>Use tooltips to identify or add a small amount of information to an element. Tooltips can be used to help users understand the meaning of terminology used in the UI, show the full version of truncated text, or help users understand the meaning of icons.
 
-          <p>The position of tooltips is flexible and will change depending on how close the element is to the edge of the screen. Tooltip text wraps when the content is wider than the max-width. </p> </div>
+          <p>The position of tooltips is flexible and will change depending on how close the element is to the edge of the screen. Tooltip text wraps when the content is wider than the max-width.</p> 
+
+          </StoryDescription>
       <section>
         <h1>Positions</h1>
         <div style={{ display: "table", margin: "0 auto" }}>
@@ -120,7 +123,7 @@ export const Example = () => {
         </div>
       </section>
     </section>
-    </section>
+    </StoryContainer>
   );
 };
 
