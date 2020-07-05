@@ -878,17 +878,19 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@cockroachlabs/icons@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@cockroachlabs/icons/-/icons-0.2.1.tgz#a8fcc05bbca1d434276a17be557b73e74c8d782f"
-  integrity sha512-hBhJ4343DBAxT5Zk2WmRdVJ+sfktZhrHNaTSFJs3XDDM2yXSPwdMphKN+NpPcH2z+SyyQZouzW3V3phMUNFMLw==
+"@cockroachlabs/icons@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@cockroachlabs/icons/-/icons-0.2.3.tgz#bd7f62a75e561f2f579bae413a757152a7f1bc24"
+  integrity sha512-/GuRDK9kwz/vbJyQBmM3xaxowl1De36pd6KAfobLGcMOZH4QEld0+nHRKyyrm5h0xm/VQaeMfG2veWHXfhooyw==
 
-"@cockroachlabs/ui-components@^0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@cockroachlabs/ui-components/-/ui-components-0.1.4.tgz#7ee8f7ae1731d29f35e9901375fa5c3f1570ab17"
-  integrity sha512-HKg1v2aTy3piLUrmBXJbiKXIUKtxEOKkAJcIL/0kTjKDSC2i0UzbxxAJHP8QZw09K4By5v/EK1F0G59vlwhZQg==
+"@cockroachlabs/ui-components@^0.1.6":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@cockroachlabs/ui-components/-/ui-components-0.1.6.tgz#6b08e30c913a2893bf0cc86cda1a183370c72597"
+  integrity sha512-WpOtKf4y7TfmqbMLVyJTncxHURywxO0BdOMwZjml0LXnjbsdeKcEqyYsGGRnVYcPTiNDiDTKOs5o3aatZlpNWg==
   dependencies:
-    "@cockroachlabs/icons" "^0.2.1"
+    "@cockroachlabs/icons" "^0.2.3"
+    "@popperjs/core" "^2.4.0"
+    react-popper "^2.2.3"
 
 "@emotion/cache@^10.0.27", "@emotion/cache@^10.0.9":
   version "10.0.29"
@@ -1009,6 +1011,11 @@
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
+
+"@popperjs/core@^2.4.0":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.4.2.tgz#7c6dc4ecef16149fd7a736710baa1b811017fdca"
+  integrity sha512-JlGTGRYHC2QK+DDbePyXdBdooxFq2+noLfWpRqJtkxcb/oYWzOF0kcbfvvbWrwevCC1l6hLUg1wHYT+ona5BWQ==
 
 "@reach/router@^1.2.1":
   version "1.3.3"
@@ -6651,6 +6658,14 @@ react-popper@^1.3.7:
     popper.js "^1.14.4"
     prop-types "^15.6.1"
     typed-styles "^0.0.7"
+    warning "^4.0.2"
+
+react-popper@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-2.2.3.tgz#33d425fa6975d4bd54d9acd64897a89d904b9d97"
+  integrity sha512-mOEiMNT1249js0jJvkrOjyHsGvqcJd3aGW/agkiMoZk3bZ1fXN1wQszIQSjHIai48fE67+zwF8Cs+C4fWqlfjw==
+  dependencies:
+    react-fast-compare "^3.0.1"
     warning "^4.0.2"
 
 react-select@^3.0.8:

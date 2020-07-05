@@ -1,0 +1,221 @@
+@import "../styles/tokens.scss";
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-width: 1px;
+  border-radius: $crl-border-radius;
+  outline: none;
+  @include crl-transition(background-color, border-color, box-shadow);
+
+  // TODO(j-low): update with type tokens when available
+  font-size: 12px;
+  line-height: 14px;
+
+  &:hover {
+    cursor: pointer;
+
+    &:disabled {
+      cursor: default;
+
+      &:hover {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &:focus {
+    &:active {
+      box-shadow: none;
+    }
+  }
+
+  :disabled {
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
+
+  &.intent-primary-success {
+    background-color: $color-background-button-primary-success-base;
+    color: $color-font-button-primary-success-base;
+    border-width: 1px;
+    border-style: solid;
+    border-color: $color-border-button-primary-success-base;
+
+    &:hover {
+      background-color: crl-darken(
+        $color-background-button-primary-success-hover
+      );
+      border-color: crl-darken($color-border-button-primary-success-hover);
+      color: $color-font-button-primary-success-hover;
+    }
+
+    &:active {
+      background-color: crl-darken(
+        $color-background-button-primary-success-active
+      );
+      border-width: 1px;
+      border-color: crl-darken($color-border-button-primary-success-active);
+    }
+
+    &:focus {
+      background-color: $color-background-button-primary-success-focused;
+      border-width: 1px;
+      border-color: crl-darken($color-border-button-primary-success-focused);
+      @include crl-box-shadow(
+        0,
+        0,
+        0,
+        3px,
+        rgba($color-shadow-button-primary-success-focused, 0.4)
+      );
+    }
+
+    &:disabled {
+      background-color: crl-lighten(
+        $color-background-button-primary-success-disabled
+      );
+      border-color: crl-lighten($color-border-button-primary-success-disabled);
+    }
+  }
+
+  &.intent-primary-danger {
+    background-color: $color-background-button-primary-danger-base;
+    color: $color-font-button-primary-danger-base;
+    border-width: 1px;
+    border-style: solid;
+    border-color: $color-border-button-primary-danger-base;
+
+    &:hover {
+      background-color: crl-darken(
+        $color-background-button-primary-danger-hover
+      );
+      border-color: crl-darken($color-border-button-primary-danger-hover);
+      color: $color-font-button-primary-danger-hover;
+    }
+
+    &:active {
+      background-color: crl-darken(
+        $color-background-button-primary-danger-active
+      );
+      border-color: crl-darken($color-border-button-primary-danger-active);
+    }
+
+    &:focus {
+      background-color: $color-background-button-primary-danger-focused;
+      border-width: 1px;
+      border-color: crl-darken($color-border-button-primary-danger-focused);
+      @include crl-box-shadow(
+        0,
+        0,
+        0,
+        3px,
+        rgba($color-shadow-button-primary-danger-focused, 0.4)
+      );
+    }
+
+    &:disabled {
+      background-color: crl-lighten(
+        $color-background-button-primary-danger-disabled
+      );
+      border-color: crl-lighten($color-border-button-primary-danger-disabled);
+    }
+  }
+
+  &.intent-secondary {
+    background-color: $color-background-button-secondary-base;
+    border-width: 1px;
+    border-style: solid;
+    border-color: $color-border-button-secondary-base;
+    color: $color-font-button-secondary-base;
+
+    &:hover {
+      background-color: $color-background-button-secondary-hover;
+      border-color: $color-border-button-secondary-hover;
+    }
+
+    &:active {
+      background-color: $color-background-button-secondary-active;
+      border-width: 1px;
+      border-color: $color-border-button-secondary-active;
+    }
+
+    &:focus {
+      background-color: $color-background-button-secondary-focused;
+      border-width: 1px;
+      border-color: $color-border-button-secondary-focused;
+      @include crl-box-shadow(
+        0,
+        0,
+        0,
+        3px,
+        $color-shadow-button-secondary-focused
+      );
+    }
+
+    &:disabled {
+      background-color: $color-background-button-secondary-disabled;
+      border-color: $color-border-button-secondary-disabled;
+      color: $color-font-button-secondary-disabled;
+    }
+  }
+
+  &.intent-tertiary {
+    color: $color-font-button-tertiary-base;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+
+    &:hover {
+      color: $color-font-button-tertiary-hover;
+
+      &:active,
+      &:focus {
+        color: $color-font-button-tertiary-active;
+      }
+
+      svg {
+        fill: $color-font-button-tertiary-hover;
+      }
+    }
+
+    &:active {
+      border-color: $color-border-button-tertiary-active;
+    }
+
+    &:focus {
+      border-color: $color-border-button-tertiary-focused;
+      @include crl-box-shadow(
+        0,
+        0,
+        0,
+        3px,
+        rgba($color-shadow-button-tertiary-focused, 0.15)
+      );
+    }
+
+    &:disabled {
+      color: $color-font-button-tertiary-disabled;
+
+      svg {
+        fill: $color-font-button-tertiary-disabled;
+      }
+    }
+
+    svg {
+      fill: $color-font-button-tertiary-base;
+    }
+  }
+}
+
+.size-standard {
+  height: $crl-input-height;
+  padding: crl-gutters(1) crl-gutters(1.5);
+}
+
+.size-small {
+  height: $crl-input-height-small;
+  padding: crl-gutters(0.5) crl-gutters(1.5);
+}

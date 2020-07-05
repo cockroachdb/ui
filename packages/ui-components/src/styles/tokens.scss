@@ -1,6 +1,17 @@
 @import "~@cockroachlabs/design-tokens/dist/web/tokens";
 
 /**
+ Variables
+*/
+// This variable reflects the base gutter value
+// specified by our design system.
+$crl-gutters: 8px;
+$crl-border-radius: 3px;
+$crl-input-height: 40px;
+$crl-input-height-small: 24px;
+$crl-transition-duration: 0.15s;
+
+/**
  Mixins
 */
 @mixin crl-depth($n_: 1, $color_: $color-core-blue-5) {
@@ -39,6 +50,38 @@
   }
 }
 
+@mixin crl-transition($props_...) {
+  /**
+    Desc:
+      Helper for maintaining consistent transitions.
+    Example usage:
+      ```
+      .my-css-class {
+        @include crl-transition(color, border-color, height);
+      }
+      ```
+  */
+  transition-property: $props_;
+  transition-duration: $crl-transition-duration;
+  transition-timing-function: ease-in-out;
+}
+
+@mixin crl-box-shadow($offset_h_, $offset_v_, $blur_, $spread_, $color_) {
+  /**
+    Desc:
+      Helper for cross-browser box-shadows.
+    Example usage:
+      ```
+      .my-css-class {
+        @include crl-box-shadows(0, 2px, 4px, 0, $crl-blue-5);
+      }
+      ```
+  */
+  -webkit-box-shadow: $offset_h_ $offset_v_ $blur_ $spread_ $color_;
+  -moz-box-shadow: $offset_h_ $offset_v_ $blur_ $spread_ $color_;
+  box-shadow: $offset_h_ $offset_v_ $blur_ $spread_ $color_;
+}
+
 @mixin firefox-only {
   @at-root {
     @-moz-document url-prefix() {
@@ -59,6 +102,38 @@ $crl-gutters: 8px;
 /**
  Functions
 */
+@function crl-lighten($color) {
+  /**
+    Desc:
+      Helper for consistent lightening of default tone,
+      for example in lightening a button in a disabled state.
+
+    Example usage:
+      ```
+      .my-css-class {
+        background-color: crl-lighten($crl-base-green);
+      }
+      ```
+  */
+  @return mix(white, $color, 95%);
+}
+
+@function crl-darken($color) {
+  /**
+    Desc:
+      Helper for consistent darkening of default tone,
+      for example in darkening a button in a hovered or active state.
+
+    Example usage:
+      ```
+      .my-css-class {
+        background-color: crl-darken($crl-base-green);
+      }
+      ```
+  */
+  @return mix(black, $color, 10%);
+}
+
 @function crl-gutters($n_: 1) {
   /**
     Desc:
