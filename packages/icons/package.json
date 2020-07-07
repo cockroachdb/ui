@@ -1,6 +1,6 @@
 {
   "name": "@cockroachlabs/icons",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Icons for Cockroach UI exported as React Components",
   "files": [
     "dist/"
@@ -31,5 +31,5 @@
   "peerDependencies": {
     "react": "^16.12.0"
   },
-  "gitHead": "3b9b9295c8d71b27d330c5c5b0eb6a4e34d24344"
+  "gitHead": "f9e7778c841194fa776c5dc45d62fb9caf408f22"
 }

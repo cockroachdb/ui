@@ -1,6 +1,6 @@
 {
   "name": "@cockroachlabs/eslint-config",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Shared eslint config for Cockroach Labs.",
   "repository": {
     "type": "git",
@@ -40,5 +40,5 @@
     "prepare": "yarn run snyk-protect"
   },
   "snyk": true,
-  "gitHead": "3b9b9295c8d71b27d330c5c5b0eb6a4e34d24344"
+  "gitHead": "f9e7778c841194fa776c5dc45d62fb9caf408f22"
 }
