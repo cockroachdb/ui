@@ -1,6 +1,7 @@
 import React, { FunctionComponent, ReactElement } from "react";
 import { withKnobs, text, select } from "@storybook/addon-knobs";
 import { Badge } from "@cockroachlabs/ui-components";
+import { StoryContainer, StoryDescription } from "../layout";
 
 export default {
   title: "Badge",
@@ -18,7 +19,7 @@ const BadgeDisplaySection: FunctionComponent<{
 const BadgeDisplay: FunctionComponent<{
   children: Array<ReactElement | null>;
 }> = ({ children }) => (
-  <div style={{ margin: "0rem 1rem", textAlign: "center" }}>{children}</div>
+  <div style={{ margin: "0rem 1rem", textAlign: "center",}}>{children}</div>
 );
 const Label: FunctionComponent<{
   children: string;
@@ -29,11 +30,22 @@ const Label: FunctionComponent<{
 );
 
 export const Example = () => (
-  <section>
+  <StoryContainer>
+
     <h1>Badges</h1>
 
+    <StoryDescription>Use badges to visually label UI objects for quick recognition, status indication or navigation. Badges can be all-caps or lowercase. There are 5 badge intents:
+
+      <ul>
+      <li> <strong>Neutral:</strong> Use to indicate a default state </li>
+      <li> <strong>Success:</strong> Use to indicate a successful state </li>
+      <li> <strong>Warning:</strong>  Use to indicate that there is something that requires attention </li>
+      <li> <strong>Danger:</strong> Use to indicate a failed state. </li>
+      </ul>
+    </StoryDescription>
+
     <section>
-      <h3>Intents</h3>
+      <h4>Intents</h4>
       <BadgeDisplaySection>
         <BadgeDisplay>
           <Label>neutral</Label>
@@ -55,7 +67,7 @@ export const Example = () => (
     </section>
 
     <section>
-      <h3>Transform Case</h3>
+      <h4>Transform Case</h4>
       <BadgeDisplaySection>
         <BadgeDisplay>
           <Label>uppercase</Label>
@@ -67,7 +79,7 @@ export const Example = () => (
         </BadgeDisplay>
       </BadgeDisplaySection>
     </section>
-  </section>
+  </StoryContainer>
 );
 
 export const Demo = () => (
