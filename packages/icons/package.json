@@ -13,7 +13,6 @@
     "build:generate": "svgr --typescript --icon -d src/components svg",
     "build:watch": "tsc --watch",
     "clean": "rimraf dist src/components",
-    "prepublish": "npm-run-all clean build",
     "test": "node notests.js",
     "start": "npm-run-all build:watch"
   },
