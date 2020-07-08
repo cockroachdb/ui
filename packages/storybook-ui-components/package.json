@@ -1,6 +1,6 @@
 {
   "name": "storybook-ui-components",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Storybook supporting ui-components as a component catalog",
   "main": "index.js",
   "private": true,
@@ -19,8 +19,8 @@
   },
   "homepage": "https://github.com/cockroachdb/ui#readme",
   "dependencies": {
-    "@cockroachlabs/icons": "^0.2.5",
-    "@cockroachlabs/ui-components": "^0.2.0"
+    "@cockroachlabs/icons": "^0.2.6",
+    "@cockroachlabs/ui-components": "^0.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
