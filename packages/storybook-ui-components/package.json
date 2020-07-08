@@ -5,7 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "build": "build-storybook -c .storybook -o public",
+    "build-storybook": "build-storybook -c .storybook -o public",
     "storybook": "start-storybook -p 6006",
     "start": "npm run storybook"
   },

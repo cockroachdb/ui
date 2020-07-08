@@ -6,46 +6,44 @@ name: Build and Deploy Storybook
 on:
   push:
     if: github.repository_owner == "cockroachdb"
-    branches: [ master ]
-    paths: 
-      - 'packages/storybook-ui-components/**'
+    branches: [master]
+    paths:
+      - "packages/storybook-ui-components/**"
 
 # Environment variables available to all jobs and steps in this workflow
 env:
   GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
-          
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  
   build-and-deploy-storybook:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    
+
     strategy:
       matrix:
         node-version: [12.x]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: Authenticate on GCS
-      uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
-      with:
-        version: '270.0.0'
-        service_account_key: ${{ secrets.GCP_SA_KEY }}
+      - name: Authenticate on GCS
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: "270.0.0"
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
 
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
-      
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
 
-    - name: Build storybook
-      run: yarn && npm run build
-      working-directory: ./packages/storybook-ui-components
-    
-    - name: Deploy
-      run: gsutil cp -r public/* gs://core-components.crdb.io
-      working-directory: ./packages/storybook-ui-components
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Build storybook
+        run: yarn && npm run build-storybook
+        working-directory: ./packages/storybook-ui-components
+
+      - name: Deploy
+        run: gsutil cp -r public/* gs://core-components.crdb.io
+        working-directory: ./packages/storybook-ui-components
