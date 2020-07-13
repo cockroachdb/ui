@@ -1,0 +1,51 @@
+name: Publish ui-components to NPM Registry
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'packages/ui-components/**'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Install dependencies
+        run: yarn install
+        working-directory: ./packages/ui-components
+      - name: Test
+        run: yarn ci
+        working-directory: ./packages/ui-components
+  publish:
+    runs-on: ubuntu-latest
+    needs: test
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        run: yarn install
+        working-directory: ./packages/ui-components
+      - name: Configure Git User
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "<>"
+      - name: Bump version (prerelease)
+        run: |
+          yarn version --prerelease
+          git push --all
+        working-directory: ./packages/ui-components
+      - name: Publish ui-components
+        run: yarn publish --access public
+        working-directory: ./packages/ui-components
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.YARN_TOKEN }}
