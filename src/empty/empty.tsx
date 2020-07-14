@@ -12,9 +12,9 @@ import heroBannerLp from "../assets/heroBannerLp.png";
 import React from "react";
 import classnames from "classnames/bind";
 import styles from "./empty.module.scss";
-import { Text, TextTypes } from '../text'
-import { Anchor } from '../anchor'
-import { Button } from '../button'
+import { Text, TextTypes } from "../text";
+import { Anchor } from "../anchor";
+import { Button } from "../button";
 
 const cx = classnames.bind(styles);
 

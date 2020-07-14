@@ -88,13 +88,6 @@ const getElementByTextType = (textType: TextTypes) => {
   }
 };
 
-Text.defaultProps = {
-  textType: TextTypes.Body,
-  disabled: false,
-  className: "",
-  noWrap: false,
-};
-
 export function Text(props: TextProps) {
   const { textType, disabled, noWrap, className } = props;
   const textTypeClass = cn(
@@ -114,3 +107,10 @@ export function Text(props: TextProps) {
 
   return React.createElement(elementName, componentProps, props.children);
 }
+
+Text.defaultProps = {
+  textType: TextTypes.Body,
+  disabled: false,
+  className: "",
+  noWrap: false,
+};
