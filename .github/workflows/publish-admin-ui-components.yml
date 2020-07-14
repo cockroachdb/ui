@@ -40,7 +40,7 @@ jobs:
           git config user.email "${{ env.GITHUB_EMAIL}}"
       - name: Bump version (prerelease)
         run: |
-          yarn version --minor
+          yarn version --patch
           git push --all
       - name: Publish ui-components
         run: yarn publish --access public
