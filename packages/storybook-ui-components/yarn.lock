@@ -1698,19 +1698,37 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@cockroachlabs/icons@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@cockroachlabs/icons/-/icons-0.2.3.tgz#bd7f62a75e561f2f579bae413a757152a7f1bc24"
-  integrity sha512-/GuRDK9kwz/vbJyQBmM3xaxowl1De36pd6KAfobLGcMOZH4QEld0+nHRKyyrm5h0xm/VQaeMfG2veWHXfhooyw==
+"@base2/pretty-print-object@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@base2/pretty-print-object/-/pretty-print-object-1.0.0.tgz#860ce718b0b73f4009e153541faff2cb6b85d047"
+  integrity sha512-4Th98KlMHr5+JkxfcoDT//6vY8vM+iSPrLNpHhRyLx2CFYi8e2RfqPLdpbnpo0Q5lQC5hNB79yes07zb02fvCw==
 
-"@cockroachlabs/ui-components@^0.1.6":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@cockroachlabs/ui-components/-/ui-components-0.1.6.tgz#6b08e30c913a2893bf0cc86cda1a183370c72597"
-  integrity sha512-WpOtKf4y7TfmqbMLVyJTncxHURywxO0BdOMwZjml0LXnjbsdeKcEqyYsGGRnVYcPTiNDiDTKOs5o3aatZlpNWg==
+"@cnakazawa/watch@^1.0.3":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.4.tgz#f864ae85004d0fcab6f50be9141c4da368d1656a"
+  integrity sha512-v9kIhKwjeZThiWrLmj0y17CWoyddASLj9O2yvbZkbvw/N3rWOYy9zkV66ursAoVr0mV15bL8g0c4QZUE6cdDoQ==
   dependencies:
-    "@cockroachlabs/icons" "^0.2.3"
+    exec-sh "^0.3.2"
+    minimist "^1.2.0"
+
+"@cockroachlabs/icons@^0.2.9-alpha.0":
+  version "0.2.9-alpha.0"
+  resolved "https://registry.yarnpkg.com/@cockroachlabs/icons/-/icons-0.2.9-alpha.0.tgz#4c008620941ecc7516acd4e1c793879bfe0d6b92"
+  integrity sha512-WPhsBrZqabFW7H3im8TLaDOwkJQIsYsOb0Fed/ns6Pz34wjT4Y24JeYbQhFjMnkT381+EM1m/vBO4RENs5JeHg==
+
+"@cockroachlabs/ui-components@^0.2.6-alpha.0":
+  version "0.2.6-alpha.0"
+  resolved "https://registry.yarnpkg.com/@cockroachlabs/ui-components/-/ui-components-0.2.6-alpha.0.tgz#4242089e70e30b781fffad43cbb39789f2b81298"
+  integrity sha512-InPr8zsvkIOZrWmx3Q3u4CYABzkuaPOGR+uGldf0WLx38PbP3ZiF0EpK78NW4hMTUTkM5S6g6Y8QfPds2rJSgA==
+  dependencies:
+    "@cockroachlabs/icons" "^0.2.9-alpha.0"
     "@popperjs/core" "^2.4.0"
     react-popper "^2.2.3"
+
+"@egoist/vue-to-react@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@egoist/vue-to-react/-/vue-to-react-1.1.0.tgz#83c884b8608e8ee62e76c03e91ce9c26063a91ad"
+  integrity sha512-MwfwXHDh6ptZGLEtNLPXp2Wghteav7mzpT2Mcwl3NZWKF814i5hhHnNkVrcQQEuxUroSWQqzxLkMKSb+nhPang==
 
 "@emotion/cache@^10.0.27", "@emotion/cache@^10.0.9":
   version "10.0.29"
@@ -6988,9 +7006,9 @@ lodash.uniq@4.5.0:
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
 lodash@^4.0.1, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.15, lodash@^4.17.4:
-  version "4.17.15"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
-  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+  version "4.17.19"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
+  integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
 
 longest@^1.0.1:
   version "1.0.1"
