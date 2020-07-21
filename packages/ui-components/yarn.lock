@@ -923,23 +923,23 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@cockroachlabs/design-tokens@0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@cockroachlabs/design-tokens/-/design-tokens-0.0.2.tgz#4b52a22024b989bf19c4cf4000e6cf603d71516c"
-  integrity sha512-EUiWw44cjbn7X6iIliX90+BOY91vBhjdJUzlgsTdQuZH2zYA4utCjetJa6WMyQS6hjKsccKhHrZjpc54zfOi5A==
+"@cockroachlabs/design-tokens@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@cockroachlabs/design-tokens/-/design-tokens-0.0.5.tgz#0c20baa31072cc0d23a04347a09eb5e8116d80b0"
+  integrity sha512-+GZt8oYxXsDWbgoOygiVnAOMjYWhK/WxN9WO6XM/yGpNm89k5IQgGRne3bgShoSbIYnU642KG3QxgVq8zwfO2g==
 
-"@cockroachlabs/eslint-config@^0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@cockroachlabs/eslint-config/-/eslint-config-0.1.4.tgz#d1d24a257e925c9dee7f6802b695a3738a7d648c"
-  integrity sha512-Je6jsS2iPCkJpTMSN3IZGY83LQdhmOOx/II38NoaXot3m5iVsveY+U2/UktCsvCdDORQMy8Cmh2kPbQsKt3owg==
+"@cockroachlabs/eslint-config@^0.1.7":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@cockroachlabs/eslint-config/-/eslint-config-0.1.7.tgz#8a6fb9c69c8fb56569621d8eec63f2b2feaeb74a"
+  integrity sha512-A8/wYV2W6QNH6o2bEAVqf5Bqp4tYTI4bvz7Vhnhn2Lg1Pw5/7WPKraHXrUyCqY/IzFy/TcXf1veYG8Jx49TCmQ==
   dependencies:
     "@typescript-eslint/parser" "^2.34.0"
     eslint-config-prettier "^6.11.0"
 
-"@cockroachlabs/icons@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@cockroachlabs/icons/-/icons-0.2.3.tgz#bd7f62a75e561f2f579bae413a757152a7f1bc24"
-  integrity sha512-/GuRDK9kwz/vbJyQBmM3xaxowl1De36pd6KAfobLGcMOZH4QEld0+nHRKyyrm5h0xm/VQaeMfG2veWHXfhooyw==
+"@cockroachlabs/icons@^0.2.9-alpha.0":
+  version "0.2.9-alpha.0"
+  resolved "https://registry.yarnpkg.com/@cockroachlabs/icons/-/icons-0.2.9-alpha.0.tgz#4c008620941ecc7516acd4e1c793879bfe0d6b92"
+  integrity sha512-WPhsBrZqabFW7H3im8TLaDOwkJQIsYsOb0Fed/ns6Pz34wjT4Y24JeYbQhFjMnkT381+EM1m/vBO4RENs5JeHg==
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.0.0"
@@ -3277,13 +3277,7 @@ escodegen@^1.11.1, escodegen@^1.9.1:
   optionalDependencies:
     source-map "~0.6.1"
 
-<<<<<<< HEAD
 eslint-config-prettier@^6.10.0, eslint-config-prettier@^6.11.0:
-||||||| merged common ancestors
-eslint-config-prettier@^6.10.0:
-=======
-eslint-config-prettier@^6.10.0, eslint-config-prettier@^6.5.0:
->>>>>>> lockfile updates
   version "6.11.0"
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-6.11.0.tgz#f6d2238c1290d01c859a8b5c1f7d352a0b0da8b1"
   integrity sha512-oB8cpLWSAjOVFEJhhyMZh6NOEOtBVziaqdDQ86+qhDHFbZXoRTM7pNSvFRfW/W/L/LrQ38C99J5CGuRBBzBsdA==
@@ -5543,9 +5537,9 @@ lodash.sortby@^4.7.0:
   integrity sha1-7dFMgk4sycHgsKG0K7UhBRakJDg=
 
 lodash@^4.0.0, lodash@^4.15.0, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@~4.17.12:
-  version "4.17.15"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
-  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+  version "4.17.19"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
+  integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
 
 lolex@^5.0.0:
   version "5.1.2"
