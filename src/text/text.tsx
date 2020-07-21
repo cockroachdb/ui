@@ -9,9 +9,9 @@
 // licenses/APL.txt.
 
 import * as React from "react";
-import cn from "classnames";
+import classNames from "classnames/bind";
 
-import "./text.module.scss";
+import styles from "./text.module.scss";
 
 export interface TextProps {
   textType?: TextTypes;
@@ -64,6 +64,8 @@ const getClassByTextType = (textType: TextTypes) => {
   }
 };
 
+const cx = classNames.bind(styles);
+
 const getElementByTextType = (textType: TextTypes) => {
   switch (textType) {
     case TextTypes.Heading1:
@@ -90,7 +92,7 @@ const getElementByTextType = (textType: TextTypes) => {
 
 export function Text(props: TextProps) {
   const { textType, disabled, noWrap, className } = props;
-  const textTypeClass = cn(
+  const textTypeClass = cx(
     "text",
     getClassByTextType(textType),
     {
