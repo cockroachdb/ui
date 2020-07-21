@@ -41,7 +41,7 @@ jobs:
       - name: Bump version (prerelease)
         run: |
           yarn version --patch
-          git push --all
+          git push --follow-tags
       - name: Publish ui-components
         run: yarn publish --access public
         env:
