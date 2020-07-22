@@ -1,6 +1,7 @@
 import React, { FunctionComponent, ReactNode } from "react";
 import { withKnobs, text, select } from "@storybook/addon-knobs";
 import { Button, ButtonIntent, ButtonSize } from "@cockroachlabs/ui-components";
+import { StoryContainer } from "../layout";
 
 export default {
   title: "Button",
@@ -27,7 +28,7 @@ const Label: FunctionComponent<{ children: string }> = ({ children }) => (
 );
 
 export const Example = () => (
-  <section>
+  <StoryContainer>
     <h1>Buttons</h1>
     <section>
       <h3>Type</h3>
@@ -63,7 +64,7 @@ export const Example = () => (
         </ButtonDisplay>
       </ButtonDisplaySection>
     </section>
-  </section>
+  </StoryContainer>
 );
 
 export const Demo = () => {
@@ -75,11 +76,13 @@ export const Demo = () => {
   ];
   const sizes: Array<ButtonSize> = ["standard", "small"];
   return (
-    <Button
-      intent={select("Intent", intents, "primary-success")}
-      size={select("Size", sizes, "standard")}
-    >
-      {text("Text", "button")}
-    </Button>
+    <StoryContainer>
+      <Button
+        intent={select("Intent", intents, "primary-success")}
+        size={select("Size", sizes, "standard")}
+      >
+        {text("Text", "button")}
+      </Button>
+    </StoryContainer>
   );
 };

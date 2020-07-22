@@ -19,7 +19,7 @@ const BadgeDisplaySection: FunctionComponent<{
 const BadgeDisplay: FunctionComponent<{
   children: Array<ReactElement | null>;
 }> = ({ children }) => (
-  <div style={{ margin: "0rem 1rem", textAlign: "center",}}>{children}</div>
+  <div style={{ margin: "0rem 1rem", textAlign: "center" }}>{children}</div>
 );
 const Label: FunctionComponent<{
   children: string;
@@ -31,16 +31,30 @@ const Label: FunctionComponent<{
 
 export const Example = () => (
   <StoryContainer>
-
     <h1>Badges</h1>
 
-    <StoryDescription>Use badges to visually label UI objects for quick recognition, status indication or navigation. Badges can be all-caps or lowercase. There are 5 badge intents:
-
+    <StoryDescription>
+      Use badges to visually label UI objects for quick recognition, status
+      indication or navigation. Badges can be all-caps or lowercase. There are 5
+      badge intents:
       <ul>
-      <li> <strong>Neutral:</strong> Use to indicate a default state </li>
-      <li> <strong>Success:</strong> Use to indicate a successful state </li>
-      <li> <strong>Warning:</strong>  Use to indicate that there is something that requires attention </li>
-      <li> <strong>Danger:</strong> Use to indicate a failed state. </li>
+        <li>
+          {" "}
+          <strong>Neutral:</strong> Use to indicate a default state{" "}
+        </li>
+        <li>
+          {" "}
+          <strong>Success:</strong> Use to indicate a successful state{" "}
+        </li>
+        <li>
+          {" "}
+          <strong>Warning:</strong> Use to indicate that there is something that
+          requires attention{" "}
+        </li>
+        <li>
+          {" "}
+          <strong>Danger:</strong> Use to indicate a failed state.{" "}
+        </li>
       </ul>
     </StoryDescription>
 
@@ -83,14 +97,20 @@ export const Example = () => (
 );
 
 export const Demo = () => (
-  <Badge
-    intent={select(
-      "Intent",
-      ["neutral", "success", "warning", "danger"],
-      "neutral",
-    )}
-    transformCase={select("Transform Case", ["uppercase", "none"], "uppercase")}
-  >
-    {text("Text", "badge")}
-  </Badge>
+  <StoryContainer>
+    <Badge
+      intent={select(
+        "Intent",
+        ["neutral", "success", "warning", "danger"],
+        "neutral",
+      )}
+      transformCase={select(
+        "Transform Case",
+        ["uppercase", "none"],
+        "uppercase",
+      )}
+    >
+      {text("Text", "badge")}
+    </Badge>
+  </StoryContainer>
 );
