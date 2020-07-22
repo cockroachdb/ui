@@ -14,7 +14,7 @@ export default {
   decorators: [withKnobs],
 };
 
-const baseConfig:AvatarProps = {
+const baseConfig: AvatarProps = {
   intent: "default",
   children: "jb",
   size: "default",
@@ -23,7 +23,7 @@ const baseConfig:AvatarProps = {
   onClick: () => console.log("click"),
 };
 
-const intentConfigs:Partial<AvatarDisplay & AvatarProps>[] = [
+const intentConfigs: Partial<AvatarDisplay & AvatarProps>[] = [
   {
     description: "Default",
     intent: "default",
@@ -46,19 +46,21 @@ const intentConfigs:Partial<AvatarDisplay & AvatarProps>[] = [
   },
 ];
 
-const withIntentNotSelectable = intentConfigs.map(c => ({
+const withIntentNotSelectable = intentConfigs.map((c) => ({
   ...baseConfig,
   ...c,
 }));
 
-const withIntentSelectable = withIntentNotSelectable.map(c => ({
+const withIntentSelectable = withIntentNotSelectable.map((c) => ({
   ...baseConfig,
   ...c,
   description: `${c.description} Selectable`,
   selectable: true,
 }));
 
-const withIntentSelectableSmallSize:Partial<AvatarDisplay & AvatarProps>[] = withIntentSelectable.map(c => ({
+const withIntentSelectableSmallSize: Partial<
+  AvatarDisplay & AvatarProps
+>[] = withIntentSelectable.map((c) => ({
   ...c,
   size: "small",
 }));
@@ -90,11 +92,13 @@ const ItemWrapper: FunctionComponent<{
 
 export const example = () => (
   <StoryContainer>
-
     <h1>Avatar</h1>
 
-    <StoryDescription>Use round avatars to quickly identify users. User initials are used in place of an image. Avatar can be used on its own or in conjunction with the full username.
-      </StoryDescription>
+    <StoryDescription>
+      Use round avatars to quickly identify users. User initials are used in
+      place of an image. Avatar can be used on its own or in conjunction with
+      the full username.
+    </StoryDescription>
     <h4>Default size</h4>
     <Container>
       {withIntentNotSelectable.map(({ description, ...props }, idx) => (
@@ -120,23 +124,28 @@ export const example = () => (
         </ItemWrapper>
       ))}
     </Container>
-    </StoryContainer>
-
+  </StoryContainer>
 );
 
 export const demo = () => (
-  <Avatar
-    size={select("Size", ["default", "small"], "default")}
-    disabled={boolean("Disabled", false)}
-    intent={select(
-      "Intent",
-      ["default", "active", "pending", "invalid"],
-      "active",
-    )}
-    onClick={action("button-click")}
-    selectable={boolean("Selectable", true)}
-    transformCase={select("transformCase", ["none", "uppercase"], "uppercase")}
-  >
-    {text("Text", "RL")}
-  </Avatar>
+  <StoryContainer>
+    <Avatar
+      size={select("Size", ["default", "small"], "default")}
+      disabled={boolean("Disabled", false)}
+      intent={select(
+        "Intent",
+        ["default", "active", "pending", "invalid"],
+        "active",
+      )}
+      onClick={action("button-click")}
+      selectable={boolean("Selectable", true)}
+      transformCase={select(
+        "transformCase",
+        ["none", "uppercase"],
+        "uppercase",
+      )}
+    >
+      {text("Text", "RL")}
+    </Avatar>
+  </StoryContainer>
 );

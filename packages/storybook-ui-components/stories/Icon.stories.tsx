@@ -1,5 +1,6 @@
 import React, { FunctionComponent, ReactElement } from "react";
 import { withKnobs, select } from "@storybook/addon-knobs";
+import { StoryContainer, StoryDescription } from "../layout";
 
 import * as Icons from "@cockroachlabs/icons";
 import { Icon, IconSize, IconTint } from "@cockroachlabs/ui-components";
@@ -110,9 +111,9 @@ const tints: Array<IconTint> = [
 ];
 
 export const Example = () => (
-  <section>
+  <StoryContainer>
     <h1>Icons</h1>
-    <span>Icons portray visual information.</span>
+    <StoryDescription>Icons portray visual information.</StoryDescription>
 
     <section>
       <h2>Icon Names</h2>
@@ -155,13 +156,15 @@ export const Example = () => (
         ))}
       </IconDisplaySection>
     </section>
-  </section>
+  </StoryContainer>
 );
 
 export const Demo = () => (
-  <Icon
-    iconName={select("Icon Name", IconNames, "Plus")}
-    size={select("Size", sizes, "default")}
-    tint={select("Tint", tints, "neutral")}
-  />
+  <StoryContainer>
+    <Icon
+      iconName={select("Icon Name", IconNames, "Plus")}
+      size={select("Size", sizes, "default")}
+      tint={select("Tint", tints, "neutral")}
+    />
+  </StoryContainer>
 );
