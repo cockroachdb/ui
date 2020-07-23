@@ -24,7 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "@cockroachlabs/icons": "^0.2.9",
-    "@popperjs/core": "^2.4.1",
+    "@popperjs/core": "^2.4.3",
     "react-popper": "^2.2.3"
   },
   "devDependencies": {
