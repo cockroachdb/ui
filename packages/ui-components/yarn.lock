@@ -923,23 +923,23 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@cockroachlabs/design-tokens@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@cockroachlabs/design-tokens/-/design-tokens-0.0.5.tgz#0c20baa31072cc0d23a04347a09eb5e8116d80b0"
-  integrity sha512-+GZt8oYxXsDWbgoOygiVnAOMjYWhK/WxN9WO6XM/yGpNm89k5IQgGRne3bgShoSbIYnU642KG3QxgVq8zwfO2g==
+"@cockroachlabs/design-tokens@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@cockroachlabs/design-tokens/-/design-tokens-0.0.6.tgz#2fae13b4645ebf6d8af67688899c96bf0b6ad6aa"
+  integrity sha512-qdW5Mjw5P/9i1Hm+TU2vUljBVnXMC6onwLSTXDKO2z0kbKtl66Xhznf09l5Tk8qw1jDq5vD7Ypum7m4vEfQ2UQ==
 
-"@cockroachlabs/eslint-config@^0.1.7":
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/@cockroachlabs/eslint-config/-/eslint-config-0.1.7.tgz#8a6fb9c69c8fb56569621d8eec63f2b2feaeb74a"
-  integrity sha512-A8/wYV2W6QNH6o2bEAVqf5Bqp4tYTI4bvz7Vhnhn2Lg1Pw5/7WPKraHXrUyCqY/IzFy/TcXf1veYG8Jx49TCmQ==
+"@cockroachlabs/eslint-config@^0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@cockroachlabs/eslint-config/-/eslint-config-0.1.8.tgz#5f8bb8a8d568918ed2bff77ab8b25dbe3c18d2cb"
+  integrity sha512-Oh/UoxEyAedlc29+AHTv+7BcjXaqNnCHI8jWVlufRD47RhQoMP6BBo49TTLjfpx8cU6unuCRJ9WAX5d4rmu1rg==
   dependencies:
     "@typescript-eslint/parser" "^2.34.0"
     eslint-config-prettier "^6.11.0"
 
-"@cockroachlabs/icons@^0.2.9-alpha.0":
-  version "0.2.9-alpha.0"
-  resolved "https://registry.yarnpkg.com/@cockroachlabs/icons/-/icons-0.2.9-alpha.0.tgz#4c008620941ecc7516acd4e1c793879bfe0d6b92"
-  integrity sha512-WPhsBrZqabFW7H3im8TLaDOwkJQIsYsOb0Fed/ns6Pz34wjT4Y24JeYbQhFjMnkT381+EM1m/vBO4RENs5JeHg==
+"@cockroachlabs/icons@^0.2.9":
+  version "0.2.9"
+  resolved "https://registry.yarnpkg.com/@cockroachlabs/icons/-/icons-0.2.9.tgz#b626fe409ea49be66b19a9a0358a082d50ade2d0"
+  integrity sha512-s1kH8sU/DeIGrGUwUMVMAjxGTOn6SHAK8q0tmJY6zcIUaoYb/5UfnQjzdG+ybflgBdyMTB41/bWTXnpsYxxSpw==
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.0.0"
@@ -1190,10 +1190,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
 
-"@popperjs/core@^2.4.1":
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.4.2.tgz#7c6dc4ecef16149fd7a736710baa1b811017fdca"
-  integrity sha512-JlGTGRYHC2QK+DDbePyXdBdooxFq2+noLfWpRqJtkxcb/oYWzOF0kcbfvvbWrwevCC1l6hLUg1wHYT+ona5BWQ==
+"@popperjs/core@^2.4.3":
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.4.4.tgz#11d5db19bd178936ec89cd84519c4de439574398"
+  integrity sha512-1oO6+dN5kdIA3sKPZhRGJTfGVP4SWV6KqlMOwry4J3HfyD68sl/3KmG7DeYUzvN+RbhXDnv/D8vNNB8168tAMg==
 
 "@sinonjs/commons@^1.7.0":
   version "1.7.2"
