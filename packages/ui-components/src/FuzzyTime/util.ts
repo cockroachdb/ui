@@ -49,13 +49,13 @@ export const TimeUnits = [
   },
   {
     amount: 1,
-    comparator: (x: number) => x >= 0,
+    comparator: gteqZero,
     template: () => "just now",
   },
   {
     label: "the future",
     amount: 1,
-    comparator: (x: number) => x < 0,
+    comparator: ltZero,
     template: () => "the future",
   },
 ];
