@@ -2,23 +2,23 @@
 @mixin font-face($name) {
   @font-face {
     font-family: $name;
-    src: url("../fonts/#{$name}.woff2") format('woff2'), url("../fonts/#{$name}.woff") format('woff');
+    src: url("../fonts/#{$name}.woff2") format('woff2'),
+        url("../fonts/#{$name}.woff") format('woff');
     font-weight: normal;
     font-style: normal;
   }
 }
 
-@include font-face('SourceSansPro-Bold')
+@include font-face('SourceSansPro-Bold');
 @include font-face('SourceSansPro-Regular');
+@include font-face('SourceSansPro-SemiBold');
 @include font-face('SFMono-Semibold');
-// TODO(davidh): This font doesn't exist in woff format in the repo
-// @include font-face('SFMono-Regular');
 @include font-face('RobotoMono-Medium');
 
 $font-family--base: SourceSansPro-Regular;
 $font-family--bold: SourceSansPro-Bold;
 $font-family--semi-bold: SourceSansPro-SemiBold;
-$font-family--monospace: SFMono-Regular RobotoMono-Medium;
+$font-family--monospace: RobotoMono-Medium;
 
 $font-weight--extra-bold: 900;
 $font-weight--bold: 600;

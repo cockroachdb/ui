@@ -1,8 +1,9 @@
 import React from "react";
+import classNames from "classnames/bind";
 import AntModal from "antd/lib/modal";
 import { Button } from "../button";
 import { Text, TextTypes } from "../text";
-import "./modal.module.scss";
+import styles from "./modal.module.scss";
 
 export interface ModalProps {
   title?: string;
@@ -12,6 +13,8 @@ export interface ModalProps {
   cancelText?: string;
   visible: boolean;
 }
+
+const cx = classNames.bind(styles);
 
 export const Modal: React.FC<ModalProps> = ({
   children,
@@ -25,10 +28,10 @@ export const Modal: React.FC<ModalProps> = ({
   return (
     <AntModal
       title={title && <Text textType={TextTypes.Heading3}>{title}</Text>}
-      className="crl-modal"
+      className={cx("crl-modal")}
       visible={visible}
       closeIcon={
-        <div className="crl-modal__close-icon" onClick={onCancel}>
+        <div className={cx("crl-modal__close-icon")} onClick={onCancel}>
           &times;
         </div>
       }

@@ -1,6 +1,10 @@
 import * as React from "react";
 import AntPagination from "antd/lib/pagination";
+import "antd/lib/pagination/style/index.less";
 import Icon from "antd/lib/icon";
+import "antd/lib/icon/style/index.less";
+import classNames from "classnames/bind";
+import styles from "./pagination.module.scss";
 
 export interface PaginationSettings {
   pageSize?: number;
@@ -12,6 +16,8 @@ export interface PaginationProps {
   onChange: (current: number) => void;
   hideOnSinglePage?: boolean;
 }
+
+const cx = classNames.bind(styles);
 
 export const Pagination: React.FC<PaginationProps> = ({
   pagination = { pageSize: 20, total: 0, current: undefined },
@@ -26,16 +32,16 @@ export const Pagination: React.FC<PaginationProps> = ({
     switch (type) {
       case "jump-prev":
         return (
-          <div className="_pg-jump">
+          <div className={cx("_pg-jump")}>
             <Icon type="left" />
-            <span className="_jump-dots">•••</span>
+            <span className={cx("_jump-dots")}>•••</span>
           </div>
         );
       case "jump-next":
         return (
-          <div className="_pg-jump">
+          <div className={cx("_pg-jump")}>
             <Icon type="right" />
-            <span className="_jump-dots">•••</span>
+            <span className={cx("_jump-dots")}>•••</span>
           </div>
         );
       default:

@@ -1,12 +1,9 @@
+@import './typography.module';
+@import './colors.module';
+@import "./base.module";
 
-
-
-
-
-
-
-
-
-
-@import './typography.module.scss';
-@import './colors.module.scss';
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
