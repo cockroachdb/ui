@@ -81,30 +81,44 @@ describe("fuzzyFormatter", () => {
     expect(result).toBe(expected);
   });
 
-  describe("fuzzy", () => {
-    const fiveMonthsAgo = new Date(Date.now() - 1000 * 60 * 60 * 24 * 30 * 5);
-    const now = new Date();
-    const theFuture = new Date(Date.now() + 31104000000);
+  test("format returns an empty string if time diff undefined", () => {
+    const f = fuzzyFormatter(undefined);
+    const result = f(fizzywiggUnit);
+    const expected = "";
+    expect(result).toBe(expected);
+  });
 
-    test("formats a time in the past", () => {
-      const result = fuzzy(fiveMonthsAgo);
-      const expected = "5 months ago";
-      expect(result).toBe(expected);
-    });
+  test("format returns an empty string if time unit undefined", () => {
+    const f = fuzzyFormatter(30000000);
+    const result = f(undefined);
+    const expected = "";
+    expect(result).toBe(expected);
+  });
+});
 
-    test("formats a time as now", () => {
-      // doing this just to ensure that we are comparing the same time instead
-      // of the time between when I create a variable and the function is run
-      const f = setFuzzy(now);
-      const result = f(now);
-      const expected = "just now";
-      expect(result).toBe(expected);
-    });
+describe("fuzzy", () => {
+  const fiveMonthsAgo = new Date(Date.now() - 1000 * 60 * 60 * 24 * 30 * 5);
+  const now = new Date();
+  const theFuture = new Date(Date.now() + 31104000000);
 
-    test("formats a time as the future", () => {
-      const result = fuzzy(theFuture);
-      const expected = "the future";
-      expect(result).toBe(expected);
-    });
+  test("formats a time in the past", () => {
+    const result = fuzzy(fiveMonthsAgo);
+    const expected = "5 months ago";
+    expect(result).toBe(expected);
+  });
+
+  test("formats a time as now", () => {
+    // doing this just to ensure that we are comparing the same time instead
+    // of the time between when I create a variable and the function is run
+    const f = setFuzzy(now);
+    const result = f(now);
+    const expected = "just now";
+    expect(result).toBe(expected);
+  });
+
+  test("formats a time as the future", () => {
+    const result = fuzzy(theFuture);
+    const expected = "the future";
+    expect(result).toBe(expected);
   });
 });

@@ -61,6 +61,7 @@ export const TimeUnits = [
 ];
 
 export const fuzzyFormatter = (offset: number) => (unit: TimeUnit) => {
+  if (unit === undefined || offset === undefined) return "";
   const duration = Math.floor(offset / unit.amount);
   return unit.template(duration);
 };
