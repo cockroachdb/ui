@@ -383,7 +383,6 @@ const statementsPagePropsFixture: StatementsPageProps = {
   refreshStatementDiagnosticsRequests: () => {},
   refreshStatements: () => {},
   onActivateStatementDiagnostics: _statement => {},
-  refreshDiagnosticsReports: () => {},
   onDiagnosticsModalOpen: () => {},
 };
 

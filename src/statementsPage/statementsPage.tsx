@@ -45,9 +45,9 @@ interface OwnProps {
   dismissAlertMessage: () => void;
   onActivateStatementDiagnostics: (statement: string) => void;
   onDiagnosticsModalOpen: (statement: string) => void;
-  refreshDiagnosticsReports: () => void;
   onSearchComplete?: (results: AggregateStatistics[]) => void;
   onPageChanged?: (newPage: number) => void;
+  onSortingChange?: (name: string, columnTitle: string, ascending: boolean) => void;
 }
 
 export interface StatementsPageState {
@@ -124,6 +124,7 @@ export class StatementsPage extends React.Component<
       sortKey: ss.sortKey,
       ascending: Boolean(ss.ascending).toString(),
     });
+    this.props.onSortingChange("statements-table", ss.sortKey, ss.ascending);
   };
 
   selectApp = (app: DropdownOption) => {
@@ -332,7 +333,7 @@ export class StatementsPage extends React.Component<
   render() {
     const {
       match,
-      refreshDiagnosticsReports,
+      refreshStatementDiagnosticsRequests,
       onActivateStatementDiagnostics,
       onDiagnosticsModalOpen,
     } = this.props;
@@ -353,7 +354,7 @@ export class StatementsPage extends React.Component<
         <ActivateStatementDiagnosticsModal
           ref={this.activateDiagnosticsRef}
           activate={onActivateStatementDiagnostics}
-          refreshDiagnosticsReports={refreshDiagnosticsReports}
+          refreshDiagnosticsReports={refreshStatementDiagnosticsRequests}
           onOpenModal={onDiagnosticsModalOpen}
         />
       </React.Fragment>
