@@ -30,6 +30,8 @@ export interface SortableColumn {
   // className is a classname to apply to the td elements
   className?: string;
   titleAlign?: "left" | "right" | "center";
+  // uniq column identifier
+  name: string;
 }
 
 /**
@@ -41,6 +43,7 @@ export interface SortableColumn {
 export interface SortSetting {
   sortKey: any;
   ascending: boolean;
+  columnTitle?: string;
 }
 
 /**
@@ -110,7 +113,7 @@ export class SortableTable extends React.Component<TableProps> {
     activeIndex: NaN,
   };
 
-  clickSort(clickedSortKey: any) {
+  clickSort(clickedSortKey: any, columnTitle?: string) {
     const { sortSetting, onChangeSortSetting } = this.props;
 
     // If the sort key is different than the previous key, initial sort
@@ -128,6 +131,7 @@ export class SortableTable extends React.Component<TableProps> {
     onChangeSortSetting({
       sortKey: clickedSortKey,
       ascending,
+      columnTitle,
     });
   }
 
@@ -244,7 +248,7 @@ export class SortableTable extends React.Component<TableProps> {
                 if (!isUndefined(c.sortKey)) {
                   classes.push(cx("sort-table__cell--sortable"));
                   onClick = () => {
-                    this.clickSort(c.sortKey);
+                    this.clickSort(c.sortKey, c.name);
                   };
                   if (c.sortKey === sortSetting.sortKey) {
                     if (sortSetting.ascending) {

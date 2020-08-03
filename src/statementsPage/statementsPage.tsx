@@ -47,7 +47,11 @@ interface OwnProps {
   onDiagnosticsModalOpen: (statement: string) => void;
   onSearchComplete?: (results: AggregateStatistics[]) => void;
   onPageChanged?: (newPage: number) => void;
-  onSortingChange?: (name: string, columnTitle: string, ascending: boolean) => void;
+  onSortingChange?: (
+    name: string,
+    columnTitle: string,
+    ascending: boolean,
+  ) => void;
 }
 
 export interface StatementsPageState {
@@ -124,7 +128,11 @@ export class StatementsPage extends React.Component<
       sortKey: ss.sortKey,
       ascending: Boolean(ss.ascending).toString(),
     });
-    this.props.onSortingChange("statements-table", ss.sortKey, ss.ascending);
+    this.props.onSortingChange(
+      "statements-table",
+      ss.columnTitle,
+      ss.ascending,
+    );
   };
 
   selectApp = (app: DropdownOption) => {
