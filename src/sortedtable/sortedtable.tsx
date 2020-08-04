@@ -38,6 +38,8 @@ export interface ColumnDescriptor<T> {
   // className to be applied to the td elements in this column.
   className?: string;
   titleAlign?: "left" | "right" | "center";
+  // uniq column identifier
+  name: string;
 }
 
 /**
@@ -164,6 +166,7 @@ export class SortedTable<T> extends React.Component<
         columns,
         (cd, ii): SortableColumn => {
           return {
+            name: cd.name,
             title: cd.title,
             cell: index => cd.cell(sorted[index]),
             sortKey: cd.sort ? ii : undefined,

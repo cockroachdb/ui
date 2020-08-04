@@ -52,6 +52,7 @@ function makeCommonColumns(
 
   return [
     {
+      name: "retries",
       title: StatementTableTitle.retries,
       className: cx("statements-table__col-retries"),
       cell: retryBar,
@@ -59,18 +60,21 @@ function makeCommonColumns(
         longToInt(stmt.stats.count) - longToInt(stmt.stats.first_attempt_count),
     },
     {
+      name: "executionCount",
       title: StatementTableTitle.executionCount,
       className: cx("statements-table__col-count"),
       cell: countBar,
       sort: stmt => FixLong(stmt.stats.count).toInt(),
     },
     {
+      name: "rowsAffected",
       title: StatementTableTitle.rowsAffected,
       className: cx("statements-table__col-rows"),
       cell: rowsBar,
       sort: stmt => stmt.stats.num_rows.mean,
     },
     {
+      name: "latency",
       title: StatementTableTitle.latency,
       className: cx("statements-table__col-latency"),
       cell: latencyBar,
@@ -118,12 +122,14 @@ export function makeStatementsColumns(
 ): ColumnDescriptor<AggregateStatistics>[] {
   const columns: ColumnDescriptor<AggregateStatistics>[] = [
     {
+      name: "statements",
       title: StatementTableTitle.statements,
       className: cx("cl-table__col-query-text"),
       cell: StatementTableCell.statements(search, selectedApp),
       sort: stmt => stmt.label,
     },
     {
+      name: "txtType",
       title: StatementTableTitle.txtType,
       className: cx("statements-table__col-time"),
       cell: stmt => (stmt.implicitTxn ? "Implicit" : "Explicit"),
@@ -134,6 +140,7 @@ export function makeStatementsColumns(
 
   if (activateDiagnosticsRef) {
     const diagnosticsColumn: ColumnDescriptor<AggregateStatistics> = {
+      name: "diagnostics",
       title: StatementTableTitle.diagnostics,
       cell: StatementTableCell.diagnostics(activateDiagnosticsRef),
       sort: stmt => {
@@ -156,9 +163,9 @@ export function makeNodesColumns(
 ): ColumnDescriptor<AggregateStatistics>[] {
   const original: ColumnDescriptor<AggregateStatistics>[] = [
     {
+      name: "nodes",
       title: null,
       cell: StatementTableCell.nodeLink(nodeNames),
-      // sort: (stmt) => stmt.label,
     },
   ];
 

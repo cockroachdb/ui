@@ -12,16 +12,19 @@ const cx = classNames.bind(styles);
 
 const columns: SortableColumn[] = [
   {
+    name: "first",
     title: "first",
     cell: index => index.toString() + ".first",
     sortKey: 1,
   },
   {
+    name: "second",
     title: "second",
     cell: index => index.toString() + ".second",
     sortKey: 2,
   },
   {
+    name: "unsortable",
     title: "unsortable",
     cell: index => index.toString() + ".unsortable",
   },
@@ -153,6 +156,7 @@ describe("<SortableTable>", () => {
         spy.calledWith({
           sortKey: 1,
           ascending: false,
+          columnTitle: "first",
         }),
       );
     });
@@ -171,6 +175,7 @@ describe("<SortableTable>", () => {
         spy.calledWith({
           sortKey: 1,
           ascending: false,
+          columnTitle: "first",
         }),
       );
     });
@@ -188,6 +193,7 @@ describe("<SortableTable>", () => {
         spy.calledWith({
           sortKey: 1,
           ascending: true,
+          columnTitle: "first",
         }),
       );
     });
@@ -205,6 +211,7 @@ describe("<SortableTable>", () => {
         spy.calledWith({
           sortKey: null,
           ascending: false,
+          columnTitle: "first",
         }),
       );
     });

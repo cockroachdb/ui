@@ -20,11 +20,13 @@ class TestRow {
 
 const columns: ColumnDescriptor<TestRow>[] = [
   {
+    name: "first",
     title: "first",
     cell: tr => tr.name,
     sort: tr => tr.name,
   },
   {
+    name: "second",
     title: "second",
     cell: tr => tr.value.toString(),
     sort: tr => tr.value,
@@ -93,6 +95,7 @@ describe("<SortedTable>", function() {
     assert.deepEqual(spy.getCall(0).args[0], {
       sortKey: 0,
       ascending: false,
+      columnTitle: "first",
     } as SortSetting);
   });
 
