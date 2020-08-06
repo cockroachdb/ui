@@ -27,7 +27,6 @@
   "dependencies": {
     "@cockroachlabs/icons": "^0.2.2",
     "@popperjs/core": "^2.4.0",
-    "d3": "<4.0.0",
     "long": "^4.0.0",
     "react-helmet": "^5.2.0",
     "react-popper": "^2.2.3",
@@ -69,6 +68,7 @@
     "babel-preset-react-app": "^9.1.2",
     "chai": "^4.2.0",
     "classnames": "^2.2.6",
+    "d3": "3.5.17",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^6.8.0",
@@ -102,6 +102,7 @@
     "webpackbar": "^4.0.0"
   },
   "peerDependencies": {
+    "d3": "3.5.17",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2"
