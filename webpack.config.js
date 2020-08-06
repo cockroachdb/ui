@@ -110,6 +110,7 @@ module.exports = {
   // This is important because it allows us to avoid bundling all of our
   // dependencies, which allows browsers to cache those libraries between builds.
   externals: {
+    d3: "d3",
     react: {
       commonjs: "react",
       commonjs2: "react",
