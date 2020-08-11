@@ -6,7 +6,7 @@ import objectToClassnames from "../utils/objectToClassnames";
 import styles from "./Badge.module.scss";
 
 export type BadgeCase = "none" | "uppercase";
-export type BadgeIntent = "neutral" | "success" | "warning" | "danger";
+export type BadgeIntent = "neutral" | "success" | "warning" | "danger" | "info";
 
 export interface BadgeProps {
   intent?: BadgeIntent;

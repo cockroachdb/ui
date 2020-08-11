@@ -55,6 +55,10 @@ export const Example = () => (
           {" "}
           <strong>Danger:</strong> Use to indicate a failed state.{" "}
         </li>
+        <li>
+          {" "}
+          <strong>Info:</strong> Use to indicate useful information.{" "}
+        </li>
       </ul>
     </StoryDescription>
 
@@ -76,6 +80,10 @@ export const Example = () => (
         <BadgeDisplay>
           <Label>danger</Label>
           <Badge intent="danger">Error</Badge>
+        </BadgeDisplay>
+        <BadgeDisplay>
+          <Label>info</Label>
+          <Badge intent="info">Info</Badge>
         </BadgeDisplay>
       </BadgeDisplaySection>
     </section>
