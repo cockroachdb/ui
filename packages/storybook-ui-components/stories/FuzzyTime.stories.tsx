@@ -49,21 +49,21 @@ export const Example = () => (
             {`${aFewSecondsAgo.toDateString()}
               ${aFewSecondsAgo.toLocaleTimeString()}`}
           </Label>
-          <FuzzyTime timestamp={aFewSecondsAgo.toLocaleString()} />
+          <FuzzyTime timestamp={aFewSecondsAgo} />
         </Sample>
         <Sample>
           <Label>
             {`${aCoupleMinutesAgo.toDateString()}
               ${aCoupleMinutesAgo.toLocaleTimeString()}`}
           </Label>
-          <FuzzyTime timestamp={aCoupleMinutesAgo.toLocaleTimeString()} />
+          <FuzzyTime timestamp={aCoupleMinutesAgo} />
         </Sample>
         <Sample>
           <Label>
             {`${someHoursAgo.toDateString()}
               ${someHoursAgo.toLocaleTimeString()}`}
           </Label>
-          <FuzzyTime timestamp={someHoursAgo.toLocaleTimeString()} />
+          <FuzzyTime timestamp={someHoursAgo} />
         </Sample>
         <Sample>
           <Label>
