@@ -109,7 +109,7 @@ export const Demo = () => (
     <Badge
       intent={select(
         "Intent",
-        ["neutral", "success", "warning", "danger"],
+        ["neutral", "success", "warning", "danger", "info"],
         "neutral",
       )}
       transformCase={select(
