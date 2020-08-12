@@ -8,10 +8,16 @@ import styles from "./Badge.module.scss";
 export type BadgeCase = "none" | "uppercase";
 export type BadgeIntent = "neutral" | "success" | "warning" | "danger" | "info";
 
-export interface BadgeProps {
+interface OwnBadgeProps {
   intent?: BadgeIntent;
   transformCase?: BadgeCase;
 }
+type NativeDivProps = Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  keyof OwnBadgeProps
+>;
+
+export type BadgeProps = NativeDivProps & OwnBadgeProps;
 
 const cx = classNames.bind(styles);
 
@@ -19,9 +25,14 @@ export const Badge: FunctionComponent<BadgeProps> = ({
   intent = "neutral",
   transformCase = "uppercase",
   children,
+  className,
   ...props
 }) => {
-  const classnames = cx("badge", objectToClassnames({ intent, transformCase }));
+  const classnames = cx(
+    "badge",
+    objectToClassnames({ intent, transformCase }),
+    className,
+  );
 
   if (children !== undefined) {
     return (
