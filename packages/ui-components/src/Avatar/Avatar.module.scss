@@ -1,6 +1,5 @@
 @import "../styles/tokens.scss";
 
-// TODO (koorosh): Probably has to be extracted to tokens.
 @mixin selectable-border($color) {
   box-sizing: border-box;
   border: 2px solid $color;
@@ -19,6 +18,10 @@
   border-radius: 50%;
   overflow: hidden;
   user-select: none;
+}
+
+.avatar img {
+  height: 100%;
 }
 
 .intent-default {
