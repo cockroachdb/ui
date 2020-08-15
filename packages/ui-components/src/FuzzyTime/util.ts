@@ -16,7 +16,7 @@ export const ltZero = compare(lt)(0);
 export const pastTemplate = (duration: number, label: string) =>
   `${duration} ${label}${duration > 1 ? "s" : ""} ago`;
 
-export const TimeUnits = [
+export const TimeUnits: Array<TimeUnit> = [
   {
     amount: aYear,
     comparator: gteqUnit(aYear),
@@ -53,7 +53,6 @@ export const TimeUnits = [
     template: () => "just now",
   },
   {
-    label: "the future",
     amount: 1,
     comparator: ltZero,
     template: () => "the future",

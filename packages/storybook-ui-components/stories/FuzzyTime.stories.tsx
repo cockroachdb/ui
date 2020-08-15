@@ -100,8 +100,12 @@ export const Example = () => (
   </StoryContainer>
 );
 
-export const Demo = () => (
-  <StoryContainer>
-    <FuzzyTime timestamp={text("Timestamp", "15 MAR 2020 00:00:00")} />
-  </StoryContainer>
-);
+export const Demo = () => {
+  return (
+    <StoryContainer>
+      <FuzzyTime
+        timestamp={new Date(text("Timestamp", "15 MAR 2020 00:00:00"))}
+      />
+    </StoryContainer>
+  );
+};
