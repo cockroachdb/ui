@@ -5,7 +5,7 @@
   display: inline-block;
   font-size: 12px;
   line-height: 14px;
-  padding: crl-gutters(0.25) crl-gutters(0.75);
+  padding: crl-gutters(0.625) crl-gutters(1);
   vertical-align: crl-gutters(0.5);
   text-align: center;
   white-space: nowrap;
@@ -30,6 +30,11 @@
 .intent-danger {
   background: $color-background-badge-danger;
   color: $color-font-badge-danger;
+}
+
+.intent-info {
+  background: $color-background-badge-info;
+  color: $color-font-badge-info;
 }
 
 .noTransform {

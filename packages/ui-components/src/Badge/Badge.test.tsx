@@ -40,6 +40,10 @@ describe("Badge Intent prop", () => {
     // neutral
     wrapper.setProps({ intent: "neutral" });
     expect(wrapper.prop("className")).toContain("intent-neutral");
+
+    // neutral
+    wrapper.setProps({ intent: "info" });
+    expect(wrapper.prop("className")).toContain("intent-info");
   });
 });
 
