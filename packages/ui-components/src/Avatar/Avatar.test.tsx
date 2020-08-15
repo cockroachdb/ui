@@ -16,6 +16,16 @@ describe("Avatar", () => {
     });
   });
 
+  describe("User provided className", () => {
+    it("appends user provided className", () => {
+      const testClass = "nathan-test-stuff";
+      const wrapper = shallow(<Avatar className={testClass}>NS</Avatar>);
+      const className = wrapper.prop("className");
+      expect(className).toContain(testClass);
+      expect(className).toContain("intent-default");
+    });
+  });
+
   describe("Handle onClick prop", () => {
     it("calls callback function on element click", () => {
       const onClickSpy = jasmine.createSpy();
@@ -43,6 +53,16 @@ describe("Avatar", () => {
 
     it("renders with empty content", () => {
       expect(shallow(<Avatar />).text()).toEqual("");
+    });
+
+    it("renders with svg passed as children", () => {
+      const svg = <svg />;
+      expect(shallow(<Avatar>{svg}</Avatar>).find("svg")).toHaveLength(1);
+    });
+
+    it("renders with svg passed as children", () => {
+      const img = <img />;
+      expect(shallow(<Avatar>{img}</Avatar>).find("img")).toHaveLength(1);
     });
   });
 
