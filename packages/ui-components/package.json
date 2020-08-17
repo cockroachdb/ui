@@ -18,6 +18,9 @@
     "lint": "eslint ./src/**/*.{tsx,ts,js} --format=codeframe",
     "prepublishOnly": "npm-run-all clean build",
     "test": "jest --watch",
+    "test:version": "npm version prerelease --preid='alpha'",
+    "test:publish": "npm publish --tag testing",
+    "publish-test-version": "npm-run-all test:version test:publish",
     "start": "npm run build:watch"
   },
   "keywords": [],
