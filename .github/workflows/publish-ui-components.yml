@@ -28,11 +28,11 @@ jobs:
           git config user.email "<actions@github.com>"
       - name: Bump version (prerelease)
         run: |
-          npm version prerelease --preid="alpha" --tag next
+          yarn version --prerelease --preid="alpha"
           git push --all
         working-directory: ./packages/ui-components
       - name: Publish ui-components
-        run: npm publish --access public
+        run: yarn publish --access public --tag next
         working-directory: ./packages/ui-components
         env:
           NODE_AUTH_TOKEN: ${{ secrets.YARN_TOKEN }}
