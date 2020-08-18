@@ -1,6 +1,6 @@
 {
   "name": "@cockroachlabs/design-tokens",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Design tokens for Cockroach Labs.",
   "repository": {
     "type": "git",
