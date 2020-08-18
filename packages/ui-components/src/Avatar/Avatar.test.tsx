@@ -16,13 +16,20 @@ describe("Avatar", () => {
     });
   });
 
-  describe("User provided className", () => {
+  describe("Native element props", () => {
     it("appends user provided className", () => {
       const testClass = "nathan-test-stuff";
       const wrapper = shallow(<Avatar className={testClass}>NS</Avatar>);
       const className = wrapper.prop("className");
       expect(className).toContain(testClass);
       expect(className).toContain("intent-default");
+    });
+
+    it("accepts data attributes", () => {
+      const datatest = "nathan-data";
+      const wrapper = shallow(<Avatar data-test={datatest}>NS</Avatar>);
+      const result = wrapper.prop("data-test");
+      expect(result).toBe(datatest);
     });
   });
 

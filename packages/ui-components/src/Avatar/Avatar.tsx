@@ -35,6 +35,7 @@ export const Avatar: React.FC<AvatarProps> = ({
   selectable = false,
   onClick,
   transformCase = "uppercase",
+  ...rest
 }) => {
   const classnames = useMemo(
     () =>
@@ -58,7 +59,7 @@ export const Avatar: React.FC<AvatarProps> = ({
   }, [onClick, disabled]);
 
   return (
-    <div className={classnames} onClick={onClickHandler}>
+    <div className={classnames} onClick={onClickHandler} {...rest}>
       {children}
     </div>
   );
