@@ -101,7 +101,14 @@ const IconNames: Array<keyof typeof Icons> = [
   "User",
   "World",
 ];
-const sizes: Array<IconSize> = ["large", "medium", "default", "small", "tiny"];
+const sizes: Array<{ key: IconSize; size: number }> = [
+  { key: "small", size: 16 },
+  { key: "default", size: 24 },
+  { key: "medium", size: 32 },
+  { key: "large", size: 48 },
+  { key: "x-large", size: 56 },
+  { key: "xx-large", size: 80 },
+];
 const tints: Array<IconTint> = [
   "blue",
   "green",
@@ -127,7 +134,7 @@ export const Example = () => (
           <IconDisplay key={name}>
             <IconLabel text={name} />
             <IconFrame>
-              <Icon iconName={name} size="medium" />
+              <Icon iconName={name} />
             </IconFrame>
           </IconDisplay>
         ))}
@@ -137,11 +144,11 @@ export const Example = () => (
     <section>
       <h2>Icon Sizes</h2>
       <IconDisplaySection>
-        {sizes.map((size) => (
-          <IconDisplay key={size}>
-            <IconLabel text={size} />
+        {sizes.map((s) => (
+          <IconDisplay key={s.key}>
+            <IconLabel text={`${s.key} (${s.size}px)`} />
             <IconFrame>
-              <Icon iconName="PlusCircle" size={size} />
+              <Icon iconName="PlusCircle" size={s.key} />
             </IconFrame>
           </IconDisplay>
         ))}
@@ -168,7 +175,11 @@ export const Demo = () => (
   <StoryContainer>
     <Icon
       iconName={select("Icon Name", IconNames, "Plus")}
-      size={select("Size", sizes, "default")}
+      size={select(
+        "Size",
+        sizes.map((s) => s.key),
+        "default",
+      )}
       tint={select("Tint", tints, "neutral")}
     />
   </StoryContainer>

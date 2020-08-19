@@ -7,7 +7,13 @@ import styles from "./Icon.module.scss";
 
 import objectToClassnames from "../utils/objectToClassnames";
 
-export type IconSize = "large" | "medium" | "default" | "small" | "tiny";
+export type IconSize =
+  | "small"
+  | "default"
+  | "medium"
+  | "large"
+  | "x-large"
+  | "xx-large";
 
 export type IconTint =
   | "blue"
