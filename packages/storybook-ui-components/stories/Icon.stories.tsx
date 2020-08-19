@@ -58,6 +58,7 @@ const IconLabel: FunctionComponent<{
 const IconNames: Array<keyof typeof Icons> = [
   "ArrowLeft",
   "Backup",
+  "Bell",
   "CancelCircleFilled",
   "CancelCircle",
   "Cancel",
@@ -71,7 +72,7 @@ const IconNames: Array<keyof typeof Icons> = [
   "CheckCircleFilled",
   "CheckCircle",
   "Check",
-  "CircleInfoFilled",
+  "HelpCircleFilled",
   "Copy",
   "Download",
   "EllipsisVertical",
@@ -80,15 +81,15 @@ const IconNames: Array<keyof typeof Icons> = [
   "ErrorCircle",
   "EyeOff",
   "Eye",
-  "InfoFilled",
-  "Info",
+  "InfoCircleFilled",
+  "InfoCircle",
   "Invalid",
   "List",
   "LockFilled",
   "Lock",
   "MinusCircle",
   "Minus",
-  "Organization",
+  "Org",
   "Pencil",
   "PlusCircle",
   "Plus",
@@ -122,7 +123,7 @@ export const Example = () => (
           <IconDisplay key={name}>
             <IconLabel text={name} />
             <IconFrame>
-              <Icon iconName={name} />
+              <Icon iconName={name} size="medium" />
             </IconFrame>
           </IconDisplay>
         ))}
