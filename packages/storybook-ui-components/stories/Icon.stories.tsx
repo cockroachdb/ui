@@ -114,7 +114,11 @@ const tints: Array<IconTint> = [
 export const Example = () => (
   <StoryContainer>
     <h1>Icons</h1>
-    <StoryDescription>Icons portray visual information.</StoryDescription>
+    <StoryDescription>
+      Icons are visual representations of commands, objects, or common actions
+      and are used to provide visual context and enhance usability. They should
+      be simple, yet bold enough to grab attention.{" "}
+    </StoryDescription>
 
     <section>
       <h2>Icon Names</h2>
