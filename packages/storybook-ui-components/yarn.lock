@@ -1804,7 +1804,7 @@
   resolved "https://registry.yarnpkg.com/@cockroachlabs/icons/-/icons-0.2.10.tgz#c091c8eb499a3681882840f88e0b42977ba940b7"
   integrity sha512-MFBzwbUyFeXoau3neTffsoKJ3WDCJJj/uvlVjO2utfYHN6AEuokcPDiJNSGEkwo2+70ebi6nLjcIFAdoTltyYA==
 
-"@cockroachlabs/ui-components@^0.2.6":
+"@cockroachlabs/ui-components@^0.2.8":
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/@cockroachlabs/ui-components/-/ui-components-0.2.8.tgz#a98a28dda64d854d85a42655faf0607a6f8504d9"
   integrity sha512-y4SdIC0CaZGG+1FGtSMx8EG1W40yeNnE5LEqOaI4rVGLyMQBXho4Z03dOwkpi9jQyxnI3UTcwHD7oMpGrtoLTQ==
@@ -8278,17 +8278,10 @@ pretty-hrtime@^1.0.3:
   resolved "https://registry.yarnpkg.com/pretty-hrtime/-/pretty-hrtime-1.0.3.tgz#b7e3ea42435a4c9b2759d99e0f201eb195802ee1"
   integrity sha1-t+PqQkNaTJsnWdmeDyAesZWALuE=
 
-prismjs@^1.8.4:
+prismjs@^1.21.0, prismjs@^1.8.4, prismjs@~1.17.0:
   version "1.21.0"
   resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.21.0.tgz#36c086ec36b45319ec4218ee164c110f9fc015a3"
   integrity sha512-uGdSIu1nk3kej2iZsLyDoJ7e9bnPzIgY0naW/HdknGj61zScaprVEVGHrPoXqI+M9sP0NDnTK2jpkvmldpuqDw==
-  optionalDependencies:
-    clipboard "^2.0.0"
-
-prismjs@~1.17.0:
-  version "1.17.1"
-  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.17.1.tgz#e669fcbd4cdd873c35102881c33b14d0d68519be"
-  integrity sha512-PrEDJAFdUGbOP6xK/UsfkC5ghJsPJviKgnQOoxaDbBjwc8op68Quupwt1DeAFoG8GImPhiKXAvvsH7wDSLsu1Q==
   optionalDependencies:
     clipboard "^2.0.0"
 
