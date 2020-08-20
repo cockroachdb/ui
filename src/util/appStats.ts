@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import _ from "lodash";
-import * as protos from "src/js/protos";
+import * as protos from "@cockroachlabs/crdb-protobuf-client";
 import { FixLong } from "src/util/fixLong";
 
 export type StatementStatistics = protos.cockroach.sql.IStatementStatistics;

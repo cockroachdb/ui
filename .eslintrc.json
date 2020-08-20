@@ -1,6 +1,11 @@
 {
   "extends": "@cockroachlabs/eslint-config",
+  "env": {
+    "browser": true,
+    "node": true
+  },
   "rules": {
-    "@typescript-eslint/interface-name-prefix": "off"
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/camelcase": "warn"
   }
 }

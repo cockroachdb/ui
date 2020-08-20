@@ -2,7 +2,7 @@
 import { assert } from "chai";
 import Long from "long";
 
-import * as protos from "src/js/protos";
+import * as protos from "@cockroachlabs/crdb-protobuf-client";
 import {
   addNumericStats,
   NumericStat,

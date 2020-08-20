@@ -11,10 +11,14 @@ module.exports = {
     "node_modules"
   ],
   roots: ["<rootDir>/src"],
-  setupFilesAfterEnv: ["jest-enzyme"],
   testEnvironment: "enzyme",
+  setupFilesAfterEnv: ["jest-enzyme"],
   testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
   transform: {
     "^.+\\.tsx?$": "ts-jest",
+    "^.+\\.jsx?$": "babel-jest"
   },
+  transformIgnorePatterns: [
+    "node_modules/(?!(@cockroachlabs/crdb-protobuf-client)/)"
+  ]
 };

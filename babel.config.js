@@ -6,11 +6,22 @@ const presets = [
     },
   ],
   "@babel/react",
-  "@babel/typescript",
+  [
+    "@babel/typescript",
+    {
+      allowNamespaces: true,
+    }
+  ],
 ];
+
 const plugins = [
   "@babel/proposal-class-properties",
   "@babel/proposal-object-rest-spread",
 ];
 
-module.exports = { presets, plugins };
+const env = {
+  test: {
+    plugins: ["@babel/plugin-transform-modules-commonjs"],
+  }
+}
+module.exports = { presets, plugins, env };
