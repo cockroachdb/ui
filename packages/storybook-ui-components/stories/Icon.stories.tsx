@@ -58,6 +58,7 @@ const IconLabel: FunctionComponent<{
 const IconNames: Array<keyof typeof Icons> = [
   "ArrowLeft",
   "Backup",
+  "Bell",
   "CancelCircleFilled",
   "CancelCircle",
   "Cancel",
@@ -71,7 +72,7 @@ const IconNames: Array<keyof typeof Icons> = [
   "CheckCircleFilled",
   "CheckCircle",
   "Check",
-  "CircleInfoFilled",
+  "HelpCircleFilled",
   "Copy",
   "Download",
   "EllipsisVertical",
@@ -80,15 +81,15 @@ const IconNames: Array<keyof typeof Icons> = [
   "ErrorCircle",
   "EyeOff",
   "Eye",
-  "InfoFilled",
-  "Info",
+  "InfoCircleFilled",
+  "InfoCircle",
   "Invalid",
   "List",
   "LockFilled",
   "Lock",
   "MinusCircle",
   "Minus",
-  "Organization",
+  "Org",
   "Pencil",
   "PlusCircle",
   "Plus",
@@ -100,7 +101,14 @@ const IconNames: Array<keyof typeof Icons> = [
   "User",
   "World",
 ];
-const sizes: Array<IconSize> = ["large", "medium", "default", "small", "tiny"];
+const sizes: Array<{ key: IconSize; size: number }> = [
+  { key: "small", size: 16 },
+  { key: "default", size: 24 },
+  { key: "medium", size: 32 },
+  { key: "large", size: 48 },
+  { key: "x-large", size: 56 },
+  { key: "xx-large", size: 80 },
+];
 const tints: Array<IconTint> = [
   "blue",
   "green",
@@ -113,7 +121,11 @@ const tints: Array<IconTint> = [
 export const Example = () => (
   <StoryContainer>
     <h1>Icons</h1>
-    <StoryDescription>Icons portray visual information.</StoryDescription>
+    <StoryDescription>
+      Icons are visual representations of commands, objects, or common actions
+      and are used to provide visual context and enhance usability. They should
+      be simple, yet bold enough to grab attention.{" "}
+    </StoryDescription>
 
     <section>
       <h2>Icon Names</h2>
@@ -132,11 +144,11 @@ export const Example = () => (
     <section>
       <h2>Icon Sizes</h2>
       <IconDisplaySection>
-        {sizes.map((size) => (
-          <IconDisplay key={size}>
-            <IconLabel text={size} />
+        {sizes.map((s) => (
+          <IconDisplay key={s.key}>
+            <IconLabel text={`${s.key} (${s.size}px)`} />
             <IconFrame>
-              <Icon iconName="PlusCircle" size={size} />
+              <Icon iconName="PlusCircle" size={s.key} />
             </IconFrame>
           </IconDisplay>
         ))}
@@ -163,7 +175,11 @@ export const Demo = () => (
   <StoryContainer>
     <Icon
       iconName={select("Icon Name", IconNames, "Plus")}
-      size={select("Size", sizes, "default")}
+      size={select(
+        "Size",
+        sizes.map((s) => s.key),
+        "default",
+      )}
       tint={select("Tint", tints, "neutral")}
     />
   </StoryContainer>
