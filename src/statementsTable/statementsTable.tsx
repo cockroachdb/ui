@@ -12,7 +12,7 @@ import {
   ColumnDescriptor,
   SortedTable,
 } from "src/index";
-import { cockroach } from "src/js/protos";
+import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
 import {
   StatementTableTitle,
   StatementTableCell,

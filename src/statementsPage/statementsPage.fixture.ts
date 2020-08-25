@@ -2,7 +2,7 @@
 import { StatementsPageProps } from "./statementsPage";
 import { createMemoryHistory } from "history";
 import Long from "long";
-import * as protos from "src/js/protos";
+import * as protos from "@cockroachlabs/crdb-protobuf-client";
 type IStatementStatistics = protos.cockroach.sql.IStatementStatistics;
 
 const history = createMemoryHistory({ initialEntries: ["/statements"]});
