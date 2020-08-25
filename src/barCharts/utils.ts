@@ -1,4 +1,4 @@
-import d3 from "d3";
+import { format as d3Format } from "d3-format";
 import Long from "long";
 import { FixLong } from "src/util/fixLong";
 import * as protos from "@cockroachlabs/crdb-protobuf-client";
@@ -11,7 +11,7 @@ export const longToInt = (d: number | Long) =>
 
 export const clamp = (i: number) => (i < 0 ? 0 : i);
 
-export const formatTwoPlaces = d3.format(".2f");
+export const formatTwoPlaces = d3Format(".2f");
 
 export function bar(
   name: string,

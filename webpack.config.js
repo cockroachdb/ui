@@ -114,7 +114,6 @@ module.exports = {
   // This is important because it allows us to avoid bundling all of our
   // dependencies, which allows browsers to cache those libraries between builds.
   externals: {
-    d3: "d3",
     protobufjs: "protobufjs",
     react: {
       commonjs: "react",
@@ -131,7 +130,6 @@ module.exports = {
     "react-router-dom": "react-router-dom",
     "react-redux": "react-redux",
     "redux-saga": "redux-saga",
-    "connected-react-router": "connected-react-router",
     "redux": "redux",
   },
 };

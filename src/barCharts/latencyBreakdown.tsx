@@ -2,7 +2,7 @@ import React from "react";
 import * as protos from "@cockroachlabs/crdb-protobuf-client";
 import { stdDevLong } from "src/util/appStats";
 import { NumericStatLegend } from "./numericStatLegend";
-import d3 from "d3";
+import { scaleLinear } from "d3-scale";
 import { Duration } from "src/util/format";
 import { Tooltip } from "src/index";
 import classNames from "classnames/bind";
@@ -34,8 +34,7 @@ export function latencyBreakdown(s: StatementStatistics) {
 
   const format = (v: number) => Duration(v * 1e9);
 
-  const scale = d3.scale
-    .linear()
+  const scale = scaleLinear()
     .domain([0, max])
     .range([0, 100]);
 

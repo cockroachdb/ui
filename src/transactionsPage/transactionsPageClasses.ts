@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import statementsPageStyles from "../statementsPage/statementsPage.module.scss";
+import statementsPageStyles from "../statementsPage/components/statementsPage.module.scss";
 import sortedTableStyles from "../sortabletable/sortabletable.module.scss";
 
 const pageCx = classNames.bind(statementsPageStyles);
