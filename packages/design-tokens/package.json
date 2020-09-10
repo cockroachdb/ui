@@ -9,10 +9,11 @@
   "keywords": [
     "tokens"
   ],
-  "main": "build.js",
+  "main": "dist/web/tokens.js",
+  "types": "dist/web/tokens.d.ts",
   "scripts": {
-    "build": "node_modules/.bin/style-dictionary build",
-    "clean": "node_modules/.bin/style-dictionary clean",
+    "build": "style-dictionary build",
+    "clean": "style-dictionary clean",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "MIT",
