@@ -14,7 +14,7 @@ type StatementStatistics = protos.cockroach.server.serverpb.StatementsResponse.I
 
 const cx = classNames.bind(styles);
 
-interface BarChartOptions {
+export interface BarChartOptions {
   classes?: {
     root?: string;
     label?: string;
@@ -25,7 +25,7 @@ export const longToInt = (d: number | Long) =>
   Long.fromValue(FixLong(d)).toInt();
 const clamp = (i: number) => (i < 0 ? 0 : i);
 
-const formatTwoPlaces = d3.format(".2f");
+export const formatTwoPlaces = d3.format(".2f");
 
 function bar(name: string, value: (d: StatementStatistics) => number) {
   return { name, value };
@@ -105,7 +105,7 @@ function renderNumericStatLegend(
   );
 }
 
-const makeBarChart = (
+export const makeBarChart = (
   type: "grey" | "red",
   accessors: { name: string; value: (d: StatementStatistics) => number }[],
   formatter: (d: number) => string = x => `${x}`,
@@ -525,3 +525,58 @@ export function latencyBreakdown(s: StatementStatistics) {
     },
   };
 }
+
+const retryBarT = [
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
+  bar("count-retry", d => longToInt(d.stats_data.stats.max_retries)),
+];
+
+const countBarT = [
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
+  bar("count-first-try", d => longToInt(d.stats_data.stats.count)),
+];
+
+const latencyBarT = [
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
+  bar("bar-chart__service-lat", d => d.stats_data.stats.service_lat.mean),
+];
+const latencyStdDevT = bar(cx("bar-chart__overall-dev"), d =>
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
+  stdDevLong(d.stats_data.stats.service_lat, d.stats_data.stats.count),
+);
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+const rowsBarT = [bar("rows", d => d.stats_data.stats.num_rows.mean)];
+const rowsStdDevT = bar(cx("rows-dev"), d =>
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
+  stdDevLong(d.stats_data.stats.num_rows, d.stats_data.stats.count),
+);
+
+export const transactionsCountBarChart = makeBarChart(
+  "grey",
+  countBarT,
+  approximify,
+);
+export const transactionsRetryBarChart = makeBarChart(
+  "red",
+  retryBarT,
+  approximify,
+);
+export const transactionsRowsBarChart = makeBarChart(
+  "grey",
+  rowsBarT,
+  approximify,
+  rowsStdDevT,
+  formatTwoPlaces,
+);
+export const transactionsLatencyBarChart = makeBarChart(
+  "grey",
+  latencyBarT,
+  v => Duration(v * 1e9),
+  latencyStdDevT,
+);

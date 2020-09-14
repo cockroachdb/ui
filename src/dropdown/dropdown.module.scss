@@ -23,7 +23,7 @@ $dropdown-hover-color: darken($colors--background, 2.5%);
 
   .Select-value, .Select-placeholder {
     line-height: inherit !important;
-    height: auto !important;
+    // height: auto !important;
     position: relative !important;
     white-space: nowrap !important;
     max-width: 250px !important;
@@ -32,10 +32,10 @@ $dropdown-hover-color: darken($colors--background, 2.5%);
 
   .Select-control {
     line-height: inherit !important;
-    height: auto !important;
+    height: auto;
     border-width: 0 !important;
     background-color: transparent !important;
-    width: auto !important;
+    // width: auto !important;
 
     &:hover {
       box-shadow: none;
@@ -71,7 +71,7 @@ $dropdown-hover-color: darken($colors--background, 2.5%);
   }
 
   .Select-value-label {
-    display: block !important;
+    // display: block !important;
     cursor: pointer;
   }
 

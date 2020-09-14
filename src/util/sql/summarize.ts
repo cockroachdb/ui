@@ -22,7 +22,6 @@ export function summarize(statement: string): StatementSummary {
     if (_.startsWith(_.toLower(statement), _.toLower(keyword))) {
       const tablePattern = keywords[keyword];
       const tableMatch = tablePattern.exec(statement);
-
       if (!tableMatch) {
         return {
           error: "unable to find table for " + keyword + " statement",
@@ -36,7 +35,7 @@ export function summarize(statement: string): StatementSummary {
 
       return {
         statement: keyword,
-        table: table,
+        table,
       };
     }
   }

@@ -1,70 +1,65 @@
-import * as React from "react";
+import React from "react";
 import AntPagination from "antd/lib/pagination";
-import "antd/lib/pagination/style/index.less";
-import Icon from "antd/lib/icon";
-import "antd/lib/icon/style/index.less";
+import { Icon } from "antd";
+import styles from "../statementsTable/statementsTable.module.scss";
 import classNames from "classnames/bind";
-import styles from "./pagination.module.scss";
+
+const cx = classNames.bind(styles);
 
 export interface PaginationSettings {
   pageSize?: number;
   current: number;
   total?: number;
 }
-export interface PaginationProps {
-  pagination: PaginationSettings;
+
+interface PaginationProps {
+  pageSize: number;
+  current: number;
+  total: number;
   onChange: (current: number) => void;
-  hideOnSinglePage?: boolean;
 }
 
-const cx = classNames.bind(styles);
+const customIcons = (
+  _page: number,
+  type: "page" | "prev" | "next" | "jump-prev" | "jump-next",
+  originalElement: React.ReactNode,
+) => {
+  switch (type) {
+    case "jump-prev":
+      return (
+        <div className={cx("_pg-jump")}>
+          <Icon type="left" />
+          <span className={cx("_jump-dots")}>•••</span>
+        </div>
+      );
+    case "jump-next":
+      return (
+        <div className={cx("_pg-jump")}>
+          <span className={cx("_jump-dots")}>•••</span>
+          <Icon type="right" />
+        </div>
+      );
+    default:
+      return originalElement;
+  }
+};
 
 export const Pagination: React.FC<PaginationProps> = ({
-  pagination = { pageSize: 20, total: 0, current: undefined },
-  hideOnSinglePage,
+  pageSize,
+  current,
+  total,
   onChange,
-}) => {
-  const renderPage = (
-    _page: number,
-    type: "page" | "prev" | "next" | "jump-prev" | "jump-next",
-    originalElement: React.ReactNode,
-  ) => {
-    switch (type) {
-      case "jump-prev":
-        return (
-          <div className={cx("_pg-jump")}>
-            <Icon type="left" />
-            <span className={cx("_jump-dots")}>•••</span>
-          </div>
-        );
-      case "jump-next":
-        return (
-          <div className={cx("_pg-jump")}>
-            <Icon type="right" />
-            <span className={cx("_jump-dots")}>•••</span>
-          </div>
-        );
-      default:
-        return originalElement;
-    }
-  };
-  return (
-    <AntPagination
-      size="small"
-      itemRender={
-        renderPage as (
-          page: number,
-          type: "page" | "prev" | "next" | "jump-prev" | "jump-next",
-        ) => React.ReactNode
-      }
-      pageSize={pagination.pageSize}
-      current={pagination.current}
-      total={pagination.total}
-      onChange={onChange}
-      hideOnSinglePage={hideOnSinglePage}
-    />
-  );
-};
+}) => (
+  <AntPagination
+    size="small"
+    itemRender={customIcons}
+    pageSize={pageSize}
+    current={current}
+    total={total}
+    onChange={onChange}
+    hideOnSinglePage
+  />
+);
 
 const getPageStart = (pageSize: number, current: number) => pageSize * current;
 

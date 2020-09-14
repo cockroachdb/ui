@@ -20,7 +20,7 @@ export function stdDev(stat: NumericStat, count: number) {
 }
 
 export function stdDevLong(stat: NumericStat, count: number | Long) {
-  return stdDev(stat, FixLong(count).toInt());
+  return stdDev(stat, Number(FixLong(count)));
 }
 
 export function addNumericStats(

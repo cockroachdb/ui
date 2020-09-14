@@ -21,7 +21,7 @@ import {
 
 import styles from "./statementsTable.module.scss";
 const cx = classNames.bind(styles);
-const longToInt = (d: number | Long) => FixLong(d).toInt();
+const longToInt = (d: number | Long) => Number(FixLong(d));
 
 function makeCommonColumns(
   statements: AggregateStatistics[],
@@ -64,7 +64,7 @@ function makeCommonColumns(
       title: StatementTableTitle.executionCount,
       className: cx("statements-table__col-count"),
       cell: countBar,
-      sort: stmt => FixLong(stmt.stats.count).toInt(),
+      sort: stmt => FixLong(Number(stmt.stats.count)),
     },
     {
       name: "rowsAffected",

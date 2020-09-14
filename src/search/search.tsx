@@ -32,7 +32,8 @@ export class Search extends React.Component<TSearchProps, ISearchState> {
     submitted: false,
   };
 
-  onSubmit = () => {
+  onSubmit = (e: React.SyntheticEvent) => {
+    e && e.preventDefault();
     const { value } = this.state;
     const { onSubmit } = this.props;
     onSubmit(value);
@@ -46,7 +47,10 @@ export class Search extends React.Component<TSearchProps, ISearchState> {
   onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value: string = event.target.value;
     const submitted = value.length === 0;
-    this.setState({ value, submitted }, () => submitted && this.onSubmit());
+    this.setState(
+      { value, submitted },
+      () => submitted && this.onSubmit(event),
+    );
   };
 
   onClear = () => {

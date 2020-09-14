@@ -17,9 +17,13 @@ module.exports = {
   devtool: "source-map",
 
   resolve: {
+    modules: [
+      'node_modules',
+      path.join(__dirname, 'src/fonts'),
+    ],
     extensions: [".ts", ".tsx", ".js", ".jsx", ".less"],
     alias: {
-      src: path.resolve(__dirname, "src")
+      src: path.resolve(__dirname, "src"),
     },
   },
 
