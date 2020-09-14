@@ -853,7 +853,7 @@ export const data = {
     },
     {
       stats_data: {
-        statement_ids: ["www"],
+        statement_ids: ["www", "wwz"],
         app: "$ TEST",
         stats: {
           count: "140",

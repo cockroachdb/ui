@@ -48,19 +48,25 @@ export const getStatementsById = (
   statementsIds: string[],
   statements: StatementStatistics[],
 ) => {
-  return statementsIds.map((id: string) => {
-    const statement = statements.find(
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      (statement: StatementStatistics) => statement.id === id,
-    );
-    return {
-      ...statement,
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      label: statement.key.key_data.query,
-    };
-  });
+  return statementsIds
+    .map((id: string) => {
+      return statements.find(
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        (statement: StatementStatistics) => statement.id === id,
+      );
+    })
+    .filter(statement => {
+      return statement != null;
+    })
+    .map(statement => {
+      return {
+        ...statement,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        label: statement.key.key_data.query,
+      };
+    });
 };
 
 export const searchTransactionsData = (
