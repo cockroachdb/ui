@@ -1,17 +1,23 @@
 @import "../styles/tokens.scss";
 
 .button {
-  display: flex;
   align-items: center;
-  justify-content: center;
   border-width: 1px;
   border-radius: $crl-border-radius;
+  box-sizing: border-box;
+  display: inline-flex;
+  font-family: "Source Sans Pro", "Segoe UI", Tahoma, Geneva, Verdana,
+    sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  justify-content: center;
   outline: none;
+  text-decoration: none;
   @include crl-transition(background-color, border-color, box-shadow);
 
   // TODO(j-low): update with type tokens when available
-  font-size: 12px;
-  line-height: 14px;
+  font-size: 14px;
+  line-height: 24px;
 
   &:hover {
     cursor: pointer;
