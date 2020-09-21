@@ -20,6 +20,16 @@
           "destination": "tokens.js"
         }
       ]
+    },
+    "ts": {
+      "transformGroup": "js",
+      "buildPath": "dist/web/",
+      "files": [
+        {
+          "format": "javascript/es6",
+          "destination": "tokens.d.ts"
+        }
+      ]
     }
   }
 }
