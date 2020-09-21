@@ -35,7 +35,7 @@ export const Example = () => (
       <ButtonDisplaySection>
         <ButtonDisplay>
           <Label>primary-success</Label>
-          <Button intent="primary-success">Success</Button>
+          <Button intent="primary">Success</Button>
         </ButtonDisplay>
         <ButtonDisplay>
           <Label>primary-danger</Label>
@@ -69,7 +69,7 @@ export const Example = () => (
 
 export const Demo = () => {
   const intents: Array<ButtonIntent> = [
-    "primary-success",
+    "primary",
     "primary-danger",
     "secondary",
     "tertiary",
@@ -78,7 +78,7 @@ export const Demo = () => {
   return (
     <StoryContainer>
       <Button
-        intent={select("Intent", intents, "primary-success")}
+        intent={select("Intent", intents, "primary")}
         size={select("Size", sizes, "standard")}
       >
         {text("Text", "button")}

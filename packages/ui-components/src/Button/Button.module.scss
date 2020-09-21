@@ -83,7 +83,9 @@
       background-color: crl-lighten(
         $component-button-success-background-color-disabled
       );
-      border-color: crl-lighten($component-button-success-border-color-disabled);
+      border-color: crl-lighten(
+        $component-button-success-border-color-disabled
+      );
     }
   }
 

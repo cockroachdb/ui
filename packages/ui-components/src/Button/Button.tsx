@@ -6,7 +6,7 @@ import objectToClassnames from "../utils/objectToClassnames";
 import styles from "./Button.module.scss";
 
 export type ButtonIntent =
-  | "primary-success"
+  | "primary"
   | "primary-danger"
   | "secondary"
   | "tertiary";
