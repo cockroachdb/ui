@@ -62,6 +62,12 @@ export const Example = () => (
           <Label>small</Label>
           <Button size="small">Small</Button>
         </ButtonDisplay>
+        <div
+          style={{ margin: "0rem 1rem", textAlign: "center", width: "300px" }}
+        >
+          <Label>fluid</Label>
+          <Button fluid>Fluid</Button>
+        </div>
       </ButtonDisplaySection>
     </section>
   </StoryContainer>

@@ -25,6 +25,7 @@ type OwnButtonProps<Element> = {
   as: Element;
   intent?: ButtonIntent;
   size?: ButtonSize;
+  fluid?: boolean;
 };
 
 type ButtonProps<OwnProps, Type extends ElementType> = CombinedProps<
@@ -38,6 +39,7 @@ export function Button<T extends ElementType = "button">({
   as,
   intent = "secondary",
   size = "standard",
+  fluid,
   children,
   className,
   ...rest
@@ -46,6 +48,7 @@ export function Button<T extends ElementType = "button">({
   const classNames = cx(
     "button",
     objectToClassnames({ intent, size }),
+    { fluid },
     className,
   );
 
