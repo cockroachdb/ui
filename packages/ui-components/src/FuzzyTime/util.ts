@@ -1,9 +1,10 @@
 import { aYear, aMonth, aDay, anHour, aMinute, aSecond } from "./constants";
 
+// A time unit represents a relative time unit to display time in (seconds, hours, years, etc)
 export type TimeUnit = {
-  amount: number;
-  comparator: (x: number) => boolean;
-  template: (d: number) => string;
+  amount: number; // the amount of time the unit represents (number of milliseconds)
+  comparator: (x: number) => boolean; // a function to to decide if this unit should be used or not
+  template: (d: number) => string; // a string template used to display time unit given number of milliseconds
 };
 
 export const gteq = (x: number, y: number): boolean => x >= y;
@@ -59,12 +60,23 @@ export const TimeUnits: Array<TimeUnit> = [
   },
 ];
 
+// fuzzyFormatter will return a formatting function given an offset
+// Usage:
+//    const formatter = fuzzyFormatter(numberOfMilliseconds);
+//    const fuzzyTimeString = formatter(timeUnit);
+//
 export const fuzzyFormatter = (offset: number) => (unit: TimeUnit) => {
   if (unit === undefined || offset === undefined) return "";
   const duration = Math.floor(offset / unit.amount);
   return unit.template(duration);
 };
 
+// setFuzzy takes a date representing "now" and returns a function that will format
+// a given date in a "time ago" form.
+// Usage:
+//    const getFuzzyTime = setFuzzy(now);
+//    const fuzzyTime = getFuzzyTime(someDate);
+//
 export const setFuzzy = (now: Date) => (timedate: Date) => {
   const diff = now.getTime() - timedate.getTime();
   const format = fuzzyFormatter(diff);
