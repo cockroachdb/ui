@@ -28,6 +28,7 @@
   "dependencies": {
     "@cockroachlabs/crdb-protobuf-client": "^0.0.1",
     "@cockroachlabs/icons": "^0.2.2",
+    "@cockroachlabs/ui-components": "^0.2.8",
     "@popperjs/core": "^2.4.0",
     "babel-polyfill": "^6.26.0",
     "highlight.js": "^10.2.0",

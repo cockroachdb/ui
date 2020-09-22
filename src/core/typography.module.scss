@@ -1,19 +1,18 @@
-
 @mixin font-face($name) {
   @font-face {
     font-family: $name;
-    src: url("~src/fonts/#{$name}.woff2") format('woff2'),
-        url("~src/fonts/#{$name}.woff") format('woff');
+    src: url("~src/fonts/#{$name}.woff2") format("woff2"),
+      url("~src/fonts/#{$name}.woff") format("woff");
     font-weight: normal;
     font-style: normal;
   }
 }
 
-@include font-face('SourceSansPro-Bold');
-@include font-face('SourceSansPro-Regular');
-@include font-face('SourceSansPro-SemiBold');
-@include font-face('SFMono-Semibold');
-@include font-face('RobotoMono-Medium');
+@include font-face("SourceSansPro-Bold");
+@include font-face("SourceSansPro-Regular");
+@include font-face("SourceSansPro-SemiBold");
+@include font-face("SFMono-Semibold");
+@include font-face("RobotoMono-Medium");
 
 $font-family--base: SourceSansPro-Regular;
 $font-family--bold: SourceSansPro-Bold;
