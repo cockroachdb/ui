@@ -23,6 +23,7 @@ interface TransactionsFilter {
   smth?: string;
   appNames: SelectOptions[];
   activeFilters: number;
+  filters: Filters;
 }
 interface FilterState {
   hide: boolean;
@@ -56,9 +57,7 @@ export class Filter extends React.Component<TransactionsFilter, FilterState> {
   state: FilterState = {
     hide: true,
     filters: {
-      app: this.props.appNames[0].value,
-      timeNumber: "0",
-      timeUnit: timeUnit[0].value,
+      ...this.props.filters,
     },
   };
 
@@ -69,6 +68,15 @@ export class Filter extends React.Component<TransactionsFilter, FilterState> {
   }
   componentWillUnmount() {
     document.removeEventListener("click", this.outsideClick, false);
+  }
+  componentDidUpdate(prevProps: TransactionsFilter) {
+    if (prevProps.filters !== this.props.filters) {
+      this.setState({
+        filters: {
+          ...this.props.filters,
+        },
+      });
+    }
   }
   outsideClick = (event: any) => {
     if (this.dropdownRef.current.contains(event.target)) {
@@ -121,7 +129,6 @@ export class Filter extends React.Component<TransactionsFilter, FilterState> {
     const { appNames, activeFilters } = this.props;
     const dropdownArea = hide ? hidden : dropdown;
     // TODO replace all onChange actions in Selects and Checkboxes with one onSubmit in <form />
-    // storybook bug doesn't let to test onSubmit action
 
     return (
       <div onClick={this.outsideClick} ref={this.dropdownRef}>

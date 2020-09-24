@@ -4,7 +4,6 @@ import { paginationPageCount } from "src";
 import { DATE_FORMAT } from "src/util";
 import { statisticsClasses } from "../transactionsPageClasses";
 import { ISortedTablePagination } from "../../sortedtable";
-import { Filters } from "../transactionsPage";
 import { Button } from "src/button";
 
 const { statistic, countTitle, lastCleared } = statisticsClasses;
@@ -16,7 +15,7 @@ interface TableStatistics {
   arrayItemName: string;
   activeFilters: number;
   search?: string;
-  onSubmitFilters?: (filters: Filters) => void;
+  onClearFilters?: () => void;
 }
 
 const renderLastCleared = (lastReset: string | Date) => {
@@ -29,14 +28,9 @@ export const TransactionsPageStatistic: React.FC<TableStatistics> = ({
   lastReset,
   search,
   arrayItemName,
-  onSubmitFilters,
+  onClearFilters,
   activeFilters,
 }) => {
-  const clearFilters = (): void =>
-    onSubmitFilters({
-      app: "All",
-      timeNumber: "0",
-    });
   const paginationCount = paginationPageCount(
     { ...pagination, total: totalCount },
     arrayItemName,
@@ -47,7 +41,7 @@ export const TransactionsPageStatistic: React.FC<TableStatistics> = ({
     <>
       {totalCount} {totalCount === 1 ? "result" : "results"}
       &nbsp;&nbsp;&nbsp;| &nbsp;
-      <Button onClick={clearFilters} type="flat" size="small">
+      <Button onClick={() => onClearFilters()} type="flat" size="small">
         clear filter
       </Button>
     </>

@@ -1,20 +1,14 @@
 import React from "react";
+import * as protos from "@cockroachlabs/crdb-protobuf-client";
 import { SortedTable, ISortedTablePagination } from "../sortedtable";
-import { Transaction } from "../transactionsPage";
-// import {
-//   transactionsRetryBarChart,
-//   transactionsCountBarChart,
-//   transactionsLatencyBarChart,
-//   transactionsRowsBarChart,
-// } from "./transactionsBarCharts";
 import {
   transactionsRetryBarChart,
   transactionsCountBarChart,
   transactionsLatencyBarChart,
   transactionsRowsBarChart,
-} from "../barCharts";
+} from "./transactionsBarCharts";
 import { StatementTableTitle } from "../statementsTable/statementsTableContent";
-import { longToInt, createLabel } from "./utils";
+import { longToInt } from "./utils";
 import { tableClasses } from "./transactionsTableClasses";
 import { textCell } from "./transactionsCells";
 import { FixLong } from "src/util";
@@ -24,52 +18,54 @@ import {
   collectStatementsText,
 } from "../transactionsPage/utils";
 
+type Transaction = protos.cockroach.server.serverpb.StatementsResponse.IExtendedCollectedTransactionStatistics;
+type Statement = protos.cockroach.server.serverpb.StatementsResponse.ICollectedStatementStatistics;
+
 interface TransactionsTable {
-  data: Transaction[];
+  transactions: Transaction[];
   sortSetting: SortSetting;
   onChangeSortSetting: (ss: SortSetting) => void;
   handleDetails: (statementIds: string[] | null) => void;
   pagination: ISortedTablePagination;
-  statements: any;
+  statements: Statement[];
+  search?: string;
 }
-
-export class TransactionsSortedTable extends SortedTable<Transaction> {}
 
 const { latencyClasses, RowsAffectedClasses } = tableClasses;
 
 export const TransactionsTable: React.FC<TransactionsTable> = props => {
-  const { data, handleDetails, statements } = props;
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  // @ts-ignore
-  const retryBar = transactionsRetryBarChart(data);
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  // @ts-ignore
-  const countBar = transactionsCountBarChart(data);
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  // @ts-ignore
-  const latencyBar = transactionsLatencyBarChart(data, latencyClasses.barChart);
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  // @ts-ignore
-  const rowsBar = transactionsRowsBarChart(data, RowsAffectedClasses.barChart);
+  const { transactions, handleDetails, statements, search } = props;
+  const retryBar = transactionsRetryBarChart(transactions);
+  const countBar = transactionsCountBarChart(transactions);
+  const latencyBar = transactionsLatencyBarChart(
+    transactions,
+    latencyClasses.barChart,
+  );
+  const rowsBar = transactionsRowsBarChart(
+    transactions,
+    RowsAffectedClasses.barChart,
+  );
   const columns = [
     {
       name: "transactions",
-      title: "transactions",
+      title: <>transactions</>,
       cell: (item: Transaction) =>
         textCell({
           transactionText: collectStatementsText(
-            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-            // @ts-ignore
             getStatementsById(item.stats_data.statement_ids, statements),
           ),
           transactionIds: item.stats_data.statement_ids,
           handleDetails,
+          search,
         }),
-      sort: (item: Transaction) => createLabel(item.transactionStatements),
+      sort: (item: Transaction) =>
+        collectStatementsText(
+          getStatementsById(item.stats_data.statement_ids, statements),
+        ),
     },
     {
       name: "statements",
-      title: "statements",
+      title: <>statements</>,
       cell: (item: Transaction) => item.stats_data.statement_ids.length,
       sort: (item: Transaction) => item.stats_data.statement_ids.length,
     },
@@ -103,9 +99,9 @@ export const TransactionsTable: React.FC<TransactionsTable> = props => {
   ];
 
   return (
-    <TransactionsSortedTable
-      data={data}
-      columns={columns as any}
+    <SortedTable
+      data={transactions}
+      columns={columns}
       className="statements-table"
       {...props}
     />

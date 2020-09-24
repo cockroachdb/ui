@@ -1,4 +1,5 @@
 import React from "react";
+import * as protos from "@cockroachlabs/crdb-protobuf-client";
 import { RouteComponentProps } from "react-router-dom";
 import { TransactionsPageHeader } from "./transactionsPageHeader";
 import { TransactionsTable } from "../transactionsTable";
@@ -8,14 +9,16 @@ import { SortSetting } from "../sortabletable";
 import { Pagination } from "../pagination";
 import { TransactionsPageStatistic } from "./transactionsPageStatistic";
 import { statisticsClasses } from "./transactionsPageClasses";
-import { getAppNames } from "./utils";
+import { getTrxAppFilterOptions } from "./utils";
 import {
   searchTransactionsData,
   filterTransactions,
   getStatementsById,
 } from "./utils";
 import { forIn } from "lodash";
-import { AggregateStatistics } from "../statementsTable";
+import { getSearchParams } from "src/util";
+
+type IStatementsResponse = protos.cockroach.server.serverpb.IStatementsResponse;
 
 export interface Filters {
   app?: string;
@@ -26,6 +29,12 @@ export interface Filters {
   distributed?: boolean;
 }
 
+const defaultFilters = {
+  app: "All",
+  timeNumber: "0",
+  timeUnit: "seconds",
+};
+
 interface TState {
   sortSetting: SortSetting;
   pagination: ISortedTablePagination;
@@ -34,35 +43,16 @@ interface TState {
   statementIds: string[] | null;
 }
 
-export interface Stats {
-  mean: number;
-  squared_diffs: number;
-}
-export interface Transaction {
-  stats_data: {
-    statement_ids: string[];
-    app: string;
-    stats: {
-      count: string;
-      max_retries: string;
-      num_rows: Stats;
-      service_lat: Stats;
-      retry_lat: Stats;
-      commit_lat: Stats;
-    };
-  };
-  node_id: number;
-  transactionStatements?: string;
-}
-
-export interface TransactionsPageProps {
-  data: any;
+interface TransactionsPageProps {
+  data: IStatementsResponse;
   refreshData: () => void;
 }
 
 export class TransactionsPage extends React.Component<
   RouteComponentProps & TransactionsPageProps
 > {
+  trxSearchParams = getSearchParams(this.props.history.location.search);
+
   state: TState = {
     sortSetting: {
       sortKey: 3,
@@ -72,8 +62,12 @@ export class TransactionsPage extends React.Component<
       pageSize: 10,
       current: 1,
     },
-    search:
-      new URLSearchParams(this.props.history.location.search).get("q") || "",
+    search: this.trxSearchParams("q", ""),
+    filters: {
+      app: this.trxSearchParams("app", defaultFilters.app),
+      timeNumber: this.trxSearchParams("timeNumber", defaultFilters.timeNumber),
+      timeUnit: this.trxSearchParams("timeUnit", defaultFilters.timeUnit),
+    },
     statementIds: null,
   };
 
@@ -103,6 +97,10 @@ export class TransactionsPage extends React.Component<
   onChangeSortSetting = (ss: SortSetting) => {
     this.setState({
       sortSetting: ss,
+    });
+    this.syncHistory({
+      sortKey: ss.sortKey,
+      ascending: Boolean(ss.ascending).toString(),
     });
   };
 
@@ -145,6 +143,25 @@ export class TransactionsPage extends React.Component<
       },
     });
     this.resetPagination();
+    this.syncHistory({
+      app: filters.app,
+      timeNumber: filters.timeNumber,
+      timeUnit: filters.timeUnit,
+    });
+  };
+
+  onClearFilters = () => {
+    this.setState({
+      filters: {
+        ...defaultFilters,
+      },
+    });
+    this.resetPagination();
+    this.syncHistory({
+      app: undefined,
+      timeNumber: undefined,
+      timeUnit: undefined,
+    });
   };
 
   handleDetails = (statementIds: string[] | null) => {
@@ -162,13 +179,18 @@ export class TransactionsPage extends React.Component<
     const { pagination, search, filters, statementIds } = this.state;
 
     const lastReset = new Date(Number(last_reset.seconds) * 1000);
-    const appNames = getAppNames(transactions, internal_app_name_prefix);
+    const appNames = getTrxAppFilterOptions(
+      transactions,
+      internal_app_name_prefix,
+    );
 
-    const statementsDetails =
+    const transactionDetails =
       statementIds && getStatementsById(statementIds, statements);
 
-    const data = searchTransactionsData(search, transactions, statements);
-    const filteredData = filterTransactions(data, filters);
+    const searchedAndFilteredData = filterTransactions(
+      searchTransactionsData(search, transactions, statements),
+      filters,
+    );
     const { current, pageSize } = pagination;
 
     return !statementIds ? (
@@ -177,7 +199,8 @@ export class TransactionsPage extends React.Component<
           onSubmit={this.onSubmitSearchField}
           onClear={this.onClearSearchField}
           search={search}
-          activeFilters={filteredData.activeFilters}
+          filters={filters}
+          activeFilters={searchedAndFilteredData.activeFilters}
           onSubmitFilters={this.onSubmitFilters}
           appNames={appNames}
         />
@@ -186,30 +209,31 @@ export class TransactionsPage extends React.Component<
             pagination={pagination}
             lastReset={lastReset}
             search={search}
-            totalCount={filteredData.transactions.length}
+            totalCount={searchedAndFilteredData.transactions.length}
             arrayItemName="transactions"
-            activeFilters={filteredData.activeFilters}
-            onSubmitFilters={this.onSubmitFilters}
+            activeFilters={searchedAndFilteredData.activeFilters}
+            onClearFilters={this.onClearFilters}
           />
           <TransactionsTable
-            data={filteredData.transactions}
+            transactions={searchedAndFilteredData.transactions}
             statements={statements}
             sortSetting={this.state.sortSetting}
             onChangeSortSetting={this.onChangeSortSetting}
             handleDetails={this.handleDetails}
+            search={search}
             pagination={pagination}
           />
         </section>
         <Pagination
           pageSize={pageSize}
           current={current}
-          total={filteredData.transactions.length}
+          total={searchedAndFilteredData.transactions.length}
           onChange={this.onChangePage}
         />
       </div>
     ) : (
       <TransactionDetails
-        statements={(statementsDetails as any) as AggregateStatistics[]}
+        statements={transactionDetails}
         lastReset={lastReset}
         handleDetails={this.handleDetails}
       />

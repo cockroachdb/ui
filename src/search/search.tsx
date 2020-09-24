@@ -2,7 +2,6 @@ import React from "react";
 import Button from "antd/lib/button";
 import Form from "antd/lib/form";
 import Input, { InputProps } from "antd/lib/input";
-
 import classNames from "classnames/bind";
 import {
   Cancel as CancelIcon,
@@ -11,7 +10,7 @@ import {
 import styles from "./search.module.scss";
 
 interface ISearchProps {
-  onSubmit: (value: string) => void;
+  onSubmit: (search: string) => void;
   onClear?: () => void;
   defaultValue?: string;
 }

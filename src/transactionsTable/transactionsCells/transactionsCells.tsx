@@ -1,7 +1,10 @@
 import React from "react";
 import { getHighlightedText, Anchor } from "src/index";
 import { Tooltip2 as Tooltip } from "src/tooltip2";
+import { summarize } from "src/util/sql/summarize";
+import { shortStatement } from "src/statementsTable/statementsTable";
 import { statementsSql } from "src/util";
+import { limitText } from "../utils";
 import classNames from "classnames/bind";
 import statementsStyles from "../../statementsTable/statementsTableContent.module.scss";
 import transactionsCellsStyles from "./transactionsCells.module.scss";
@@ -19,20 +22,23 @@ interface TextCellProps {
   transactionText: string;
   transactionIds: string[];
   handleDetails: (transactionIds: string[]) => void;
+  search: string;
 }
 
 export const textCell = ({
   transactionText,
   transactionIds,
   handleDetails,
+  search,
 }: TextCellProps) => {
+  const summary = summarize(transactionText);
   return (
     <div>
       <Tooltip
         placement="bottom"
         title={
           <pre className={descriptionClassName}>
-            {getHighlightedText(transactionText, "text")}
+            {getHighlightedText(transactionText, search)}
           </pre>
         }
         overlayClassName={overlayClassName}
@@ -42,7 +48,11 @@ export const textCell = ({
             onClick={() => handleDetails(transactionIds)}
             className={hoverAreaClassName}
           >
-            {transactionText}
+            {getHighlightedText(
+              limitText(shortStatement(summary, transactionText), 200),
+              search,
+              true,
+            )}
           </div>
         </div>
       </Tooltip>

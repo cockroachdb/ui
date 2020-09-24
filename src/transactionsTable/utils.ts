@@ -1,7 +1,7 @@
-import { FixLong, summarize } from "src/util";
-import { shortStatement } from "src/statementsTable/statementsTable";
+import { FixLong } from "src/util";
 
 export const longToInt = (value: number | Long) => Number(FixLong(value));
 
-export const createLabel = (statement: string) =>
-  shortStatement(summarize(statement), statement);
+export const limitText = (text: string, limit: number): string => {
+  return text.length > limit ? text.slice(0, limit - 3).concat("...") : text;
+};

@@ -814,7 +814,7 @@ export const data = {
     },
     {
       stats_data: {
-        statement_ids: ["rrr"],
+        statement_ids: ["rrr", "qqq"],
         app: "$ internal-delete-sessions",
         stats: {
           count: "141",
@@ -840,7 +840,7 @@ export const data = {
         stats: {
           count: "278",
           max_retries: "0",
-          num_rows: { mean: 0, squared_diffs: 0 },
+          num_rows: { mean: 5, squared_diffs: 0 },
           service_lat: {
             mean: 0.10633510071942444,
             squared_diffs: 354.59311369326707,
@@ -853,12 +853,12 @@ export const data = {
     },
     {
       stats_data: {
-        statement_ids: ["www", "wwz"],
+        statement_ids: ["www"],
         app: "$ TEST",
         stats: {
           count: "140",
           max_retries: "0",
-          num_rows: { mean: 0, squared_diffs: 0 },
+          num_rows: { mean: 3, squared_diffs: 0 },
           service_lat: {
             mean: 0.08878077142857142,
             squared_diffs: 105.5228685349407,

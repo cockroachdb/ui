@@ -11,6 +11,7 @@ interface PageHeader {
   search: string;
   appNames: SelectOptions[];
   activeFilters: number;
+  filters: Filters;
 }
 
 export class TransactionsPageHeader extends React.Component<PageHeader> {
@@ -22,6 +23,7 @@ export class TransactionsPageHeader extends React.Component<PageHeader> {
       search,
       appNames,
       activeFilters,
+      filters,
     } = this.props;
     return (
       <>
@@ -42,6 +44,7 @@ export class TransactionsPageHeader extends React.Component<PageHeader> {
               onSubmitFilters={onSubmitFilters}
               appNames={appNames}
               activeFilters={activeFilters}
+              filters={filters}
             />
           </PageConfigItem>
         </PageConfig>

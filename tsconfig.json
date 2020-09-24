@@ -12,7 +12,7 @@
     "outDir": "./dist/types",
     "target": "es6",
     "skipLibCheck": true,
-    "sourceMap": false
+    "sourceMap": false,
   },
   "exclude": [
     "node_modules",

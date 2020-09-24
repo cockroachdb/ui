@@ -1,5 +1,5 @@
 import React from "react";
-import { AggregateStatistics } from "../statementsTable";
+import * as protos from "@cockroachlabs/crdb-protobuf-client";
 import { makeStatementsColumns } from "../statementsTable";
 import { SortedTable, ISortedTablePagination } from "../sortedtable";
 import { SortSetting } from "../sortabletable";
@@ -11,11 +11,14 @@ import { collectStatementsText } from "src/transactionsPage/utils";
 import { tableClasses } from "../transactionsTable/transactionsTableClasses";
 import { BackIcon } from "../icon";
 import { SqlBox } from "../sql";
+import { aggregateStatements } from "../transactionsPage/utils";
 
 const { containerClass } = tableClasses;
 
+type Statement = protos.cockroach.server.serverpb.StatementsResponse.ICollectedStatementStatistics;
+
 interface TransactionDetailsProps {
-  statements?: AggregateStatistics[];
+  statements?: Statement[];
   lastReset?: string | Date;
   handleDetails: (statementIds: string[] | null) => void;
 }
@@ -55,6 +58,7 @@ export class TransactionDetails extends React.Component<
     const { statements, lastReset, handleDetails } = this.props;
     const { sortSetting, pagination } = this.state;
     const statementsSummary = collectStatementsText(statements);
+    const aggregatedStatements = aggregateStatements(statements);
 
     return statements ? (
       <div>
@@ -80,8 +84,8 @@ export class TransactionDetails extends React.Component<
             activeFilters={0}
           />
           <SortedTable
-            data={statements}
-            columns={makeStatementsColumns(statements, "", "")}
+            data={aggregatedStatements}
+            columns={makeStatementsColumns(aggregatedStatements, "", "")}
             className="statements-table"
             sortSetting={sortSetting}
             onChangeSortSetting={this.onChangeSortSetting}

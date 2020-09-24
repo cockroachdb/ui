@@ -11,5 +11,7 @@ storiesOf("Transactions Page", module)
     <div style={{ backgroundColor: "#F5F7FA" }}>{storyFn()}</div>
   ))
   .add("with data", () => (
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
     <TransactionsPage {...routeProps} data={data} refreshData={() => {}} />
   ));

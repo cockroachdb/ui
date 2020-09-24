@@ -136,3 +136,8 @@ export function combineStatementStats(
 ): StatementStatistics {
   return _.reduce(statementStats, addStatementStats);
 }
+
+export const getSearchParams = (searchParams: string) => {
+  const sp = new URLSearchParams(searchParams);
+  return (key: string, defaultValue?: string) => sp.get(key) || defaultValue;
+};

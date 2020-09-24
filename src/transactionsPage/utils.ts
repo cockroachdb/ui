@@ -1,85 +1,58 @@
-import { Transaction, Filters } from "./";
+import * as protos from "@cockroachlabs/crdb-protobuf-client";
+import { Filters } from "./";
 import { SelectOptions } from "./filter";
-import { StatementStatistics } from "src/util/appStats";
 import { AggregateStatistics } from "../statementsTable";
 
-export const getAppNames = (
+type Statement = protos.cockroach.server.serverpb.StatementsResponse.ICollectedStatementStatistics;
+type Transaction = protos.cockroach.server.serverpb.StatementsResponse.IExtendedCollectedTransactionStatistics;
+
+export const getTrxAppFilterOptions = (
   transactions: Transaction[],
   prefix: string,
 ): SelectOptions[] => {
-  return transactions.reduce(
-    (acc: SelectOptions[], current: Transaction) => {
-      const twin = acc.some(
-        (o: SelectOptions) =>
-          o.label === current.stats_data.app ||
-          current.stats_data.app.split("-").includes(prefix),
-      );
-      return twin
-        ? acc
-        : acc.concat([
-            {
-              label: current.stats_data.app,
-              value: current.stats_data.app,
-            },
-          ]);
-    },
-    [
-      { label: "All", value: "All" },
-      { label: prefix, value: prefix },
-    ],
+  const defaultAppFilters = ["All", prefix];
+  const uniqueAppNames = new Set(
+    transactions
+      .filter(t => !t.stats_data.app.startsWith(prefix))
+      .map(t => t.stats_data.app),
   );
+
+  return defaultAppFilters
+    .concat(Array.from(uniqueAppNames))
+    .map(filterValue => ({
+      label: filterValue,
+      value: filterValue,
+    }));
 };
 
-export const collectStatementsText = (statements: AggregateStatistics[]) => {
-  return statements.reduce(
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    (acc: string, current: StatementStatistics, idx: number) => {
-      const newLine = idx > 0 ? "\n" : "";
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      return `${acc} ${newLine} ${current.key.key_data.query}`;
-    },
-    "",
-  );
-};
+export const collectStatementsText = (statements: Statement[]): string =>
+  statements.map(s => s.key.key_data.query).join("\n");
 
 export const getStatementsById = (
   statementsIds: string[],
-  statements: StatementStatistics[],
-) => {
-  return statementsIds
-    .map((id: string) => {
-      return statements.find(
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        (statement: StatementStatistics) => statement.id === id,
-      );
-    })
-    .filter(statement => {
-      return statement != null;
-    })
-    .map(statement => {
-      return {
-        ...statement,
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        label: statement.key.key_data.query,
-      };
-    });
+  statements: Statement[],
+): Statement[] => {
+  return statements.filter(s => statementsIds.some(id => id === s.id));
 };
+
+export const aggregateStatements = (
+  statements: Statement[],
+): AggregateStatistics[] =>
+  statements.map((s: Statement) => ({
+    label: s.key.key_data.query,
+    implicitTxn: false,
+    stats: s.stats,
+  }));
 
 export const searchTransactionsData = (
   search: string,
   transactions: Transaction[],
-  statements: StatementStatistics[],
-) => {
-  return transactions.filter((transaction: Transaction) =>
+  statements: Statement[],
+): Transaction[] => {
+  return transactions.filter((t: Transaction) =>
     search.split(" ").every(val =>
       collectStatementsText(
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        getStatementsById(transaction.stats_data.statement_ids, statements),
+        getStatementsById(t.stats_data.statement_ids, statements),
       )
         .toLowerCase()
         .includes(val.toLowerCase()),
@@ -87,14 +60,17 @@ export const searchTransactionsData = (
   );
 };
 
-function getTimeValue(timeNumber: string, timeUnit: string) {
+function getTimeValue(timeNumber: string, timeUnit: string): number | "empty" {
   if (arguments.length < 2 || timeNumber === "0") return "empty";
   return timeUnit === "seconds"
     ? Number(timeNumber)
     : Number(timeNumber) / 1000;
 }
 
-export const filterTransactions = (data: Transaction[], filters: Filters) => {
+export const filterTransactions = (
+  data: Transaction[],
+  filters: Filters,
+): { transactions: Transaction[]; activeFilters: number } => {
   if (!filters)
     return {
       transactions: data,
@@ -106,15 +82,14 @@ export const filterTransactions = (data: Transaction[], filters: Filters) => {
     timeValue && timeValue !== "empty",
     filters.app !== "All",
   ];
-  const activeFilters = filtersStatus.filter(filter => filter).length;
+  const activeFilters = filtersStatus.filter(f => f).length;
 
-  const filteredTransactions = data.filter((transaction: Transaction) => {
+  const filteredTransactions = data.filter((t: Transaction) => {
     const validateTransaction = [
-      transaction.stats_data.app.includes(filters.app) || filters.app === "All",
-      transaction.stats_data.stats.service_lat.mean >= timeValue ||
-        timeValue === "empty",
+      t.stats_data.app.includes(filters.app) || filters.app === "All",
+      t.stats_data.stats.service_lat.mean >= timeValue || timeValue === "empty",
     ];
-    return validateTransaction.every(filter => filter);
+    return validateTransaction.every(f => f);
   });
 
   return {

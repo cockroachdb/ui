@@ -9,10 +9,9 @@ const props = {
   onSubmitFilters: (filters: Filters) => {},
   onClear: () => {},
   search: "",
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  // @ts-ignore
-  appNames: [],
+  appNames: [{ label: "", value: "" }],
   activeFilters: 0,
+  filters: {},
 };
 
 storiesOf("Transactions Page", module).add("Header", () => (
