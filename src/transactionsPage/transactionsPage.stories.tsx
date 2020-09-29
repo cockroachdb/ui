@@ -1,9 +1,13 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { MemoryRouter } from "react-router-dom";
+import { cloneDeep, noop, extend } from "lodash";
 import { data, routeProps } from "./transactions.fixture";
 
 import { TransactionsPage } from ".";
+
+const getEmptyData = () =>
+  extend({}, data, { transactions: [], statements: [] });
 
 storiesOf("Transactions Page", module)
   .addDecorator(storyFn => <MemoryRouter>{storyFn()}</MemoryRouter>)
@@ -11,7 +15,30 @@ storiesOf("Transactions Page", module)
     <div style={{ backgroundColor: "#F5F7FA" }}>{storyFn()}</div>
   ))
   .add("with data", () => (
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    <TransactionsPage {...routeProps} data={data} refreshData={() => {}} />
-  ));
+    <TransactionsPage {...routeProps} data={data} refreshData={noop} />
+  ))
+  .add("without data", () => {
+    return (
+      <TransactionsPage
+        {...routeProps}
+        data={getEmptyData()}
+        refreshData={noop}
+      />
+    );
+  })
+  .add("with empty search result", () => {
+    const route = cloneDeep(routeProps);
+    const { history } = route;
+    const searchParams = new URLSearchParams(history.location.search);
+    searchParams.set("q", "aaaaaaa");
+    history.location.search = searchParams.toString();
+
+    return (
+      <TransactionsPage
+        {...routeProps}
+        data={getEmptyData()}
+        refreshData={noop}
+        history={history}
+      />
+    );
+  });

@@ -39,6 +39,9 @@ type OnClickXORHref =
 
 export type EmptyProps = OnClickXORHref & IMainEmptyProps;
 
+/**
+ * @deprecated use EmptyState instead
+ */
 export const Empty = ({
   title,
   description,

@@ -16,8 +16,12 @@ import {
   getStatementsById,
 } from "./utils";
 import { forIn } from "lodash";
-import { getSearchParams } from "src/util";
 import Long from "long";
+import { getSearchParams, statementsTable } from "src/util";
+import { EmptyState } from "../emptyState";
+import magnifyingGlassImg from "../assets/emptyState/magnifying-glass.svg";
+import { Anchor } from "../anchor";
+import emptyTableResultsImg from "../assets/emptyState/empty-table-results.svg";
 
 type IStatementsResponse = protos.cockroach.server.serverpb.IStatementsResponse;
 
@@ -169,6 +173,43 @@ export class TransactionsPage extends React.Component<
     this.setState({ statementIds });
   };
 
+  noTransactionsResult = () => {
+    const { data } = this.props;
+    const { search } = this.state;
+
+    const hasData = data?.transactions?.length > 0;
+    const isUsedFilter = search?.length > 0;
+
+    if (hasData && isUsedFilter) {
+      return (
+        <EmptyState
+          title="No transactions match your search since this page was last cleared"
+          icon={magnifyingGlassImg}
+          footer={
+            // TODO (koorosh): Provide appropriate links on Transactions Page documentation
+            <Anchor href={statementsTable} target="_blank">
+              Learn more about transactions
+            </Anchor>
+          }
+        />
+      );
+    } else {
+      return (
+        <EmptyState
+          title="No transactions since this page was last cleared"
+          icon={emptyTableResultsImg}
+          message="Transactions are cleared every hour by default, or according to your configuration."
+          footer={
+            // TODO (koorosh): Provide appropriate links on Transactions Page documentation
+            <Anchor href={statementsTable} target="_blank">
+              Learn more about transactions
+            </Anchor>
+          }
+        />
+      );
+    }
+  };
+
   render() {
     if (!this.props.data) return <pre>loading</pre>;
     const {
@@ -178,6 +219,7 @@ export class TransactionsPage extends React.Component<
       internal_app_name_prefix,
     } = this.props.data;
     const { pagination, search, filters, statementIds } = this.state;
+    const renderTxDetailsView = !!statementIds;
 
     const lastReset = new Date(Number(last_reset.seconds) * 1000);
     const appNames = getTrxAppFilterOptions(
@@ -194,7 +236,17 @@ export class TransactionsPage extends React.Component<
     );
     const { current, pageSize } = pagination;
 
-    return !statementIds ? (
+    if (renderTxDetailsView) {
+      return (
+        <TransactionDetails
+          statements={transactionDetails}
+          lastReset={lastReset}
+          handleDetails={this.handleDetails}
+        />
+      );
+    }
+
+    return (
       <div>
         <TransactionsPageHeader
           onSubmit={this.onSubmitSearchField}
@@ -223,6 +275,7 @@ export class TransactionsPage extends React.Component<
             handleDetails={this.handleDetails}
             search={search}
             pagination={pagination}
+            renderNoResult={this.noTransactionsResult()}
           />
         </section>
         <Pagination
@@ -232,12 +285,6 @@ export class TransactionsPage extends React.Component<
           onChange={this.onChangePage}
         />
       </div>
-    ) : (
-      <TransactionDetails
-        statements={transactionDetails}
-        lastReset={lastReset}
-        handleDetails={this.handleDetails}
-      />
     );
   }
 }

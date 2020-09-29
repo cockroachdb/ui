@@ -15,6 +15,8 @@ import {
   PageConfigItem,
   SortSetting,
   Search,
+  Anchor,
+  EmptyState,
 } from "src/index";
 import { DATE_FORMAT, appAttr, getMatchParamByName } from "src/util";
 import {
@@ -30,6 +32,8 @@ import { ISortedTablePagination } from "../sortedtable";
 import { statementsTable } from "src/util/docs";
 import styles from "./statementsPage.module.scss";
 import sortableTableStyles from "../sortabletable/sortabletable.module.scss";
+import emptyTableResultsImg from "../assets/emptyState/empty-table-results.svg";
+import magnifyingGlassImg from "../assets/emptyState/magnifying-glass.svg";
 
 const cx = classNames.bind(styles);
 const sortableTableCx = classNames.bind(sortableTableStyles);
@@ -236,23 +240,39 @@ export class StatementsPage extends React.Component<
     return `Last cleared ${moment.utc(lastReset).format(DATE_FORMAT)}`;
   };
 
-  noStatementResult = () => (
-    <>
-      <h3 className={sortableTableCx("table__no-results--title")}>
-        There are no SQL statements that match your search or filter since this
-        page was last cleared.
-      </h3>
-      <p className={sortableTableCx("table__no-results--description")}>
-        <span>
-          Statements are cleared every hour by default, or according to your
-          configuration.
-        </span>
-        <a href={statementsTable} target="_blank" rel="noopener noreferrer">
-          Learn more
-        </a>
-      </p>
-    </>
-  );
+  noStatementResult = () => {
+    const { statements } = this.props;
+    const { search } = this.state;
+    const hasData = statements?.length > 0;
+    const isUsedFilter = search?.length > 0;
+
+    if (hasData && isUsedFilter) {
+      return (
+        <EmptyState
+          title="No SQL statements match your search since this page was last cleared"
+          icon={magnifyingGlassImg}
+          footer={
+            <Anchor href={statementsTable} target="_blank">
+              Learn more about statements
+            </Anchor>
+          }
+        />
+      );
+    } else {
+      return (
+        <EmptyState
+          title="No SQL statements since this page was last cleared"
+          icon={emptyTableResultsImg}
+          message="Statements are cleared every hour by default, or according to your configuration."
+          footer={
+            <Anchor href={statementsTable} target="_blank">
+              Learn more about statements
+            </Anchor>
+          }
+        />
+      );
+    }
+  };
 
   renderStatements = () => {
     const { pagination, search } = this.state;
@@ -305,15 +325,6 @@ export class StatementsPage extends React.Component<
               search,
               this.activateDiagnosticsRef,
             )}
-            empty={data.length === 0 && search.length === 0}
-            emptyProps={{
-              title:
-                "There are no statements since this page was last cleared.",
-              description:
-                "Statements help you identify frequently executed or high latency SQL statements. Statements are cleared every hour by default, or according to your configuration.",
-              label: "Learn more",
-              buttonHref: statementsTable,
-            }}
             sortSetting={this.state.sortSetting}
             onChangeSortSetting={this.changeSortSetting}
             renderNoResult={this.noStatementResult()}
