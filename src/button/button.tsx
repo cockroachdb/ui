@@ -18,7 +18,7 @@ export interface ButtonProps {
   textAlign?: "left" | "right" | "center";
   size?: "default" | "small";
   children?: React.ReactNode;
-  icon?: () => React.ReactNode;
+  icon?: React.ReactNode;
   iconPosition?: "left" | "right";
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   className?: string;
@@ -33,7 +33,7 @@ export function Button(props: ButtonProps) {
     children,
     type,
     disabled,
-    size,
+    size = "default",
     icon,
     iconPosition,
     onClick,
@@ -58,8 +58,12 @@ export function Button(props: ButtonProps) {
       return null;
     }
     return (
-      <div className={cx(`crl-button__icon--push-${iconPosition}`)}>
-        {icon()}
+      <div
+        className={cx("crl-button__icon", {
+          [`crl-button__icon--push-${iconPosition}`]: !!children,
+        })}
+      >
+        {icon}
       </div>
     );
   };
