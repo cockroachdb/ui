@@ -1,5 +1,6 @@
 export * from "./appStats";
 export * from "./constants";
+export * from "./convert";
 export * from "./dataFromServer";
 export * from "./docs";
 export * from "./fixLong";

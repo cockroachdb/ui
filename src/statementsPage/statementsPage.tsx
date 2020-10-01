@@ -31,6 +31,9 @@ import { ISortedTablePagination } from "../sortedtable";
 import styles from "./statementsPage.module.scss";
 import sortableTableStyles from "../sortabletable/sortabletable.module.scss";
 import { EmptyStatementsPlaceholder } from "./emptyStatementsPlaceholder";
+import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
+
+type IStatementDiagnosticsReport = cockroach.server.serverpb.IStatementDiagnosticsReport;
 
 const cx = classNames.bind(styles);
 const sortableTableCx = classNames.bind(sortableTableStyles);
@@ -46,6 +49,7 @@ interface OwnProps {
   dismissAlertMessage: () => void;
   onActivateStatementDiagnostics: (statement: string) => void;
   onDiagnosticsModalOpen: (statement: string) => void;
+  onDiagnosticsReportDownload?: (report: IStatementDiagnosticsReport) => void;
   onSearchComplete?: (results: AggregateStatistics[]) => void;
   onPageChanged?: (newPage: number) => void;
   onSortingChange?: (
@@ -239,7 +243,7 @@ export class StatementsPage extends React.Component<
 
   renderStatements = () => {
     const { pagination, search } = this.state;
-    const { statements, match } = this.props;
+    const { statements, match, onDiagnosticsReportDownload } = this.props;
     const appAttrValue = getMatchParamByName(match, appAttr);
     const selectedApp = appAttrValue || "";
     const appOptions = [{ value: "", name: "All" }];
@@ -289,6 +293,7 @@ export class StatementsPage extends React.Component<
               selectedApp,
               search,
               this.activateDiagnosticsRef,
+              onDiagnosticsReportDownload,
             )}
             sortSetting={this.state.sortSetting}
             onChangeSortSetting={this.changeSortSetting}

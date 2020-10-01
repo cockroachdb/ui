@@ -2,7 +2,10 @@
 import { StatementsPageProps } from "./statementsPage";
 import { createMemoryHistory } from "history";
 import Long from "long";
+import { noop } from "lodash";
 import * as protos from "@cockroachlabs/crdb-protobuf-client";
+import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
+type IStatementDiagnosticsReport = cockroach.server.serverpb.IStatementDiagnosticsReport;
 type IStatementStatistics = protos.cockroach.sql.IStatementStatistics;
 
 const history = createMemoryHistory({ initialEntries: ["/statements"]});
@@ -145,6 +148,40 @@ const statementStats: IStatementStatistics = {
   },
 };
 
+const diagnosticsReports: IStatementDiagnosticsReport[] = [
+  {
+    "id": Long.fromNumber(594413966918975489),
+    "completed": true,
+    "statement_fingerprint": "SHOW database",
+    "statement_diagnostics_id": Long.fromNumber(594413981435920385),
+    "requested_at": {"seconds": Long.fromNumber(1601471146), "nanos": 737251000}
+  },
+  {
+    "id": Long.fromNumber(594413966918975429),
+    "completed": true,
+    "statement_fingerprint": "SHOW database",
+    "statement_diagnostics_id": Long.fromNumber(594413281435920385),
+    "requested_at": {"seconds": Long.fromNumber(1601491146), "nanos": 737251000}
+  }
+]
+
+const diagnosticsReportsInProgress: IStatementDiagnosticsReport[] = [
+  {
+    "id": Long.fromNumber(594413966918975489),
+    "completed": false,
+    "statement_fingerprint": "SHOW database",
+    "statement_diagnostics_id": Long.fromNumber(594413981435920385),
+    "requested_at": {"seconds": Long.fromNumber(1601471146), "nanos": 737251000}
+  },
+  {
+    "id": Long.fromNumber(594413966918975429),
+    "completed": true,
+    "statement_fingerprint": "SHOW database",
+    "statement_diagnostics_id": Long.fromNumber(594413281435920385),
+    "requested_at": {"seconds": Long.fromNumber(1601491146), "nanos": 737251000}
+  }
+]
+
 const statementsPagePropsFixture: StatementsPageProps = {
   history,
   location: {
@@ -234,6 +271,7 @@ const statementsPagePropsFixture: StatementsPageProps = {
       "label": "SHOW database",
       "implicitTxn": true,
       "stats": statementStats,
+      diagnosticsReports,
     },
     {
       "label": "CREATE TABLE IF NOT EXISTS promo_codes (code VARCHAR NOT NULL, description VARCHAR NULL, creation_time TIMESTAMP NULL, expiration_time TIMESTAMP NULL, rules JSONB NULL, PRIMARY KEY (code ASC))",
@@ -324,6 +362,7 @@ const statementsPagePropsFixture: StatementsPageProps = {
       "label": "CREATE DATABASE movr",
       "implicitTxn": true,
       "stats": statementStats,
+      diagnosticsReports: diagnosticsReportsInProgress
     },
     {
       "label": "SELECT count(*) > _ FROM [SHOW ALL CLUSTER SETTINGS] AS _ (v) WHERE v = _",
@@ -379,11 +418,13 @@ const statementsPagePropsFixture: StatementsPageProps = {
   ],
   "totalFingerprints": 95,
   "lastReset": "2020-04-13 07:22:23",
-  dismissAlertMessage: () => {},
-  refreshStatementDiagnosticsRequests: () => {},
-  refreshStatements: () => {},
-  onActivateStatementDiagnostics: _statement => {},
-  onDiagnosticsModalOpen: () => {},
+  dismissAlertMessage: noop,
+  refreshStatementDiagnosticsRequests: noop,
+  refreshStatements: noop,
+  onActivateStatementDiagnostics: noop,
+  onDiagnosticsModalOpen: noop,
+  onSearchComplete: noop,
+  onDiagnosticsReportDownload: noop,
 };
 
 export default statementsPagePropsFixture;
