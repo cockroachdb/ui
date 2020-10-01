@@ -9,12 +9,13 @@ import classNames from "classnames/bind";
 import {
   paginationPageCount,
   Dropdown,
-  DropdownOption,
   Loading,
   PageConfig,
   PageConfigItem,
   SortSetting,
   Search,
+  Text,
+  TextTypes,
 } from "src/index";
 import { DATE_FORMAT, appAttr, getMatchParamByName } from "src/util";
 import {
@@ -135,9 +136,9 @@ export class StatementsPage extends React.Component<
     );
   };
 
-  selectApp = (app: DropdownOption) => {
+  selectApp = (value: string) => {
     const { history } = this.props;
-    history.location.pathname = `/statements/${encodeURIComponent(app.value)}`;
+    history.location.pathname = `/statements/${encodeURIComponent(value)}`;
     history.replace(history.location);
     this.resetPagination();
   };
@@ -241,8 +242,9 @@ export class StatementsPage extends React.Component<
     const { statements, match } = this.props;
     const appAttrValue = getMatchParamByName(match, appAttr);
     const selectedApp = appAttrValue || "";
-    const appOptions = [{ value: "", label: "All" }];
-    this.props.apps.forEach(app => appOptions.push({ value: app, label: app }));
+    const appOptions = [{ value: "", name: "All" }];
+    this.props.apps.forEach(app => appOptions.push({ value: app, name: app }));
+    const currentOption = appOptions.find(o => o.value === selectedApp);
     const data = this.filteredStatementsData();
     const totalCount = data.length;
     const isEmptySearchResults = statements?.length > 0 && search?.length > 0;
@@ -258,12 +260,11 @@ export class StatementsPage extends React.Component<
             />
           </PageConfigItem>
           <PageConfigItem>
-            <Dropdown
-              title="App"
-              options={appOptions}
-              selected={decodeURIComponent(selectedApp)}
-              onChange={this.selectApp}
-            />
+            <Dropdown items={appOptions} onChange={this.selectApp}>
+              <Text textType={TextTypes.BodyStrong}>
+                {`App: ${decodeURIComponent(currentOption.name)}`}
+              </Text>
+            </Dropdown>
           </PageConfigItem>
         </PageConfig>
         <section className={sortableTableCx("cl-table-container")}>
