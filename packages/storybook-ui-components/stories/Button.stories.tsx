@@ -70,6 +70,33 @@ export const Example = () => (
         </div>
       </ButtonDisplaySection>
     </section>
+    <section>
+      <h3>Disabled</h3>
+      <ButtonDisplaySection>
+        <ButtonDisplay>
+          <Label>primary-success</Label>
+          <Button intent="primary" disabled>
+            Success
+          </Button>
+        </ButtonDisplay>
+        <ButtonDisplay>
+          <Label>primary-danger</Label>
+          <Button intent="primary-danger" disabled>
+            Danger
+          </Button>
+        </ButtonDisplay>
+        <ButtonDisplay>
+          <Label>secondary (default)</Label>
+          <Button disabled>Secondary</Button>
+        </ButtonDisplay>
+        <ButtonDisplay>
+          <Label>tertiary</Label>
+          <Button intent="tertiary" disabled>
+            Tertiary
+          </Button>
+        </ButtonDisplay>
+      </ButtonDisplaySection>
+    </section>
   </StoryContainer>
 );
 

@@ -1,5 +1,9 @@
 @import "../styles/tokens.scss";
 
+@mixin disabled {
+  opacity: 0.7;
+}
+
 .button {
   align-items: center;
   border-width: 1px;
@@ -37,7 +41,8 @@
     }
   }
 
-  :disabled {
+  &:disabled {
+    @include disabled;
     &:hover {
       cursor: not-allowed;
     }
