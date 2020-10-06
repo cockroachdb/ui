@@ -12,6 +12,7 @@ import { tableClasses } from "../transactionsTable/transactionsTableClasses";
 import { BackIcon } from "../icon";
 import { SqlBox } from "../sql";
 import { aggregateStatements } from "../transactionsPage/utils";
+import Long from "long";
 
 const { containerClass } = tableClasses;
 
@@ -20,7 +21,7 @@ type Statement = protos.cockroach.server.serverpb.StatementsResponse.ICollectedS
 interface TransactionDetailsProps {
   statements?: Statement[];
   lastReset?: string | Date;
-  handleDetails: (statementIds: string[] | null) => void;
+  handleDetails: (statementIds: Long[] | null) => void;
 }
 
 interface TState {

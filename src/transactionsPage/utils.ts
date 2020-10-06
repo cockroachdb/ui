@@ -2,6 +2,7 @@ import * as protos from "@cockroachlabs/crdb-protobuf-client";
 import { Filters } from "./";
 import { SelectOptions } from "./filter";
 import { AggregateStatistics } from "../statementsTable";
+import Long from "long";
 
 type Statement = protos.cockroach.server.serverpb.StatementsResponse.ICollectedStatementStatistics;
 type Transaction = protos.cockroach.server.serverpb.StatementsResponse.IExtendedCollectedTransactionStatistics;
@@ -29,10 +30,10 @@ export const collectStatementsText = (statements: Statement[]): string =>
   statements.map(s => s.key.key_data.query).join("\n");
 
 export const getStatementsById = (
-  statementsIds: string[],
+  statementsIds: Long[],
   statements: Statement[],
 ): Statement[] => {
-  return statements.filter(s => statementsIds.some(id => id === s.id));
+  return statements.filter(s => statementsIds.some(id => id.eq(s.id)));
 };
 
 export const aggregateStatements = (

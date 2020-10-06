@@ -17,6 +17,7 @@ import {
 } from "./utils";
 import { forIn } from "lodash";
 import { getSearchParams } from "src/util";
+import Long from "long";
 
 type IStatementsResponse = protos.cockroach.server.serverpb.IStatementsResponse;
 
@@ -40,7 +41,7 @@ interface TState {
   pagination: ISortedTablePagination;
   search?: string;
   filters?: Filters;
-  statementIds: string[] | null;
+  statementIds: Long[] | null;
 }
 
 interface TransactionsPageProps {
@@ -164,7 +165,7 @@ export class TransactionsPage extends React.Component<
     });
   };
 
-  handleDetails = (statementIds: string[] | null) => {
+  handleDetails = (statementIds: Long[] | null) => {
     this.setState({ statementIds });
   };
 

@@ -8,6 +8,7 @@ import { limitText } from "../utils";
 import classNames from "classnames/bind";
 import statementsStyles from "../../statementsTable/statementsTableContent.module.scss";
 import transactionsCellsStyles from "./transactionsCells.module.scss";
+import Long from "long";
 
 const statementsCx = classNames.bind(statementsStyles);
 const ownCellStyles = classNames.bind(transactionsCellsStyles);
@@ -20,8 +21,8 @@ const hoverAreaClassName = ownCellStyles("hover-area");
 
 interface TextCellProps {
   transactionText: string;
-  transactionIds: string[];
-  handleDetails: (transactionIds: string[]) => void;
+  transactionIds: Long[];
+  handleDetails: (transactionIds: Long[]) => void;
   search: string;
 }
 

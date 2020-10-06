@@ -17,6 +17,7 @@ import {
   getStatementsById,
   collectStatementsText,
 } from "../transactionsPage/utils";
+import Long from "long";
 
 type Transaction = protos.cockroach.server.serverpb.StatementsResponse.IExtendedCollectedTransactionStatistics;
 type Statement = protos.cockroach.server.serverpb.StatementsResponse.ICollectedStatementStatistics;
@@ -25,7 +26,7 @@ interface TransactionsTable {
   transactions: Transaction[];
   sortSetting: SortSetting;
   onChangeSortSetting: (ss: SortSetting) => void;
-  handleDetails: (statementIds: string[] | null) => void;
+  handleDetails: (statementIds: Long[] | null) => void;
   pagination: ISortedTablePagination;
   statements: Statement[];
   search?: string;
