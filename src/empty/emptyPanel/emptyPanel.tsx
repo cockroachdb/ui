@@ -1,20 +1,10 @@
-// Copyright 2019 The Cockroach Authors.
-//
-// Use of this software is governed by the Business Source License
-// included in the file licenses/BSL.txt.
-//
-// As of the Change Date specified in that file, in accordance with
-// the Business Source License, use of this software will be governed
-// by the Apache License, Version 2.0, included in the file
-// licenses/APL.txt.
-
-import heroBannerLp from "../assets/heroBannerLp.png";
 import React from "react";
 import classnames from "classnames/bind";
-import styles from "./empty.module.scss";
-import { Text, TextTypes } from "../text";
-import { Anchor } from "../anchor";
-import { Button } from "../button";
+import styles from "./emptyPanel.module.scss";
+import { Text, TextTypes } from "../../text";
+import { Anchor } from "../../anchor";
+import { Button } from "../../button";
+import heroBannerLp from "../../assets/heroBannerLp.png";
 
 const cx = classnames.bind(styles);
 
@@ -37,21 +27,18 @@ type OnClickXORHref =
       buttonHref?: string;
     };
 
-export type EmptyProps = OnClickXORHref & IMainEmptyProps;
+export type EmptyPanelProps = OnClickXORHref & IMainEmptyProps;
 
-/**
- * @deprecated use EmptyState instead
- */
-export const Empty = ({
-  title,
+export const EmptyPanel: React.FC<EmptyPanelProps> = ({
+  title = "No results",
   description,
-  anchor,
-  label,
+  anchor = "Learn more",
+  label = "Learn more",
   link,
-  backgroundImage,
+  backgroundImage = heroBannerLp,
   onClick,
   buttonHref,
-}: EmptyProps) => (
+}) => (
   <div
     className={cx("cl-empty-view")}
     style={{ backgroundImage: `url(${backgroundImage})` }}
@@ -86,10 +73,3 @@ export const Empty = ({
     </div>
   </div>
 );
-
-Empty.defaultProps = {
-  backgroundImage: heroBannerLp,
-  anchor: "Learn more",
-  label: "Learn more",
-  title: "No results",
-};

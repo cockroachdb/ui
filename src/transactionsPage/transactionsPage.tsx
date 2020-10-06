@@ -17,11 +17,8 @@ import {
 } from "./utils";
 import { forIn } from "lodash";
 import Long from "long";
-import { getSearchParams, statementsTable } from "src/util";
-import { EmptyState } from "../emptyState";
-import magnifyingGlassImg from "../assets/emptyState/magnifying-glass.svg";
-import { Anchor } from "../anchor";
-import emptyTableResultsImg from "../assets/emptyState/empty-table-results.svg";
+import { getSearchParams } from "src/util";
+import { EmptyTransactionsPlaceholder } from "./emptyTransactionsPlaceholder";
 
 type IStatementsResponse = protos.cockroach.server.serverpb.IStatementsResponse;
 
@@ -173,43 +170,6 @@ export class TransactionsPage extends React.Component<
     this.setState({ statementIds });
   };
 
-  noTransactionsResult = () => {
-    const { data } = this.props;
-    const { search } = this.state;
-
-    const hasData = data?.transactions?.length > 0;
-    const isUsedFilter = search?.length > 0;
-
-    if (hasData && isUsedFilter) {
-      return (
-        <EmptyState
-          title="No transactions match your search since this page was last cleared"
-          icon={magnifyingGlassImg}
-          footer={
-            // TODO (koorosh): Provide appropriate links on Transactions Page documentation
-            <Anchor href={statementsTable} target="_blank">
-              Learn more about transactions
-            </Anchor>
-          }
-        />
-      );
-    } else {
-      return (
-        <EmptyState
-          title="No transactions since this page was last cleared"
-          icon={emptyTableResultsImg}
-          message="Transactions are cleared every hour by default, or according to your configuration."
-          footer={
-            // TODO (koorosh): Provide appropriate links on Transactions Page documentation
-            <Anchor href={statementsTable} target="_blank">
-              Learn more about transactions
-            </Anchor>
-          }
-        />
-      );
-    }
-  };
-
   render() {
     if (!this.props.data) return <pre>loading</pre>;
     const {
@@ -235,6 +195,8 @@ export class TransactionsPage extends React.Component<
       filters,
     );
     const { current, pageSize } = pagination;
+    const hasData = transactions?.length > 0;
+    const isUsedFilter = search?.length > 0;
 
     if (renderTxDetailsView) {
       return (
@@ -275,7 +237,11 @@ export class TransactionsPage extends React.Component<
             handleDetails={this.handleDetails}
             search={search}
             pagination={pagination}
-            renderNoResult={this.noTransactionsResult()}
+            renderNoResult={
+              <EmptyTransactionsPlaceholder
+                isEmptySearchResults={hasData && isUsedFilter}
+              />
+            }
           />
         </section>
         <Pagination

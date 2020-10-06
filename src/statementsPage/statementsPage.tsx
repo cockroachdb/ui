@@ -15,8 +15,6 @@ import {
   PageConfigItem,
   SortSetting,
   Search,
-  Anchor,
-  EmptyState,
 } from "src/index";
 import { DATE_FORMAT, appAttr, getMatchParamByName } from "src/util";
 import {
@@ -29,11 +27,9 @@ import {
   ActivateDiagnosticsModalRef,
 } from "src/statementsDiagnostics";
 import { ISortedTablePagination } from "../sortedtable";
-import { statementsTable } from "src/util/docs";
 import styles from "./statementsPage.module.scss";
 import sortableTableStyles from "../sortabletable/sortabletable.module.scss";
-import emptyTableResultsImg from "../assets/emptyState/empty-table-results.svg";
-import magnifyingGlassImg from "../assets/emptyState/magnifying-glass.svg";
+import { EmptyStatementsPlaceholder } from "./emptyStatementsPlaceholder";
 
 const cx = classNames.bind(styles);
 const sortableTableCx = classNames.bind(sortableTableStyles);
@@ -240,40 +236,6 @@ export class StatementsPage extends React.Component<
     return `Last cleared ${moment.utc(lastReset).format(DATE_FORMAT)}`;
   };
 
-  noStatementResult = () => {
-    const { statements } = this.props;
-    const { search } = this.state;
-    const hasData = statements?.length > 0;
-    const isUsedFilter = search?.length > 0;
-
-    if (hasData && isUsedFilter) {
-      return (
-        <EmptyState
-          title="No SQL statements match your search since this page was last cleared"
-          icon={magnifyingGlassImg}
-          footer={
-            <Anchor href={statementsTable} target="_blank">
-              Learn more about statements
-            </Anchor>
-          }
-        />
-      );
-    } else {
-      return (
-        <EmptyState
-          title="No SQL statements since this page was last cleared"
-          icon={emptyTableResultsImg}
-          message="Statements are cleared every hour by default, or according to your configuration."
-          footer={
-            <Anchor href={statementsTable} target="_blank">
-              Learn more about statements
-            </Anchor>
-          }
-        />
-      );
-    }
-  };
-
   renderStatements = () => {
     const { pagination, search } = this.state;
     const { statements, match } = this.props;
@@ -283,6 +245,8 @@ export class StatementsPage extends React.Component<
     this.props.apps.forEach(app => appOptions.push({ value: app, label: app }));
     const data = this.filteredStatementsData();
     const totalCount = data.length;
+    const isEmptySearchResults = statements?.length > 0 && search?.length > 0;
+
     return (
       <div>
         <PageConfig>
@@ -327,7 +291,11 @@ export class StatementsPage extends React.Component<
             )}
             sortSetting={this.state.sortSetting}
             onChangeSortSetting={this.changeSortSetting}
-            renderNoResult={this.noStatementResult()}
+            renderNoResult={
+              <EmptyStatementsPlaceholder
+                isEmptySearchResults={isEmptySearchResults}
+              />
+            }
             pagination={pagination}
           />
         </section>
