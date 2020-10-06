@@ -1,6 +1,6 @@
 {
   "name": "@cockroachlabs/admin-ui-components",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "Admin UI Components is a library of components shared between CockroachDB and CockroachCloud",
   "repository": {
     "type": "git",
