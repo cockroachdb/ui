@@ -13,14 +13,14 @@ $stats-table-tr--bg: $colors--neutral-0;
   font-family: $font-family--base;
   font-weight: 300;
   line-height: 22px;
-  font-size: 14px;
+  font-size: $font-size--medium;
   vertical-align: top;
-  color: $stats-table-td--fg;
+  color: $colors--neutral-7;
 
   &__row {
     &--body {
       letter-spacing: 0.33px;
-      background-color: $stats-table-tr--bg;
+      background-color: $colors--neutral-0;
       &:hover {
         background-color: $colors--background;
       }
@@ -28,7 +28,7 @@ $stats-table-tr--bg: $colors--neutral-0;
 
     &--header {
       padding: 20px;
-      font-size: 12px;
+      font-size: $font-size--medium;
       font-weight: bold;
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -40,14 +40,14 @@ $stats-table-tr--bg: $colors--neutral-0;
     &--summary {
       background-color: $colors--background;
       font-family: $font-family--semi-bold;
-      font-size: 14px;
+      font-size: $font-size--medium;
       font-weight: bold;
       line-height: 1.71;
       letter-spacing: 0.1px;
       color: $colors--neutral-7;
       .bar-chart .label {
         font-family: $font-family--semi-bold;
-        font-size: 14px;
+        font-size: $font-size--medium;
         font-weight: bold;
         line-height: 1.71;
         letter-spacing: 0.1px;
@@ -62,11 +62,14 @@ $stats-table-tr--bg: $colors--neutral-0;
     font-weight: inherit;
 
     a {
-      font-weight: 400;
-      color: $colors--primary-blue-3;
+      color: $adminui-grey-1;
       text-decoration: none;
-      width: 100%;
-      height: 100%;
+      cursor: pointer;
+
+      &:hover {
+        color: $colors--primary-blue-3;
+        text-decoration: underline;
+      }
     }
 
     &--filler {
