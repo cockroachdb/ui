@@ -16,8 +16,9 @@ import {
   getStatementsById,
 } from "./utils";
 import { forIn } from "lodash";
-import { getSearchParams } from "src/util";
 import Long from "long";
+import { getSearchParams } from "src/util";
+import { EmptyTransactionsPlaceholder } from "./emptyTransactionsPlaceholder";
 
 type IStatementsResponse = protos.cockroach.server.serverpb.IStatementsResponse;
 
@@ -178,6 +179,7 @@ export class TransactionsPage extends React.Component<
       internal_app_name_prefix,
     } = this.props.data;
     const { pagination, search, filters, statementIds } = this.state;
+    const renderTxDetailsView = !!statementIds;
 
     const lastReset = new Date(Number(last_reset.seconds) * 1000);
     const appNames = getTrxAppFilterOptions(
@@ -193,8 +195,20 @@ export class TransactionsPage extends React.Component<
       filters,
     );
     const { current, pageSize } = pagination;
+    const hasData = transactions?.length > 0;
+    const isUsedFilter = search?.length > 0;
 
-    return !statementIds ? (
+    if (renderTxDetailsView) {
+      return (
+        <TransactionDetails
+          statements={transactionDetails}
+          lastReset={lastReset}
+          handleDetails={this.handleDetails}
+        />
+      );
+    }
+
+    return (
       <div>
         <TransactionsPageHeader
           onSubmit={this.onSubmitSearchField}
@@ -223,6 +237,11 @@ export class TransactionsPage extends React.Component<
             handleDetails={this.handleDetails}
             search={search}
             pagination={pagination}
+            renderNoResult={
+              <EmptyTransactionsPlaceholder
+                isEmptySearchResults={hasData && isUsedFilter}
+              />
+            }
           />
         </section>
         <Pagination
@@ -232,12 +251,6 @@ export class TransactionsPage extends React.Component<
           onChange={this.onChangePage}
         />
       </div>
-    ) : (
-      <TransactionDetails
-        statements={transactionDetails}
-        lastReset={lastReset}
-        handleDetails={this.handleDetails}
-      />
     );
   }
 }

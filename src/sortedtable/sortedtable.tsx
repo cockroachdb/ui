@@ -8,7 +8,7 @@ import {
   SortableColumn,
   SortableTable,
   SortSetting,
-  EmptyProps,
+  EmptyPanelProps,
 } from "src/index";
 
 export interface ISortedTablePagination {
@@ -81,7 +81,7 @@ interface SortedTableProps<T> {
   loadingLabel?: string;
   // empty state for table
   empty?: boolean;
-  emptyProps?: EmptyProps;
+  emptyProps?: EmptyPanelProps;
 }
 
 interface SortedTableState {

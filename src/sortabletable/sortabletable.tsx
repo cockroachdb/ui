@@ -6,7 +6,7 @@ import times from "lodash/times";
 import Spin from "antd/lib/spin";
 import Icon from "antd/lib/icon";
 import { Spinner } from "@cockroachlabs/icons";
-import { Empty, EmptyProps } from "../empty";
+import { EmptyPanel, EmptyPanelProps } from "../empty";
 import styles from "./sortabletable.module.scss";
 
 const cx = classNames.bind(styles);
@@ -73,7 +73,7 @@ interface TableProps {
   loadingLabel?: string;
   // empty state for table
   empty?: boolean;
-  emptyProps?: EmptyProps;
+  emptyProps?: EmptyPanelProps;
 }
 
 export interface ExpandableConfig {
@@ -228,7 +228,7 @@ export class SortableTable extends React.Component<TableProps> {
       emptyProps,
     } = this.props;
     if (empty) {
-      return <Empty {...emptyProps} />;
+      return <EmptyPanel {...emptyProps} />;
     }
     return (
       <div className={cx("cl-table-wrapper")}>

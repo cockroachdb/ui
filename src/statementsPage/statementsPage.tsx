@@ -27,9 +27,9 @@ import {
   ActivateDiagnosticsModalRef,
 } from "src/statementsDiagnostics";
 import { ISortedTablePagination } from "../sortedtable";
-import { statementsTable } from "src/util/docs";
 import styles from "./statementsPage.module.scss";
 import sortableTableStyles from "../sortabletable/sortabletable.module.scss";
+import { EmptyStatementsPlaceholder } from "./emptyStatementsPlaceholder";
 
 const cx = classNames.bind(styles);
 const sortableTableCx = classNames.bind(sortableTableStyles);
@@ -236,24 +236,6 @@ export class StatementsPage extends React.Component<
     return `Last cleared ${moment.utc(lastReset).format(DATE_FORMAT)}`;
   };
 
-  noStatementResult = () => (
-    <>
-      <h3 className={sortableTableCx("table__no-results--title")}>
-        There are no SQL statements that match your search or filter since this
-        page was last cleared.
-      </h3>
-      <p className={sortableTableCx("table__no-results--description")}>
-        <span>
-          Statements are cleared every hour by default, or according to your
-          configuration.
-        </span>
-        <a href={statementsTable} target="_blank" rel="noopener noreferrer">
-          Learn more
-        </a>
-      </p>
-    </>
-  );
-
   renderStatements = () => {
     const { pagination, search } = this.state;
     const { statements, match } = this.props;
@@ -263,6 +245,8 @@ export class StatementsPage extends React.Component<
     this.props.apps.forEach(app => appOptions.push({ value: app, label: app }));
     const data = this.filteredStatementsData();
     const totalCount = data.length;
+    const isEmptySearchResults = statements?.length > 0 && search?.length > 0;
+
     return (
       <div>
         <PageConfig>
@@ -305,18 +289,13 @@ export class StatementsPage extends React.Component<
               search,
               this.activateDiagnosticsRef,
             )}
-            empty={data.length === 0 && search.length === 0}
-            emptyProps={{
-              title:
-                "There are no statements since this page was last cleared.",
-              description:
-                "Statements help you identify frequently executed or high latency SQL statements. Statements are cleared every hour by default, or according to your configuration.",
-              label: "Learn more",
-              buttonHref: statementsTable,
-            }}
             sortSetting={this.state.sortSetting}
             onChangeSortSetting={this.changeSortSetting}
-            renderNoResult={this.noStatementResult()}
+            renderNoResult={
+              <EmptyStatementsPlaceholder
+                isEmptySearchResults={isEmptySearchResults}
+              />
+            }
             pagination={pagination}
           />
         </section>
