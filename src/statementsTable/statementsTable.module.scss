@@ -39,13 +39,8 @@
 .cl-table__col-query-text a {
   font-family: $font-family--monospace;
   font-size: 12px;
-  line-height: 1.83;
-  color: $colors--neutral-8;
   width: 400px;
-  text-decoration: none;
-  cursor: pointer;
-  &:hover {
-    color: $colors--primary-blue-3;
-    text-decoration: underline;
+  div {
+    font-size: $font-size--small;
   }
 }

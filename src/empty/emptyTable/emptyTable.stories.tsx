@@ -2,8 +2,8 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 
 import { EmptyTable } from "./emptyTable";
-import emptyListResultsImg from "../assets/emptyState/empty-list-results.svg";
-import notFoundImg from "../assets/emptyState/not-found-404.svg";
+import emptyListResultsImg from "../../assets/emptyState/empty-list-results.svg";
+import notFoundImg from "../../assets/emptyState/not-found-404.svg";
 import { Button } from "src";
 import SpinIcon from "../../icon/spin";
 
