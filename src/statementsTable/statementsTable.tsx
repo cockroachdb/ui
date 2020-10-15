@@ -19,6 +19,8 @@ import {
   NodeNames,
 } from "./statementsTableContent";
 
+type IStatementDiagnosticsReport = cockroach.server.serverpb.IStatementDiagnosticsReport;
+
 import styles from "./statementsTable.module.scss";
 const cx = classNames.bind(styles);
 const longToInt = (d: number | Long) => Number(FixLong(d));
@@ -90,7 +92,7 @@ export interface AggregateStatistics {
   stats: StatementStatistics;
   drawer?: boolean;
   firstCellBordered?: boolean;
-  diagnosticsReport?: cockroach.server.serverpb.IStatementDiagnosticsReport;
+  diagnosticsReports?: cockroach.server.serverpb.IStatementDiagnosticsReport[];
 }
 
 export class StatementsSortedTable extends SortedTable<AggregateStatistics> {}
@@ -119,6 +121,7 @@ export function makeStatementsColumns(
   selectedApp: string,
   search?: string,
   activateDiagnosticsRef?: React.RefObject<ActivateDiagnosticsModalRef>,
+  onDiagnosticsDownload?: (report: IStatementDiagnosticsReport) => void,
 ): ColumnDescriptor<AggregateStatistics>[] {
   const columns: ColumnDescriptor<AggregateStatistics>[] = [
     {
@@ -142,15 +145,19 @@ export function makeStatementsColumns(
     const diagnosticsColumn: ColumnDescriptor<AggregateStatistics> = {
       name: "diagnostics",
       title: StatementTableTitle.diagnostics,
-      cell: StatementTableCell.diagnostics(activateDiagnosticsRef),
+      cell: StatementTableCell.diagnostics(
+        activateDiagnosticsRef,
+        onDiagnosticsDownload,
+      ),
       sort: stmt => {
-        if (stmt.diagnosticsReport) {
-          return stmt.diagnosticsReport.completed
-            ? "READY"
-            : "WAITING FOR QUERY";
+        if (stmt.diagnosticsReports?.length > 0) {
+          // Perform sorting by first diagnostics report as only
+          // this one can be either in ready or waiting status.
+          return stmt.diagnosticsReports[0].completed ? "READY" : "WAITING";
         }
         return null;
       },
+      titleAlign: "right",
     };
     columns.push(diagnosticsColumn);
   }

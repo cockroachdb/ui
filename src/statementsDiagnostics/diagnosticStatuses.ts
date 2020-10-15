@@ -1,1 +1,1 @@
-export type DiagnosticStatuses = "READY" | "WAITING FOR QUERY" | "ERROR";
+export type DiagnosticStatuses = "READY" | "WAITING" | "ERROR";

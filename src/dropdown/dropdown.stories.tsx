@@ -1,26 +1,47 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { noop } from "lodash";
 
-import { DropdownOption, Dropdown } from "./";
+import { Dropdown, DropdownOption } from "./dropdown";
+import { Button } from "src/button";
+import { Download } from "@cockroachlabs/icons";
+
+const items: DropdownOption[] = [
+  { name: "A", value: "a" },
+  { name: "B", value: "b" },
+  { name: "C", value: "c" },
+];
 
 storiesOf("Dropdown", module)
   .addDecorator(renderChild => (
     <div style={{ padding: "12px", display: "flex" }}>{renderChild()}</div>
   ))
-  .add("Simple", () => {
-    const options: DropdownOption[] = [
-      { label: "Option 1", value: "option1" },
-      { label: "Option 2", value: "option2" },
-      { label: "Option 3", value: "option3" },
-      { label: "Option 4", value: "option4" },
-    ];
-    const [selected, setSelected] = React.useState(options[1].value);
-    return (
-      <Dropdown
-        options={options}
-        selected={selected}
-        onChange={s => setSelected(s.value)}
-        title="Simple dropdown component"
-      />
-    );
-  });
+  .add("default", () => (
+    <Dropdown onChange={noop} items={items}>
+      Select
+    </Dropdown>
+  ))
+  .add("with custom toggle icon", () => (
+    <Dropdown
+      onChange={noop}
+      items={items}
+      customToggleButton={
+        <Button type="primary" textAlign="center">
+          <Download />
+        </Button>
+      }
+    />
+  ))
+  .add("with custom toggle button options", () => (
+    <Dropdown
+      onChange={noop}
+      items={items}
+      customToggleButtonOptions={{
+        iconPosition: "left",
+        size: "small",
+        type: "unstyled-link",
+      }}
+    >
+      Select options
+    </Dropdown>
+  ));

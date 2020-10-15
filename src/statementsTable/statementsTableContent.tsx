@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import classNames from "classnames/bind";
+import { noop } from "lodash";
 import {
   Anchor,
   ActivateDiagnosticsModalRef,
   getHighlightedText,
   DiagnosticStatusBadge,
+  AggregateStatistics,
+  Dropdown,
+  Button,
 } from "src/index";
 import { Tooltip2 as Tooltip } from "src/tooltip2";
 import {
@@ -15,13 +19,16 @@ import {
   statementsTimeInterval,
   transactionalPipelining,
   summarize,
+  TimestampToMoment,
 } from "src/util";
 import { shortStatement } from "./statementsTable";
 import styles from "./statementsTableContent.module.scss";
+import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
+import { Download } from "@cockroachlabs/icons";
 
 export type NodeNames = { [nodeId: string]: string };
-
 const cx = classNames.bind(styles);
+type IStatementDiagnosticsReport = cockroach.server.serverpb.IStatementDiagnosticsReport;
 
 export const StatementTableTitle = {
   statements: (
@@ -200,24 +207,68 @@ export const StatementTableCell = {
   ),
   diagnostics: (
     activateDiagnosticsRef: React.RefObject<ActivateDiagnosticsModalRef>,
-  ) => (stmt: any) => {
-    if (stmt.diagnosticsReport) {
-      return (
-        <DiagnosticStatusBadge
-          status={
-            stmt.diagnosticsReport.completed ? "READY" : "WAITING FOR QUERY"
-          }
-        />
-      );
-    }
+    onDiagnosticsDownload: (report: IStatementDiagnosticsReport) => void = noop,
+  ) => (stmt: AggregateStatistics) => {
+    /*
+     * Diagnostics cell might display different components depending
+     * on following states:
+     * - show `Activate` link only if no completed or waiting reports available;
+     * - show `WAITING` badge only if report requested for the first time;
+     * - show `WAITING` badge and dropdown with download links if report is currently
+     * requested and previous reports are available for download;
+     * - show `Activate` link and dropdown with download links if there is completed
+     * reports only;
+     * */
+    const hasDiagnosticReports = !!stmt.diagnosticsReports;
+    const hasCompletedDiagnosticsReports =
+      hasDiagnosticReports && stmt.diagnosticsReports.some(d => d.completed);
+    const canActivateDiagnosticReport = hasDiagnosticReports
+      ? stmt.diagnosticsReports.every(d => d.completed)
+      : true;
+
     return (
-      <Anchor
-        onClick={() =>
-          activateDiagnosticsRef?.current?.showModalFor(stmt.label)
-        }
-      >
-        Activate
-      </Anchor>
+      <div className={cx("activate-diagnostic-col")}>
+        {canActivateDiagnosticReport ? (
+          <Button
+            onClick={() =>
+              activateDiagnosticsRef?.current?.showModalFor(stmt.label)
+            }
+            type="secondary"
+            size="small"
+          >
+            Activate
+          </Button>
+        ) : (
+          <DiagnosticStatusBadge status="WAITING" />
+        )}
+        {hasCompletedDiagnosticsReports && (
+          <Dropdown<IStatementDiagnosticsReport>
+            items={stmt.diagnosticsReports
+              .filter(dr => dr.completed)
+              .map(dr => ({
+                name: (
+                  <a
+                    className={cx("download-diagnostics-link")}
+                    href={`_admin/v1/stmtbundle/${dr.statement_diagnostics_id}`}
+                  >
+                    {`${TimestampToMoment(dr.requested_at).format(
+                      "ll [at] LT [diagnostic]",
+                    )}`}
+                  </a>
+                ),
+                value: dr,
+              }))}
+            onChange={onDiagnosticsDownload}
+            menuPosition="right"
+            customToggleButtonOptions={{
+              size: "small",
+              icon: <Download />,
+              textAlign: "center",
+            }}
+            className={cx("activate-diagnostic-dropdown")}
+          />
+        )}
+      </div>
     );
   },
   nodeLink: (nodeNames: NodeNames) => (stmt: any) => (

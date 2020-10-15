@@ -60,3 +60,23 @@
     text-decoration: underline;
   }
 }
+
+.activate-diagnostic-col {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+
+  .activate-diagnostic-link {
+    width: auto!important;
+  }
+
+  .activate-diagnostic-dropdown {
+    margin-left: $spacing-base;
+  }
+
+  .download-diagnostics-link {
+    color: inherit;
+    text-decoration: inherit;
+  }
+}

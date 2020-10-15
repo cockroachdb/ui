@@ -1,18 +1,27 @@
 @import '../core/index.module.scss';
 
+@mixin icon-color($color: $colors--neutral-7) {
+  svg {
+    fill: $color;
+  }
+}
+
 .crl-button {
   border-radius: 3px;
   cursor: pointer;
   width: max-content;
+  @include icon-color();
 }
 
 .crl-button--type-flat {
   border: solid 1px transparent;
   background-color: transparent;
   color: $colors--primary-blue-3;
+  @include icon-color($colors--primary-blue-3);
 
   &:hover {
     color: $colors--primary-blue-4;
+    @include icon-color($colors--primary-blue-4);
   }
 
   &:active {
@@ -26,6 +35,7 @@
 
   &.crl-button--disabled {
     color: $colors--neutral-4;
+    @include icon-color($colors--neutral-4);
     pointer-events: none;
     cursor: default;
   }
@@ -40,6 +50,7 @@
   line-height: 22px;
   letter-spacing: 0.1px;
   color: $colors--neutral-7;
+  @include icon-color($colors--neutral-7);
 
   &:hover {
     text-decoration: underline;
@@ -49,10 +60,12 @@
 .crl-button--type-primary {
   background-color: $colors--primary-green-3;
   color: $colors--white;
+  @include icon-color($colors--white);
   border: solid 1px $colors--primary-green-3;
 
   &:hover {
     color: $colors--white;
+    @include icon-color($colors--white);
   }
 
   &:active {
@@ -68,6 +81,7 @@
     border: solid 1px #c4e6ba;
     background: #c4e6ba;
     color: $colors--white;
+    @include icon-color($colors--white);
     pointer-events: none;
     cursor: default;
   }
@@ -76,10 +90,12 @@
 .crl-button--type-secondary {
   background-color: $colors--white;
   color: $colors--primary-text;
+  @include icon-color($colors--primary-text);
   border: solid 1px $colors--neutral-4;
 
   &:hover, &:active, &:focus {
     color: $colors--primary-text;
+    @include icon-color($colors--primary-text);
     background: $colors--neutral-1;
   }
 
@@ -96,6 +112,7 @@
     border: solid 1px $colors--neutral-4;
     background: $colors--neutral-1;
     color: $colors--neutral-5;
+    @include icon-color($colors--neutral-5);
     pointer-events: none;
     cursor: default;
   }
@@ -109,9 +126,9 @@
 }
 
 .crl-button--size-small {
-  height: $line-height--medium;
-  min-width: $line-height--medium;
-  padding: 0 $spacing-xx-small;
+  height: $line-height--large;
+  min-width: $line-height--large;
+  padding: 0 $spacing-base;
 }
 
 .crl-button__container {
@@ -121,13 +138,22 @@
 }
 
 .crl-button__content {
+  display: flex;
   flex: 1;
+}
+
+
+.crl-button__icon {
+  display: flex;
+  align-items: center;
 }
 
 .crl-button__icon--push-left {
   order: -1;
+  margin-right: $spacing-base;
 }
 
 .crl-button__icon--push-right {
   order: 1;
+  margin-left: $spacing-base;
 }
