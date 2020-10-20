@@ -1,10 +1,10 @@
 import React from "react";
 import moment from "moment";
-import { paginationPageCount } from "src";
 import { DATE_FORMAT } from "src/util";
 import { statisticsClasses } from "../transactionsPageClasses";
 import { ISortedTablePagination } from "../../sortedtable";
 import { Button } from "src/button";
+import { ResultsPerPageLabel } from "src/pagination";
 
 const { statistic, countTitle, lastCleared } = statisticsClasses;
 
@@ -31,12 +31,14 @@ export const TransactionsPageStatistic: React.FC<TableStatistics> = ({
   onClearFilters,
   activeFilters,
 }) => {
-  const paginationCount = paginationPageCount(
-    { ...pagination, total: totalCount },
-    arrayItemName,
-    // selectedApp,
-    search,
+  const resultsPerPageLabel = (
+    <ResultsPerPageLabel
+      pagination={{ ...pagination, total: totalCount }}
+      pageName={arrayItemName}
+      search={search}
+    />
   );
+
   const resultsCountAndClear = (
     <>
       {totalCount} {totalCount === 1 ? "result" : "results"}
@@ -50,7 +52,7 @@ export const TransactionsPageStatistic: React.FC<TableStatistics> = ({
   return (
     <div className={statistic}>
       <h4 className={countTitle}>
-        {activeFilters ? resultsCountAndClear : paginationCount}
+        {activeFilters ? resultsCountAndClear : resultsPerPageLabel}
       </h4>
       <h4 className={lastCleared}>{renderLastCleared(lastReset)}</h4>
     </div>

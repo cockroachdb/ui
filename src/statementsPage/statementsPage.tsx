@@ -1,19 +1,19 @@
 import React from "react";
 import { RouteComponentProps } from "react-router-dom";
-import { Icon, Pagination } from "antd";
 import { isNil, merge, forIn } from "lodash";
 import moment from "moment";
 import Helmet from "react-helmet";
 import classNames from "classnames/bind";
 
 import {
-  paginationPageCount,
   Dropdown,
   Loading,
   PageConfig,
   PageConfigItem,
   SortSetting,
   Search,
+  Pagination,
+  ResultsPerPageLabel,
   Text,
   TextTypes,
 } from "src/index";
@@ -211,31 +211,6 @@ export class StatementsPage extends React.Component<
     );
   };
 
-  renderPage = (
-    _page: number,
-    type: "page" | "prev" | "next" | "jump-prev" | "jump-next",
-    originalElement: React.ReactNode,
-  ) => {
-    switch (type) {
-      case "jump-prev":
-        return (
-          <div className={cx("_pg-jump")}>
-            <Icon type="left" />
-            <span className={cx("_jump-dots")}>•••</span>
-          </div>
-        );
-      case "jump-next":
-        return (
-          <div className={cx("_pg-jump")}>
-            <Icon type="right" />
-            <span className={cx("_jump-dots")}>•••</span>
-          </div>
-        );
-      default:
-        return originalElement;
-    }
-  };
-
   renderLastCleared = () => {
     const { lastReset } = this.props;
     return `Last cleared ${moment.utc(lastReset).format(DATE_FORMAT)}`;
@@ -274,12 +249,12 @@ export class StatementsPage extends React.Component<
         <section className={sortableTableCx("cl-table-container")}>
           <div className={cx("cl-table-statistic")}>
             <h4 className={cx("cl-count-title")}>
-              {paginationPageCount(
-                { ...pagination, total: totalCount },
-                "statements",
-                selectedApp,
-                search,
-              )}
+              <ResultsPerPageLabel
+                pagination={{ ...pagination, total: totalCount }}
+                pageName={"statements"}
+                selectedApp={selectedApp}
+                search={search}
+              />
             </h4>
             <h4 className={cx("last-cleared-title")}>
               {this.renderLastCleared()}
@@ -306,18 +281,10 @@ export class StatementsPage extends React.Component<
           />
         </section>
         <Pagination
-          size="small"
-          itemRender={
-            this.renderPage as (
-              page: number,
-              type: "page" | "prev" | "next" | "jump-prev" | "jump-next",
-            ) => React.ReactNode
-          }
           pageSize={pagination.pageSize}
           current={pagination.current}
           total={data.length}
           onChange={this.onChangePage}
-          hideOnSinglePage
         />
       </div>
     );
