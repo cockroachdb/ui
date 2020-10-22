@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import { MinusCircle } from "@cockroachlabs/icons";
 
-import Icon, { IconProps } from "./Icon";
+import Icon, { IconProps, IconSize, IconTint } from "./Icon";
 
 const defaultProps = {
   iconName: "Plus",
@@ -10,7 +10,7 @@ const defaultProps = {
 
 const renderSubject = (overrideProps?: IconProps) => {
   const props = Object.assign(defaultProps, overrideProps);
-  return shallow(<Icon {...props} />);
+  return shallow<IconProps>(<Icon {...props} />);
 };
 
 test("Icon should render given an iconName", () => {
@@ -31,18 +31,20 @@ describe("Icon size prop", () => {
 
   test("will change the size of the Icon", () => {
     const wrapper = renderSubject();
+    const iconSizes: Array<[IconSize, string]> = [
+      [undefined, "size-default"],
+      ["default", "size-default"],
+      ["small", "size-small"],
+      ["medium", "size-medium"],
+      ["large", "size-large"],
+      ["x-large", "size-x-large"],
+      ["xx-large", "size-xx-large"],
+    ];
 
-    wrapper.setProps({ size: "large" });
-    expect(wrapper.prop("className")).toContain("size-large");
-
-    wrapper.setProps({ size: "medium" });
-    expect(wrapper.prop("className")).toContain("size-medium");
-
-    wrapper.setProps({ size: "small" });
-    expect(wrapper.prop("className")).toContain("size-small");
-
-    wrapper.setProps({ size: "tiny" });
-    expect(wrapper.prop("className")).toContain("size-tiny");
+    iconSizes.forEach(([iconSize, expectedClassName]) => {
+      wrapper.setProps({ size: iconSize });
+      expect(wrapper.prop("className")).toContain(expectedClassName);
+    });
   });
 });
 
@@ -54,23 +56,20 @@ describe("Icon tint prop", () => {
 
   test("changes the tint of an icon", () => {
     const wrapper = renderSubject();
+    const iconTints: Array<[IconTint, string]> = [
+      [undefined, "tint-neutral"],
+      ["neutral", "tint-neutral"],
+      ["inherit", "tint-inherit"],
+      ["white", "tint-white"],
+      ["red", "tint-red"],
+      ["green", "tint-green"],
+      ["blue", "tint-blue"],
+      ["orange", "tint-orange"],
+    ];
 
-    wrapper.setProps({ tint: "blue" });
-    expect(wrapper.prop("className")).toContain("tint-blue");
-
-    wrapper.setProps({ tint: "green" });
-    expect(wrapper.prop("className")).toContain("tint-green");
-
-    wrapper.setProps({ tint: "red" });
-    expect(wrapper.prop("className")).toContain("tint-red");
-
-    wrapper.setProps({ tint: "white" });
-    expect(wrapper.prop("className")).toContain("tint-white");
-
-    wrapper.setProps({ tint: "neutral" });
-    expect(wrapper.prop("className")).toContain("tint-neutral");
-
-    wrapper.setProps({ tint: "inherit" });
-    expect(wrapper.prop("className")).toContain("tint-inherit");
+    iconTints.forEach(([iconTint, expectedClassName]) => {
+      wrapper.setProps({ tint: iconTint });
+      expect(wrapper.prop("className")).toContain(expectedClassName);
+    });
   });
 });
