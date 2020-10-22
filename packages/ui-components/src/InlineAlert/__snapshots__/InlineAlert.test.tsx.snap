@@ -1,0 +1,206 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InlineAlert renders with error intent 1`] = `
+<div
+  className="root intent-error"
+>
+  <div
+    className="icon-container"
+  >
+    <Component
+      iconName="ErrorCircleFilled"
+      size="default"
+      tint="red"
+    />
+  </div>
+  <div
+    className="container"
+  >
+    <div
+      className="title"
+    >
+      Hello world!
+    </div>
+  </div>
+</div>
+`;
+
+exports[`InlineAlert renders with info intent 1`] = `
+<div
+  className="root intent-info"
+>
+  <div
+    className="icon-container"
+  >
+    <Component
+      iconName="InfoCircleFilled"
+      size="default"
+      tint="blue"
+    />
+  </div>
+  <div
+    className="container"
+  >
+    <div
+      className="title"
+    >
+      Hello world!
+    </div>
+  </div>
+</div>
+`;
+
+exports[`InlineAlert renders with provided description 1`] = `
+<div
+  className="root intent-info"
+>
+  <div
+    className="icon-container"
+  >
+    <Component
+      iconName="InfoCircleFilled"
+      size="default"
+      tint="blue"
+    />
+  </div>
+  <div
+    className="container"
+  >
+    <div
+      className="description"
+    >
+      Hello world!
+    </div>
+  </div>
+</div>
+`;
+
+exports[`InlineAlert renders with provided title 1`] = `
+<div
+  className="root intent-info"
+>
+  <div
+    className="icon-container"
+  >
+    <Component
+      iconName="InfoCircleFilled"
+      size="default"
+      tint="blue"
+    />
+  </div>
+  <div
+    className="container"
+  >
+    <div
+      className="title"
+    >
+      Hello world!
+    </div>
+  </div>
+</div>
+`;
+
+exports[`InlineAlert renders with provided title and description 1`] = `
+<div
+  className="root intent-info"
+>
+  <div
+    className="icon-container"
+  >
+    <Component
+      iconName="InfoCircleFilled"
+      size="default"
+      tint="blue"
+    />
+  </div>
+  <div
+    className="container"
+  >
+    <div
+      className="title"
+    >
+      Hello world!
+    </div>
+    <div
+      className="description"
+    >
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </div>
+  </div>
+</div>
+`;
+
+exports[`InlineAlert renders with success intent 1`] = `
+<div
+  className="root intent-success"
+>
+  <div
+    className="icon-container"
+  >
+    <Component
+      iconName="CheckCircleFilled"
+      size="default"
+      tint="green"
+    />
+  </div>
+  <div
+    className="container"
+  >
+    <div
+      className="title"
+    >
+      Hello world!
+    </div>
+  </div>
+</div>
+`;
+
+exports[`InlineAlert renders with undefined intent 1`] = `
+<div
+  className="root intent-info"
+>
+  <div
+    className="icon-container"
+  >
+    <Component
+      iconName="InfoCircleFilled"
+      size="default"
+      tint="blue"
+    />
+  </div>
+  <div
+    className="container"
+  >
+    <div
+      className="title"
+    >
+      Hello world!
+    </div>
+  </div>
+</div>
+`;
+
+exports[`InlineAlert renders with warning intent 1`] = `
+<div
+  className="root intent-warning"
+>
+  <div
+    className="icon-container"
+  >
+    <Component
+      iconName="Caution"
+      size="default"
+      tint="orange"
+    />
+  </div>
+  <div
+    className="container"
+  >
+    <div
+      className="title"
+    >
+      Hello world!
+    </div>
+  </div>
+</div>
+`;
