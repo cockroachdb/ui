@@ -116,6 +116,7 @@ const tints: Array<IconTint> = [
   "white",
   "neutral",
   "inherit",
+  "orange",
 ];
 
 export const Example = () => (

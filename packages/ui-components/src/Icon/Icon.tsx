@@ -21,7 +21,8 @@ export type IconTint =
   | "red"
   | "white"
   | "neutral"
-  | "inherit";
+  | "inherit"
+  | "orange";
 
 type OwnIconProps = {
   iconName: keyof typeof Icons;
