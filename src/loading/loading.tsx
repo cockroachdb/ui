@@ -1,8 +1,15 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import classNames from "classnames/bind";
-import { RequestError, adminUIAccess } from "src/util";
-import spinner from "src/assets/spinner.gif";
+import { chain } from "lodash";
+import {
+  InlineAlert,
+  InlineAlertIntent,
+  InlineAlertProps,
+  Spinner,
+} from "@cockroachlabs/ui-components";
+import { adminUIAccess, isForbiddenRequestError } from "src/util";
 import styles from "./loading.module.scss";
+import { Anchor } from "../anchor";
 
 interface LoadingProps {
   loading: boolean;
@@ -10,6 +17,8 @@ interface LoadingProps {
   className?: string;
   image?: string;
   render: () => any;
+  errorClassName?: string;
+  loadingClassName?: string;
 }
 
 const cx = classNames.bind(styles);
@@ -36,61 +45,68 @@ function getValidErrorsList(errors?: Error | Error[] | null): Error[] | null {
 }
 
 /**
- * getDetails produces a hint for the given error object.
- */
-function getDetails(error: Error): ReactNode {
-  if (error instanceof RequestError) {
-    if (error.status === 403) {
-      return (
-        <p>
-          Insufficient privileges to view this resource.{" "}
-          <a href={adminUIAccess} target="_blank" rel="noopener noreferrer">
-            Learn more
-          </a>
-        </p>
-      );
-    }
-  }
-  return <p>no details available</p>;
-}
-
-/**
  * Loading will display a background image instead of the content if the
  * loading prop is true.
  */
 export const Loading: React.FC<LoadingProps> = props => {
-  const className =
-    props.className || cx("loading-image", "loading-image__spinner");
-  const imageURL = props.image || spinner;
-  const image = {
-    backgroundImage: `url(${imageURL})`,
-  };
-
   const errors = getValidErrorsList(props.error);
 
   // Check for `error` before `loading`, since tests for `loading` often return
   // true even if CachedDataReducer has an error and is no longer really "loading".
   if (errors) {
-    const errorCountMessage =
-      errors.length > 1
-        ? "Multiple errors occurred"
-        : "An error was encountered";
+    // - map Error to InlineAlert props. RestrictedPermissions handled as "info" message;
+    // - group errors by intend to show separate alerts per intent.
+    const errorAlerts = chain(errors)
+      .map<Omit<InlineAlertProps, "title">>(error => {
+        if (isForbiddenRequestError(error)) {
+          return {
+            intent: "info",
+            description: (
+              <span>
+                {`${error.name}: ${error.message}`}{" "}
+                <Anchor href={adminUIAccess}>Learn more</Anchor>
+              </span>
+            ),
+          };
+        } else {
+          return {
+            intent: "error",
+            description: <span>{error.message}</span>,
+          };
+        }
+      })
+      .groupBy(alert => alert.intent)
+      .map((alerts, intent: InlineAlertIntent) => {
+        if (alerts.length === 1) {
+          return <InlineAlert intent={intent} title={alerts[0].description} />;
+        } else {
+          return (
+            <InlineAlert
+              intent={intent}
+              title={<p>Multiple errors occurred while loading this data:</p>}
+              description={
+                <div>
+                  {alerts.map((alert, idx) => (
+                    <p key={idx}>{alert.description}</p>
+                  ))}
+                </div>
+              }
+            />
+          );
+        }
+      })
+      .value();
+
     return (
-      <div className={cx("loading-error")}>
-        <p>{errorCountMessage} while loading this data:</p>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>
-              <b>{error.message}</b>
-              {getDetails(error)}
-            </li>
-          ))}
-        </ul>
+      <div className={cx("alerts-container", props.errorClassName)}>
+        {errorAlerts}
       </div>
     );
   }
   if (props.loading) {
-    return <div className={className} style={image} />;
+    return (
+      <Spinner className={cx("loading-indicator", props.loadingClassName)} />
+    );
   }
   return props.render();
 };
