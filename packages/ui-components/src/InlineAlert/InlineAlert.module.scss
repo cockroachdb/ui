@@ -1,0 +1,46 @@
+@import "../styles/tokens.scss";
+
+.root {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  border-left: solid crl-gutters(.5);
+  border-radius: crl-gutters(.5);
+  padding: crl-gutters(1.5) crl-gutters(3) crl-gutters(1.5) 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.title {
+  line-height: crl-gutters(3);
+  margin-bottom: crl-gutters(.5);
+  font-weight: 600;
+}
+
+.icon-container {
+  padding: 0 crl-gutters(2);
+}
+
+.intent-info {
+  border-left-color: $color-background-info;
+  background-color: $color-background-badge-info;
+}
+
+.intent-error {
+  border-left-color: $color-background-danger;
+  background-color: $color-background-badge-danger;
+}
+
+.intent-warning {
+  border-left-color: $color-base-orange;
+  background-color: $color-background-badge-warning;
+}
+
+.intent-success {
+  border-left-color: $color-core-green-3;
+  background-color: $color-core-green-1;
+}
