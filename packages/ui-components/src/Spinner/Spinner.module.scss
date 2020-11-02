@@ -1,0 +1,47 @@
+@import "../styles/tokens.scss";
+
+// stroke values depend on viewBox of svg file (viewBox="0 0 100 100")
+svg.spinner {
+  circle {
+    fill: transparent;
+    stroke: $color-core-neutral-6;
+    stroke-linecap: round;
+    stroke-dasharray: 220;
+    stroke-dashoffset: 280;
+    stroke-width: 10px;
+    transform-origin: 50% 50%;
+    animation: spinner 3s linear infinite;
+  }
+}
+
+.size-default {
+  width: crl-gutters(5);
+  height: crl-gutters(5);
+}
+
+.size-small {
+  width: crl-gutters(3);
+  height: crl-gutters(3);
+}
+
+.size-large {
+  width: crl-gutters(8);
+  height: crl-gutters(8);
+}
+
+@keyframes spinner {
+  0% {
+    stroke-dashoffset: 25;
+    transform: rotate(0deg);
+  }
+
+  50% {
+    stroke-dashoffset: 125;
+    transform: rotate(720deg);
+  }
+
+  100% {
+    stroke-dashoffset: 25;
+    transform: rotate(1080deg);
+  }
+}
