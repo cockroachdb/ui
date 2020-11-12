@@ -96,6 +96,29 @@ export const Example = () => (
           </Button>
         </ButtonDisplay>
       </ButtonDisplaySection>
+      <h3>Button Elements</h3>
+      <ButtonDisplaySection>
+        <ButtonDisplay>
+          <Label>as default (`button`) with type submit wrapped in a `form`</Label>
+          <form onSubmit={(e) => {e.preventDefault(); alert('submit!');}}>
+            <Button type="submit">
+              Submit
+            </Button>
+          </form>
+        </ButtonDisplay>
+        <ButtonDisplay>
+          <Label>as `a` tag with `href` value</Label>
+          <Button as="a" href="https://cockroachlabs.com">
+            cockroachlabs.com
+          </Button>
+        </ButtonDisplay>
+        <ButtonDisplay>
+          <Label>as `div`</Label>
+          <Button as="div">
+            Just a div
+          </Button>
+        </ButtonDisplay>
+      </ButtonDisplaySection>
     </section>
   </StoryContainer>
 );

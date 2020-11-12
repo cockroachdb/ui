@@ -13,25 +13,23 @@ export type ButtonIntent =
 
 export type ButtonSize = "standard" | "small";
 
-type ElementProps<Type extends ElementType> = Pick<
-  React.ComponentProps<Type>,
-  keyof React.ComponentProps<Type>
->;
-
-type CombinedProps<OwnProps, NativeElementProps> = OwnProps &
-  Omit<NativeElementProps, keyof OwnProps>;
-
-type OwnButtonProps<Element> = {
-  as: Element;
+// OwnButtonProps contains all the props that the Button component holds
+type OwnButtonProps<T extends ElementType> = {
+  // `as` holds the name of the underlying Element that we'd like the Button to render as
+  as: T;
   intent?: ButtonIntent;
   size?: ButtonSize;
   fluid?: boolean;
 };
 
-type ButtonProps<OwnProps, Type extends ElementType> = CombinedProps<
-  OwnProps,
-  ElementProps<Type>
->;
+// ButtonProps is how we express the final type of Button by taking the union of `OwnButtonProps`
+// and all the props in T which is provided by the `as` prop in `OwnButtonProps` and is constrained
+// to be an Element. However, we also use `Omit` to remove any props that the element itself has if
+// we override them in `OwnButtonProps`. This lets us proxy an props that we'd like to manage
+// ourselves while keeping all the rest pure from the underlying element.
+type ButtonProps<T extends ElementType> =
+  OwnButtonProps<T> &
+  Omit<React.ComponentPropsWithoutRef<T>, keyof OwnButtonProps<T>>
 
 const cx = classnames.bind(styles);
 
@@ -43,7 +41,7 @@ export function Button<T extends ElementType = "button">({
   children,
   className,
   ...rest
-}: ButtonProps<OwnButtonProps<T>, T>) {
+}: ButtonProps<T>) {
   const Element: ElementType = as;
   const classNames = cx(
     "button",
