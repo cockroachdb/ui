@@ -1,4 +1,5 @@
-import d3 from "d3";
+import { scaleLinear } from "d3-scale";
+import { extent as d3Extent } from "d3-array";
 import _ from "lodash";
 import React from "react";
 import { Tooltip } from "src/index";
@@ -36,13 +37,12 @@ export function barChartFactory<T>(
     const getTotal = (d: T) => _.sum(_.map(accessors, ({ value }) => value(d)));
     const getTotalWithStdDev = (d: T) => getTotal(d) + stdDevAccessor.value(d);
 
-    const extent = d3.extent(
+    const extent = d3Extent(
       rows,
       stdDevAccessor ? getTotalWithStdDev : getTotal,
     );
 
-    const scale = d3.scale
-      .linear()
+    const scale = scaleLinear()
       .domain([0, extent[1]])
       .range([0, 100]);
 

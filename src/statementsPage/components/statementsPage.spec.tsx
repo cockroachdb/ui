@@ -7,7 +7,7 @@ import {
   StatementsPage,
   StatementsPageProps,
   StatementsPageState,
-} from "./statementsPage";
+} from "src/statementsPage";
 import statementsPagePropsFixture from "./statementsPage.fixture";
 
 describe("StatementsPage", () => {

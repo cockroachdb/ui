@@ -1,3 +1,4 @@
+import React from "react";
 import * as protos from "@cockroachlabs/crdb-protobuf-client";
 import { stdDevLong } from "src/util/appStats";
 import { Duration } from "src/util/format";

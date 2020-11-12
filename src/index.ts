@@ -1,4 +1,5 @@
 import "antd/dist/antd.less";
+import "./protobufInit";
 import * as util from "./util";
 export * from "./anchor";
 export * from "./badge";

@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import statementsPageStyles from "../statementsPage/statementsPage.module.scss";
+import statementsPageStyles from "../statementsPage/components/statementsPage.module.scss";
 import statementsTableStyles from "../statementsTable/statementsTableContent.module.scss";
 import sortedTableStyles from "../sortabletable/sortabletable.module.scss";
 

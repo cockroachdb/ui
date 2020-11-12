@@ -22,14 +22,14 @@ import {
   AggregateStatistics,
   makeStatementsColumns,
   StatementsSortedTable,
-} from "../statementsTable";
+} from "../../statementsTable";
 import {
   ActivateStatementDiagnosticsModal,
   ActivateDiagnosticsModalRef,
 } from "src/statementsDiagnostics";
-import { ISortedTablePagination } from "../sortedtable";
+import { ISortedTablePagination } from "../../sortedtable";
 import styles from "./statementsPage.module.scss";
-import sortableTableStyles from "../sortabletable/sortabletable.module.scss";
+import sortableTableStyles from "../../sortabletable/sortabletable.module.scss";
 import { EmptyStatementsPlaceholder } from "./emptyStatementsPlaceholder";
 import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
 
@@ -57,6 +57,7 @@ interface OwnProps {
     columnTitle: string,
     ascending: boolean,
   ) => void;
+  basePath?: string;
 }
 
 export interface StatementsPageState {
@@ -299,7 +300,7 @@ export class StatementsPage extends React.Component<
     } = this.props;
     const app = getMatchParamByName(match, appAttr);
     return (
-      <React.Fragment>
+      <div className={cx("root")}>
         <Helmet title={app ? `${app} App | Statements` : "Statements"} />
 
         <section className={cx("section")}>
@@ -317,7 +318,7 @@ export class StatementsPage extends React.Component<
           refreshDiagnosticsReports={refreshStatementDiagnosticsRequests}
           onOpenModal={onDiagnosticsModalOpen}
         />
-      </React.Fragment>
+      </div>
     );
   }
 }
