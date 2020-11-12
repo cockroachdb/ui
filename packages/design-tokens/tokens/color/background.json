@@ -16,7 +16,8 @@
       },
 
       "avatar": {
-        "default, disabled": { "value": "{color.core.neutral.2.value}" },
+        "default": { "value": "{color.core.neutral.2.value}" },
+        "disabled": { "value": "{color.core.neutral.2.value}" },
         "pending": { "value": "{color.core.orange.1.value}" },
         "invalid": { "value": "{color.core.red.1.value}" },
         "selectable": { "value": "{color.core.blue.1.value}" }
@@ -25,19 +26,26 @@
       "button": {
         "primary": {
           "success": {
-            "base, focus": { "value": "{color.base.purple.value}" },
-            "hover, active": { "value": "{color.core.purple.4.value}" },
+            "base": { "value": "{color.base.purple.value}" },
+            "focus": { "value": "{color.base.purple.value}" },
+            "hover": { "value": "{color.core.purple.4.value}" },
+            "active": { "value": "{color.core.purple.4.value}" },
             "disabled": { "value": "{color.core.purple.2.value}" }
           },
           "danger": {
-            "base, focus": { "value": "{color.base.red.value}" },
-            "hover, active": { "value": "{color.core.red.4.value}" },
+            "base": { "value": "{color.base.red.value}" },
+            "hover": { "value": "{color.core.red.4.value}" },
+            "focus": { "value": "{color.base.red.value}" },
+            "active": { "value": "{color.core.red.4.value}" },
             "disabled": { "value": "{color.core.red.2.value}" }
           }
         },
         "secondary": {
           "base": { "value": "{color.base.white.value}" },
-          "hover, active, focus, disabled": { "value": "{color.core.neutral.1.value}" },
+          "hover": { "value": "{color.core.neutral.1.value}" },
+          "disabled": { "value": "{color.core.neutral.1.value}" },
+          "active": { "value": "{color.core.neutral.1.value}" },
+          "focus": { "value": "{color.core.neutral.1.value}" }
         }
       }
     }

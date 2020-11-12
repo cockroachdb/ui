@@ -15,20 +15,30 @@
       "button": {
         "primary": {
           "success": {
-            "base, hover": { "value": "{color.base.purple.value}" },
-            "hover, active, focused": { "value": "{color.core.purple.4.value}" },
-            "disabled": { "value": "{color.base.purple.2.value}" }
+            "base": { "value": "{color.base.purple.value}" },
+            "hover": { "value": "{color.core.purple.4.value}" },
+            "active": { "value": "{color.core.purple.4.value}" },
+            "focused": { "value": "{color.core.purple.4.value}" },
+            "disabled": { "value": "{color.core.purple.2.value}" }
           },
           "danger": {
             "base": { "value": "{color.base.red.value}" },
-            "hover, active": { "value": "{color.core.red.4.value}" },
+            "hover": { "value": "{color.core.red.4.value}" },
+            "active": { "value": "{color.core.red.4.value}" },
             "focused": { "value": "{color.core.red.4.value}" },
             "disabled": { "value": "{color.core.red.2.value}" }
           }
         },
         "secondary": {
-          "base, hover, disabled": { "value": "{color.core.neutral.4.value}" },
-          "active, focused": { "value": "{color.core.neutral.5.value}" },
+          "base": { "value": "{color.core.neutral.4.value}" },
+          "hover": { "value": "{color.core.neutral.4.value}" },
+          "disabled": { "value": "{color.core.neutral.4.value}" },
+          "active": { "value": "{color.core.neutral.5.value}" },
+          "focused": { "value": "{color.core.neutral.5.value}" }
+        },
+        "tertiary": {
+          "active": { "value": "{color.core.blue.1.value}" },
+          "focused": { "value": "{color.base.blue.value}" }
         }
       }
     }

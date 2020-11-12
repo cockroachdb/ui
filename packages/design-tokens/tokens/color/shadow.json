@@ -12,6 +12,9 @@
         },
         "secondary": {
           "focused": { "value": "{color.core.neutral.4.value}" }
+        },
+        "tertiary": {
+          "focused": { "value": "{color.base.blue.value}" }
         }
       }
     }
