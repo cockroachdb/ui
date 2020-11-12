@@ -8,8 +8,7 @@ import styles from "./Button.module.scss";
 export type ButtonIntent =
   | "primary-success"
   | "primary-danger"
-  | "secondary"
-  | "tertiary";
+  | "secondary";
 export type ButtonSize = "standard" | "small";
 
 type OwnButtonProps = {
