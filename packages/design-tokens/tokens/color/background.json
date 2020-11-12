@@ -12,7 +12,8 @@
         "neutral": { "value": "{color.core.neutral.2.value}" },
         "success": { "value": "{color.core.green.1.value}" },
         "warning": { "value": "{color.core.orange.1.value}" },
-        "danger": { "value": "{color.core.red.1.value}" }
+        "danger": { "value": "{color.core.red.1.value}" },
+        "info": { "value": "{color.core.blue.1.value}" }
       },
 
       "avatar": {
@@ -20,6 +21,7 @@
         "disabled": { "value": "{color.core.neutral.2.value}" },
         "pending": { "value": "{color.core.orange.1.value}" },
         "invalid": { "value": "{color.core.red.1.value}" },
+        "focus": { "value": "{color.core.blue.1.value}" },
         "selectable": { "value": "{color.core.blue.1.value}" }
       },
 
@@ -27,7 +29,7 @@
         "primary": {
           "success": {
             "base": { "value": "{color.base.purple.value}" },
-            "focus": { "value": "{color.base.purple.value}" },
+            "focused": { "value": "{color.base.purple.value}" },
             "hover": { "value": "{color.core.purple.4.value}" },
             "active": { "value": "{color.core.purple.4.value}" },
             "disabled": { "value": "{color.core.purple.2.value}" }
@@ -35,7 +37,7 @@
           "danger": {
             "base": { "value": "{color.base.red.value}" },
             "hover": { "value": "{color.core.red.4.value}" },
-            "focus": { "value": "{color.base.red.value}" },
+            "focused": { "value": "{color.base.red.value}" },
             "active": { "value": "{color.core.red.4.value}" },
             "disabled": { "value": "{color.core.red.2.value}" }
           }
