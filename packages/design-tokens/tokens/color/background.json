@@ -47,7 +47,7 @@
           "hover": { "value": "{color.core.neutral.1.value}" },
           "disabled": { "value": "{color.core.neutral.1.value}" },
           "active": { "value": "{color.core.neutral.1.value}" },
-          "focus": { "value": "{color.core.neutral.1.value}" }
+          "focused": { "value": "{color.core.neutral.1.value}" }
         }
       }
     }
