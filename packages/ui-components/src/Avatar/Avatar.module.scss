@@ -25,22 +25,22 @@
 }
 
 .intent-default {
-  background: $color-background-avatar-default;
+  background: $component-avatar-background-color-default;
   color: $color-core-neutral-7;
 }
 
 .intent-active {
-  background: $color-background-avatar-focus;
+  background: $component-avatar-background-color-focus;
   color: $color-base-blue;
 }
 
 .intent-pending {
-  background: $color-background-avatar-pending;
+  background: $component-avatar-background-color-pending;
   color: $color-core-orange-4;
 }
 
 .intent-invalid {
-  background: $color-background-avatar-invalid;
+  background: $component-avatar-background-color-invalid;
   color: $color-core-red-4;
 }
 
@@ -71,8 +71,8 @@
 }
 
 .disabled {
-  background: $color-background-avatar-disabled;
-  color: $color-font-avatar-disabled;
+  background: $component-avatar-background-color-disabled;
+  color: $component-avatar-font-color-disabled;
 
   &:focus,
   &:hover {
@@ -84,19 +84,19 @@
   &:focus,
   &:hover {
     &.intent-default {
-      @include selectable-border($color-border-avatar-default);
+      @include selectable-border($component-avatar-border-color-default);
     }
 
     &.intent-active {
-      @include selectable-border($color-border-avatar-focus);
+      @include selectable-border($component-avatar-border-color-focus);
     }
 
     &.intent-pending {
-      @include selectable-border($color-border-avatar-pending);
+      @include selectable-border($component-avatar-border-color-pending);
     }
 
     &.intent-invalid {
-      @include selectable-border($color-border-avatar-invalid);
+      @include selectable-border($component-avatar-border-color-invalid);
     }
   }
 }

@@ -38,175 +38,175 @@
   }
 
   &.intent-primary-success {
-    background-color: $color-background-button-primary-success-base;
-    color: $color-font-button-primary-success-base;
+    background-color: $component-button-success-background-color-base;
+    color: $component-button-success-font-color-base;
     border-width: 1px;
     border-style: solid;
-    border-color: $color-border-button-primary-success-base;
+    border-color: $component-button-success-border-color-base;
 
     &:hover {
       background-color: crl-darken(
-        $color-background-button-primary-success-hover
+        $component-button-success-background-color-hover
       );
-      border-color: crl-darken($color-border-button-primary-success-hover);
-      color: $color-font-button-primary-success-hover;
+      border-color: crl-darken($component-button-success-border-color-hover);
+      color: $component-button-success-font-color-hover;
     }
 
     &:active {
       background-color: crl-darken(
-        $color-background-button-primary-success-active
+        $component-button-success-background-color-active
       );
       border-width: 1px;
-      border-color: crl-darken($color-border-button-primary-success-active);
+      border-color: crl-darken($component-button-success-border-color-active);
     }
 
     &:focus {
-      background-color: $color-background-button-primary-success-focused;
+      background-color: $component-button-success-background-color-focused;
       border-width: 1px;
-      border-color: crl-darken($color-border-button-primary-success-focused);
+      border-color: crl-darken($component-button-success-border-color-focused);
       @include crl-box-shadow(
         0,
         0,
         0,
         3px,
-        rgba($color-shadow-button-primary-success-focused, 0.4)
+        rgba($component-button-success-shadow-color-focused, 0.4)
       );
     }
 
     &:disabled {
       background-color: crl-lighten(
-        $color-background-button-primary-success-disabled
+        $component-button-success-background-color-disabled
       );
-      border-color: crl-lighten($color-border-button-primary-success-disabled);
+      border-color: crl-lighten($component-button-success-border-color-disabled);
     }
   }
 
   &.intent-primary-danger {
-    background-color: $color-background-button-primary-danger-base;
-    color: $color-font-button-primary-danger-base;
+    background-color: $component-button-danger-background-color-base;
+    color: $component-button-danger-font-color-base;
     border-width: 1px;
     border-style: solid;
-    border-color: $color-border-button-primary-danger-base;
+    border-color: $component-button-danger-border-color-base;
 
     &:hover {
       background-color: crl-darken(
-        $color-background-button-primary-danger-hover
+        $component-button-danger-background-color-hover
       );
-      border-color: crl-darken($color-border-button-primary-danger-hover);
-      color: $color-font-button-primary-danger-hover;
+      border-color: crl-darken($component-button-danger-border-color-hover);
+      color: $component-button-danger-font-color-hover;
     }
 
     &:active {
       background-color: crl-darken(
-        $color-background-button-primary-danger-active
+        $component-button-danger-background-color-active
       );
-      border-color: crl-darken($color-border-button-primary-danger-active);
+      border-color: crl-darken($component-button-danger-border-color-active);
     }
 
     &:focus {
-      background-color: $color-background-button-primary-danger-focused;
+      background-color: $component-button-danger-background-color-focused;
       border-width: 1px;
-      border-color: crl-darken($color-border-button-primary-danger-focused);
+      border-color: crl-darken($component-button-danger-border-color-focused);
       @include crl-box-shadow(
         0,
         0,
         0,
         3px,
-        rgba($color-shadow-button-primary-danger-focused, 0.4)
+        rgba($component-button-danger-shadow-color-focused, 0.4)
       );
     }
 
     &:disabled {
       background-color: crl-lighten(
-        $color-background-button-primary-danger-disabled
+        $component-button-danger-background-color-disabled
       );
-      border-color: crl-lighten($color-border-button-primary-danger-disabled);
+      border-color: crl-lighten($component-button-danger-border-color-disabled);
     }
   }
 
   &.intent-secondary {
-    background-color: $color-background-button-secondary-base;
+    background-color: $component-button-secondary-background-color-base;
     border-width: 1px;
     border-style: solid;
-    border-color: $color-border-button-secondary-base;
-    color: $color-font-button-secondary-base;
+    border-color: $component-button-secondary-border-color-base;
+    color: $component-button-secondary-font-color-base;
 
     &:hover {
-      background-color: $color-background-button-secondary-hover;
-      border-color: $color-border-button-secondary-hover;
+      background-color: $component-button-secondary-background-color-hover;
+      border-color: $component-button-secondary-border-color-hover;
     }
 
     &:active {
-      background-color: $color-background-button-secondary-active;
+      background-color: $component-button-secondary-background-color-ctive;
       border-width: 1px;
-      border-color: $color-border-button-secondary-active;
+      border-color: $component-button-secondary-border-color-active;
     }
 
     &:focus {
-      background-color: $color-background-button-secondary-focused;
+      background-color: $component-button-secondary-background-color-focused;
       border-width: 1px;
-      border-color: $color-border-button-secondary-focused;
+      border-color: $component-button-secondary-border-color-focused;
       @include crl-box-shadow(
         0,
         0,
         0,
         3px,
-        $color-shadow-button-secondary-focused
+        $component-button-secondary-shadow-color-focused
       );
     }
 
     &:disabled {
-      background-color: $color-background-button-secondary-disabled;
-      border-color: $color-border-button-secondary-disabled;
-      color: $color-font-button-secondary-disabled;
+      background-color: $component-button-secondary-background-color-disabled;
+      border-color: $component-button-secondary-border-color-disabled;
+      color: $component-button-secondary-font-color-disabled;
     }
   }
 
   &.intent-tertiary {
     background-color: transparent;
-    color: $color-font-button-tertiary-base;
+    color: $component-button-tertiary-font-color-base;
     border-width: 1px;
     border-style: solid;
     border-color: transparent;
 
     &:hover {
-      color: $color-font-button-tertiary-hover;
+      color: $component-button-tertiary-font-color-hover;
 
       &:active,
       &:focus {
-        color: $color-font-button-tertiary-active;
+        color: $component-button-tertiary-font-color-active;
       }
 
       svg {
-        fill: $color-font-button-tertiary-hover;
+        fill: $component-button-tertiary-font-color-hover;
       }
     }
 
     &:active {
-      border-color: $color-border-button-tertiary-active;
+      border-color: $component-button-tertiary-border-color-active;
     }
 
     &:focus {
-      border-color: $color-border-button-tertiary-focused;
+      border-color: $component-button-tertiary-border-color-focused;
       @include crl-box-shadow(
         0,
         0,
         0,
         3px,
-        rgba($color-shadow-button-tertiary-focused, 0.15)
+        rgba($component-button-tertiary-shadow-color-focused, 0.15)
       );
     }
 
     &:disabled {
-      color: $color-font-button-tertiary-disabled;
+      color: $component-button-tertiary-font-color-disabled;
 
       svg {
-        fill: $color-font-button-tertiary-disabled;
+        fill: $component-button-tertiary-font-color-disabled;
       }
     }
 
     svg {
-      fill: $color-font-button-tertiary-base;
+      fill: $component-button-tertiary-font-color-base;
     }
   }
 }

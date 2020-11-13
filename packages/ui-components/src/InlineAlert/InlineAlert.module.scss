@@ -26,18 +26,18 @@
 }
 
 .intent-info {
-  border-left-color: $color-background-info;
-  background-color: $color-background-badge-info;
+  border-left-color: $component-badge-background-color-info;
+  background-color: $component-badge-background-color-info;
 }
 
 .intent-error {
-  border-left-color: $color-background-danger;
-  background-color: $color-background-badge-danger;
+  border-left-color: $component-badge-background-color-danger;
+  background-color: $component-badge-background-color-danger;
 }
 
 .intent-warning {
   border-left-color: $color-base-orange;
-  background-color: $color-background-badge-warning;
+  background-color: $component-badge-background-color-warning;
 }
 
 .intent-success {
