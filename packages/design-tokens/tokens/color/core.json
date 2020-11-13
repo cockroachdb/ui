@@ -14,19 +14,18 @@
         "9": { "value": "#060c12" }
       },
       "blue": {
-        "0": { "value": "#e6edfe" },
-        "1": { "value": "#e0eefb" },
-        "2": { "value": "#74bdfd" },
-        "3": { "value": "#0788ff" },
-        "4": { "value": "#005fb3" },
+        "1": { "value": "#d7e4ff" },
+        "2": { "value": "#89b0ff" },
+        "3": { "value": "#0055ff" },
+        "4": { "value": "#0037a5" },
         "5": { "value": "#00294d" }
       },
       "purple": {
-        "1": { "value": "#cec0f2" },
-        "2": { "value": "#8c6be1" },
-        "3": { "value": "#542abd" },
-        "4": { "value": "#005fb3" },
-        "5": { "value": "#00294d" }
+        "1": { "value": "#e6ddff" },
+        "2": { "value": "#a686ff" },
+        "3": { "value": "#6933ff" },
+        "4": { "value": "#400bd3" },
+        "5": { "value": "#190f33" }
       },
       "green": {
         "1": { "value": "#b4f1aa" },
