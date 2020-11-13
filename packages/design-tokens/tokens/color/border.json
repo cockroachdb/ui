@@ -3,15 +3,6 @@
     "border": {
       "default": { "value": "{color.core.neutral.5.value}" },
 
-      "avatar": {
-        "default": { "value": "{color.core.neutral.7.value}" },
-        "pending": { "value": "{color.core.orange.4.value}" },
-        "invalid": { "value": "{color.core.red.4.value}" },
-        "disabled": { "value": "{color.core.neutral.2.value}" },
-        "selectable": { "value": "{color.base.blue.value}" },
-        "focus": { "value": "{color.base.blue.value}" }
-      },
-
       "button": {
         "primary": {
           "success": {

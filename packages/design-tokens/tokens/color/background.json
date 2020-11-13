@@ -16,15 +16,6 @@
         "info": { "value": "{color.core.blue.1.value}" }
       },
 
-      "avatar": {
-        "default": { "value": "{color.core.neutral.2.value}" },
-        "disabled": { "value": "{color.core.neutral.2.value}" },
-        "pending": { "value": "{color.core.orange.1.value}" },
-        "invalid": { "value": "{color.core.red.1.value}" },
-        "focus": { "value": "{color.core.blue.1.value}" },
-        "selectable": { "value": "{color.core.blue.1.value}" }
-      },
-
       "button": {
         "primary": {
           "success": {

@@ -28,15 +28,6 @@
         "danger": { "value": "{color.core.red.4.value}" }
       },
 
-      "avatar": {
-        "default": { "value": "{color.font.2.value}" },
-        "pending": { "value": "{color.core.orange.4.value}" },
-        "invalid": { "value": "{color.core.red.4.value}" },
-        "disabled": { "value": "{color.font.4.value}" },
-        "selectable": { "value": "{color.base.blue.value}" },
-        "focus": { "value": "{color.base.blue.value}" }
-      },
-
       "button": {
         "primary": {
           "success": {
