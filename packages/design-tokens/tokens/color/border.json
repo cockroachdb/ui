@@ -1,7 +1,6 @@
 {
   "color": {
     "border": {
-      "default": { "value": "{color.core.neutral.5.value}" },
 
       "button": {
         "primary": {

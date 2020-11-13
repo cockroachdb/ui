@@ -20,14 +20,6 @@
         }
       },
 
-      "badge": {
-        "neutral": { "value": "{color.font.3.value}" },
-        "success": { "value": "{color.core.green.4.value}" },
-        "warning": { "value": "{color.core.orange.4.value}" },
-        "info": { "value": "{color.core.blue.4.value}" },
-        "danger": { "value": "{color.core.red.4.value}" }
-      },
-
       "button": {
         "primary": {
           "success": {

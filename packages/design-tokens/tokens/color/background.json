@@ -8,14 +8,6 @@
       "info": { "value": "{color.base.blue.value}" },
       "danger": { "value": "{color.base.red.value}" },
 
-      "badge": {
-        "neutral": { "value": "{color.core.neutral.2.value}" },
-        "success": { "value": "{color.core.green.1.value}" },
-        "warning": { "value": "{color.core.orange.1.value}" },
-        "danger": { "value": "{color.core.red.1.value}" },
-        "info": { "value": "{color.core.blue.1.value}" }
-      },
-
       "button": {
         "primary": {
           "success": {
