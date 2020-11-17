@@ -18,56 +18,6 @@
         "inverse": {
           "link": { "value": "{color.font.5.value}" }
         }
-      },
-
-      "badge": {
-        "neutral": { "value": "{color.font.3.value}" },
-        "success": { "value": "{color.core.green.4.value}" },
-        "warning": { "value": "{color.core.orange.4.value}" },
-        "info": { "value": "{color.core.blue.4.value}" },
-        "danger": { "value": "{color.core.red.4.value}" }
-      },
-
-      "avatar": {
-        "default": { "value": "{color.font.2.value}" },
-        "pending": { "value": "{color.core.orange.4.value}" },
-        "invalid": { "value": "{color.core.red.4.value}" },
-        "disabled": { "value": "{color.font.4.value}" },
-        "selectable": { "value": "{color.base.blue.value}" },
-        "focus": { "value": "{color.base.blue.value}" }
-      },
-
-      "button": {
-        "primary": {
-          "success": {
-            "base": { "value": "{color.font.5.value}" },
-            "hover": { "value": "{color.font.5.value}" },
-            "active": { "value": "{color.font.5.value}" },
-            "focused": { "value": "{color.font.5.value}" },
-            "disabled": { "value": "{color.font.5.value}" }
-          },
-          "danger": {
-            "base": { "value": "{color.font.5.value}" },
-            "hover": { "value": "{color.font.5.value}" },
-            "active": { "value": "{color.font.5.value}" },
-            "focused": { "value": "{color.font.5.value}" },
-            "disabled": { "value": "{color.font.5.value}" }
-          }
-        },
-        "secondary": {
-          "base": { "value": "{color.font.2.value}" },
-          "hover": { "value": "{color.font.1.value}" },
-          "active": { "value": "{color.font.2.value}" },
-          "focused": { "value": "{color.font.2.value}" },
-          "disabled": { "value": "{color.font.4.value}" }
-        },
-        "tertiary": {
-          "base": { "value": "{color.font.link.base.value}" },
-          "hover": { "value": "{color.font.link.hover.value}" },
-          "active": { "value": "{color.font.link.base.value}" },
-          "focused": { "value": "{color.font.link.base.value}" },
-          "disabled": { "value": "{color.core.neutral.4.value}" }
-        }
       }
     }
   }
