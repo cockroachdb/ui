@@ -41,10 +41,7 @@ type MapDispatchToProps = Pick<
   | "onSortingChange"
 >;
 
-type OwnProps = Pick<
-  StatementsPageProps,
-  "basePath" | "onDiagnosticsReportDownload"
-> &
+type OwnProps = Pick<StatementsPageProps, "onDiagnosticsReportDownload"> &
   RouteComponentProps;
 
 export const ConnectedStatementsPage = withRouter(

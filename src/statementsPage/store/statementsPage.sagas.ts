@@ -13,9 +13,9 @@ export function* refreshStatementsSaga() {
   yield put(requestStatements());
 }
 
-export function* requestStatementsSaga() {
+export function* requestStatementsSaga(apiBasePath: string) {
   try {
-    const result = yield call(getStatements);
+    const result = yield call(getStatements, apiBasePath);
     yield put(statementsReceived(result));
   } catch (e) {
     yield put(statementsRequestFailed(e));
@@ -27,15 +27,26 @@ export function* receivedStatementsSaga(delayMs: number) {
   yield put(invalidateStatements());
 }
 
-export function* statementsSaga(delayMs: number = CACHE_INVALIDATION_PERIOD) {
+export function* statementsSaga(
+  cacheInvalidationPeriod: number = CACHE_INVALIDATION_PERIOD,
+  apiBasePath: string = undefined,
+) {
   yield all([
     throttleWithReset(
-      delayMs,
+      cacheInvalidationPeriod,
       statementsActionsMap.refresh,
       [statementsActionsMap.invalidated, statementsActionsMap.failed],
       refreshStatementsSaga,
     ),
-    takeLatest(statementsActionsMap.request, requestStatementsSaga),
-    takeLatest(statementsActionsMap.received, receivedStatementsSaga, delayMs),
+    takeLatest(
+      statementsActionsMap.request,
+      requestStatementsSaga,
+      apiBasePath,
+    ),
+    takeLatest(
+      statementsActionsMap.received,
+      receivedStatementsSaga,
+      cacheInvalidationPeriod,
+    ),
   ]);
 }

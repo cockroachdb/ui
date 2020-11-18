@@ -1,6 +1,6 @@
-import { expectSaga } from "redux-saga-test-plan";
+import { expectSaga, testSaga } from "redux-saga-test-plan";
 import { throwError } from "redux-saga-test-plan/providers";
-import { call } from "redux-saga/effects";
+import * as matchers from "redux-saga-test-plan/matchers";
 import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
 import statementsReducer, {
   invalidateStatements,
@@ -33,7 +33,7 @@ describe("StatementsPage sagas", () => {
   describe("requestStatementsSaga", () => {
     it("successfully requests statements list", () => {
       expectSaga(requestStatementsSaga)
-        .provide([[call(getStatements), statements]])
+        .provide([[matchers.call.fn(getStatements), statements]])
         .put(statementsReceived(statements))
         .withReducer(statementsReducer)
         .hasFinalState<StatementsState>({
@@ -47,7 +47,7 @@ describe("StatementsPage sagas", () => {
     it("returns error on failed request", () => {
       const error = new Error("Failed request");
       expectSaga(requestStatementsSaga)
-        .provide([[call(getStatements), throwError(error)]])
+        .provide([[matchers.call.fn(getStatements), throwError(error)]])
         .put(statementsRequestFailed(error))
         .withReducer(statementsReducer)
         .hasFinalState<StatementsState>({
@@ -56,6 +56,14 @@ describe("StatementsPage sagas", () => {
           valid: false,
         })
         .run();
+    });
+
+    it("accepts custom apiPath as an argument for statements api", () => {
+      const customBasePath = "customBasePath";
+      testSaga(requestStatementsSaga, customBasePath)
+        .next()
+        .call(getStatements, customBasePath)
+        .finish();
     });
   });
 

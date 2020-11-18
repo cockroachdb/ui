@@ -33,10 +33,13 @@ export const statementsReducersMap: ReducersMapObject<StateWithStatements["admin
 
 export const statementsReducers = combineReducers(statementsReducersMap);
 
-export function* statementsSagas() {
+export function* statementsSagas(
+  cacheInvalidationPeriod?: number,
+  apiBasePath?: string,
+) {
   yield all([
     fork(localStorageSaga),
-    fork(statementsSaga),
+    fork(statementsSaga, cacheInvalidationPeriod, apiBasePath),
     fork(statementsDiagnosticsSagas),
   ]);
 }
