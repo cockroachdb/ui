@@ -34,10 +34,16 @@ const Link: FunctionComponent<{ children: ReactNode }> = props => (
 export const Example = () => (
 
   <StoryContainer>
-  <p> Buttons allow users to perform an action or to navigate to another page. They have multiple styles for various needs, and are ideal for calling attention to where a user needs to do something in order to move forward in a flow. </p>
+    <p>
+      {" "}
+      Buttons allow users to perform an action or to navigate to another page.
+      They have multiple styles for various needs, and are ideal for calling
+      attention to where a user needs to do something in order to move forward
+      in a flow.{" "}
+    </p>
 
     <h1>Type</h1>
-    <section style={{maxWidth: "700px"}}>
+    <section style={{ maxWidth: "700px" }}>
       <ButtonDisplaySection>
         <ButtonDisplay>
           <Button intent="success">Primary</Button>
@@ -57,7 +63,12 @@ export const Example = () => (
       <ButtonDisplaySection>
         <ButtonDisplay>
           <Button>Secondary</Button>
-          <p style={{textAlign: "left", lineHeight: "24px", fontSize:"16px"}}>Use for actions that complement a primary action, or when there are multiple actions of equal weight.  </p>
+          <p
+            style={{ textAlign: "left", lineHeight: "24px", fontSize: "16px" }}
+          >
+            Use for actions that complement a primary action, or when there are
+            multiple actions of equal weight.{" "}
+          </p>
         </ButtonDisplay>
       </ButtonDisplaySection>
       <br></br>
@@ -65,11 +76,16 @@ export const Example = () => (
       <ButtonDisplaySection>
         <ButtonDisplay>
           <Button intent="tertiary">Tertiary</Button>
-          <p style={{textAlign: "left", lineHeight: "24px", fontSize:"16px"}}>Use as an alternative to the secondary button for complementary actions. They can be used inline because they are different from content in style and recognizable as buttons alongside content.  </p>
+          <p
+            style={{ textAlign: "left", lineHeight: "24px", fontSize: "16px" }}
+          >
+            Use as an alternative to the secondary button for complementary
+            actions. They can be used inline because they are different from
+            content in style and recognizable as buttons alongside content.{" "}
+          </p>
         </ButtonDisplay>
       </ButtonDisplaySection>
     </section>
-
 
     <section>
       <h3>Size</h3>
