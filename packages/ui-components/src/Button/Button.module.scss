@@ -48,7 +48,49 @@
     }
   }
 
-  &.intent-primary-success {
+  &.intent-primary {
+    background-color: $component-button-primary-background-color-base;
+    color: $component-button-primary-font-color-base;
+    border-width: 1px;
+    border-style: solid;
+    border-color: $component-button-primary-border-color-base;
+
+    &:hover {
+      background-color: crl-darken(
+        $component-button-primary-background-color-hover
+      );
+      border-color: crl-darken($component-button-primary-border-color-hover);
+      color: $component-button-primary-font-color-hover;
+    }
+
+    &:active {
+      background-color: crl-darken(
+        $component-button-primary-background-color-active
+      );
+      border-width: 1px;
+      border-color: crl-darken($component-button-primary-border-color-active);
+    }
+
+    &:focus {
+      background-color: $component-button-primary-background-color-focused;
+      border-width: 1px;
+      border-color: crl-darken($component-button-primary-border-color-focused);
+      @include crl-box-shadow(
+        0,
+        0,
+        0,
+        3px,
+        rgba($component-button-primary-shadow-color-focused, 0.4)
+      );
+    }
+
+    &:disabled {
+      background-color: $component-button-primary-background-color-disabled;
+      border-color: $component-button-primary-border-color-disabled;
+    }
+  }
+
+  &.intent-success {
     background-color: $component-button-success-background-color-base;
     color: $component-button-success-font-color-base;
     border-width: 1px;
@@ -85,16 +127,12 @@
     }
 
     &:disabled {
-      background-color: crl-lighten(
-        $component-button-success-background-color-disabled
-      );
-      border-color: crl-lighten(
-        $component-button-success-border-color-disabled
-      );
+      background-color: $component-button-success-background-color-disabled;
+      border-color: $component-button-success-border-color-disabled;
     }
   }
 
-  &.intent-primary-danger {
+  &.intent-danger {
     background-color: $component-button-danger-background-color-base;
     color: $component-button-danger-font-color-base;
     border-width: 1px;
@@ -130,10 +168,8 @@
     }
 
     &:disabled {
-      background-color: crl-lighten(
-        $component-button-danger-background-color-disabled
-      );
-      border-color: crl-lighten($component-button-danger-border-color-disabled);
+      background-color: $component-button-danger-background-color-disabled;
+      border-color: $component-button-danger-border-color-disabled;
     }
   }
 

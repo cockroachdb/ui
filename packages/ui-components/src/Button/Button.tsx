@@ -7,7 +7,8 @@ import styles from "./Button.module.scss";
 
 export type ButtonIntent =
   | "primary"
-  | "primary-danger"
+  | "success"
+  | "danger"
   | "secondary"
   | "tertiary";
 

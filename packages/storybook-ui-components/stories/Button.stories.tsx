@@ -38,12 +38,16 @@ export const Example = () => (
       <h3>Type</h3>
       <ButtonDisplaySection>
         <ButtonDisplay>
-          <Label>primary-success</Label>
-          <Button intent="primary">Success</Button>
+          <Label>primary</Label>
+          <Button intent="primary">Primary</Button>
         </ButtonDisplay>
         <ButtonDisplay>
-          <Label>primary-danger</Label>
-          <Button intent="primary-danger">Danger</Button>
+          <Label>success</Label>
+          <Button intent="success">Success</Button>
+        </ButtonDisplay>
+        <ButtonDisplay>
+          <Label>danger</Label>
+          <Button intent="danger">Danger</Button>
         </ButtonDisplay>
         <ButtonDisplay>
           <Label>secondary (default)</Label>
@@ -78,14 +82,20 @@ export const Example = () => (
       <h3>Disabled</h3>
       <ButtonDisplaySection>
         <ButtonDisplay>
-          <Label>primary-success</Label>
+          <Label>primary</Label>
           <Button intent="primary" disabled>
+            Primary
+          </Button>
+        </ButtonDisplay>
+        <ButtonDisplay>
+          <Label>success</Label>
+          <Button intent="success" disabled>
             Success
           </Button>
         </ButtonDisplay>
         <ButtonDisplay>
-          <Label>primary-danger</Label>
-          <Button intent="primary-danger" disabled>
+          <Label>danger</Label>
+          <Button intent="danger" disabled>
             Danger
           </Button>
         </ButtonDisplay>
@@ -137,7 +147,7 @@ export const Example = () => (
 export const Demo = () => {
   const intents: Array<ButtonIntent> = [
     "primary",
-    "primary-danger",
+    "danger",
     "secondary",
     "tertiary",
   ];
