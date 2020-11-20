@@ -27,9 +27,8 @@ type OwnButtonProps<T extends ElementType> = {
 // to be an Element. However, we also use `Omit` to remove any props that the element itself has if
 // we override them in `OwnButtonProps`. This lets us proxy an props that we'd like to manage
 // ourselves while keeping all the rest pure from the underlying element.
-type ButtonProps<T extends ElementType> =
-  OwnButtonProps<T> &
-  Omit<React.ComponentPropsWithoutRef<T>, keyof OwnButtonProps<T>>
+type ButtonProps<T extends ElementType> = OwnButtonProps<T> &
+  Omit<React.ComponentPropsWithoutRef<T>, keyof OwnButtonProps<T>>;
 
 const cx = classnames.bind(styles);
 

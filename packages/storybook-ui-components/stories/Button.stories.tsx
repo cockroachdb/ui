@@ -27,6 +27,10 @@ const Label: FunctionComponent<{ children: string }> = ({ children }) => (
   </div>
 );
 
+const Link: FunctionComponent<{ children: ReactNode }> = props => (
+  <div data-test="fake-link">{props.children}</div>
+);
+
 export const Example = () => (
   <StoryContainer>
     <h1>Buttons</h1>
@@ -99,11 +103,16 @@ export const Example = () => (
       <h3>Button Elements</h3>
       <ButtonDisplaySection>
         <ButtonDisplay>
-          <Label>as default (`button`) with type submit wrapped in a `form`</Label>
-          <form onSubmit={(e) => {e.preventDefault(); alert('submit!');}}>
-            <Button type="submit">
-              Submit
-            </Button>
+          <Label>
+            as default (`button`) with type submit wrapped in a `form`
+          </Label>
+          <form
+            onSubmit={e => {
+              e.preventDefault();
+              alert("submit!");
+            }}
+          >
+            <Button type="submit">Submit</Button>
           </form>
         </ButtonDisplay>
         <ButtonDisplay>
@@ -114,9 +123,11 @@ export const Example = () => (
         </ButtonDisplay>
         <ButtonDisplay>
           <Label>as `div`</Label>
-          <Button as="div">
-            Just a div
-          </Button>
+          <Button as="div">Just a div</Button>
+        </ButtonDisplay>
+        <ButtonDisplay>
+          <Label>as `Link`</Label>
+          <Button as={Link}>this is a link</Button>
         </ButtonDisplay>
       </ButtonDisplaySection>
     </section>
