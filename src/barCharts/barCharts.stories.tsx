@@ -8,6 +8,7 @@ import {
   rowsBarChart,
 } from "./barCharts";
 import statementsPagePropsFixture from "src/statementsPage/components/statementsPage.fixture";
+import Long from "long";
 
 const { statements } = statementsPagePropsFixture;
 
@@ -66,6 +67,19 @@ storiesOf("BarCharts/within column (150px)", module)
   .add("retryBarChart", () => {
     const chartFactory = retryBarChart(statements);
     return chartFactory(statements[0]);
+  })
+  .add("empty retryBarChart", () => {
+    const withoutRetries = statements.map(s => ({
+      ...s,
+      stats: {
+        ...s.stats,
+        count: Long.fromNumber(0),
+        first_attempt_count: Long.fromNumber(0),
+        max_retries: Long.fromNumber(0),
+      },
+    }));
+    const chartFactory = retryBarChart(withoutRetries);
+    return chartFactory(withoutRetries[0]);
   })
   .add("rowsBarChart", () => {
     const chartFactory = rowsBarChart(statements);

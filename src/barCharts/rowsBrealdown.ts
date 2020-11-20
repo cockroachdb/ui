@@ -1,6 +1,6 @@
 import { scaleLinear } from "d3-scale";
 import { stdDevLong } from "src/util/appStats";
-import { formatTwoPlaces } from "./utils";
+import { formatTwoPlaces, normalizeClosedDomain } from "./utils";
 import * as protos from "@cockroachlabs/crdb-protobuf-client";
 
 type StatementStatistics = protos.cockroach.server.serverpb.StatementsResponse.ICollectedStatementStatistics;
@@ -8,9 +8,10 @@ type StatementStatistics = protos.cockroach.server.serverpb.StatementsResponse.I
 export function rowsBreakdown(s: StatementStatistics) {
   const mean = s.stats.num_rows.mean;
   const sd = stdDevLong(s.stats.num_rows, s.stats.count);
+  const domain = normalizeClosedDomain([0, mean + sd]);
 
   const scale = scaleLinear()
-    .domain([0, mean + sd])
+    .domain(domain)
     .range([0, 100]);
 
   return {

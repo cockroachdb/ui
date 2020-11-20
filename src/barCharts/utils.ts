@@ -36,3 +36,20 @@ export function approximify(value: number) {
 
   return "" + Math.round(value);
 }
+
+/**
+ * normalizeClosedDomain increases collapsed domain when start and end range are equal.
+ * @description
+ * This function preserves behavior introduced by following issue in d3-scale library (starting from 2.2 version)
+ * https://github.com/d3/d3-scale/issues/117
+ * It is expected for scaling withing closed domain range, the start value is returned.
+ * @example
+ * scaleLinear().domain([0, 0])(0) // --> 0.5
+ * scaleLinear().domain(normalizeClosedDomain([0, 0]))(0) // --> 0
+ */
+export function normalizeClosedDomain([d0, d1]: Tuple<number>): Tuple<number> {
+  if (d0 === d1) {
+    return [d0, d1 + 1];
+  }
+  return [d0, d1];
+}
