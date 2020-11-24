@@ -57,7 +57,6 @@ interface OwnProps {
     columnTitle: string,
     ascending: boolean,
   ) => void;
-  basePath?: string;
 }
 
 export interface StatementsPageState {
