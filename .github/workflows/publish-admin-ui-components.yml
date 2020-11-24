@@ -30,10 +30,10 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Install dependencies
         run: yarn install
-      - name: Set github email
-        run: echo '::set-env name=GITHUB_EMAIL::$(git show -s --format='%ae' HEAD)'
-      - name: Set github name
-        run: echo '::set-env name=GITHUB_NAME::$(git show -s --format='%an' HEAD)'
+      - name: Store github user name and email in ENV variables
+        run: |
+          echo "GITHUB_EMAIL=$(git show -s --format='%ae' HEAD)" >> $GITHUB_ENV
+          echo "GITHUB_NAME=$(git show -s --format='%an' HEAD)" >> $GITHUB_ENV
       - name: Configure Git User
         run: |
           git config user.name "${{ env.GITHUB_NAME }}"
