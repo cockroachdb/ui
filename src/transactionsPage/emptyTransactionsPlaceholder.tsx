@@ -1,16 +1,15 @@
 import React from "react";
 import { EmptyTable, EmptyTableProps } from "../empty";
 import { Anchor } from "../anchor";
-import { statementsTable } from "../util";
+import { transactionsTable } from "../util";
 import magnifyingGlassImg from "../assets/emptyState/magnifying-glass.svg";
 import emptyTableResultsImg from "../assets/emptyState/empty-table-results.svg";
 
 export const EmptyTransactionsPlaceholder: React.FC<{
   isEmptySearchResults: boolean;
 }> = ({ isEmptySearchResults }) => {
-  // TODO (koorosh): Provide appropriate links on Transactions Page documentation
   const footer = (
-    <Anchor href={statementsTable} target="_blank">
+    <Anchor href={transactionsTable} target="_blank">
       Learn more about statements
     </Anchor>
   );

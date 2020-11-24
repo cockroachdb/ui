@@ -69,3 +69,4 @@ export const enterpriseLicensing =
 
 // Not actually a docs URL.
 export const startTrial = "https://www.cockroachlabs.com/pricing/start-trial/";
+export const transactionsTable = docsURL("ui-transactions-page.html");
