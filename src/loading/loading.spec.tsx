@@ -1,93 +1,37 @@
-import _ from "lodash";
 import React from "react";
 import { assert } from "chai";
-import { ReactWrapper, mount } from "enzyme";
+import { mount } from "enzyme";
+import { Spinner, InlineAlert } from "@cockroachlabs/ui-components";
 import { Loading } from "./loading";
 
-const LOADING_CLASS_NAME = "loading-class-name";
-const RENDER_CLASS_NAME = "render-class-name";
-const ERROR_CLASS_NAME = "loading-error";
-const ALL_CLASS_NAMES = [
-  LOADING_CLASS_NAME,
-  ERROR_CLASS_NAME,
-  RENDER_CLASS_NAME,
-];
-
-interface MakeLoadingProps {
-  loading: boolean;
-  error?: Error | Error[] | null;
-  renderClassName?: string;
-}
-
-interface AssertExpectedProps {
-  onlyVisibleClass: string;
-  errorCount?: number;
-}
-
-function assertExpectedState(
-  wrapper: ReactWrapper,
-  props: AssertExpectedProps,
-) {
-  // Assert that onlyVisibleClass is rendered, and that all classes are not.
-  _.map(ALL_CLASS_NAMES, className => {
-    const expectedVisibility = props.onlyVisibleClass === className;
-    const expectedLength = expectedVisibility ? 1 : 0;
-    const element = "div." + className;
-    assert.lengthOf(
-      wrapper.find(element),
-      expectedLength,
-      "expected " +
-        element +
-        (expectedVisibility ? " to be visible" : " to not be rendered"),
-    );
-  });
-
-  if (props.errorCount) {
-    assert.lengthOf(
-      wrapper.find("div." + ERROR_CLASS_NAME).find("li"),
-      props.errorCount,
-    );
-  }
-}
-
-const makeLoadingComponent = (props: MakeLoadingProps) =>
-  mount(
-    <Loading
-      loading={props.loading}
-      error={props.error}
-      className={LOADING_CLASS_NAME}
-      render={() => (
-        <div className={props.renderClassName || RENDER_CLASS_NAME}>
-          Hello, world!
-        </div>
-      )}
-    />,
-  );
+const SomeComponent = () => <div>Hello, world!</div>;
 
 describe("<Loading>", () => {
   describe("when error is null", () => {
     describe("when loading=false", () => {
       it("renders content.", () => {
-        const wrapper = makeLoadingComponent({
-          loading: false,
-          error: null,
-          renderClassName: "my-rendered-content",
-        });
-        assertExpectedState(wrapper, {
-          onlyVisibleClass: "my-rendered-content",
-        });
+        const wrapper = mount(
+          <Loading
+            loading={false}
+            error={null}
+            render={() => <SomeComponent />}
+          />,
+        );
+        assert.isTrue(wrapper.find(SomeComponent).exists());
       });
     });
 
     describe("when loading=true", () => {
       it("renders loading spinner.", () => {
-        const wrapper = makeLoadingComponent({
-          loading: true,
-          error: null,
-        });
-        assertExpectedState(wrapper, {
-          onlyVisibleClass: LOADING_CLASS_NAME,
-        });
+        const wrapper = mount(
+          <Loading
+            loading={true}
+            error={null}
+            render={() => <SomeComponent />}
+          />,
+        );
+        assert.isFalse(wrapper.find(SomeComponent).exists());
+        assert.isTrue(wrapper.find(Spinner).exists());
       });
     });
   });
@@ -95,27 +39,31 @@ describe("<Loading>", () => {
   describe("when error is a single error", () => {
     describe("when loading=false", () => {
       it("renders error, regardless of loading value.", () => {
-        const wrapper = makeLoadingComponent({
-          loading: false,
-          error: Error("some error message"),
-        });
-        assertExpectedState(wrapper, {
-          onlyVisibleClass: ERROR_CLASS_NAME,
-          errorCount: 1,
-        });
+        const wrapper = mount(
+          <Loading
+            loading={false}
+            error={Error("some error message")}
+            render={() => <SomeComponent />}
+          />,
+        );
+        assert.isFalse(wrapper.find(SomeComponent).exists());
+        assert.isFalse(wrapper.find(Spinner).exists());
+        assert.isTrue(wrapper.find(InlineAlert).exists());
       });
     });
 
     describe("when loading=true", () => {
       it("renders error, regardless of loading value.", () => {
-        const wrapper = makeLoadingComponent({
-          loading: true,
-          error: Error("some error message"),
-        });
-        assertExpectedState(wrapper, {
-          onlyVisibleClass: ERROR_CLASS_NAME,
-          errorCount: 1,
-        });
+        const wrapper = mount(
+          <Loading
+            loading={true}
+            error={Error("some error message")}
+            render={() => <SomeComponent />}
+          />,
+        );
+        assert.isFalse(wrapper.find(SomeComponent).exists());
+        assert.isFalse(wrapper.find(Spinner).exists());
+        assert.isTrue(wrapper.find(InlineAlert).exists());
       });
     });
   });
@@ -123,47 +71,73 @@ describe("<Loading>", () => {
   describe("when error is a list of errors", () => {
     describe("when no errors are null", () => {
       it("renders all errors in list", () => {
-        const wrapper = makeLoadingComponent({
-          loading: false,
-          error: [Error("error1"), Error("error2"), Error("error3")],
-        });
-        assertExpectedState(wrapper, {
-          onlyVisibleClass: ERROR_CLASS_NAME,
-          errorCount: 3,
-        });
+        const errors = [Error("error1"), Error("error2"), Error("error3")];
+        const wrapper = mount(
+          <Loading
+            loading={false}
+            error={errors}
+            render={() => <SomeComponent />}
+          />,
+        );
+        assert.isFalse(wrapper.find(SomeComponent).exists());
+        assert.isFalse(wrapper.find(Spinner).exists());
+        assert.isTrue(wrapper.find(InlineAlert).exists());
+        errors.forEach(e =>
+          assert.isTrue(
+            wrapper
+              .find(InlineAlert)
+              .text()
+              .includes(e.message),
+          ),
+        );
       });
     });
 
     describe("when some errors are null", () => {
       it("ignores null list values, rending only valid errors.", () => {
-        const wrapper = makeLoadingComponent({
-          loading: false,
-          error: [
-            null,
-            Error("error1"),
-            Error("error2"),
-            null,
-            Error("error3"),
-            null,
-          ],
-        });
-        assertExpectedState(wrapper, {
-          onlyVisibleClass: ERROR_CLASS_NAME,
-          errorCount: 3,
-        });
+        const errors = [
+          null,
+          Error("error1"),
+          Error("error2"),
+          null,
+          Error("error3"),
+          null,
+        ];
+        const wrapper = mount(
+          <Loading
+            loading={false}
+            error={errors}
+            render={() => <SomeComponent />}
+          />,
+        );
+        assert.isFalse(wrapper.find(SomeComponent).exists());
+        assert.isFalse(wrapper.find(Spinner).exists());
+        assert.isTrue(wrapper.find(InlineAlert).exists());
+        errors
+          .filter(e => !!e)
+          .forEach(e =>
+            assert.isTrue(
+              wrapper
+                .find(InlineAlert)
+                .text()
+                .includes(e.message),
+            ),
+          );
       });
     });
 
     describe("when all errors are null", () => {
       it("renders content, since there are no errors.", () => {
-        const wrapper = makeLoadingComponent({
-          loading: false,
-          error: [null, null, null],
-          renderClassName: "no-errors-so-should-render-me",
-        });
-        assertExpectedState(wrapper, {
-          onlyVisibleClass: "no-errors-so-should-render-me",
-        });
+        const wrapper = mount(
+          <Loading
+            loading={false}
+            error={[null, null, null]}
+            render={() => <SomeComponent />}
+          />,
+        );
+        assert.isTrue(wrapper.find(SomeComponent).exists());
+        assert.isFalse(wrapper.find(Spinner).exists());
+        assert.isFalse(wrapper.find(InlineAlert).exists());
       });
     });
   });

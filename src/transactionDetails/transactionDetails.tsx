@@ -13,6 +13,7 @@ import { BackIcon } from "../icon";
 import { SqlBox } from "../sql";
 import { aggregateStatements } from "../transactionsPage/utils";
 import Long from "long";
+import { Loading } from "../loading";
 
 const { containerClass } = tableClasses;
 
@@ -22,6 +23,7 @@ interface TransactionDetailsProps {
   statements?: Statement[];
   lastReset?: string | Date;
   handleDetails: (statementIds: Long[] | null) => void;
+  error?: Error | null;
 }
 
 interface TState {
@@ -56,12 +58,8 @@ export class TransactionDetails extends React.Component<
   };
 
   render() {
-    const { statements, lastReset, handleDetails } = this.props;
-    const { sortSetting, pagination } = this.state;
-    const statementsSummary = collectStatementsText(statements);
-    const aggregatedStatements = aggregateStatements(statements);
-
-    return statements ? (
+    const { statements, handleDetails, error } = this.props;
+    return (
       <div>
         <section className={baseHeadingClasses.wrapper}>
           <Button
@@ -75,30 +73,48 @@ export class TransactionDetails extends React.Component<
           </Button>
           <h1 className={baseHeadingClasses.tableName}>Transaction Details</h1>
         </section>
-        <section className={containerClass}>
-          <SqlBox value={statementsSummary} />
-          <TransactionsPageStatistic
-            pagination={pagination}
-            totalCount={statements.length}
-            lastReset={lastReset}
-            arrayItemName={"statements for this transaction"}
-            activeFilters={0}
-          />
-          <SortedTable
-            data={aggregatedStatements}
-            columns={makeStatementsColumns(aggregatedStatements, "", "")}
-            className="statements-table"
-            sortSetting={sortSetting}
-            onChangeSortSetting={this.onChangeSortSetting}
-          />
-        </section>
-        <Pagination
-          pageSize={pagination.pageSize}
-          current={pagination.current}
-          total={statements.length}
-          onChange={this.onChangePage}
+        <Loading
+          error={error}
+          loading={!statements}
+          render={() => {
+            const { statements, lastReset } = this.props;
+            const { sortSetting, pagination } = this.state;
+            const statementsSummary = collectStatementsText(statements);
+            const aggregatedStatements = aggregateStatements(statements);
+            return (
+              <React.Fragment>
+                <section className={containerClass}>
+                  <SqlBox value={statementsSummary} />
+                  <TransactionsPageStatistic
+                    pagination={pagination}
+                    totalCount={statements.length}
+                    lastReset={lastReset}
+                    arrayItemName={"statements for this transaction"}
+                    activeFilters={0}
+                  />
+                  <SortedTable
+                    data={aggregatedStatements}
+                    columns={makeStatementsColumns(
+                      aggregatedStatements,
+                      "",
+                      "",
+                    )}
+                    className="statements-table"
+                    sortSetting={sortSetting}
+                    onChangeSortSetting={this.onChangeSortSetting}
+                  />
+                </section>
+                <Pagination
+                  pageSize={pagination.pageSize}
+                  current={pagination.current}
+                  total={statements.length}
+                  onChange={this.onChangePage}
+                />
+              </React.Fragment>
+            );
+          }}
         />
       </div>
-    ) : null;
+    );
   }
 }

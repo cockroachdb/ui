@@ -5,6 +5,7 @@ import Long from "long";
 import { noop } from "lodash";
 import * as protos from "@cockroachlabs/crdb-protobuf-client";
 import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
+import { RequestError } from "../../util";
 type IStatementDiagnosticsReport = cockroach.server.serverpb.IStatementDiagnosticsReport;
 type IStatementStatistics = protos.cockroach.sql.IStatementStatistics;
 
@@ -426,5 +427,10 @@ const statementsPagePropsFixture: StatementsPageProps = {
   onSearchComplete: noop,
   onDiagnosticsReportDownload: noop,
 };
+
+export const statementsPagePropsWithRequestError: StatementsPageProps = {
+  ...statementsPagePropsFixture,
+  statementsError: new RequestError("request_error", 403, "this operation requires admin privilege")
+}
 
 export default statementsPagePropsFixture;

@@ -1,4 +1,5 @@
 import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
+import { RequestError } from "../util";
 
 interface ProtoBuilder<
   P extends ConstructorType,
@@ -48,14 +49,25 @@ export const fetchData = <P extends ProtoBuilder<P>, T extends ProtoBuilder<T>>(
   return fetch(path, params)
     .then(response => {
       if (!response.ok) {
-        throw new cockroach.server.serverpb.ResponseError({
-          error: response.statusText,
+        return response.arrayBuffer().then(buffer => {
+          let respError;
+          try {
+            respError = cockroach.server.serverpb.ResponseError.decode(
+              new Uint8Array(buffer),
+            );
+          } catch {
+            respError = new cockroach.server.serverpb.ResponseError({
+              error: response.statusText,
+            });
+          }
+          throw new RequestError(
+            response.statusText,
+            response.status,
+            respError.error,
+          );
         });
       }
       return response.arrayBuffer();
     })
-    .then(buffer => RespBuilder.decode(new Uint8Array(buffer)))
-    .catch(error => {
-      throw new cockroach.server.serverpb.ResponseError({ error });
-    });
+    .then(buffer => RespBuilder.decode(new Uint8Array(buffer)));
 };

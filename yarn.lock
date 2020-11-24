@@ -2027,22 +2027,22 @@
     "@typescript-eslint/parser" "^2.34.0"
     eslint-config-prettier "^6.11.0"
 
-"@cockroachlabs/icons@^0.2.10":
-  version "0.2.10"
-  resolved "https://registry.yarnpkg.com/@cockroachlabs/icons/-/icons-0.2.10.tgz#c091c8eb499a3681882840f88e0b42977ba940b7"
-  integrity sha512-MFBzwbUyFeXoau3neTffsoKJ3WDCJJj/uvlVjO2utfYHN6AEuokcPDiJNSGEkwo2+70ebi6nLjcIFAdoTltyYA==
-
 "@cockroachlabs/icons@^0.2.2":
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/@cockroachlabs/icons/-/icons-0.2.4.tgz#b800ed8fb7a23bab3b86217eedca9174b3ef18f3"
   integrity sha512-hu9W37fzw30wM5FPEeGnOONL2AAW5uNOtRSdROrFyY6hlRtKli1piE/mfHmSiTfSoZ3SHravCl88ErH6WLqw8g==
 
-"@cockroachlabs/ui-components@^0.2.8":
-  version "0.2.8"
-  resolved "https://registry.yarnpkg.com/@cockroachlabs/ui-components/-/ui-components-0.2.8.tgz#a98a28dda64d854d85a42655faf0607a6f8504d9"
-  integrity sha512-y4SdIC0CaZGG+1FGtSMx8EG1W40yeNnE5LEqOaI4rVGLyMQBXho4Z03dOwkpi9jQyxnI3UTcwHD7oMpGrtoLTQ==
+"@cockroachlabs/icons@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@cockroachlabs/icons/-/icons-0.3.0.tgz#160573074396f266e92fcbe5e520c5ba1d8750f9"
+  integrity sha512-GJxhlXy8Z3/PYFb9C3iM1dvU9wajGoaA/+VCj0an2ipfbkI2fhToq+h0b33vu7JuZ3dS4QMRjfVE4uhlyIUH2Q==
+
+"@cockroachlabs/ui-components@^0.2.11":
+  version "0.2.11"
+  resolved "https://registry.yarnpkg.com/@cockroachlabs/ui-components/-/ui-components-0.2.11.tgz#22f83515bbc26eb557b873924a02ff43a2c92711"
+  integrity sha512-Us1CZJ8jv5tFp1412MoVqCPMOXFDL+g6OnwDRv5JRZCNhKY8HB4VMa08RBfvjl/cUKMppzwoer/B3TtJZCiYOw==
   dependencies:
-    "@cockroachlabs/icons" "^0.2.10"
+    "@cockroachlabs/icons" "^0.3.0"
     "@popperjs/core" "^2.4.3"
     react-popper "^2.2.3"
 

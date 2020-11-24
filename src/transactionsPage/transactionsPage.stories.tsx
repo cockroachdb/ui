@@ -5,6 +5,7 @@ import { cloneDeep, noop, extend } from "lodash";
 import { data, routeProps } from "./transactions.fixture";
 
 import { TransactionsPage } from ".";
+import { RequestError } from "../util";
 
 const getEmptyData = () =>
   extend({}, data, { transactions: [], statements: [] });
@@ -39,6 +40,27 @@ storiesOf("Transactions Page", module)
         data={getEmptyData()}
         refreshData={noop}
         history={history}
+      />
+    );
+  })
+  .add("with loading indicator", () => {
+    return (
+      <TransactionsPage {...routeProps} data={undefined} refreshData={noop} />
+    );
+  })
+  .add("with error alert", () => {
+    return (
+      <TransactionsPage
+        {...routeProps}
+        data={undefined}
+        error={
+          new RequestError(
+            "Forbidden",
+            403,
+            "this operation requires admin privilege",
+          )
+        }
+        refreshData={noop}
       />
     );
   });

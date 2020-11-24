@@ -4,7 +4,9 @@ import { MemoryRouter } from "react-router-dom";
 import { cloneDeep } from "lodash";
 
 import { StatementsPage } from "./statementsPage";
-import statementsPagePropsFixture from "./statementsPage.fixture";
+import statementsPagePropsFixture, {
+  statementsPagePropsWithRequestError,
+} from "./statementsPage.fixture";
 
 storiesOf("StatementsPage", module)
   .addDecorator(storyFn => <MemoryRouter>{storyFn()}</MemoryRouter>)
@@ -29,4 +31,15 @@ storiesOf("StatementsPage", module)
         history={history}
       />
     );
+  })
+  .add("with error", () => {
+    return (
+      <StatementsPage
+        {...statementsPagePropsWithRequestError}
+        statements={[]}
+      />
+    );
+  })
+  .add("with loading state", () => {
+    return <StatementsPage {...statementsPagePropsFixture} statements={null} />;
   });

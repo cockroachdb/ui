@@ -1,14 +1,16 @@
 import React from "react";
 import * as protos from "@cockroachlabs/crdb-protobuf-client";
 import { RouteComponentProps } from "react-router-dom";
-import { TransactionsPageHeader } from "./transactionsPageHeader";
 import { TransactionsTable } from "../transactionsTable";
 import { TransactionDetails } from "../transactionDetails";
 import { ISortedTablePagination } from "../sortedtable";
 import { SortSetting } from "../sortabletable";
 import { Pagination } from "../pagination";
 import { TransactionsPageStatistic } from "./transactionsPageStatistic";
-import { statisticsClasses } from "./transactionsPageClasses";
+import {
+  baseHeadingClasses,
+  statisticsClasses,
+} from "./transactionsPageClasses";
 import { getTrxAppFilterOptions } from "./utils";
 import {
   searchTransactionsData,
@@ -19,6 +21,10 @@ import { forIn } from "lodash";
 import Long from "long";
 import { getSearchParams } from "src/util";
 import { EmptyTransactionsPlaceholder } from "./emptyTransactionsPlaceholder";
+import { Loading } from "../loading";
+import { PageConfig, PageConfigItem } from "../pageConfig";
+import { Search } from "../search";
+import { Filter } from "./filter";
 
 type IStatementsResponse = protos.cockroach.server.serverpb.IStatementsResponse;
 
@@ -48,6 +54,7 @@ interface TState {
 interface TransactionsPageProps {
   data: IStatementsResponse;
   refreshData: () => void;
+  error?: Error | null;
 }
 
 export class TransactionsPage extends React.Component<
@@ -170,87 +177,114 @@ export class TransactionsPage extends React.Component<
     this.setState({ statementIds });
   };
 
-  render() {
-    if (!this.props.data) return <pre>loading</pre>;
-    const {
-      statements,
-      transactions,
-      last_reset,
-      internal_app_name_prefix,
-    } = this.props.data;
-    const { pagination, search, filters, statementIds } = this.state;
-    const renderTxDetailsView = !!statementIds;
+  lastReset = () => {
+    return new Date(Number(this.props.data?.last_reset.seconds) * 1000);
+  };
 
-    const lastReset = new Date(Number(last_reset.seconds) * 1000);
-    const appNames = getTrxAppFilterOptions(
-      transactions,
-      internal_app_name_prefix,
-    );
-
-    const transactionDetails =
-      statementIds && getStatementsById(statementIds, statements);
-
-    const searchedAndFilteredData = filterTransactions(
-      searchTransactionsData(search, transactions, statements),
-      filters,
-    );
-    const { current, pageSize } = pagination;
-    const hasData = transactions?.length > 0;
-    const isUsedFilter = search?.length > 0;
-
-    if (renderTxDetailsView) {
-      return (
-        <TransactionDetails
-          statements={transactionDetails}
-          lastReset={lastReset}
-          handleDetails={this.handleDetails}
-        />
-      );
-    }
-
+  renderTransactionsList() {
     return (
       <div>
-        <TransactionsPageHeader
-          onSubmit={this.onSubmitSearchField}
-          onClear={this.onClearSearchField}
-          search={search}
-          filters={filters}
-          activeFilters={searchedAndFilteredData.activeFilters}
-          onSubmitFilters={this.onSubmitFilters}
-          appNames={appNames}
-        />
-        <section className={statisticsClasses.tableContainerClass}>
-          <TransactionsPageStatistic
-            pagination={pagination}
-            lastReset={lastReset}
-            search={search}
-            totalCount={searchedAndFilteredData.transactions.length}
-            arrayItemName="transactions"
-            activeFilters={searchedAndFilteredData.activeFilters}
-            onClearFilters={this.onClearFilters}
-          />
-          <TransactionsTable
-            transactions={searchedAndFilteredData.transactions}
-            statements={statements}
-            sortSetting={this.state.sortSetting}
-            onChangeSortSetting={this.onChangeSortSetting}
-            handleDetails={this.handleDetails}
-            search={search}
-            pagination={pagination}
-            renderNoResult={
-              <EmptyTransactionsPlaceholder
-                isEmptySearchResults={hasData && isUsedFilter}
-              />
-            }
-          />
+        <section className={baseHeadingClasses.wrapper}>
+          <h1 className={baseHeadingClasses.tableName}>Transactions</h1>
         </section>
-        <Pagination
-          pageSize={pageSize}
-          current={current}
-          total={searchedAndFilteredData.transactions.length}
-          onChange={this.onChangePage}
+        <Loading
+          loading={!this.props?.data}
+          error={this.props?.error}
+          render={() => {
+            const { data } = this.props;
+            const { pagination, search, filters } = this.state;
+            const { statements, transactions, internal_app_name_prefix } = data;
+            const appNames = getTrxAppFilterOptions(
+              transactions,
+              internal_app_name_prefix,
+            );
+            const searchedAndFilteredData = filterTransactions(
+              searchTransactionsData(search, transactions, statements),
+              filters,
+            );
+            const { current, pageSize } = pagination;
+            const hasData = transactions?.length > 0;
+            const isUsedFilter = search?.length > 0;
+            return (
+              <>
+                <PageConfig>
+                  <PageConfigItem>
+                    <Search
+                      onSubmit={this.onSubmitSearchField as any}
+                      onClear={this.onClearSearchField}
+                      defaultValue={search}
+                      placeholder={"Search transactions"}
+                    />
+                  </PageConfigItem>
+                  <PageConfigItem>
+                    <Filter
+                      onSubmitFilters={this.onSubmitFilters}
+                      appNames={appNames}
+                      activeFilters={searchedAndFilteredData.activeFilters}
+                      filters={filters}
+                    />
+                  </PageConfigItem>
+                </PageConfig>
+                <section className={statisticsClasses.tableContainerClass}>
+                  <TransactionsPageStatistic
+                    pagination={pagination}
+                    lastReset={this.lastReset()}
+                    search={search}
+                    totalCount={searchedAndFilteredData.transactions.length}
+                    arrayItemName="transactions"
+                    activeFilters={searchedAndFilteredData.activeFilters}
+                    onClearFilters={this.onClearFilters}
+                  />
+                  <TransactionsTable
+                    transactions={searchedAndFilteredData.transactions}
+                    statements={statements}
+                    sortSetting={this.state.sortSetting}
+                    onChangeSortSetting={this.onChangeSortSetting}
+                    handleDetails={this.handleDetails}
+                    search={search}
+                    pagination={pagination}
+                    renderNoResult={
+                      <EmptyTransactionsPlaceholder
+                        isEmptySearchResults={hasData && isUsedFilter}
+                      />
+                    }
+                  />
+                </section>
+                <Pagination
+                  pageSize={pageSize}
+                  current={current}
+                  total={searchedAndFilteredData.transactions.length}
+                  onChange={this.onChangePage}
+                />
+              </>
+            );
+          }}
         />
       </div>
     );
+  }
+
+  renderTransactionDetails() {
+    const { statements } = this.props.data;
+    const { statementIds } = this.state;
+    const transactionDetails =
+      statementIds && getStatementsById(statementIds, statements);
+
+    return (
+      <TransactionDetails
+        statements={transactionDetails}
+        lastReset={this.lastReset()}
+        handleDetails={this.handleDetails}
+        error={this.props.error}
+      />
+    );
+  }
+
+  render() {
+    const { statementIds } = this.state;
+    const renderTxDetailsView = !!statementIds;
+    return renderTxDetailsView
+      ? this.renderTransactionDetails()
+      : this.renderTransactionsList();
   }
 }
