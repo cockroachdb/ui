@@ -1,102 +1,58 @@
-import React, {
-  ChangeEvent,
-  CSSProperties,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React from "react";
 import classNames from "classnames/bind";
-import styles from "./styles.module.scss";
 
-type OwnInputProps<T = string | number> = {
-  type?: T extends string ? "text" : "number";
-  initialValue?: T;
-  value?: T;
-  onChange?: (value: T) => void;
+type inputType = "text" | "number" | "checkbox";
+export interface CommonInputProps {
+  id: string;
+  type: inputType;
+  // this should be the div containing the input 
+  fieldInput: JSX.Element;
+  classes?: string;
   className?: string;
-  style?: CSSProperties;
-  autoComplete?: string;
-  placeholder?: string;
-  name?: string;
   disabled?: boolean;
+  help?: any;
+  error?: any;
+  inline?: boolean;
   invalid?: boolean;
-  prefixIcon?: React.ReactNode;
-};
+  label?: string | JSX.Element;
+  ariaLabel?: string;
+  required?: boolean;
+}
 
-type NativeInputProps<T> = Omit<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  keyof OwnInputProps<T>
->;
-
-export type InputProps<T = string | number> = NativeInputProps<T> &
-  OwnInputProps<T>;
-
-const cx = classNames.bind(styles);
-
-export const BaseInput: React.FC<InputProps> = ({
-  name,
-  type = "text",
-  autoComplete = "off",
+export const CommonInput: React.FC<CommonInputProps> = ({
+  type,
+  id,
   className,
-  style,
-  value: outerValue = "",
-  initialValue = "",
-  placeholder,
-  onChange,
-  disabled = false,
-  invalid = false,
-  ...props
+  disabled,
+  help,
+  error,
+  inline,
+  invalid,
+  label,
+  ariaLabel,
+  fieldInput,
+  classes,
 }) => {
-  const [value, setValue] = useState<string | number>(
-    outerValue || initialValue,
-  );
-  const [isDirty, setDirtyState] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (!outerValue && !isDirty) {
-      return;
-    }
-    setDirtyState(true);
-    setValue(outerValue);
-  }, [outerValue, isDirty]);
-
-  const onChangeHandler = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      const nextValue = event.target.value;
-      if (onChange && !disabled) {
-        onChange(nextValue);
-      }
-    },
-    [onChange, disabled],
+  const helpMsg = !help ? null : (
+    <div className="crl-input__message--info">{help}</div>
   );
 
-  const classnames = useMemo(
-    () =>
-      cx(
-        "input",
-        {
-          disabled,
-          invalid,
-          active: !disabled && !invalid,
-        },
-        className,
-      ),
-    [className, invalid, disabled],
+  const errorMsg =
+    !error || typeof error === "boolean" ? null : (
+      <div className="crl-input__message--error">{error}</div>
   );
 
   return (
-    <input
-      {...props}
-      name={name}
-      type={type}
-      value={value}
-      placeholder={placeholder}
-      className={classnames}
-      style={style}
-      onChange={onChangeHandler}
-      autoComplete={autoComplete}
-      disabled={disabled}
-    />
+    <div
+      className={classNames("crl-input__container", classes, {
+        "crl-input--inline": inline,
+      })}
+    >
+      {fieldInput}
+      <div className="crl-input__message">
+        {errorMsg}
+        {helpMsg}
+      </div>
+    </div>
   );
 };

@@ -2,13 +2,16 @@ import React, { useCallback, useState } from "react";
 import classNames from "classnames/bind";
 import { CaretUp, CaretDown } from "@cockroachlabs/icons";
 import isNumber from "../utils/isNumber";
-import { BaseInput, InputProps } from "./BaseInput";
+import { CommonInput, CommonInputProps } from "./BaseInput";
+import { TextAndNumberProps} from "./TextInput";
 import styles from "./styles.module.scss";
 import { InputPrefix, InputWrapper } from "./helpers";
 
 const cx = classNames.bind(styles);
 
-export type NumberInputProps = Omit<InputProps<number>, "type">;
+export type NumberInputProps = CommonInputProps & TextAndNumberProps<number> & {
+  onChange?: (value: number) => void;
+};
 
 export const NumberInput: React.FC<NumberInputProps> = ({
   onChange,
@@ -50,13 +53,10 @@ export const NumberInput: React.FC<NumberInputProps> = ({
   return (
     <InputWrapper disabled={disabled} invalid={invalid} className="number-type">
       <InputPrefix>{prefixIcon}</InputPrefix>
-      <BaseInput
+      <CommonInput
         {...props}
         disabled={disabled}
         invalid={invalid}
-        onChange={onChangeHandler}
-        value={value}
-        initialValue={initialValue}
         type="number"
       />
       <div className={spinButtonsGroupClassName}>
