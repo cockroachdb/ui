@@ -6,6 +6,7 @@ import { Tooltip } from "src/index";
 import classNames from "classnames/bind";
 import styles from "./barCharts.module.scss";
 import { NumericStatLegend } from "./numericStatLegend";
+import { normalizeClosedDomain } from "./utils";
 
 const cx = classNames.bind(styles);
 
@@ -41,14 +42,14 @@ export function barChartFactory<T>(
       rows,
       stdDevAccessor ? getTotalWithStdDev : getTotal,
     );
-
+    const domain = normalizeClosedDomain([0, extent[1]]);
     const scale = scaleLinear()
-      .domain([0, extent[1]])
+      .domain(domain)
       .range([0, 100]);
 
     return (d: T) => {
       if (rows.length === 0) {
-        scale.domain([0, getTotal(d)]);
+        scale.domain(normalizeClosedDomain([0, getTotal(d)]));
       }
 
       let sum = 0;
