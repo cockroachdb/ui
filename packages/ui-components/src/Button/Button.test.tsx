@@ -30,29 +30,6 @@ describe("Button: intent prop", () => {
   });
 });
 
-describe("Button: type prop", () => {
-  it("should default to `button`", () => {
-    const wrapper = shallow(<Button>type test</Button>);
-    expect(wrapper.prop("type")).toContain("button");
-  });
-
-  it("should set the button `type` attribute according to the `type` prop value", () => {
-    const wrapper = shallow(<Button>type test</Button>);
-
-    // submit
-    wrapper.setProps({ type: "submit" });
-    expect(wrapper.find("button[type='submit']")).toHaveLength(1);
-
-    // button
-    wrapper.setProps({ type: "button" });
-    expect(wrapper.find("button[type='button']")).toHaveLength(1);
-
-    // reset
-    wrapper.setProps({ type: "reset" });
-    expect(wrapper.find("button[type='reset']")).toHaveLength(1);
-  });
-});
-
 describe("Button: size prop", () => {
   it("should default to `standard`", () => {
     const wrapper = shallow(<Button>size test</Button>);
@@ -75,9 +52,25 @@ describe("Button: size prop", () => {
 describe("Button: onClick prop", () => {
   it("should call the `onClick` callback when clicked", () => {
     const cb = jest.fn();
-    const wrapper = shallow(<Button onClick={cb}>onClick test</Button>);
+    const wrapper = shallow(
+      <Button as="button" onClick={cb}>
+        onClick test
+      </Button>,
+    );
 
     wrapper.find("button").simulate("click");
     expect(cb.mock.calls.length).toEqual(1);
+  });
+});
+
+describe("Button: as <a>", () => {
+  it("should render anchor using as prop", () => {
+    const wrapper = shallow(
+      <Button as="a" href="#test">
+        anchor
+      </Button>,
+    );
+    expect(wrapper.name()).toEqual("a");
+    expect(wrapper.prop("href")).toContain("#");
   });
 });

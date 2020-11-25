@@ -27,6 +27,10 @@ const Label: FunctionComponent<{ children: string }> = ({ children }) => (
   </div>
 );
 
+const Link: FunctionComponent<{ children: ReactNode }> = props => (
+  <div data-test="fake-link">{props.children}</div>
+);
+
 export const Example = () => (
   <StoryContainer>
     <h1>Buttons</h1>
@@ -34,12 +38,16 @@ export const Example = () => (
       <h3>Type</h3>
       <ButtonDisplaySection>
         <ButtonDisplay>
-          <Label>primary-success</Label>
-          <Button intent="primary-success">Success</Button>
+          <Label>primary</Label>
+          <Button intent="primary">Primary</Button>
         </ButtonDisplay>
         <ButtonDisplay>
-          <Label>primary-danger</Label>
-          <Button intent="primary-danger">Danger</Button>
+          <Label>success</Label>
+          <Button intent="success">Success</Button>
+        </ButtonDisplay>
+        <ButtonDisplay>
+          <Label>danger</Label>
+          <Button intent="danger">Danger</Button>
         </ButtonDisplay>
         <ButtonDisplay>
           <Label>secondary (default)</Label>
@@ -62,6 +70,75 @@ export const Example = () => (
           <Label>small</Label>
           <Button size="small">Small</Button>
         </ButtonDisplay>
+        <div
+          style={{ margin: "0rem 1rem", textAlign: "center", width: "300px" }}
+        >
+          <Label>fluid</Label>
+          <Button fluid>Fluid</Button>
+        </div>
+      </ButtonDisplaySection>
+    </section>
+    <section>
+      <h3>Disabled</h3>
+      <ButtonDisplaySection>
+        <ButtonDisplay>
+          <Label>primary</Label>
+          <Button intent="primary" disabled>
+            Primary
+          </Button>
+        </ButtonDisplay>
+        <ButtonDisplay>
+          <Label>success</Label>
+          <Button intent="success" disabled>
+            Success
+          </Button>
+        </ButtonDisplay>
+        <ButtonDisplay>
+          <Label>danger</Label>
+          <Button intent="danger" disabled>
+            Danger
+          </Button>
+        </ButtonDisplay>
+        <ButtonDisplay>
+          <Label>secondary (default)</Label>
+          <Button disabled>Secondary</Button>
+        </ButtonDisplay>
+        <ButtonDisplay>
+          <Label>tertiary</Label>
+          <Button intent="tertiary" disabled>
+            Tertiary
+          </Button>
+        </ButtonDisplay>
+      </ButtonDisplaySection>
+      <h3>Button Elements</h3>
+      <ButtonDisplaySection>
+        <ButtonDisplay>
+          <Label>
+            as default (`button`) with type submit wrapped in a `form`
+          </Label>
+          <form
+            onSubmit={e => {
+              e.preventDefault();
+              alert("submit!");
+            }}
+          >
+            <Button type="submit">Submit</Button>
+          </form>
+        </ButtonDisplay>
+        <ButtonDisplay>
+          <Label>as `a` tag with `href` value</Label>
+          <Button as="a" href="https://cockroachlabs.com">
+            cockroachlabs.com
+          </Button>
+        </ButtonDisplay>
+        <ButtonDisplay>
+          <Label>as `div`</Label>
+          <Button as="div">Just a div</Button>
+        </ButtonDisplay>
+        <ButtonDisplay>
+          <Label>as `Link`</Label>
+          <Button as={Link}>this is a link</Button>
+        </ButtonDisplay>
       </ButtonDisplaySection>
     </section>
   </StoryContainer>
@@ -69,8 +146,8 @@ export const Example = () => (
 
 export const Demo = () => {
   const intents: Array<ButtonIntent> = [
-    "primary-success",
-    "primary-danger",
+    "primary",
+    "danger",
     "secondary",
     "tertiary",
   ];
@@ -78,7 +155,7 @@ export const Demo = () => {
   return (
     <StoryContainer>
       <Button
-        intent={select("Intent", intents, "primary-success")}
+        intent={select("Intent", intents, "primary")}
         size={select("Size", sizes, "standard")}
       >
         {text("Text", "button")}

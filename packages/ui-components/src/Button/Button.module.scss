@@ -1,17 +1,27 @@
 @import "../styles/tokens.scss";
 
+@mixin disabled {
+  opacity: 0.7;
+}
+
 .button {
-  display: flex;
   align-items: center;
-  justify-content: center;
   border-width: 1px;
   border-radius: $crl-border-radius;
+  box-sizing: border-box;
+  display: inline-flex;
+  font-family: "Source Sans Pro", "Segoe UI", Tahoma, Geneva, Verdana,
+    sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  justify-content: center;
   outline: none;
+  text-decoration: none;
   @include crl-transition(background-color, border-color, box-shadow);
 
   // TODO(j-low): update with type tokens when available
-  font-size: 12px;
-  line-height: 14px;
+  font-size: 14px;
+  line-height: 24px;
 
   &:hover {
     cursor: pointer;
@@ -31,13 +41,56 @@
     }
   }
 
-  :disabled {
+  &:disabled {
+    @include disabled;
     &:hover {
       cursor: not-allowed;
     }
   }
 
-  &.intent-primary-success {
+  &.intent-primary {
+    background-color: $component-button-primary-background-color-base;
+    color: $component-button-primary-font-color-base;
+    border-width: 1px;
+    border-style: solid;
+    border-color: $component-button-primary-border-color-base;
+
+    &:hover {
+      background-color: crl-darken(
+        $component-button-primary-background-color-hover
+      );
+      border-color: crl-darken($component-button-primary-border-color-hover);
+      color: $component-button-primary-font-color-hover;
+    }
+
+    &:active {
+      background-color: crl-darken(
+        $component-button-primary-background-color-active
+      );
+      border-width: 1px;
+      border-color: crl-darken($component-button-primary-border-color-active);
+    }
+
+    &:focus {
+      background-color: $component-button-primary-background-color-focused;
+      border-width: 1px;
+      border-color: crl-darken($component-button-primary-border-color-focused);
+      @include crl-box-shadow(
+        0,
+        0,
+        0,
+        3px,
+        rgba($component-button-primary-shadow-color-focused, 0.4)
+      );
+    }
+
+    &:disabled {
+      background-color: $component-button-primary-background-color-disabled;
+      border-color: $component-button-primary-border-color-disabled;
+    }
+  }
+
+  &.intent-success {
     background-color: $component-button-success-background-color-base;
     color: $component-button-success-font-color-base;
     border-width: 1px;
@@ -74,14 +127,12 @@
     }
 
     &:disabled {
-      background-color: crl-lighten(
-        $component-button-success-background-color-disabled
-      );
-      border-color: crl-lighten($component-button-success-border-color-disabled);
+      background-color: $component-button-success-background-color-disabled;
+      border-color: $component-button-success-border-color-disabled;
     }
   }
 
-  &.intent-primary-danger {
+  &.intent-danger {
     background-color: $component-button-danger-background-color-base;
     color: $component-button-danger-font-color-base;
     border-width: 1px;
@@ -117,10 +168,8 @@
     }
 
     &:disabled {
-      background-color: crl-lighten(
-        $component-button-danger-background-color-disabled
-      );
-      border-color: crl-lighten($component-button-danger-border-color-disabled);
+      background-color: $component-button-danger-background-color-disabled;
+      border-color: $component-button-danger-border-color-disabled;
     }
   }
 
@@ -219,4 +268,8 @@
 .size-small {
   height: $crl-input-height-small;
   padding: crl-gutters(0.5) crl-gutters(1.5);
+}
+
+.fluid {
+  width: 100%;
 }
