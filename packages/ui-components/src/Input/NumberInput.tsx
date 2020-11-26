@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 import { CaretUp, CaretDown } from "@cockroachlabs/icons";
 import isNumber from "../utils/isNumber";
 import { CommonInput, CommonInputProps } from "./BaseInput";
-import { TextAndNumberProps} from "./TextInput";
+import { TextAndNumberProps} from "./TextTypeInput";
 import styles from "./styles.module.scss";
 import { InputPrefix, InputWrapper } from "./helpers";
 

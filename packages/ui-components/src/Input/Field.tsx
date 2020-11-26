@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { Field, FieldProps, FieldRenderProps } from "react-final-form";
 
-import { TextInput, TextInputProps } from "./TextInput";
+import { TextTypeInput, AllProps, EmailInput, NewPasswordInput, ExistingPasswordInput } from "./TextTypeInput";
 import { CheckboxInput, CheckboxInputProps } from "./CheckboxInput";
 import { NumberInput } from "./NumberInput";
 
@@ -10,7 +10,7 @@ type TextInputFieldProps = FieldProps<
   FieldRenderProps<string, HTMLElement>,
   HTMLElement
 > &
-  TextInputProps;
+AllProps;
 
 type CheckboxInputFieldProps = FieldProps<
   boolean,
@@ -53,7 +53,7 @@ const InputField: FunctionComponent<TextInputFieldProps | CheckboxInputFieldProp
       name={name}
       render={({ input, meta }) => (
         <>
-         {type ==="text" && <TextInput
+         {type ==="text" && <TextTypeInput
           {...input}
           {...inputProps}
           error={meta.touched && meta.error}
@@ -66,6 +66,24 @@ const InputField: FunctionComponent<TextInputFieldProps | CheckboxInputFieldProp
         />}
 
           {type ==="number" && <NumberInput
+          {...input}
+          {...inputProps}
+          error={meta.touched && meta.error}
+        />}
+
+          {type ==="email" && <EmailInput
+                    {...input}
+                    {...inputProps}
+                    error={meta.touched && meta.error}
+                  />}
+
+          {type ==="new password" && <NewPasswordInput
+                    {...input}
+                    {...inputProps}
+                    error={meta.touched && meta.error}
+                  />}
+
+          {type ==="existing password" && <ExistingPasswordInput
           {...input}
           {...inputProps}
           error={meta.touched && meta.error}

@@ -1,4 +1,4 @@
 export * from "./BaseInput";
-export * from "./TextInput";
-export { TextInput as Input } from "./TextInput";
+export * from "./TextTypeInput";
+export { TextTypeInput as Input } from "./TextTypeInput";
 export * from "./NumberInput";

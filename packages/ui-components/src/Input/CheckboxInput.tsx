@@ -47,6 +47,22 @@ export const CheckboxInput: React.FC<CheckboxInputProps> = props => {
   // targeted seperately from the input itself
   const classes = generateContainerClassnames(className);
 
+  const inputProps = {
+    id: id,
+    className: classNames("crl-input", className, {
+      "crl-input--invalid": error || invalid,
+    }),
+    name: name,
+    ["aria-label"]: ariaLabel,
+    ["aria-invalid"]: !!error || invalid,
+    ["aria-required"]: required,
+    disabled: disabled,
+    onChange: onChange,
+    onBlur: onBlur,
+    onFocus,
+    ...rest,
+  };
+
 const fieldInput = 
   <div className="crl-input__checkbox-input">
     <input type="checkbox" checked={!!value} {...inputProps} />
