@@ -77,7 +77,7 @@ describe("<SortedTable>", function() {
     assert.lengthOf(wrapper.find("table"), 1, "one table");
     assert.lengthOf(wrapper.find("thead").find("tr"), 1, "one header row");
     assert.lengthOf(
-      wrapper.find(`tr.${cx("sort-table__row--header")}`),
+      wrapper.find(`tr.${cx("head-wrapper__row--header")}`),
       1,
       "column header row",
     );
@@ -88,7 +88,7 @@ describe("<SortedTable>", function() {
     const spy = sinon.spy();
     const wrapper = makeTable([new TestRow("test", 1)], undefined, spy);
     wrapper
-      .find(`th.${cx("sort-table__cell")}`)
+      .find(`th.${cx("head-wrapper__cell")}`)
       .first()
       .simulate("click");
     assert.isTrue(spy.calledOnce);
@@ -112,12 +112,18 @@ describe("<SortedTable>", function() {
       _.each(expected, (rowData, dataIndex) => {
         const row = rows.childAt(dataIndex);
         assert.equal(
-          row.childAt(0).text(),
+          row
+            .childAt(0)
+            .childAt(0)
+            .text(),
           rowData.name,
           "first columns match",
         );
         assert.equal(
-          row.childAt(1).text(),
+          row
+            .childAt(0)
+            .childAt(1)
+            .text(),
           rowData.value.toString(),
           "second columns match",
         );
@@ -138,7 +144,7 @@ describe("<SortedTable>", function() {
       assert.lengthOf(wrapper.find("table"), 1, "one table");
       assert.lengthOf(wrapper.find("thead").find("tr"), 1, "one header row");
       assert.lengthOf(
-        wrapper.find(`tr.${cx("sort-table__row--header")}`),
+        wrapper.find(`tr.${cx("head-wrapper__row--header")}`),
         1,
         "column header row",
       );
@@ -150,7 +156,7 @@ describe("<SortedTable>", function() {
         "two body cells plus one expansion control cell",
       );
       assert.lengthOf(
-        wrapper.find(`td.${cx("sort-table__cell__expansion-control")}`),
+        wrapper.find(`td.${cx("row-wrapper__cell__expansion-control")}`),
         1,
         "one expansion control cell",
       );
@@ -159,14 +165,14 @@ describe("<SortedTable>", function() {
     it("expands and collapses the clicked row", function() {
       const wrapper = makeExpandableTable([new TestRow("test", 1)], undefined);
       assert.lengthOf(
-        wrapper.find(`.${cx("sort-table__row--expanded-area")}`),
+        wrapper.find(`.${cx("row-wrapper__row--expanded-area")}`),
         0,
         "nothing expanded yet",
       );
       wrapper
-        .find(`.${cx("sort-table__cell__expansion-control")}`)
+        .find(`.${cx("row-wrapper__cell__expansion-control")}`)
         .simulate("click");
-      const expandedArea = wrapper.find(".sort-table__row--expanded-area");
+      const expandedArea = wrapper.find(".row-wrapper__row--expanded-area");
       assert.lengthOf(expandedArea, 1, "row is expanded");
       assert.lengthOf(
         expandedArea.children(),
@@ -176,16 +182,16 @@ describe("<SortedTable>", function() {
       assert.isTrue(expandedArea.contains(<td />));
       assert.isTrue(
         expandedArea.contains(
-          <td className={cx("sort-table__cell")} colSpan={2}>
+          <td className={cx("row-wrapper__cell")} colSpan={2}>
             <div>test=1</div>
           </td>,
         ),
       );
       wrapper
-        .find(`.${cx("sort-table__cell__expansion-control")}`)
+        .find(`.${cx("row-wrapper__cell__expansion-control")}`)
         .simulate("click");
       assert.lengthOf(
-        wrapper.find(`.${cx("sort-table__row--expanded-area")}`),
+        wrapper.find(`.${cx("row-wrapper__row--expanded-area")}`),
         0,
         "row collapsed again",
       );
@@ -209,6 +215,7 @@ describe("<SortedTable>", function() {
       rows
         .childAt(1)
         .childAt(0)
+        .childAt(0)
         .text(),
       "d",
       "second row column at first page match",
@@ -222,6 +229,7 @@ describe("<SortedTable>", function() {
     assert.lengthOf(wrapper.find("tbody tr"), 2, "two body rows");
     assert.equal(
       rows
+        .childAt(0)
         .childAt(0)
         .childAt(0)
         .text(),
@@ -238,6 +246,7 @@ describe("<SortedTable>", function() {
       rows
         .childAt(1)
         .childAt(0)
+        .childAt(0)
         .text(),
       "b",
       "second row column at first page match",
@@ -250,6 +259,7 @@ describe("<SortedTable>", function() {
     rows = wrapper.find("tbody");
     assert.equal(
       rows
+        .childAt(0)
         .childAt(0)
         .childAt(0)
         .text(),

@@ -1,8 +1,11 @@
 import React from "react";
 import * as protos from "@cockroachlabs/crdb-protobuf-client";
 import { makeStatementsColumns } from "../statementsTable";
-import { SortedTable, ISortedTablePagination } from "../sortedtable";
-import { SortSetting } from "../sortabletable";
+import {
+  SortedTable,
+  ISortedTablePagination,
+  SortSetting,
+} from "../sortedtable";
 import { Pagination } from "../pagination";
 import { TransactionsPageStatistic } from "../transactionsPage/transactionsPageStatistic";
 import { baseHeadingClasses } from "../transactionsPage/transactionsPageClasses";

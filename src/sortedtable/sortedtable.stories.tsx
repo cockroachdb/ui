@@ -1,10 +1,10 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 
-import { SortableTable } from "./";
+import { SortedTable } from "./";
 
-storiesOf("Sortable table", module)
-  .add("Empty state", () => <SortableTable empty />)
+storiesOf("Sorted table", module)
+  .add("Empty state", () => <SortedTable empty />)
   .add("With data", () => {
     const columns = [
       {
@@ -23,5 +23,5 @@ storiesOf("Sortable table", module)
         cell: (idx: number) => `row-${idx} col-3`,
       },
     ];
-    return <SortableTable columns={columns} count={3} />;
+    return <SortedTable columns={columns} data={[1, 2, 3]} />;
   });

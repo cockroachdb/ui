@@ -26,4 +26,4 @@ storiesOf("StatementsSortedTable", module)
       }}
     />
   ))
-  .add("empty table", () => <StatementsSortedTable />);
+  .add("empty table", () => <StatementsSortedTable empty />);

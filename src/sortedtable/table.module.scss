@@ -1,9 +1,7 @@
 @import '../core/index.module.scss';
 
 $table-cell-border: 1px solid $colors--neutral-2;
-
 $stats-table-td--fg: $colors--neutral-6;
-
 $stats-table-th--bg: $colors--neutral-0;
 $stats-table-tr--bg: $colors--neutral-0;
 
@@ -17,6 +15,11 @@ $stats-table-tr--bg: $colors--neutral-0;
   vertical-align: top;
   color: $colors--neutral-7;
 
+  .__cell--header {
+    border-right: 1px solid $colors--neutral-2;
+    width: 250px;
+  }
+  
   &__row {
     &--body {
       letter-spacing: 0.33px;
@@ -31,7 +34,6 @@ $stats-table-tr--bg: $colors--neutral-0;
       font-size: $font-size--medium;
       font-weight: bold;
       letter-spacing: 2px;
-      text-transform: uppercase;
       text-align: left;
       white-space: nowrap;
       background-color: $stats-table-th--bg;
@@ -57,9 +59,15 @@ $stats-table-tr--bg: $colors--neutral-0;
   }
 
   &__cell {
-    padding: 10px 20px;
+    padding: 15px 22px 15px 11px;
     border: none;
     font-weight: inherit;
+    font-family: $font-family--base;
+    font-style: normal;
+    font-weight: $font-weight--light;
+    font-size: $font-size--medium;
+    line-height: $line-height--small;
+    letter-spacing: 0.3px;
 
     a {
       color: $adminui-grey-1;

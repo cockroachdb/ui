@@ -29,11 +29,11 @@ import {
 } from "src/statementsDiagnostics";
 import { ISortedTablePagination } from "../../sortedtable";
 import styles from "./statementsPage.module.scss";
-import sortableTableStyles from "../../sortabletable/sortabletable.module.scss";
 import { EmptyStatementsPlaceholder } from "./emptyStatementsPlaceholder";
 import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
 
 type IStatementDiagnosticsReport = cockroach.server.serverpb.IStatementDiagnosticsReport;
+import sortableTableStyles from "../../sortedtable/sortedtable.module.scss";
 
 const cx = classNames.bind(styles);
 const sortableTableCx = classNames.bind(sortableTableStyles);
