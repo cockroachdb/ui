@@ -1,92 +1,157 @@
 @import "../styles/tokens.scss";
 @import "./constants.scss";
 
-// ".container" class is responsible to style up outer borders
-// and width, height sizes of input component.
-// it can be applied to <input/> element itself or to wrapper <div>
-// element in case NumberInput is rendered.
-.container {
-  border-radius: $input-border-spacing;
-  height: exclBorderWidth($input-height);
-  display: inline-flex;
-  background-color: $color-background-base;
-  min-width: exclBorderWidth($input-text-width);
-  width: exclBorderWidth($input-text-width);
-  padding: $input-border-spacing;
+.crl-input {
+  outline: none;
+  @include crl-type-body;
 
-  &.active {
-    border: solid $border-width $color-core-neutral-4;
-    background-color: $color-background-base;
-    color: initial;
+  &:not([type="checkbox"]) {
+    display: block;
+    width: 100%;
+    padding: crl-gutters(1);
+    color: $crl-base-text--dark;
+    background-color: $color-base-white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: $color-core-neutral-3;
+    border-radius: $crl-border-radius;
+    @include crl-transition(color, box-shadow, border-color, background-color);
+    resize: none;
+
+    &:not(textarea) {
+      height: $crl-input-height;
+    }
+
+    &::placeholder {
+      color: $color-core-neutral-3;
+      @include crl-transition(color);
+    }
 
     &:hover {
-      border: solid $border-width $color-core-neutral-5;
+      background-color: $color-base-white;
+      border-color: $color-core-neutral-4;
+
+      &::placeholder {
+        color: $crl-base-text--light;
+      }
     }
 
-    &:focus-within {
-      border: solid $border-width $color-base-blue;
-      // Outline params are borrowed from default outline styles for input element
-      // and applied to div element.
-      outline: $color-base-blue auto 3px;
-      outline-offset: -2px;
+    &:disabled {
+      background-color: $color-core-neutral-1;
+      color: $color-core-neutral-5;
+      border-color: $color-core-neutral-3;
     }
   }
 
-  &.invalid {
-    border: solid $border-width $color-base-red;
-    background-color: $color-core-red-1;
+  // box-shadows work for checkboxes
+  // border, color, and background do not
+  &:focus {
+    background-color: $color-base-white;
+    color: $crl-base-text--dark;
+    border-color: $color-core-blue-4;
+    @include crl-box-shadow(0, 0, 4px, 2px, rgba($color-core-blue-4, 0.4));
+  }
+
+  &:invalid,
+  &.crl-input--invalid {
+    background-color: rgba($color-base-red, 0.05);
     color: $color-base-red;
+    border-color: $color-base-red;
 
-    &:focus-within, &:hover {
-      border: solid $border-width $color-base-red;
+    &:focus {
+      @include crl-box-shadow(0, 0, 4px, 2px, rgba($color-base-red, 0.4));
     }
   }
 
-  &.disabled {
-    background: $color-core-neutral-1;
-    color: $color-font-4;
-    border: solid $border-width $color-core-neutral-3;
-    cursor: default;
+  &--reference:not([type="checkbox"]):disabled {
+    color: $color-core-neutral-7;
+    background-color: $color-core-neutral-1;
+    border-color: $color-core-neutral-1;
+  }
 
-    &:focus, &:hover {
-      border: solid $border-width $color-core-neutral-3;
+  // For more information on how to style a checkbox, see:
+  // https://developer.mozilla.org/en-US/docs/Learn/Forms/Advanced_form_styling
+  &[type="checkbox"] {
+    margin-right: crl-gutters(1);
+  }
+
+  &__container {
+    width: 100%;
+    position: relative;
+
+    &.crl-input--inline {
+      display: inline-block;
+      margin-right: 6%;
+      width: 47%;
+      vertical-align: top;
+    }
+  }
+
+  &__message {
+    &--info,
+    &--error {
+      padding-top: crl-gutters(1);
+    }
+
+    &--info {
+      @include crl-type-caption;
+    }
+
+    &--error {
+      @include crl-type-error;
+
+      & > .crl-icon__container {
+        padding-right: crl-gutters(1);
+      }
+    }
+  }
+
+  &__affix-container {
+    position: relative;
+  }
+
+  &--prefix:not([type="checkbox"]) {
+    padding-left: 30px;
+  }
+
+  &--suffix:not([type="checkbox"]) {
+    padding-right: 30px;
+  }
+
+  &__prefix,
+  &__suffix {
+    display: flex;
+    position: absolute;
+    height: $crl-input-height;
+    top: 0;
+    vertical-align: middle;
+  }
+
+  &__prefix {
+    left: crl-gutters(1.25);
+  }
+
+  &__suffix {
+    right: crl-gutters(1.25);
+  }
+
+  &--required:after {
+    content: " *";
+    color: $color-base-red;
+  }
+
+  &__checkbox-input {
+    display: flex;
+    align-items: center;
+    label {
+      margin-bottom: 0;
     }
   }
 }
 
-// ".input" removes most styling from element because it is responsibility of `.container` class.
-.input {
-  font-family: Source Sans Pro, sans-serif; // TODO (koorosh): replace with token value
-  font-size: 14px; // TODO (koorosh): replace with token value (default font size)
-  line-height: 22px;
-  border: none;
-  outline: none;
-  padding: 0 crl-gutters(1.5);
-  position: relative;
-  background-color: inherit;
-  color: inherit;
-  width: 100%;
-
-  &:focus, &:hover {
-    border: none;
-    outline: none;
+.crl-form-group {
+  .crl-input--inline:last-child {
+    margin-right: 0;
   }
 }
 
-// Prefix component styles. Set constant width/height
-// and apply colors based on container's state.
-.container {
-  .prefix {
-    width: 14px; // TODO (koorosh): has to be the same as font-size
-    min-width: 14px;
-    height: 14px;
-    min-height: 14px;
-    margin: auto 0 auto 8px;
-  }
-
-  @each $state, $hoverColor, $focusColor in $state-colors {
-    &.#{$state} .prefix > svg {
-      fill: $hoverColor;
-    }
-  }
-}

@@ -1,25 +1,50 @@
 import React, { FunctionComponent } from "react";
 import { Field, FieldProps, FieldRenderProps } from "react-final-form";
 
-import { TextTypeInput, AllProps, EmailInput, NewPasswordInput, ExistingPasswordInput } from "./TextTypeInput";
+import { TextInput, TextProps} from "./TextTypeInput";
+import { EmailInput, NewPasswordInput, ExistingPasswordInput, EmailNumberProps, NewPasswordProps, ExistingPasswordProps } from "./EmailPasswordInput";
 import { CheckboxInput, CheckboxInputProps } from "./CheckboxInput";
-import { NumberInput } from "./NumberInput";
 
-type TextInputFieldProps = FieldProps<
+type TextInputFieldProps = Omit<FieldProps<
   string,
   FieldRenderProps<string, HTMLElement>,
   HTMLElement
 > &
-AllProps;
+TextProps, "type">;
 
-type CheckboxInputFieldProps = FieldProps<
+type CheckboxInputFieldProps = Omit<FieldProps<
   boolean,
   FieldRenderProps<boolean, HTMLElement>,
   HTMLElement
 > &
-  CheckboxInputProps;
+  CheckboxInputProps, "type">;
 
-const InputField: FunctionComponent<TextInputFieldProps | CheckboxInputFieldProps> = props => {
+type EmailInputFieldProps = Omit<FieldProps<
+  string,
+  FieldRenderProps<string, HTMLElement>,
+  HTMLElement
+> &
+ EmailNumberProps, "type">;
+
+ type NewPasswordInputFieldProps = Omit<FieldProps<
+ string,
+ FieldRenderProps<string, HTMLElement>,
+ HTMLElement
+> &
+NewPasswordProps, "type">;
+
+type ExistingPasswordInputFieldProps = Omit<FieldProps<
+string,
+FieldRenderProps<string, HTMLElement>,
+HTMLElement
+> &
+ExistingPasswordProps, "type">;
+
+type InternalFieldProps = 
+{inputFieldComponent: React.FunctionComponent} &
+TextInputFieldProps | CheckboxInputFieldProps | EmailInputFieldProps | NewPasswordInputFieldProps | ExistingPasswordInputFieldProps;
+
+const InputField: FunctionComponent<InternalFieldProps> = props => {
   const {
     afterSubmit,
     allowNull = false,
@@ -34,6 +59,7 @@ const InputField: FunctionComponent<TextInputFieldProps | CheckboxInputFieldProp
     validate,
     validateFields,
     name,
+    inputFieldComponent,
     ...inputProps
   } = props;
   return (
@@ -51,47 +77,39 @@ const InputField: FunctionComponent<TextInputFieldProps | CheckboxInputFieldProp
       validate={validate}
       validateFields={validateFields}
       name={name}
-      render={({ input, meta }) => (
-        <>
-         {type ==="text" && <TextTypeInput
-          {...input}
+      render={({ input, meta }) => {
+        <inputFieldComponent 
+        {...input}
           {...inputProps}
+          textType={type}
           error={meta.touched && meta.error}
-        />}
-
-          {type ==="checkbox" && <CheckboxInput
-          {...input}
-          {...inputProps}
-          error={meta.touched && meta.error}
-        />}
-
-          {type ==="number" && <NumberInput
-          {...input}
-          {...inputProps}
-          error={meta.touched && meta.error}
-        />}
-
-          {type ==="email" && <EmailInput
-                    {...input}
-                    {...inputProps}
-                    error={meta.touched && meta.error}
-                  />}
-
-          {type ==="new password" && <NewPasswordInput
-                    {...input}
-                    {...inputProps}
-                    error={meta.touched && meta.error}
-                  />}
-
-          {type ==="existing password" && <ExistingPasswordInput
-          {...input}
-          {...inputProps}
-          error={meta.touched && meta.error}
-        />}
-        </>
-      )}
+      />
+      }}
     />
   );
 };
 
-export default InputField;
+// It's not necessary to pass the type prop for a Field
+// This is to prevent passing a type for which the input component
+// isn't defined
+
+export const TextField: FunctionComponent<TextInputFieldProps>  = props => {
+  return <InputField type="text" inputFieldComponent={TextInput} {...props} />;
+};
+
+export const CheckboxField: FunctionComponent<Number>  = props => {
+  const fieldComponent = TextInput
+  return <InputField type="checkbox" inputFieldComponent={CheckboxInput} {...props} />;
+};
+
+export const EmailField: FunctionComponent<EmailInputFieldProps>  = props => {
+  return <InputField type="email" inputFieldComponent={EmailInput} {...props} />;
+};
+
+export const NewPasswordField: FunctionComponent<NewPasswordInputFieldProps>  = props => {
+  return <InputField type="password" inputFieldComponent={NewPasswordInput} {...props} />;
+};
+
+export const ExistingPasswordField: FunctionComponent<ExistingPasswordInputFieldProps>  = props => {
+  return <InputField type="password" inputFieldComponent={ExistingPasswordInput} {...props} />;
+};

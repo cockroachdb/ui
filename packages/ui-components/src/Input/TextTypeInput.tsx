@@ -29,6 +29,8 @@ export interface TextAndNumberProps<T = string | number> {
   ) => void;
   multiline?: boolean;
   placeholder?: string;
+  // prop only used internally for implementation
+  textType?: "text" | "email" | "password" | "number";
   // this defines the input type rendered by this field
   // for multiline text types, this will be <textarea>
   // for text/email/password/number types this will be <input> with a type field
@@ -38,7 +40,6 @@ export interface TextAndNumberProps<T = string | number> {
 // the following props are used to implement {Email, Password, Number}Input
 // it is recommended to use those components instead of passing an "email" type to TextInput
 interface CustomProps {
-  textType?: "email" | "password" | "number";
   prefix?: JSX.Element;
   ariaLabel?: string;
   ariaLabelledBy?: string;
@@ -50,17 +51,17 @@ interface CustomProps {
   onClick?: (
     event: React.MouseEvent<HTMLInputElement, MouseEvent>,
   ) => void;
-  existingPassword: boolean;
   forgotPasswordLinkDiv?: JSX.Element;
+  // this prop is only used for internal implementation
+  // whether the password exists or not, should be indicated by New/Existing PasswordInput
+  existingPassword?: boolean;
 };
 
 export type TextProps = CommonInputProps & TextAndNumberProps<string>;
-export type AllProps = CommonInputProps & TextAndNumberProps<string> & CustomProps;
-export type NewPasswordProps = Omit<Omit<AllProps, "multiline">, "forgotPasswordLinkDiv">;
-export type ExistingPasswordProps = Omit<AllProps, "multiline">;
-export type EmailNumberProps = Omit<NewPasswordProps, "existingPassword">;
+type InternalProps = CommonInputProps & TextAndNumberProps<string> & CustomProps;
+export type AllProps = Omit<InternalProps, "existingPassword">;
 
-export const TextTypeInput: React.FC<AllProps> = props => {
+export const BaseTextInput: React.FC<InternalProps> = props => {
   const {
     JSXInput,
     id,
@@ -85,7 +86,7 @@ export const TextTypeInput: React.FC<AllProps> = props => {
   ariaLabelledBy,
   autoFocus,
   tabIndex,
-  existingPassword,
+  existingPassword = false,
   forgotPasswordLinkDiv,
   ...rest
 } = props;
@@ -163,26 +164,7 @@ export const TextTypeInput: React.FC<AllProps> = props => {
   );
 };
 
-export const EmailInput: React.FC<EmailNumberProps> = ({
-  ...props
-}) => {
-  return (
-    <TextTypeInput type="email" existingPassword={false} {...props}/>
-  );
+export const TextInput: React.FC<TextProps> = props => {
+  return <BaseTextInput {...props} />
 };
-
-export const NewPasswordInput: React.FC<NewPasswordProps> = ({
-  ...props
-}) => {
-  return (
-    <TextTypeInput type="password" existingPassword={false} {...props}/>
-  );
-};
-
-export const ExistingPasswordInput: React.FC<ExistingPasswordProps> = ({
-  ...props
-}) => {
-  return (
-    <TextTypeInput type="password" existingPassword={true} {...props}/>
-  );
-};
+  
