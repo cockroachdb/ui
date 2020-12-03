@@ -6,21 +6,13 @@ import Long from "long";
 import {
   createDiagnosticsReportSaga,
   requestStatementsDiagnosticsSaga,
-} from "./statementDiagnosticsReports.sagas";
-import {
-  createStatementDiagnosticsReportAction,
-  createStatementDiagnosticsReportCompleteAction,
-  createStatementDiagnosticsReportFailedAction,
-  requestStatementDiagnostics,
-  requestStatementDiagnosticsFailed,
-  requestStatementDiagnosticsReceived,
   StatementDiagnosticsState,
-  statementsDiagnosticsReducer,
-} from "./statementDiagnosticsReports.reducer";
+} from "src/store/statementDiagnostics";
+import { actions, reducer } from "src/store/statementDiagnostics";
 import {
   createStatementDiagnosticsReport,
   getStatementDiagnosticsReports,
-} from "../api/statementsDiagnosticsApi";
+} from "src/api/statementDiagnosticsApi";
 
 const CreateStatementDiagnosticsReportResponse =
   cockroach.server.serverpb.CreateStatementDiagnosticsReportResponse;
@@ -44,7 +36,7 @@ describe("statementsDiagnostics sagas", () => {
     it("successful request", () => {
       expectSaga(
         createDiagnosticsReportSaga,
-        createStatementDiagnosticsReportAction(statementFingerprint),
+        actions.createReport(statementFingerprint),
       )
         .provide([
           [
@@ -53,9 +45,9 @@ describe("statementsDiagnostics sagas", () => {
           ],
           [call(getStatementDiagnosticsReports), reportsResponse],
         ])
-        .put(createStatementDiagnosticsReportCompleteAction())
-        .put(requestStatementDiagnostics())
-        .withReducer(statementsDiagnosticsReducer)
+        .put(actions.createReportCompleted())
+        .put(actions.request())
+        .withReducer(reducer)
         .hasFinalState<StatementDiagnosticsState>({
           data: null,
           lastError: null,
@@ -67,7 +59,7 @@ describe("statementsDiagnostics sagas", () => {
     it("failed request", () => {
       expectSaga(
         createDiagnosticsReportSaga,
-        createStatementDiagnosticsReportAction(statementFingerprint),
+        actions.createReport(statementFingerprint),
       )
         .provide([
           [
@@ -76,7 +68,7 @@ describe("statementsDiagnostics sagas", () => {
           ],
           [call(getStatementDiagnosticsReports), reportsResponse],
         ])
-        .put(createStatementDiagnosticsReportFailedAction())
+        .put(actions.createReportFailed())
         .run();
     });
   });
@@ -90,8 +82,8 @@ describe("statementsDiagnostics sagas", () => {
     it("successfully requests diagnostics reports", () => {
       expectSaga(requestStatementsDiagnosticsSaga)
         .provide([[call(getStatementDiagnosticsReports), reportsResponse]])
-        .put(requestStatementDiagnosticsReceived(reportsResponse))
-        .withReducer(statementsDiagnosticsReducer)
+        .put(actions.received(reportsResponse))
+        .withReducer(reducer)
         .hasFinalState<StatementDiagnosticsState>({
           data: reportsResponse,
           lastError: null,
@@ -104,8 +96,8 @@ describe("statementsDiagnostics sagas", () => {
       const error = new Error("Failed request");
       expectSaga(requestStatementsDiagnosticsSaga)
         .provide([[call(getStatementDiagnosticsReports), throwError(error)]])
-        .put(requestStatementDiagnosticsFailed(error))
-        .withReducer(statementsDiagnosticsReducer)
+        .put(actions.failed(error))
+        .withReducer(reducer)
         .hasFinalState<StatementDiagnosticsState>({
           data: null,
           lastError: error,

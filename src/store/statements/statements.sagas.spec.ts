@@ -2,19 +2,14 @@ import { expectSaga, testSaga } from "redux-saga-test-plan";
 import { throwError } from "redux-saga-test-plan/providers";
 import * as matchers from "redux-saga-test-plan/matchers";
 import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
-import statementsReducer, {
-  invalidateStatements,
-  requestStatements,
-  statementsReceived,
-  statementsRequestFailed,
-  StatementsState,
-} from "./statementsPage.reducer";
+
+import { getStatements } from "src/api/statementsApi";
 import {
   receivedStatementsSaga,
   refreshStatementsSaga,
   requestStatementsSaga,
-} from "./statementsPage.sagas";
-import { getStatements } from "../api/statementsApi";
+} from "./statements.sagas";
+import { actions, reducer, StatementsState } from "./statements.reducer";
 
 describe("StatementsPage sagas", () => {
   const statements = new cockroach.server.serverpb.StatementsResponse({
@@ -25,7 +20,7 @@ describe("StatementsPage sagas", () => {
   describe("refreshStatementsSaga", () => {
     it("dispatches request statements action", () => {
       expectSaga(refreshStatementsSaga)
-        .put(requestStatements())
+        .put(actions.request())
         .run();
     });
   });
@@ -34,8 +29,8 @@ describe("StatementsPage sagas", () => {
     it("successfully requests statements list", () => {
       expectSaga(requestStatementsSaga)
         .provide([[matchers.call.fn(getStatements), statements]])
-        .put(statementsReceived(statements))
-        .withReducer(statementsReducer)
+        .put(actions.received(statements))
+        .withReducer(reducer)
         .hasFinalState<StatementsState>({
           data: statements,
           lastError: null,
@@ -48,8 +43,8 @@ describe("StatementsPage sagas", () => {
       const error = new Error("Failed request");
       expectSaga(requestStatementsSaga)
         .provide([[matchers.call.fn(getStatements), throwError(error)]])
-        .put(statementsRequestFailed(error))
-        .withReducer(statementsReducer)
+        .put(actions.failed(error))
+        .withReducer(reducer)
         .hasFinalState<StatementsState>({
           data: null,
           lastError: error,
@@ -72,8 +67,8 @@ describe("StatementsPage sagas", () => {
       const timeout = 500;
       expectSaga(receivedStatementsSaga, timeout)
         .delay(timeout)
-        .put(invalidateStatements())
-        .withReducer(statementsReducer, {
+        .put(actions.invalidated())
+        .withReducer(reducer, {
           data: statements,
           lastError: null,
           valid: true,

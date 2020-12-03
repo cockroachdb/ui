@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 import { all, call, takeEvery } from "redux-saga/effects";
-import { UPDATE_LOCAL_STORAGE } from "./localStorage.reducer";
+import { actions } from "./localStorage.reducer";
 
 export function* updateLocalStorageItemSaga(action: AnyAction) {
   const { key, value } = action.payload;
@@ -8,5 +8,5 @@ export function* updateLocalStorageItemSaga(action: AnyAction) {
 }
 
 export function* localStorageSaga() {
-  yield all([takeEvery(UPDATE_LOCAL_STORAGE, updateLocalStorageItemSaga)]);
+  yield all([takeEvery(actions.update, updateLocalStorageItemSaga)]);
 }

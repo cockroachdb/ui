@@ -22,34 +22,33 @@ import {
   AggregateStatistics,
   makeStatementsColumns,
   StatementsSortedTable,
-} from "../../statementsTable";
+} from "../statementsTable";
 import {
   ActivateStatementDiagnosticsModal,
   ActivateDiagnosticsModalRef,
 } from "src/statementsDiagnostics";
-import { ISortedTablePagination } from "../../sortedtable";
+import { ISortedTablePagination } from "../sortedtable";
 import styles from "./statementsPage.module.scss";
 import { EmptyStatementsPlaceholder } from "./emptyStatementsPlaceholder";
 import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
 
 type IStatementDiagnosticsReport = cockroach.server.serverpb.IStatementDiagnosticsReport;
-import sortableTableStyles from "../../sortedtable/sortedtable.module.scss";
+import sortableTableStyles from "src/sortedtable/sortedtable.module.scss";
 
 const cx = classNames.bind(styles);
 const sortableTableCx = classNames.bind(sortableTableStyles);
 
-interface OwnProps {
-  statements: AggregateStatistics[];
-  statementsError: Error | null;
-  apps: string[];
-  totalFingerprints: number;
-  lastReset: string;
+// Most of the props are supposed to be provided as connected props
+// from redux store.
+// StatementsPageDispatchProps, StatementsPageStateProps, and StatementsPageOuterProps interfaces
+// provide convenient definitions for `mapDispatchToProps`, `mapStateToProps` and props that
+// have to be provided by parent component.
+export interface StatementsPageDispatchProps {
   refreshStatements: () => void;
   refreshStatementDiagnosticsRequests: () => void;
   dismissAlertMessage: () => void;
   onActivateStatementDiagnostics: (statement: string) => void;
   onDiagnosticsModalOpen: (statement: string) => void;
-  onDiagnosticsReportDownload?: (report: IStatementDiagnosticsReport) => void;
   onSearchComplete?: (results: AggregateStatistics[]) => void;
   onPageChanged?: (newPage: number) => void;
   onSortingChange?: (
@@ -59,13 +58,28 @@ interface OwnProps {
   ) => void;
 }
 
+export interface StatementsPageStateProps {
+  statements: AggregateStatistics[];
+  statementsError: Error | null;
+  apps: string[];
+  totalFingerprints: number;
+  lastReset: string;
+}
+
+export interface StatementsPageOuterProps {
+  onDiagnosticsReportDownload?: (report: IStatementDiagnosticsReport) => void;
+}
+
 export interface StatementsPageState {
   sortSetting: SortSetting;
   search?: string;
   pagination: ISortedTablePagination;
 }
 
-export type StatementsPageProps = OwnProps & RouteComponentProps<any>;
+export type StatementsPageProps = StatementsPageDispatchProps &
+  StatementsPageStateProps &
+  StatementsPageOuterProps &
+  RouteComponentProps<any>;
 
 export class StatementsPage extends React.Component<
   StatementsPageProps,

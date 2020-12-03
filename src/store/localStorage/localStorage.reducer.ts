@@ -1,36 +1,28 @@
-import { AnyAction, Reducer } from "redux";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { DOMAIN_NAME } from "../utils";
 
-export const UPDATE_LOCAL_STORAGE = "ADMIN_UI/UPDATE_LOCAL_STORAGE";
+export type LocalStorageState = {
+  "adminUi/showDiagnosticsModal": boolean;
+};
 
-export interface LocalStorageState {
-  [key: string]: any;
-}
+type Payload = {
+  key: keyof LocalStorageState;
+  value: any;
+};
 
 // TODO (koorosh): initial state should be restored from preserved keys in LocalStorage
-const initialState: LocalStorageState = {};
-
-export const localStorageReducer: Reducer = (state = initialState, action) => {
-  const { type, payload } = action;
-  switch (type) {
-    case UPDATE_LOCAL_STORAGE:
-      return {
-        ...state,
-        [payload.key]: payload.value,
-      };
-    default:
-      return state;
-  }
+const initialState: LocalStorageState = {
+  "adminUi/showDiagnosticsModal": false,
 };
 
-export const updateLocalStorage = (
-  key: string,
-  value: string | boolean | number,
-): AnyAction => {
-  return {
-    type: UPDATE_LOCAL_STORAGE,
-    payload: {
-      key,
-      value,
+const localStorageSlice = createSlice({
+  name: `${DOMAIN_NAME}/localStorage`,
+  initialState,
+  reducers: {
+    update: (state, action: PayloadAction<Payload>) => {
+      state[action.payload.key] = action.payload.value;
     },
-  };
-};
+  },
+});
+
+export const { actions, reducer } = localStorageSlice;

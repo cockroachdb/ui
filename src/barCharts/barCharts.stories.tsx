@@ -7,7 +7,7 @@ import {
   retryBarChart,
   rowsBarChart,
 } from "./barCharts";
-import statementsPagePropsFixture from "src/statementsPage/components/statementsPage.fixture";
+import statementsPagePropsFixture from "src/statementsPage/statementsPage.fixture";
 import Long from "long";
 
 const { statements } = statementsPagePropsFixture;

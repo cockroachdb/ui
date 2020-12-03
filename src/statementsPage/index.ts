@@ -1,3 +1,2 @@
-export * from "./components/statementsPage";
-export * from "./components/statementsPageConnected";
-export * from "./store";
+export * from "./statementsPage";
+export * from "./statementsPageConnected";

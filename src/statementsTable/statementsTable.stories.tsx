@@ -5,7 +5,7 @@ import {
   makeStatementsColumns,
   StatementsSortedTable,
 } from "./statementsTable";
-import statementsPagePropsFixture from "../statementsPage/components/statementsPage.fixture";
+import statementsPagePropsFixture from "src/statementsPage/statementsPage.fixture";
 
 const { statements } = statementsPagePropsFixture;
 
