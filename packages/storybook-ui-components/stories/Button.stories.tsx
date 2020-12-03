@@ -19,7 +19,7 @@ const ButtonDisplaySection: FunctionComponent<{
 const ButtonDisplay: FunctionComponent<{ children: ReactNode }> = ({
   children,
 }) => (
-  <div style={{ margin: "0rem 1rem", textAlign: "center" }}>{children}</div>
+  <div style={{ margin: "0rem 1rem", textAlign: "left" }}>{children}</div>
 );
 const Label: FunctionComponent<{ children: string }> = ({ children }) => (
   <div style={{ marginBottom: "1rem" }}>
@@ -43,19 +43,17 @@ export const Example = () => (
     </p>
 
     <h1>Type</h1>
+    <hr></hr>
     <section style={{ maxWidth: "700px" }}>
       <ButtonDisplaySection>
         <ButtonDisplay>
-          <Button intent="success">Primary</Button>
-          <p style={{textAlign: "left", lineHeight: "24px", fontSize:"16px"}}>Use a primary button to highlight the strongest call to action on a page. They are meant to look heavy in order to direct the user’s attention to the primary action on a page. </p>
-        </ButtonDisplay>
-      </ButtonDisplaySection>
-      <br></br>
-      <br></br>
-      <ButtonDisplaySection>
-        <ButtonDisplay>
-          <Button intent="danger">Danger</Button>
-          <p style={{textAlign: "left", lineHeight: "24px", fontSize:"16px"}}>Use a danger button for destructive actions like deleting. They indicate high severity and are meant to stand out so a user will proceed with caution. </p>
+          <Button intent="primary">Primary</Button>
+          <p
+            style={{ textAlign: "left", lineHeight: "24px", fontSize: "16px" }}
+          >
+            Use a primary button to highlight the strongest call to action on a page. They are meant to look heavy in order to direct the user’s attention to the primary action on a page.
+          {" "}
+          </p>
         </ButtonDisplay>
       </ButtonDisplaySection>
       <br></br>
@@ -85,10 +83,105 @@ export const Example = () => (
           </p>
         </ButtonDisplay>
       </ButtonDisplaySection>
+      <br></br>
+      <br></br>
+      <ButtonDisplaySection>
+        <ButtonDisplay>
+          <Button intent="danger">Danger</Button>
+          <p
+            style={{ textAlign: "left", lineHeight: "24px", fontSize: "16px" }}
+          >
+            Use a danger button for destructive actions like deleting. They indicate high severity and are meant to stand out so a user will proceed with caution.
+          {" "}
+          </p>
+        </ButtonDisplay>
+      </ButtonDisplaySection>
+      <br></br>
+      <br></br>
+      <ButtonDisplaySection>
+        <ButtonDisplay>
+          <Button as={Link}>Link</Button>
+          <p
+            style={{ textAlign: "left", lineHeight: "24px", fontSize: "16px" }}
+          >
+            Use to open an external URL. Potentially used with the OpenWindow Icon. This same link style can be used to perform a less prominent action in the application, or an action within a sentence of instructions.{" "}
+          </p>
+        </ButtonDisplay>
+      </ButtonDisplaySection>
     </section>
 
     <section>
-      <h3>Size</h3>
+      <h3>States</h3>
+      <hr></hr>
+      <ButtonDisplaySection>
+        <ButtonDisplay>
+          <p>Primary</p>
+          <Button intent="primary">Primary</Button>
+          <Button intent="primary" style={{marginLeft: "12px"}}>Active</Button>
+          <Button intent="primary" style={{marginLeft: "12px"}}>Hover</Button>
+          <Button intent="primary" style={{marginLeft: "12px"}}>Focus</Button>
+          <Button intent="primary" disabled style={{marginLeft: "12px"}}>Disabled</Button>
+        </ButtonDisplay>
+      </ButtonDisplaySection>
+      <br></br>
+      <br></br>
+      <ButtonDisplaySection>
+        <ButtonDisplay>
+          <p>Secondary</p>
+          <Button intent="secondary">Primary</Button>
+          <Button intent="secondary" style={{marginLeft: "12px"}}>Active</Button>
+          <Button intent="secondary" style={{marginLeft: "12px"}}>Hover</Button>
+          <Button intent="secondary" style={{marginLeft: "12px"}}>Focus</Button>
+          <Button intent="secondary" disabled style={{marginLeft: "12px"}}>Disabled</Button>
+        </ButtonDisplay>
+      </ButtonDisplaySection>
+      <br></br>
+      <br></br>
+      <ButtonDisplaySection>
+        <ButtonDisplay>
+          <p>Tertiary</p>
+          <Button intent="tertiary">Primary</Button>
+          <Button intent="tertiary" style={{marginLeft: "12px"}}>Active</Button>
+          <Button intent="tertiary" style={{marginLeft: "12px"}}>Hover</Button>
+          <Button intent="tertiary" style={{marginLeft: "12px"}}>Focus</Button>
+          <Button intent="tertiary" disabled style={{marginLeft: "12px"}}>Disabled</Button>
+        </ButtonDisplay>
+      </ButtonDisplaySection>
+      <br></br>
+      <br></br>
+      <ButtonDisplaySection>
+        <ButtonDisplay>
+          <p>Danger</p>
+          <Button intent="danger">Primary</Button>
+          <Button intent="danger" style={{marginLeft: "12px"}}>Active</Button>
+          <Button intent="danger" style={{marginLeft: "12px"}}>Hover</Button>
+          <Button intent="danger" style={{marginLeft: "12px"}}>Focus</Button>
+          <Button intent="danger" disabled style={{marginLeft: "12px"}}>Disabled</Button>
+        </ButtonDisplay>
+      </ButtonDisplaySection>
+    </section>
+    
+    <section>
+      <h3>Formatting</h3>
+      <hr></hr>
+      <p>Anatomy</p>
+      <ButtonDisplaySection>
+        <ButtonDisplay>
+          <Button>Text only</Button>
+          <Button style={{marginLeft: "12px"}}>With Icon Left</Button>
+          <Button style={{marginLeft: "12px"}}>With Icon Right</Button>
+          <Button style={{marginLeft: "12px"}}>Icon Only</Button>
+          <p
+          style={{ textAlign: "left", lineHeight: "24px", fontSize: "16px" }}>
+            <b>Text only:</b> Use Text only to clearly describe the action.
+            <br></br>
+            <b>Text + Icon:</b>Use an Icon with Text to convey more meaning. Icon can be left or right aligned. 
+            <br></br>
+            <b>Icon only:</b>Use Icon only sparingly, to save space. Never as the primary action. The icon should be easily understood.
+          </p>
+        </ButtonDisplay>
+      </ButtonDisplaySection>
+      <p>Size</p>
       <ButtonDisplaySection>
         <ButtonDisplay>
           <Label>standard (default)</Label>
@@ -107,9 +200,10 @@ export const Example = () => (
       </ButtonDisplaySection>
     </section>
     <section>
-      <h3>Disabled</h3>
+    {/* <h3>Disabled</h3>
+      <hr></hr>
       <ButtonDisplaySection>
-        <ButtonDisplay>
+        <ButtonDisplay> 
           <Label>primary</Label>
           <Button intent="primary" disabled>
             Primary
@@ -125,7 +219,7 @@ export const Example = () => (
           <Label>danger</Label>
           <Button intent="danger" disabled>
             Danger
-          </Button>
+          </Button> 
         </ButtonDisplay>
         <ButtonDisplay>
           <Label>secondary (default)</Label>
@@ -138,10 +232,13 @@ export const Example = () => (
           </Button>
         </ButtonDisplay>
       </ButtonDisplaySection>
+      */}
       <h3>Button Elements</h3>
+      <hr></hr>
       <ButtonDisplaySection>
-        <ButtonDisplay>
+      <ButtonDisplay>
           <Label>
+            Links
             as default (`button`) with type submit wrapped in a `form`
           </Label>
           <form
