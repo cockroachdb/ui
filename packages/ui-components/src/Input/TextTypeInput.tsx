@@ -52,7 +52,7 @@ interface CustomProps {
   onClick?: (
     event: React.MouseEvent<HTMLInputElement, MouseEvent>,
   ) => void;
-  forgotPasswordLinkDiv?: JSX.Element;
+  forgotPasswordLinkElement?: JSX.Element;
   // this prop is only used for internal implementation
   // whether the password exists or not, should be indicated by New/Existing PasswordInput
   existingPassword?: boolean;
@@ -96,7 +96,7 @@ export const BaseTextInput: React.FC<InternalTextProps | InternalTextOrNumberPro
   autoFocus,
   tabIndex,
   existingPassword = false,
-  forgotPasswordLinkDiv,
+  forgotPasswordLinkElement,
   inline,
   ...rest
 } = props;
@@ -154,7 +154,7 @@ export const BaseTextInput: React.FC<InternalTextProps | InternalTextOrNumberPro
   const labelElement = existingPassword ? 
   <div className="crl-existing-password-input__label">
           {labelDiv}
-          {forgotPasswordLinkDiv}
+          {forgotPasswordLinkElement}
         </div>
         : labelDiv;
 
