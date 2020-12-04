@@ -1,11 +1,14 @@
 @import "../styles/tokens.scss";
-
 .icon {
-  display: inline-flex;
+  fill: $crl-base-text--dark;
   margin: auto;
 
   &:disabled {
     pointer-events: none;
+  }
+
+  &__container {
+    display: inline-flex;
   }
 }
 
@@ -30,7 +33,7 @@
 }
 
 .size-default {
-  height: 24px;
+  height: 46px;
   width: 24px;
 }
 
@@ -39,30 +42,29 @@
   width: 16px;
 }
 
-.tint-blue {
+.intent-info {
   fill: $color-base-blue;
 }
 
-.tint-green {
+.intent-primary {
+  fill: $color-base-blue;
+}
+
+.intent-success {
   fill: $color-base-green;
 }
 
-.tint-red {
+.intent-danger {
   fill: $color-base-red;
 }
 
-.tint-orange {
+.intent-warning {
   fill: $color-base-orange;
 }
 
-.tint-white {
+.intent-flag {
   fill: $color-base-white;
 }
 
-.tint-neutral {
-  fill: $color-font-1;
-}
 
-.tint-inherit {
-  fill: currentcolor;
-}
+

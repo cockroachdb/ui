@@ -15,45 +15,51 @@ export type IconSize =
   | "x-large"
   | "xx-large";
 
-export type IconTint =
-  | "blue"
-  | "green"
-  | "red"
-  | "white"
-  | "neutral"
-  | "inherit"
-  | "orange";
+export type IconStyle =
+  | "danger"
+  | "default"
+  | "flag"
+  | "info"
+  | "primary"
+  | "success"
+  | "warning";
 
 type OwnIconProps = {
   iconName: keyof typeof Icons;
   size?: IconSize;
-  tint?: IconTint;
+  intent?: IconStyle;
 };
+
+const cx = classNames.bind(styles);
 
 type NativeIconProps = Omit<React.SVGProps<SVGSVGElement>, keyof OwnIconProps>;
 
 export type IconProps = NativeIconProps & OwnIconProps;
 
-const cx = classNames.bind(styles);
-
 export const Icon: FunctionComponent<IconProps> = ({
   iconName,
   size = "default",
-  tint = "neutral",
+  intent = "default",
   className,
   ...props
 }) => {
+
+
   const classnames = useMemo(
-    () => cx("icon", objectToClassnames({ size, tint }), className),
-    [className, size, tint],
+    () => cx("icon", objectToClassnames({ size, intent }), className),
+    [className, size, intent],
   );
+
   const Element = get(Icons, iconName, null);
 
   if (Element === null) {
     return null;
   }
 
-  return <Element className={classnames} {...props} />;
+  return (
+  <div className="icon__container">
+    <Element {...props} className={classnames} />
+  </div>);
 };
 
 export default Icon;
