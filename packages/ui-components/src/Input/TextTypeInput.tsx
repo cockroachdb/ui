@@ -8,10 +8,11 @@ import React, {
   FunctionComponent,
 } from "react";
 import classNames from "classnames/bind";
-import styles from "./styles.module.scss";
-import { CommonInputProps, CommonInput } from "./BaseInput";
+import { CommonInputProps, CommonInput } from "./CommonInput";
 import { generateContainerClassnames } from "../utils/objectToClassnames";
 import { isEmpty } from "lodash";
+import { FieldMetaState } from "react-final-form";
+import "./input.scss";
 
 export interface TextAndNumberProps<T = string | number> {
   initialValue?: T;
@@ -30,7 +31,7 @@ export interface TextAndNumberProps<T = string | number> {
   multiline?: boolean;
   placeholder?: string;
   // prop only used internally for implementation
-  textType?: "text" | "email" | "password" | "number";
+  type?: "text" | "email" | "password" | "number";
   // this defines the input type rendered by this field
   // for multiline text types, this will be <textarea>
   // for text/email/password/number types this will be <input> with a type field
@@ -55,13 +56,21 @@ interface CustomProps {
   // this prop is only used for internal implementation
   // whether the password exists or not, should be indicated by New/Existing PasswordInput
   existingPassword?: boolean;
+  //The actual type below as a parameter is called FieldValue
+  // not exported by react-final-form, but by google protobuf
+  // which would need to be added as a dependency
+  // since this prop comes from the Field component of react-final-form
+  // we can be fairly certain that the type won't be unexpected
+  meta?: FieldMetaState<any>;
 };
 
 export type TextProps = CommonInputProps & TextAndNumberProps<string>;
-type InternalProps = CommonInputProps & TextAndNumberProps<string> & CustomProps;
-export type AllProps = Omit<InternalProps, "existingPassword">;
+export type NumberProps = CommonInputProps & TextAndNumberProps<number>;
+type InternalTextProps = TextProps & CustomProps;
+export type AllProps = Omit<InternalTextProps, "existingPassword">;
+type InternalTextOrNumberProps = NumberProps & CustomProps;
 
-export const BaseTextInput: React.FC<InternalProps> = props => {
+export const BaseTextInput: React.FC<InternalTextProps | InternalTextOrNumberProps> = props => {
   const {
     JSXInput,
     id,
@@ -81,13 +90,14 @@ export const BaseTextInput: React.FC<InternalProps> = props => {
   multiline,
   placeholder,
   required,
-  textType = "text",
+  type = "text",
   prefix,
   ariaLabelledBy,
   autoFocus,
   tabIndex,
   existingPassword = false,
   forgotPasswordLinkDiv,
+  inline,
   ...rest
 } = props;
   // For all class names passed to Input, map them onto crl-input-container
@@ -114,16 +124,16 @@ export const BaseTextInput: React.FC<InternalProps> = props => {
     onChange: onChange,
     onBlur: onBlur,
     onFocus,
-    type: textType,
+    type: type,
     autoFocus: autoFocus,
     tabIndex: tabIndex,
     ...rest,
   };
 
-  const input = JSXInput || <input type={textType} {...inputProps} />;
+  const input = JSXInput || <input {...inputProps} />;
 
   // if prefix is provided, the 
-  const affixContainerClassname = prefix? "crl-input__affix-container" : "crl-input__suffix-container";
+  const affixContainerClassname = prefix || suffix ? "crl-input__affix-container" : "";
 
   const labelDiv = 
   <>
@@ -160,11 +170,15 @@ export const BaseTextInput: React.FC<InternalProps> = props => {
     </>;
   
   return (
-    <CommonInput fieldInput={fieldInput} classes={classes} {...props} />
+    <CommonInput classes={classes} {...props} fieldInput={fieldInput}/>
   );
 };
 
 export const TextInput: React.FC<TextProps> = props => {
+  return <BaseTextInput {...props} />
+};
+
+export const NumberInput: React.FC<NumberProps> = props => {
   return <BaseTextInput {...props} />
 };
   

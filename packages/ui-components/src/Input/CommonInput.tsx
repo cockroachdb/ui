@@ -1,12 +1,11 @@
 import React from "react";
 import classNames from "classnames/bind";
+import "./input.scss";
 
-type inputType = "text" | "number" | "checkbox";
 export interface CommonInputProps {
-  id: string;
-  type: inputType;
-  // this should be the div containing the input 
-  fieldInput: JSX.Element;
+  id?: string;
+  // this should be the div containing the input
+  fieldInput?: JSX.Element;
   classes?: string;
   className?: string;
   disabled?: boolean;
@@ -20,16 +19,9 @@ export interface CommonInputProps {
 }
 
 export const CommonInput: React.FC<CommonInputProps> = ({
-  type,
-  id,
-  className,
-  disabled,
   help,
   error,
   inline,
-  invalid,
-  label,
-  ariaLabel,
   fieldInput,
   classes,
 }) => {
@@ -44,9 +36,9 @@ export const CommonInput: React.FC<CommonInputProps> = ({
 
   return (
     <div
-      className={classNames("crl-input__container", classes, {
-        "crl-input--inline": inline,
-      })}
+    className={classNames("crl-input__container", classes, {
+      "crl-input--inline": inline,
+    })}
     >
       {fieldInput}
       <div className="crl-input__message">

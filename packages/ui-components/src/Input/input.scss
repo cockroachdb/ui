@@ -127,14 +127,6 @@
     vertical-align: middle;
   }
 
-  &__prefix {
-    left: crl-gutters(1.25);
-  }
-
-  &__suffix {
-    right: crl-gutters(1.25);
-  }
-
   &--required:after {
     content: " *";
     color: $color-base-red;

@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import classNames from "classnames/bind";
 import { CaretUp, CaretDown } from "@cockroachlabs/icons";
 import isNumber from "../utils/isNumber";
-import { CommonInput, CommonInputProps } from "./BaseInput";
+import { CommonInput, CommonInputProps } from "./CommonInput";
 import { TextAndNumberProps} from "./TextTypeInput";
 import styles from "./styles.module.scss";
 import { InputPrefix, InputWrapper } from "./helpers";

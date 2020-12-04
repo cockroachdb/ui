@@ -1,16 +1,7 @@
-import React, {
-  ChangeEvent,
-  CSSProperties,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-  FunctionComponent,
-} from "react";
+import React from "react";
 import classNames from "classnames/bind";
-import styles from "./styles.module.scss";
+import { CommonInputProps, CommonInput } from "./CommonInput";
 import { generateContainerClassnames } from "../utils/objectToClassnames";
-import { CommonInputProps, CommonInput } from "./BaseInput";
 
 interface CheckboxProps {
   value?: boolean;
@@ -22,7 +13,6 @@ interface CheckboxProps {
 
 export type CheckboxInputProps = CommonInputProps & CheckboxProps;
 
-const cx = classNames.bind(styles);
 
 export const CheckboxInput: React.FC<CheckboxInputProps> = props => {
   const {
@@ -65,11 +55,11 @@ export const CheckboxInput: React.FC<CheckboxInputProps> = props => {
 
 const fieldInput = 
   <div className="crl-input__checkbox-input">
-    <input type="checkbox" checked={!!value} {...inputProps} />
+    <input checked={!!value} {...inputProps} />
     <label htmlFor={id}>{label}</label>
   </div>;
   
   return (
-    <CommonInput fieldInput={fieldInput} classes={classes} {...props} />
+    <CommonInput classes={classes} {...props} fieldInput={fieldInput} />
   );
 };

@@ -1,12 +1,12 @@
 import React from "react";
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
-import { InputProps } from "./BaseInput";
+import { CommonInputProps } from "./CommonInput";
 
 const cx = classNames.bind(styles);
 
 export type InputWrapperProps = Pick<
-  InputProps,
+  CommonInputProps,
   "disabled" | "invalid" | "className"
 >;
 
