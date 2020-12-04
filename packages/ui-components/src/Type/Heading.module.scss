@@ -1,0 +1,44 @@
+@import "~@cockroachlabs/design-tokens/dist/web/tokens";
+
+.type-h1 {
+  font-family: $type-family-ui;
+  font-size: $type-size-font-xx-large;
+  line-height: $type-size-line-height-xx-large;
+  font-weight: $type-weight-regular;
+}
+
+.type-h2 {
+  font-family: $type-family-ui;
+  font-size: $type-size-font-x-large;
+  line-height: $type-size-line-height-x-large;
+  font-weight: $type-weight-semi-bold;
+}
+
+.type-h3 {
+  font-family: $type-family-ui;
+  font-size: $type-size-font-large;
+  line-height: $type-size-line-height-large;
+  font-weight: $type-weight-semi-bold;
+}
+
+.type-h4 {
+  font-family: $type-family-ui;
+  font-size: $type-size-font-tall;
+  line-height: $type-size-line-height-regular;
+  font-weight: $type-weight-regular;
+}
+
+.type-h5 {
+  font-family: $type-family-ui;
+  font-size: $type-size-font-tall;
+  line-height: $type-size-line-height-regular;
+  font-weight: $type-weight-semi-bold;
+}
+
+.type-h6 {
+  font-family: $type-family-ui;
+  font-size: $type-size-font-small;
+  line-height: $type-size-line-height-regular;
+  font-weight: $type-weight-semi-bold;
+  text-transform: uppercase;
+}
