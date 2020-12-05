@@ -1,3 +1,4 @@
+// system-ui icons
 export { default as ArrowLeft } from "./components/ArrowLeft";
 export { default as Backup } from "./components/Backup";
 export { default as Bell } from "./components/Bell";
@@ -23,6 +24,7 @@ export { default as ErrorCircleFilled } from "./components/ErrorCircleFilled";
 export { default as ErrorCircle } from "./components/ErrorCircle";
 export { default as EyeOff } from "./components/EyeOff";
 export { default as Eye } from "./components/Eye";
+export { default as Gear } from "./components/Gear";
 export { default as InfoCircleFilled } from "./components/InfoCircleFilled";
 export { default as InfoCircle } from "./components/InfoCircle";
 export { default as Invalid } from "./components/Invalid";
@@ -31,13 +33,14 @@ export { default as LockFilled } from "./components/LockFilled";
 export { default as Lock } from "./components/Lock";
 export { default as MinusCircle } from "./components/MinusCircle";
 export { default as Minus } from "./components/Minus";
+export { default as Open } from "./components/Open";
 export { default as Org } from "./components/Org";
 export { default as Pencil } from "./components/Pencil";
 export { default as PlusCircle } from "./components/PlusCircle";
 export { default as Plus } from "./components/Plus";
 export { default as Search } from "./components/Search";
-export { default as Spinner } from "./components/Spinner";
 export { default as Stack } from "./components/Stack";
+export { default as Star } from "./components/Star";
 export { default as Terminal } from "./components/Terminal";
 export { default as Time } from "./components/Time";
 export { default as User } from "./components/User";
