@@ -2,11 +2,16 @@ import React, { FunctionComponent, ReactElement } from "react";
 import { withKnobs, select } from "@storybook/addon-knobs";
 import { StoryContainer, StoryDescription } from "../layout";
 
-import * as Icons from "@cockroachlabs/icons";
-import { Icon, IconSize, IconFill } from "@cockroachlabs/ui-components";
+import { SystemIcons as Icons } from "@cockroachlabs/icons";
+import {
+  Icon,
+  IconSize,
+  IconFill,
+  Pictogram,
+} from "@cockroachlabs/ui-components";
 
 export default {
-  title: "Icon",
+  title: "Icons",
   component: Icon,
   decorators: [withKnobs],
 };
@@ -77,7 +82,7 @@ const fills: Array<IconFill> = [
   "disabled-light",
 ];
 
-export const Example = () => (
+export const SystemIcons = () => (
   <StoryContainer>
     <h1>Icons</h1>
     <StoryDescription>
@@ -132,6 +137,14 @@ export const Example = () => (
         })}
       </IconDisplaySection>
     </section>
+  </StoryContainer>
+);
+
+export const Pictograms = () => (
+  <StoryContainer>
+    <Pictogram pictogramName="Add" />
+    <Pictogram pictogramName="Cluster" />
+    <Pictogram pictogramName="Email" />
   </StoryContainer>
 );
 

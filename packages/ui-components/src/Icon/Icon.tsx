@@ -1,8 +1,8 @@
-import React, { FunctionComponent, useMemo } from "react";
+import React, { useMemo } from "react";
 import classNames from "classnames/bind";
 import get from "lodash/get";
 
-import * as Icons from "@cockroachlabs/icons";
+import { SystemIcons } from "@cockroachlabs/icons";
 import styles from "./Icon.module.scss";
 
 import objectToClassnames from "../utils/objectToClassnames";
@@ -31,7 +31,7 @@ export type IconIntent =
 export type IconFill = IconIntent | "inverted" | "disabled" | "disabled-light";
 
 type OwnIconProps = {
-  iconName: keyof typeof Icons;
+  iconName: keyof typeof SystemIcons;
   size?: IconSize;
   fill?: IconFill;
 };
@@ -42,19 +42,18 @@ type NativeIconProps = Omit<React.SVGProps<SVGSVGElement>, keyof OwnIconProps>;
 
 export type IconProps = NativeIconProps & OwnIconProps;
 
-export const Icon: FunctionComponent<IconProps> = ({
+export const Icon = ({
   iconName,
   size = "default",
   fill = "default",
   className,
   ...props
-}) => {
+}: IconProps) => {
   const classnames = useMemo(
     () => cx("icon", objectToClassnames({ size, fill }), className),
     [className, size, fill],
   );
-
-  const Element = get(Icons, iconName, null);
+  const Element = get(SystemIcons, iconName, null);
 
   if (Element === null) {
     return null;
