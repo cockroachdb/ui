@@ -2,14 +2,12 @@ import React, { useMemo } from "react";
 import classNames from "classnames/bind";
 
 import styles from "./InlineAlert.module.scss";
-import { Icon, IconTint } from "../Icon/Icon";
-
-export type InlineAlertIntent = "info" | "error" | "success" | "warning";
+import { Icon, IconIntent } from "../Icon/Icon";
 
 const cx = classNames.bind(styles);
 
 interface InlineAlertBaseProps {
-  intent?: InlineAlertIntent;
+  intent?: IconIntent;
   className?: string;
 }
 
@@ -34,7 +32,7 @@ export const InlineAlert: React.FC<InlineAlertProps> = ({
 }) => {
   const iconName = useMemo(() => {
     switch (intent) {
-      case "error":
+      case "danger":
         return "ErrorCircleFilled";
       case "success":
         return "CheckCircleFilled";
@@ -46,24 +44,10 @@ export const InlineAlert: React.FC<InlineAlertProps> = ({
     }
   }, [intent]);
 
-  const iconTint = useMemo<IconTint>(() => {
-    switch (intent) {
-      case "error":
-        return "red";
-      case "success":
-        return "green";
-      case "warning":
-        return "orange";
-      case "info":
-      default:
-        return "blue";
-    }
-  }, [intent]);
-
   return (
     <div className={cx("root", `intent-${intent}`, className)}>
       <div className={cx("icon-container")}>
-        <Icon iconName={iconName} size="default" tint={iconTint} />
+        <Icon iconName={iconName} size="default" intent={intent} />
       </div>
       <div className={cx("container")}>
         {title && <div className={cx("title")}>{title}</div>}
