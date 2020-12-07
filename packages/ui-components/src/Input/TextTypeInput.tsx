@@ -64,7 +64,7 @@ interface CustomProps {
 };
 
 export type TextProps = CommonInputProps & TextAndNumberProps<string>;
-export type NumberProps = CommonInputProps & TextAndNumberProps<number>;
+export type NumberProps = CommonInputProps & TextAndNumberProps<number> & CustomProps;
 type InternalTextProps = TextProps & CustomProps;
 export type AllProps = Omit<InternalTextProps, "existingPassword">;
 type InternalTextOrNumberProps = NumberProps & CustomProps;

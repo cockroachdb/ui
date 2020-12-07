@@ -11,7 +11,7 @@ interface Validator {
 
 export type ExistingPasswordProps = Omit<AllProps, "multiline">;
 export type NewPasswordProps = Omit<ExistingPasswordProps & {validators: Validator[]}, "forgotPasswordLinkElement">;
-export type EmailNumberProps = NewPasswordProps;
+export type EmailProps = NewPasswordProps;
 
 export enum PasswordInputType {
   Text = "text",
@@ -22,7 +22,7 @@ export enum PasswordInputType {
 // textTypes are provided here, because although the Field passes them into these
 // Inptu components, if Input components are used without wrapper Fields,
 // they need types
-export const EmailInput: React.FC<EmailNumberProps> = props => {
+export const EmailInput: React.FC<EmailProps> = props => {
   return (
     <BaseTextInput type="email" {...props}/>
   );

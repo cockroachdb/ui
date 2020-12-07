@@ -2,7 +2,7 @@ import React, { FunctionComponent, useState } from "react";
 import { Field, FieldProps, FieldRenderProps } from "react-final-form";
 
 import { TextInput, TextProps, NumberInput, NumberProps} from "./TextTypeInput";
-import { EmailInput, NewPasswordInput, ExistingPasswordInput, EmailNumberProps, NewPasswordProps, ExistingPasswordProps, PasswordInputType } from "./EmailPasswordInput";
+import { EmailInput, NewPasswordInput, ExistingPasswordInput, EmailProps, NewPasswordProps, ExistingPasswordProps, PasswordInputType } from "./EmailPasswordInput";
 import { CheckboxInput, CheckboxInputProps } from "./CheckboxInput";
 import Icon from "../Icon/Icon";
 
@@ -32,7 +32,7 @@ type EmailInputFieldProps = Omit<FieldProps<
   FieldRenderProps<string, HTMLElement>,
   HTMLElement
 > &
- EmailNumberProps, "type">;
+ EmailProps, "type">;
 
  type NewPasswordInputFieldProps = Omit<FieldProps<
  string,
