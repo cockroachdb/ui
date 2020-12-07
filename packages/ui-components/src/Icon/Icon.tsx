@@ -54,7 +54,7 @@ export const Icon: FunctionComponent<IconProps> = ({
     return null;
   }
 
-  return <Element {...props} className={classnames} />;
+  return <Element className={classnames} {...props} />;
 };
 
 export default Icon;

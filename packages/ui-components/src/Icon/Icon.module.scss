@@ -23,6 +23,7 @@
   width: 20px;
 }
 
+.size-default,
 .size-small {
   height: 16px;
   width: 16px;
@@ -38,7 +39,7 @@
 }
 
 .intent-primary {
-  fill: $color-base-blue;
+  fill: $color-base-purple;
 }
 
 .intent-success {
