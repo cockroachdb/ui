@@ -30,8 +30,20 @@ const TypeSample: FunctionComponent<{
   </section>
 );
 
-const Sample: FunctionComponent<{ children: ReactNode }> = ({ children }) => (
+const Sample = ({ children }: { children: ReactNode }) => (
   <div style={{ margin: "1rem" }}>{children}</div>
+);
+
+const C = ({ children }: { children: ReactNode }) => (
+  <code
+    style={{
+      color: "#333",
+      backgroundColor: "#eee",
+      padding: "2px",
+    }}
+  >
+    {children}
+  </code>
 );
 
 const pangram = "The five boxing wizards jump quickly";
@@ -40,6 +52,8 @@ const lorem =
 const shortLorem = "Lorem ipsum dolor sit amet";
 const sample =
   "CREATE TABLE animals (id INT PRIMARY KEY DEFAULT unique_rowid(), name STRING);";
+const noWrapSample =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum congue non turpis vitae tristique. Cras in tellus pretium, dignissim eros";
 const headingTypes: Array<HeadingType> = ["h1", "h2", "h3", "h4", "h5", "h6"];
 const textTypes: Array<TextType> = [
   "body",
@@ -55,7 +69,7 @@ export const HeadingStory = () => (
     <h1>Heading</h1>
 
     <StoryDescription>
-      The `Heading` component is used to display heading type treatments in
+      The <C>Heading</C> component is used to display heading type treatments in
       Cockroach Labs applications.
     </StoryDescription>
 
@@ -100,8 +114,8 @@ export const TextStory = () => (
     <h1>Text</h1>
 
     <StoryDescription>
-      The `Text` component is used to display copy type treatments in Cockroach
-      Labs applications.
+      The <C>Text</C> component is used to display copy type treatments in
+      Cockroach Labs applications.
     </StoryDescription>
 
     <section>
@@ -126,6 +140,34 @@ export const TextStory = () => (
           <Text type="caption-strong">{shortLorem}</Text>
         </Sample>
       </TypeSample>
+    </section>
+
+    <section>
+      <h3>
+        <C>noWrap</C> prop
+      </h3>
+      <StoryDescription>
+        In situations when text should be constrained to one line, add the
+        <C>noWrap</C> prop. This will constrain text to a single line if the
+        parent container has set a width. This works by using the CSS property
+        <C>text-overflow: ellipsis</C>
+      </StoryDescription>
+
+      <Sample>
+        <Label>noWrap false</Label>
+        <div style={{ width: "60ch" }}>
+          <Text type="body">{lorem}</Text>
+        </div>
+      </Sample>
+
+      <Sample>
+        <Label>noWrap true</Label>
+        <div style={{ width: "60ch" }}>
+          <Text type="body" noWrap={true}>
+            {lorem}
+          </Text>
+        </div>
+      </Sample>
     </section>
   </StoryContainer>
 );

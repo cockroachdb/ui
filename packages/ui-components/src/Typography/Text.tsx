@@ -28,7 +28,7 @@ export const Text = ({
   ...rest
 }: TextProps) => {
   const classNames = useMemo(
-    () => cx(objectToClassNames({ type }), { ".no-wrap": noWrap }, className),
+    () => cx(objectToClassNames({ type }), { "no-wrap": noWrap }, className),
     [type, noWrap, className],
   );
 
