@@ -9,7 +9,6 @@ import React, {
 } from "react";
 import classNames from "classnames/bind";
 import { CommonInputProps, CommonInput } from "./CommonInput";
-import { generateContainerClassnames } from "../utils/objectToClassnames";
 import { isEmpty } from "lodash";
 import { FieldMetaState } from "react-final-form";
 import "./input.scss";
@@ -100,17 +99,12 @@ export const BaseTextInput: React.FC<InternalTextProps | InternalTextOrNumberPro
   inline,
   ...rest
 } = props;
-  // For all class names passed to Input, map them onto crl-input-container
-  // (of the form `${className}__container`) so the container can be easily
-  // targeted seperately from the input itself
-  const classes = generateContainerClassnames(className);
-
   const inputProps = {
     id: id,
     className: classNames("crl-input", className, {
       "crl-input--prefix": prefix,
       "crl-input--suffix": suffix,
-      "crl-input--invalid": error || invalid,
+      "invalid": error || invalid,
     }),
     name: name,
     ["aria-label"]: ariaLabel,
@@ -141,7 +135,7 @@ export const BaseTextInput: React.FC<InternalTextProps | InternalTextOrNumberPro
       <label
         aria-label={name}
         className={classNames({
-          "crl-input--required": required,
+          "required": required,
         })}
         htmlFor={id}
       >
@@ -151,26 +145,26 @@ export const BaseTextInput: React.FC<InternalTextProps | InternalTextOrNumberPro
     </>
   ;
 
-  const labelElement = existingPassword ? 
-  <div className="crl-existing-password-input__label">
-          {labelDiv}
-          {forgotPasswordLinkElement}
-        </div>
-        : labelDiv;
+  const labelElement = existingPassword ?  
+    <div className="existing-password-label">
+      {labelDiv}
+      {forgotPasswordLinkElement}
+    </div>
+    : labelDiv;
 
 
   const fieldInput = 
     <>
-    {labelElement}
-    <div className={affixContainerClassname}>
-      {prefix && <span className="crl-input__prefix">{prefix}</span>}
-      {input}
-      {suffix && <span className="crl-input__suffix">{suffix}</span>}
-    </div>
+      {labelElement}
+      <div className="affix-container">
+        {prefix && <span className="crl-input__prefix">{prefix}</span>}
+        {input}
+        {suffix && <span className="crl-input__suffix">{suffix}</span>}
+      </div>
     </>;
   
   return (
-    <CommonInput classes={classes} {...props} fieldInput={fieldInput}/>
+    <CommonInput classes={className} {...props} fieldInput={fieldInput}/>
   );
 };
 

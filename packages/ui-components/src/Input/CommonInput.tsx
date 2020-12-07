@@ -26,22 +26,22 @@ export const CommonInput: React.FC<CommonInputProps> = ({
   classes,
 }) => {
   const helpMsg = !help ? null : (
-    <div className="crl-input__message--info">{help}</div>
+    <div className="message-info">{help}</div>
   );
 
   const errorMsg =
     !error || typeof error === "boolean" ? null : (
-      <div className="crl-input__message--error">{error}</div>
+      <div className="message-error">{error}</div>
   );
 
   return (
     <div
-    className={classNames("crl-input__container", classes, {
-      "crl-input--inline": inline,
-    })}
+      className={classNames("input-container", classes, {
+        "inline": inline,
+      })}
     >
       {fieldInput}
-      <div className="crl-input__message">
+      <div className="message">
         {errorMsg}
         {helpMsg}
       </div>

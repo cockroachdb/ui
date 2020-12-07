@@ -10,7 +10,7 @@ interface Validator {
 }
 
 export type ExistingPasswordProps = Omit<AllProps, "multiline">;
-export type NewPasswordProps = Omit<ExistingPasswordProps & {validators: Validator[]}, "forgotPasswordLinkDiv">;
+export type NewPasswordProps = Omit<ExistingPasswordProps & {validators: Validator[]}, "forgotPasswordLinkElement">;
 export type EmailNumberProps = NewPasswordProps;
 
 export enum PasswordInputType {
@@ -41,22 +41,20 @@ export const NewPasswordInput: React.FC<NewPasswordProps> = props => {
   const validator = validators[0];
   return (
     <>
-    <div className="crl-new-password-input__container">
+    <div className="new-password-input-container">
       <BaseTextInput type="password" {...props} />
     </div>
     {touched && (
-      <ul className="crl-new-password-input__validations">
+      <ul className="new-password-validation-container">
         <li
           key={validator.label}
-          className={"crl-new-password-input__validation"}
+          className={"new-password-input-message"}
         >
           <Icon
             size="medium"
             iconName={error ? "CancelCircleFilled" : "CheckCircleFilled"}
             intent={error ?  "default" : "success"}
-            className={classNames(
-              "crl-new-password-input__validation-icon" 
-            )}
+            className={"new-password-input-icon"}
           />
           {validator.label}
         </li>
