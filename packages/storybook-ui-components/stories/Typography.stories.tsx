@@ -11,8 +11,7 @@ import {
 } from "@cockroachlabs/ui-components";
 
 export default {
-  title: "Text",
-  components: Text,
+  title: "Typography",
   decorators: [withKnobs],
 };
 
@@ -32,12 +31,13 @@ const TypeSample: FunctionComponent<{
 );
 
 const Sample: FunctionComponent<{ children: ReactNode }> = ({ children }) => (
-  <div style={{ margin: "1rem", borderTop: "1px dotted" }}>{children}</div>
+  <div style={{ margin: "1rem" }}>{children}</div>
 );
 
 const pangram = "The five boxing wizards jump quickly";
 const lorem =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum congue non turpis vitae tristique. Cras in tellus pretium, dignissim eros vel, luctus ante. Etiam ipsum nisl, sollicitudin ut ornare vel, fringilla et nunc. Pellentesque tincidunt facilisis leo, in sollicitudin massa ornare sed. Curabitur at sem gravida, feugiat justo vitae, euismod arcu. Mauris eu dictum dolor. Quisque consequat odio orci, vitae dignissim elit vestibulum nec. Mauris ut urna elit. Etiam et mi non eros aliquet tempus nec ut tellus. Nunc ut fringilla dui. Curabitur imperdiet, velit vel tempus gravida, tellus velit malesuada nibh, ut lacinia quam nisi eu nibh. Proin sed augue quis libero mollis lobortis vitae eu lectus. Sed ultrices id lacus quis finibus. Etiam vestibulum, mauris et vestibulum elementum, urna ex mattis diam, at tristique lorem orci at felis. Sed ultrices tempus libero.";
+const shortLorem = "Lorem ipsum dolor sit amet";
 const sample =
   "CREATE TABLE animals (id INT PRIMARY KEY DEFAULT unique_rowid(), name STRING);";
 const headingTypes: Array<HeadingType> = ["h1", "h2", "h3", "h4", "h5", "h6"];
@@ -50,17 +50,16 @@ const textTypes: Array<TextType> = [
 ];
 const codeTypes: Array<CodeWeight> = ["regular", "medium", "bold"];
 
-export const Example = () => (
+export const HeadingStory = () => (
   <StoryContainer>
-    <h1>Text</h1>
+    <h1>Heading</h1>
 
     <StoryDescription>
-      Text is a component for rendering type in Cockroach Labs standard
-      treatments
+      The `Heading` component is used to display heading type treatments in
+      Cockroach Labs applications.
     </StoryDescription>
 
     <section>
-      <h3>Heading</h3>
       <TypeSample>
         <Sample>
           <Label>Heading 1</Label>
@@ -93,9 +92,19 @@ export const Example = () => (
         </Sample>
       </TypeSample>
     </section>
+  </StoryContainer>
+);
+
+export const TextStory = () => (
+  <StoryContainer>
+    <h1>Text</h1>
+
+    <StoryDescription>
+      The `Text` component is used to display copy type treatments in Cockroach
+      Labs applications.
+    </StoryDescription>
 
     <section>
-      <h3>Type</h3>
       <TypeSample>
         <Sample>
           <Label>Body</Label>
@@ -109,15 +118,26 @@ export const Example = () => (
 
         <Sample>
           <Label>Caption</Label>
-          <Text type="caption">{lorem}</Text>
+          <Text type="caption">{shortLorem}</Text>
         </Sample>
 
         <Sample>
           <Label>Caption Strong</Label>
-          <Text type="caption-strong">{lorem}</Text>
+          <Text type="caption-strong">{shortLorem}</Text>
         </Sample>
       </TypeSample>
     </section>
+  </StoryContainer>
+);
+
+export const CodeStory = () => (
+  <StoryContainer>
+    <h1>Code</h1>
+
+    <StoryDescription>
+      The `Code` component is used to display code samples or technical text
+      treatments in Cockroach Labs applications.
+    </StoryDescription>
 
     <section>
       <TypeSample>

@@ -6,7 +6,6 @@ const StoryDescription: FunctionComponent = ({ children }) => (
       margin: "2rem 0",
       fontSize: "14px",
       color: "#475872",
-      maxWidth: "600px",
       lineHeight: "24px",
     }}
   >
