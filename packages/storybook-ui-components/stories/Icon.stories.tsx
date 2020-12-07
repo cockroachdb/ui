@@ -2,12 +2,17 @@ import React, { FunctionComponent, ReactElement } from "react";
 import { withKnobs, select } from "@storybook/addon-knobs";
 import { StoryContainer, StoryDescription } from "../layout";
 
-import { SystemIcons as Icons } from "@cockroachlabs/icons";
+import {
+  SystemIcons as IconSet,
+  Pictograms as PictogramSet,
+} from "@cockroachlabs/icons";
 import {
   Icon,
   IconSize,
   IconFill,
   Pictogram,
+  PictogramSize,
+  PictogramFill,
 } from "@cockroachlabs/ui-components";
 
 export default {
@@ -61,7 +66,7 @@ const IconLabel: FunctionComponent<{
 );
 
 const keys = Object.keys as <T>(o: T) => Extract<keyof T, string>[];
-const IconNames: Array<keyof typeof Icons> = keys(Icons);
+const IconNames: Array<keyof typeof IconSet> = keys(IconSet);
 
 const sizes: Array<{ key: IconSize; size: number }> = [
   { key: "small", size: 16 },
@@ -140,11 +145,66 @@ export const SystemIcons = () => (
   </StoryContainer>
 );
 
+const pictogramNames: Array<keyof typeof PictogramSet> = keys(PictogramSet);
+const pictogramSizes: Array<{ key: PictogramSize; size: number }> = [
+  { key: "small", size: 40 },
+  { key: "medium", size: 48 },
+  { key: "large", size: 56 },
+];
+const pictogramFills: Array<PictogramFill> = ["default", "primary"];
+
 export const Pictograms = () => (
   <StoryContainer>
-    <Pictogram pictogramName="Add" />
-    <Pictogram pictogramName="Cluster" />
-    <Pictogram pictogramName="Email" />
+    <h1>Pictograms</h1>
+
+    <StoryDescription>
+      Icons are visual representations of commands, objects, or common actions
+      and are used to provide visual context and enhance usability. They should
+      be simple, yet bold enough to grab attention.{" "}
+    </StoryDescription>
+
+    <section>
+      <h3>Pictogram Names</h3>
+
+      <IconDisplaySection>
+        {pictogramNames.map(name => (
+          <IconDisplay key={name}>
+            <IconLabel text={name} />
+            <IconFrame>
+              <Pictogram pictogramName={name} />
+            </IconFrame>
+          </IconDisplay>
+        ))}
+      </IconDisplaySection>
+    </section>
+
+    <section>
+      <h2>Pictogram Sizes</h2>
+      <IconDisplaySection>
+        {pictogramSizes.map(s => (
+          <IconDisplay key={s.key}>
+            <IconLabel text={`${s.key} (${s.size}px)`} />
+            <IconFrame>
+              <Pictogram pictogramName="Add" size={s.key} />
+            </IconFrame>
+          </IconDisplay>
+        ))}
+      </IconDisplaySection>
+    </section>
+
+    <section>
+      <h2>Pictogram Fills</h2>
+      <IconDisplaySection>
+        {pictogramFills.map(fill => (
+          <IconDisplay key={fill}>
+            <IconLabel text={fill} />
+            <IconFrame>
+              <Pictogram pictogramName="Monitoring" fill={fill} />
+            </IconFrame>
+          </IconDisplay>
+        ))}
+      </IconDisplaySection>
+    </section>
   </StoryContainer>
 );
 
