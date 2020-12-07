@@ -50,12 +50,14 @@ export const NewPasswordInput: React.FC<NewPasswordProps> = props => {
           key={validator.label}
           className={"new-password-input-message"}
         >
-          <Icon
-            size="medium"
-            iconName={error ? "CancelCircleFilled" : "CheckCircleFilled"}
-            intent={error ?  "default" : "success"}
-            className={"new-password-input-icon"}
-          />
+          <div style={{display: 'inline-flex'}}>
+            <Icon
+              size="medium"
+              iconName={error ? "CancelCircleFilled" : "CheckCircleFilled"}
+              intent={error ?  "default" : "success"}
+              className={"new-password-input-icon"}
+            />
+          </div>
           {validator.label}
         </li>
       </ul>

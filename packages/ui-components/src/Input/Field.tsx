@@ -134,12 +134,14 @@ export const NewPasswordField: FunctionComponent<NewPasswordInputFieldProps>  = 
   };
 
   const suffixIcon=
-    <Icon
-      iconName={type === PasswordInputType.Password ? "Eye" : "EyeOff"}
-      size="medium"
-      intent={meta && meta.active ? "info" : "default"}
-      onClick={toggleType}
-    />;
+    <div style={{display: 'inline-flex'}}>
+      <Icon
+        iconName={type === PasswordInputType.Password ? "Eye" : "EyeOff"}
+        size="medium"
+        intent={meta && meta.active ? "info" : "default"}
+        onClick={toggleType}
+      />
+    </div>;
 
   // hidden password will render a password field
   // open password will render a text field
