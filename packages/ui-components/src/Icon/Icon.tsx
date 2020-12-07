@@ -15,7 +15,7 @@ export type IconSize =
   | "x-large"
   | "xx-large";
 
-export type IconStyle =
+export type IconIntent =
   | "danger"
   | "default"
   | "flag"
@@ -27,7 +27,7 @@ export type IconStyle =
 type OwnIconProps = {
   iconName: keyof typeof Icons;
   size?: IconSize;
-  intent?: IconStyle;
+  intent?: IconIntent;
 };
 
 const cx = classNames.bind(styles);
@@ -43,8 +43,6 @@ export const Icon: FunctionComponent<IconProps> = ({
   className,
   ...props
 }) => {
-
-
   const classnames = useMemo(
     () => cx("icon", objectToClassnames({ size, intent }), className),
     [className, size, intent],
@@ -56,10 +54,7 @@ export const Icon: FunctionComponent<IconProps> = ({
     return null;
   }
 
-  return (
-  <div className="icon__container">
-    <Element {...props} className={classnames} />
-  </div>);
+  return <Element {...props} className={classnames} />;
 };
 
 export default Icon;
