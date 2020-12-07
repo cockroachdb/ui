@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import classnames from "classnames/bind";
 
 import styles from "./Code.module.scss";
@@ -20,7 +20,10 @@ export const Code = ({
   children,
   ...rest
 }: CodeProps) => {
-  const classNames = cx("code", objectToClassNames({ weight }), className);
+  const classNames = useMemo(
+    () => cx("code", objectToClassNames({ weight }), className),
+    [className, weight],
+  );
 
   return (
     <code className={classNames} {...rest}>

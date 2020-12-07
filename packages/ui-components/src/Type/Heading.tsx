@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import classnames from "classnames/bind";
 
 import styles from "./Heading.module.scss";
@@ -15,13 +15,20 @@ export type HeadingType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
 const cx = classnames.bind(styles);
 
-export const Heading = (props: HeadingProps) => {
-  const { type, className, children, ...rest } = props;
-  const classNames = cx(objectToClassNames({ type }), className);
+export const Heading = ({
+  type,
+  className,
+  children,
+  ...props
+}: HeadingProps) => {
+  const classNames = useMemo(
+    () => cx(objectToClassNames({ type }), className),
+    [className, type],
+  );
 
   return React.createElement(
     type,
-    { className: classNames, ...rest },
+    { className: classNames, ...props },
     children,
   );
 };

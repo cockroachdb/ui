@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import classnames from "classnames/bind";
 
 import styles from "./Text.module.scss";
@@ -27,10 +27,9 @@ export const Text = ({
   children,
   ...rest
 }: TextProps) => {
-  const classNames = cx(
-    objectToClassNames({ type }),
-    { ".no-wrap": noWrap },
-    className,
+  const classNames = useMemo(
+    () => cx(objectToClassNames({ type }), { ".no-wrap": noWrap }, className),
+    [type, noWrap, className],
   );
 
   return (
