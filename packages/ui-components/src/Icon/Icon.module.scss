@@ -34,29 +34,39 @@
   width: 8px;
 }
 
-.intent-info {
+.fill-info {
   fill: $color-base-blue;
 }
 
-.intent-primary {
+.fill-primary {
   fill: $color-base-purple;
 }
 
-.intent-success {
+.fill-success {
   fill: $color-base-green;
 }
 
-.intent-danger {
+.fill-danger {
   fill: $color-base-red;
 }
 
-.intent-warning {
+.fill-warning {
   fill: $color-base-orange;
 }
 
-.intent-flag {
+.fill-inverted {
   fill: $color-base-white;
 }
 
+.fill-default {
+  fill: $color-core-neutral-7;
+}
 
+.fill-disabled {
+  fill: $color-code-neutral-5;
+
+  &-light {
+    fill: $color-code-neutral-4;
+  }
+}
 

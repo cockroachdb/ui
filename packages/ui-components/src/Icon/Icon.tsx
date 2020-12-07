@@ -8,21 +8,27 @@ import styles from "./Icon.module.scss";
 import objectToClassnames from "../utils/objectToClassnames";
 
 export type IconSize =
+  | "tiny"
   | "small"
   | "default"
   | "medium"
   | "large"
-  | "x-large"
-  | "xx-large";
+  | "x-large";
 
 export type IconIntent =
   | "danger"
   | "default"
-  | "flag"
   | "info"
   | "primary"
   | "success"
   | "warning";
+
+// The fill of an icon can be:
+//      intent based (types are defined in IconIntent)
+//      inverted (when the icon appears against a dark background)
+//      disabled (for when the background is neutral-2)
+//      disabled-light (for when the background is neutral-0)
+export type IconFill = IconIntent | "inverted" | "disabled" | "disabled-light";
 
 type OwnIconProps = {
   iconName: keyof typeof Icons;
@@ -39,13 +45,13 @@ export type IconProps = NativeIconProps & OwnIconProps;
 export const Icon: FunctionComponent<IconProps> = ({
   iconName,
   size = "default",
-  intent = "default",
+  fill = "default",
   className,
   ...props
 }) => {
   const classnames = useMemo(
-    () => cx("icon", objectToClassnames({ size, intent }), className),
-    [className, size, intent],
+    () => cx("icon", objectToClassnames({ size, fill }), className),
+    [className, size, fill],
   );
 
   const Element = get(Icons, iconName, null);

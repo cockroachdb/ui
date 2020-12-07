@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import { MinusCircle } from "@cockroachlabs/icons";
 
-import Icon, { IconProps, IconSize, IconTint } from "./Icon";
+import Icon, { IconProps, IconSize, IconFill } from "./Icon";
 
 const defaultProps = {
   iconName: "Plus",
@@ -38,7 +38,7 @@ describe("Icon size prop", () => {
       ["medium", "size-medium"],
       ["large", "size-large"],
       ["x-large", "size-x-large"],
-      ["xx-large", "size-xx-large"],
+      ["tiny", "size-tiny"],
     ];
 
     iconSizes.forEach(([iconSize, expectedClassName]) => {
@@ -48,27 +48,27 @@ describe("Icon size prop", () => {
   });
 });
 
-describe("Icon tint prop", () => {
+describe("Icon fill prop", () => {
   test("defaults to neutral", () => {
     const wrapper = renderSubject();
-    expect(wrapper.prop("className")).toContain("tint-neutral");
+    expect(wrapper.prop("className")).toContain("fill-default");
   });
 
-  test("changes the tint of an icon", () => {
+  test("changes the fill of an icon", () => {
     const wrapper = renderSubject();
-    const iconTints: Array<[IconTint, string]> = [
-      [undefined, "tint-neutral"],
-      ["neutral", "tint-neutral"],
-      ["inherit", "tint-inherit"],
-      ["white", "tint-white"],
-      ["red", "tint-red"],
-      ["green", "tint-green"],
-      ["blue", "tint-blue"],
-      ["orange", "tint-orange"],
+    const iconFills: Array<[IconFill, string]> = [
+      ["danger", "fill-danger"],
+      ["inverted", "fill-inverted"],
+      ["disabled", "fill-disabled"],
+      ["disabled-light", "fill-disabled-light"],
+      ["info", "fill-info"],
+      ["primary", "fill-primary"],
+      ["success", "fill-success"],
+      ["warning", "fill-warning"],
     ];
 
-    iconTints.forEach(([iconTint, expectedClassName]) => {
-      wrapper.setProps({ tint: iconTint });
+    iconFills.forEach(([iconFill, expectedClassName]) => {
+      wrapper.setProps({ fill: iconFill });
       expect(wrapper.prop("className")).toContain(expectedClassName);
     });
   });

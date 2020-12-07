@@ -2,6 +2,6 @@
 
 exports[`Icon should render given an iconName 1`] = `
 <SvgPlus
-  className="icon tint-neutral size-default"
+  className="icon fill-default size-default"
 />
 `;
