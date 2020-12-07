@@ -189,12 +189,12 @@ export const CodeStory = () => (
         </Sample>
 
         <Sample>
-          <Label>Code Regular</Label>
+          <Label>Code Medium</Label>
           <Code weight="medium">{sample}</Code>
         </Sample>
 
         <Sample>
-          <Label>Code Regular</Label>
+          <Label>Code Bold</Label>
           <Code weight="bold">{sample}</Code>
         </Sample>
       </TypeSample>
