@@ -1,6 +1,6 @@
 {
   "name": "@cockroachlabs/design-tokens",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Design tokens for Cockroach Labs.",
   "repository": {
     "type": "git",
@@ -23,5 +23,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "f9e7778c841194fa776c5dc45d62fb9caf408f22"
+  "gitHead": "a77405daccfaf2d38cc08ef7c322172ee93776fd"
 }
