@@ -1,0 +1,12 @@
+{
+  "type": {
+    "family": {
+      "ui": {
+        "value": "\"Source Sans Pro\", sans-serif"
+      },
+      "code": {
+        "value": "\"Roboto Mono\", monospace"
+      }
+    }
+  }
+}

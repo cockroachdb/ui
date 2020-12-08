@@ -1,0 +1,10 @@
+{
+  "type": {
+    "weight": {
+      "bold": { "value": 700 },
+      "semi-bold": { "value": 600 },
+      "medium": { "value": 500 },
+      "regular": { "value": 400 }
+    }
+  }
+}

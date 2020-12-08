@@ -7,3 +7,4 @@ export * from "./Icon/Icon";
 export * from "./FuzzyTime/FuzzyTime";
 export * from "./InlineAlert/InlineAlert";
 export * from "./Spinner/Spinner";
+export * from "./Typography/";

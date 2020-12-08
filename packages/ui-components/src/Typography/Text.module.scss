@@ -1,0 +1,48 @@
+@import "~@cockroachlabs/design-tokens/dist/web/tokens";
+
+.type-body {
+  font-family: $type-family-ui;
+  font-size: $type-size-font-medium;
+  line-height: $type-size-line-height-regular;
+  font-weight: $type-weight-regular;
+}
+
+.type-body-strong {
+  font-family: $type-family-ui;
+  font-size: $type-size-font-medium;
+  line-height: $type-size-line-height-regular;
+  font-weight: $type-weight-semi-bold;
+  letter-spacing: 0.02em;
+}
+
+.type-caption {
+  font-family: $type-family-ui;
+  font-size: $type-size-font-small;
+  line-height: $type-size-line-height-small;
+  font-weight: $type-weight-regular;
+  letter-spacing: 0.02em;
+}
+
+.type-caption-strong {
+  font-family: $type-family-ui;
+  font-size: $type-size-font-small;
+  line-height: $type-size-line-height-small;
+  font-weight: $type-weight-semi-bold;
+  letter-spacing: 0.02em;
+}
+
+.type-code {
+  font-family: $type-family-code;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 600;
+  letter-spacing: normal;
+}
+
+.no-wrap {
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+}

@@ -1,0 +1,20 @@
+@import "~@cockroachlabs/design-tokens/dist/web/tokens";
+
+.code {
+  font-family: $type-family-code;
+  font-size: $type-size-font-medium;
+  letter-spacing: 0em;
+  line-height: $type-size-line-height-regular;
+}
+
+.weight-regular {
+  font-weight: $type-weight-regular;
+}
+
+.weight-medium {
+  font-weight: $type-weight-medium;
+}
+
+.weight-bold {
+  font-weight: $type-weight-bold;
+}
