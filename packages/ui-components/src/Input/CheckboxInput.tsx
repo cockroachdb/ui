@@ -12,29 +12,26 @@ interface CheckboxProps {
 
 export type CheckboxInputProps = CommonInputProps & CheckboxProps;
 
-
 export const CheckboxInput: React.FC<CheckboxInputProps> = props => {
   const {
     id,
-  className,
-  disabled,
-  help,
-  error,
-  inline,
-  invalid,
-  label,
-  ariaLabel,
-  value,
-  onChange,
-  onBlur,
-  onFocus,
-  required,
-  ...rest
-} = props;
+    className,
+    disabled,
+    error,
+    invalid,
+    label,
+    ariaLabel,
+    value,
+    onChange,
+    onBlur,
+    onFocus,
+    required,
+    ...rest
+  } = props;
   const inputProps = {
     id: id,
     className: classNames("crl-input", className, {
-      "invalid": error || invalid,
+      invalid: error || invalid,
     }),
     name: name,
     ["aria-label"]: ariaLabel,
@@ -47,13 +44,12 @@ export const CheckboxInput: React.FC<CheckboxInputProps> = props => {
     ...rest,
   };
 
-const fieldInput = 
-  <div className="checkbox-container">
-    <input checked={!!value} {...inputProps} />
-    <label htmlFor={id}>{label}</label>
-  </div>;
-  
-  return (
-    <CommonInput classes={className} {...props} fieldInput={fieldInput} />
+  const fieldInput = (
+    <div className="checkbox-container">
+      <input checked={!!value} {...inputProps} />
+      <label htmlFor={id}>{label}</label>
+    </div>
   );
+
+  return <CommonInput classes={className} {...props} fieldInput={fieldInput} />;
 };

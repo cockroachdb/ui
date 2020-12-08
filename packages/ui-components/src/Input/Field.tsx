@@ -1,56 +1,66 @@
 import React, { FunctionComponent, useState } from "react";
 import { Field, FieldProps, FieldRenderProps } from "react-final-form";
 
-import { TextInput, TextProps, NumberInput, NumberProps} from "./TextTypeInput";
-import { EmailInput, NewPasswordInput, ExistingPasswordInput, EmailProps, NewPasswordProps, ExistingPasswordProps, PasswordInputType } from "./EmailPasswordInput";
+import {
+  TextInput,
+  TextProps,
+  NumberInput,
+  NumberProps,
+} from "./TextTypeInput";
+import {
+  EmailInput,
+  NewPasswordInput,
+  ExistingPasswordInput,
+  EmailProps,
+  NewPasswordProps,
+  ExistingPasswordProps,
+  PasswordInputType,
+} from "./EmailPasswordInput";
 import { CheckboxInput, CheckboxInputProps } from "./CheckboxInput";
 import Icon from "../Icon/Icon";
 
-type TextInputFieldProps = Omit<FieldProps<
-  string,
-  FieldRenderProps<string, HTMLElement>,
-  HTMLElement
-> &
-TextProps, "type">;
+type TextInputFieldProps = Omit<
+  FieldProps<string, FieldRenderProps<string, HTMLElement>, HTMLElement> &
+    TextProps,
+  "type"
+>;
 
-type NumberInputFieldProps = Omit<FieldProps<
-  number,
-  FieldRenderProps<number, HTMLElement>,
-  HTMLElement
-> &
-NumberProps, "type">;
+type NumberInputFieldProps = Omit<
+  FieldProps<number, FieldRenderProps<number, HTMLElement>, HTMLElement> &
+    NumberProps,
+  "type"
+>;
 
-type CheckboxInputFieldProps = Omit<FieldProps<
-  boolean,
-  FieldRenderProps<boolean, HTMLElement>,
-  HTMLElement
-> &
-  CheckboxInputProps, "type">;
+type CheckboxInputFieldProps = Omit<
+  FieldProps<boolean, FieldRenderProps<boolean, HTMLElement>, HTMLElement> &
+    CheckboxInputProps,
+  "type"
+>;
 
-type EmailInputFieldProps = Omit<FieldProps<
-  string,
-  FieldRenderProps<string, HTMLElement>,
-  HTMLElement
-> &
- EmailProps, "type">;
+type EmailInputFieldProps = Omit<
+  FieldProps<string, FieldRenderProps<string, HTMLElement>, HTMLElement> &
+    EmailProps,
+  "type"
+>;
 
- type NewPasswordInputFieldProps = Omit<FieldProps<
- string,
- FieldRenderProps<string, HTMLElement>,
- HTMLElement
-> &
-NewPasswordProps, "type">;
+type NewPasswordInputFieldProps = Omit<
+  FieldProps<string, FieldRenderProps<string, HTMLElement>, HTMLElement> &
+    NewPasswordProps,
+  "type"
+>;
 
-type ExistingPasswordInputFieldProps = Omit<FieldProps<
-string,
-FieldRenderProps<string, HTMLElement>,
-HTMLElement
-> &
-ExistingPasswordProps, "type">;
+type ExistingPasswordInputFieldProps = Omit<
+  FieldProps<string, FieldRenderProps<string, HTMLElement>, HTMLElement> &
+    ExistingPasswordProps,
+  "type"
+>;
 
-type InternalFieldProps = 
-{InputFieldComponent: React.FunctionComponent} &
-TextInputFieldProps | CheckboxInputFieldProps | EmailInputFieldProps | NewPasswordInputFieldProps | ExistingPasswordInputFieldProps;
+type InternalFieldProps =
+  | ({ InputFieldComponent: React.FunctionComponent } & TextInputFieldProps)
+  | CheckboxInputFieldProps
+  | EmailInputFieldProps
+  | NewPasswordInputFieldProps
+  | ExistingPasswordInputFieldProps;
 
 const InputField: FunctionComponent<InternalFieldProps> = props => {
   const {
@@ -86,14 +96,18 @@ const InputField: FunctionComponent<InternalFieldProps> = props => {
       validateFields={validateFields}
       name={name}
       render={({ input, meta, existingPassword }) => {
-        return <InputFieldComponent 
-          meta={meta}
-          {...input}
-          {...inputProps}
-          error={
-            type==="password" && !existingPassword ? meta.touched && meta.invalid 
-            : meta.touched && meta.error}
-        />;
+        return (
+          <InputFieldComponent
+            meta={meta}
+            {...input}
+            {...inputProps}
+            error={
+              type === "password" && !existingPassword
+                ? meta.touched && meta.invalid
+                : meta.touched && meta.error
+            }
+          />
+        );
       }}
     />
   );
@@ -103,23 +117,33 @@ const InputField: FunctionComponent<InternalFieldProps> = props => {
 // This is to prevent passing a type for which the input component
 // isn't defined
 
-export const TextField: FunctionComponent<TextInputFieldProps>  = props => {
+export const TextField: FunctionComponent<TextInputFieldProps> = props => {
   return <InputField type="text" InputFieldComponent={TextInput} {...props} />;
 };
 
-export const NumberField: FunctionComponent<NumberInputFieldProps>  = props => {
-  return <InputField type="number" InputFieldComponent={NumberInput} {...props} />;
+export const NumberField: FunctionComponent<NumberInputFieldProps> = props => {
+  return (
+    <InputField type="number" InputFieldComponent={NumberInput} {...props} />
+  );
 };
 
-export const CheckboxField: FunctionComponent<CheckboxInputFieldProps>  = props => {
-  return <InputField type="checkbox" InputFieldComponent={CheckboxInput} {...props} />;
+export const CheckboxField: FunctionComponent<CheckboxInputFieldProps> = props => {
+  return (
+    <InputField
+      type="checkbox"
+      InputFieldComponent={CheckboxInput}
+      {...props}
+    />
+  );
 };
 
-export const EmailField: FunctionComponent<EmailInputFieldProps>  = props => {
-  return <InputField type="email" InputFieldComponent={EmailInput} {...props} />;
+export const EmailField: FunctionComponent<EmailInputFieldProps> = props => {
+  return (
+    <InputField type="email" InputFieldComponent={EmailInput} {...props} />
+  );
 };
 
-export const NewPasswordField: FunctionComponent<NewPasswordInputFieldProps>  = props => {
+export const NewPasswordField: FunctionComponent<NewPasswordInputFieldProps> = props => {
   const { meta } = props;
   const [type, setType] = useState<PasswordInputType>(
     PasswordInputType.Password,
@@ -133,22 +157,36 @@ export const NewPasswordField: FunctionComponent<NewPasswordInputFieldProps>  = 
     );
   };
 
-  const suffixIcon=
-    <div style={{display: 'inline-flex'}}>
+  const suffixIcon = (
+    <div style={{ display: "inline-flex" }}>
       <Icon
         iconName={type === PasswordInputType.Password ? "Eye" : "EyeOff"}
         size="medium"
         fill={meta && meta.active ? "info" : "default"}
         onClick={toggleType}
       />
-    </div>;
+    </div>
+  );
 
   // hidden password will render a password field
   // open password will render a text field
   // the hidden/open state is toggled by the suffix icon
-  return <InputField type={type} suffix={suffixIcon} InputFieldComponent={NewPasswordInput} {...props} />;
+  return (
+    <InputField
+      type={type}
+      suffix={suffixIcon}
+      InputFieldComponent={NewPasswordInput}
+      {...props}
+    />
+  );
 };
 
-export const ExistingPasswordField: FunctionComponent<ExistingPasswordInputFieldProps>  = props => {
-  return <InputField type="password" InputFieldComponent={ExistingPasswordInput} {...props} />;
+export const ExistingPasswordField: FunctionComponent<ExistingPasswordInputFieldProps> = props => {
+  return (
+    <InputField
+      type="password"
+      InputFieldComponent={ExistingPasswordInput}
+      {...props}
+    />
+  );
 };

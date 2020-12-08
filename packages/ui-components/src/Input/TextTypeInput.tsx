@@ -1,12 +1,4 @@
-import React, {
-  ChangeEvent,
-  CSSProperties,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-  FunctionComponent,
-} from "react";
+import React from "react";
 import classNames from "classnames/bind";
 import { CommonInputProps, CommonInput } from "./CommonInput";
 import { isEmpty } from "lodash";
@@ -35,7 +27,7 @@ export interface TextAndNumberProps<T = string | number> {
   // for multiline text types, this will be <textarea>
   // for text/email/password/number types this will be <input> with a type field
   JSXInput?: JSX.Element;
-};
+}
 
 // the following props are used to implement {Email, Password, Number}Input
 // it is recommended to use those components instead of passing an "email" type to TextInput
@@ -45,12 +37,8 @@ interface CustomProps {
   ariaLabelledBy?: string;
   autoFocus?: boolean;
   tabIndex?: number;
-  onKeyDown?: (
-    event: React.KeyboardEvent<HTMLInputElement>,
-  ) => void;
-  onClick?: (
-    event: React.MouseEvent<HTMLInputElement, MouseEvent>,
-  ) => void;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
   forgotPasswordLinkElement?: JSX.Element;
   // this prop is only used for internal implementation
   // whether the password exists or not, should be indicated by New/Existing PasswordInput
@@ -60,51 +48,55 @@ interface CustomProps {
   // which would need to be added as a dependency
   // since this prop comes from the Field component of react-final-form
   // we can be fairly certain that the type won't be unexpected
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   meta?: FieldMetaState<any>;
-};
+}
 
 export type TextProps = CommonInputProps & TextAndNumberProps<string>;
-export type NumberProps = CommonInputProps & TextAndNumberProps<number> & CustomProps;
+export type NumberProps = CommonInputProps &
+  TextAndNumberProps<number> &
+  CustomProps;
 type InternalTextProps = TextProps & CustomProps;
 export type AllProps = Omit<InternalTextProps, "existingPassword">;
 type InternalTextOrNumberProps = NumberProps & CustomProps;
 
-export const BaseTextInput: React.FC<InternalTextProps | InternalTextOrNumberProps> = props => {
+export const BaseTextInput: React.FC<
+  InternalTextProps | InternalTextOrNumberProps
+> = props => {
   const {
     JSXInput,
     id,
-  className,
-  disabled,
-  help,
-  error,
-  invalid,
-  label,
-  ariaLabel,
-  value,
-  maxLength,
-  onChange,
-  suffix,
-  onBlur,
-  onFocus,
-  multiline,
-  placeholder,
-  required,
-  type = "text",
-  prefix,
-  ariaLabelledBy,
-  autoFocus,
-  tabIndex,
-  existingPassword = false,
-  forgotPasswordLinkElement,
-  inline,
-  ...rest
-} = props;
+    className,
+    disabled,
+    error,
+    invalid,
+    label,
+    ariaLabel,
+    value,
+    maxLength,
+    onChange,
+    suffix,
+    onBlur,
+    onFocus,
+    multiline,
+    placeholder,
+    required,
+    type = "text",
+    prefix,
+    ariaLabelledBy,
+    autoFocus,
+    tabIndex,
+    existingPassword = false,
+    forgotPasswordLinkElement,
+    ...rest
+  } = props;
+
   const inputProps = {
     id: id,
     className: classNames("crl-input", className, {
       "crl-input--prefix": prefix,
       "crl-input--suffix": suffix,
-      "invalid": error || invalid,
+      invalid: error || invalid,
     }),
     name: name,
     ["aria-label"]: ariaLabel,
@@ -124,36 +116,42 @@ export const BaseTextInput: React.FC<InternalTextProps | InternalTextOrNumberPro
     ...rest,
   };
 
-  const input = JSXInput || <input {...inputProps} />;
+  const multilineOrSingleLineInput = multiline ? (
+    // multiline inputs define different types for onKeyDown and onClick
+    // these shouldn't be needed for text inputs in general.
+    <textarea {...inputProps} onKeyDown={undefined} onClick={undefined} />
+  ) : (
+    <input {...inputProps} />
+  );
 
-  // if prefix is provided, the 
-  const affixContainerClassname = prefix || suffix ? "crl-input__affix-container" : "";
+  const input = JSXInput || multilineOrSingleLineInput;
 
-  const labelDiv = 
-  <>
-    {!isEmpty(label) && (
-      <label
-        aria-label={name}
-        className={classNames({
-          "required": required,
-        })}
-        htmlFor={id}
-      >
-        {label}
-      </label>
-    )}
+  const labelDiv = (
+    <>
+      {!isEmpty(label) && (
+        <label
+          aria-label={name}
+          className={classNames({
+            required: required,
+          })}
+          htmlFor={id}
+        >
+          {label}
+        </label>
+      )}
     </>
-  ;
+  );
 
-  const labelElement = existingPassword ?  
+  const labelElement = existingPassword ? (
     <div className="existing-password-label">
       {labelDiv}
       {forgotPasswordLinkElement}
     </div>
-    : labelDiv;
+  ) : (
+    labelDiv
+  );
 
-
-  const fieldInput = 
+  const fieldInput = (
     <>
       {labelElement}
       <div className="affix-container">
@@ -161,18 +159,16 @@ export const BaseTextInput: React.FC<InternalTextProps | InternalTextOrNumberPro
         {input}
         {suffix && <span className="crl-input__suffix">{suffix}</span>}
       </div>
-    </>;
-  
-  return (
-    <CommonInput classes={className} {...props} fieldInput={fieldInput}/>
+    </>
   );
+
+  return <CommonInput classes={className} {...props} fieldInput={fieldInput} />;
 };
 
 export const TextInput: React.FC<TextProps> = props => {
-  return <BaseTextInput {...props} />
+  return <BaseTextInput {...props} />;
 };
 
 export const NumberInput: React.FC<NumberProps> = props => {
-  return <BaseTextInput {...props} />
+  return <BaseTextInput {...props} />;
 };
-  

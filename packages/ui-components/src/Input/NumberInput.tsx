@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from "react";
 import classNames from "classnames/bind";
 import { CaretUp, CaretDown } from "@cockroachlabs/icons";
-import isNumber from "../utils/isNumber";
 import { NumberInput, NumberProps } from "./TextTypeInput";
 import styles from "./styles.module.scss";
 import { InputPrefix, InputWrapper } from "./helpers";
@@ -33,18 +32,6 @@ export const DeprecatedNumberInput: React.FC<NumberInputProps> = ({
       onChange(nextValue);
     },
     [value, onChange, disabled],
-  );
-
-  const onChangeHandler = useCallback(
-    (nextValue: string) => {
-      const parsedValue = Number(nextValue);
-      if (!isNumber(parsedValue)) {
-        return;
-      }
-      setValue(parsedValue);
-      onChange(parsedValue);
-    },
-    [onChange],
   );
 
   const spinButtonsGroupClassName = cx("spin-buttons-group");

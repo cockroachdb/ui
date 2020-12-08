@@ -9,7 +9,8 @@ export interface CommonInputProps {
   classes?: string;
   className?: string;
   disabled?: boolean;
-  help?: any;
+  help?: string | JSX.Element;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   error?: any;
   inline?: boolean;
   invalid?: boolean;
@@ -25,19 +26,17 @@ export const CommonInput: React.FC<CommonInputProps> = ({
   fieldInput,
   classes,
 }) => {
-  const helpMsg = !help ? null : (
-    <div className="message-info">{help}</div>
-  );
+  const helpMsg = !help ? null : <div className="message-info">{help}</div>;
 
   const errorMsg =
     !error || typeof error === "boolean" ? null : (
       <div className="message-error">{error}</div>
-  );
+    );
 
   return (
     <div
       className={classNames("input-container", classes, {
-        "inline": inline,
+        inline: inline,
       })}
     >
       {fieldInput}
