@@ -54,7 +54,7 @@ export const NewPasswordInput: React.FC<NewPasswordProps> = props => {
             <Icon
               size="medium"
               iconName={error ? "CancelCircleFilled" : "CheckCircleFilled"}
-              intent={error ?  "default" : "success"}
+              fill={error ?  "default" : "success"}
               className={"new-password-input-icon"}
             />
           </div>

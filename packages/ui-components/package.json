@@ -28,6 +28,7 @@
   "dependencies": {
     "@cockroachlabs/icons": "^0.3.0",
     "@popperjs/core": "^2.4.3",
+    "final-form": "^4.20.1",
     "react-popper": "^2.2.3"
   },
   "devDependencies": {

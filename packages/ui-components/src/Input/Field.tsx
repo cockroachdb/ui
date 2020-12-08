@@ -138,7 +138,7 @@ export const NewPasswordField: FunctionComponent<NewPasswordInputFieldProps>  = 
       <Icon
         iconName={type === PasswordInputType.Password ? "Eye" : "EyeOff"}
         size="medium"
-        intent={meta && meta.active ? "info" : "default"}
+        fill={meta && meta.active ? "info" : "default"}
         onClick={toggleType}
       />
     </div>;
