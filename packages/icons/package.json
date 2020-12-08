@@ -10,7 +10,7 @@
   "scripts": {
     "build": "npm-run-all build:generate:* build:typescript",
     "build:typescript": "tsc",
-    "build:generate:stripfill": "svgr --typescript --icon -d src/components svg/customfill",
+    "build:generate:stripfill": "svgr --typescript --icon -d src/components svg/customFill",
     "build:generate:preserve": "svgr --typescript --icon --no-runtime-config -d src/components svg/preserveFill",
     "build:watch": "tsc --watch",
     "clean": "rimraf dist src/components",
