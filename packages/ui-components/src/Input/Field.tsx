@@ -21,7 +21,7 @@ import Icon from "../Icon/Icon";
 
 type TextInputFieldProps = Omit<
   FieldProps<string, FieldRenderProps<string, HTMLElement>, HTMLElement> &
-  TextInputProps,
+    TextInputProps,
   "type"
 >;
 
