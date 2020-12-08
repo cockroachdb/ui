@@ -1,14 +1,13 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { Search } from "@cockroachlabs/icons";
-import { TextInput, TextProps } from "./index";
+import { TextInput, TextInputProps } from "./index";
 import { BaseTextInput } from "./TextTypeInput";
-import { CommonInput } from "./CommonInput";
 
 describe("TextInput", () => {
   describe("Default props", () => {
     it("provides correct default values to inner <input /> element", () => {
-      const wrapper = shallow<TextProps>(<TextInput />);
+      const wrapper = shallow<TextInputProps>(<TextInput />);
       const inputWrapper = wrapper.find(BaseTextInput);
       const props = inputWrapper.props();
       expect(props.disabled).toBeFalsy();

@@ -3,7 +3,7 @@ import { Field, FieldProps, FieldRenderProps } from "react-final-form";
 
 import {
   TextInput,
-  TextProps,
+  TextInputProps,
   NumberInput,
   NumberProps,
 } from "./TextTypeInput";
@@ -21,7 +21,7 @@ import Icon from "../Icon/Icon";
 
 type TextInputFieldProps = Omit<
   FieldProps<string, FieldRenderProps<string, HTMLElement>, HTMLElement> &
-    TextProps,
+  TextInputProps,
   "type"
 >;
 

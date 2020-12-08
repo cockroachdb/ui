@@ -52,11 +52,11 @@ interface CustomProps {
   meta?: FieldMetaState<any>;
 }
 
-export type TextProps = CommonInputProps & TextAndNumberProps<string>;
+export type TextInputProps = CommonInputProps & TextAndNumberProps<string>;
 export type NumberProps = CommonInputProps &
   TextAndNumberProps<number> &
   CustomProps;
-type InternalTextProps = TextProps & CustomProps;
+type InternalTextProps = TextInputProps & CustomProps;
 export type AllProps = Omit<InternalTextProps, "existingPassword">;
 type InternalTextOrNumberProps = NumberProps & CustomProps;
 
@@ -165,7 +165,7 @@ export const BaseTextInput: React.FC<
   return <CommonInput classes={className} {...props} fieldInput={fieldInput} />;
 };
 
-export const TextInput: React.FC<TextProps> = props => {
+export const TextInput: React.FC<TextInputProps> = props => {
   return <BaseTextInput {...props} />;
 };
 
