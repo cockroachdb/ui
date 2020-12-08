@@ -1,12 +1,13 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { InlineAlert, InlineAlertIntent } from "./InlineAlert";
+import { IconIntent } from "../Icon/Icon";
+import { InlineAlert } from "./InlineAlert";
 
-const alertIntents: InlineAlertIntent[] = [
+const alertIntents: IconIntent[] = [
   undefined, // should be used default intent
   "warning",
   "success",
-  "error",
+  "danger",
   "info",
 ];
 

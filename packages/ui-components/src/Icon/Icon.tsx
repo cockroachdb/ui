@@ -8,45 +8,52 @@ import styles from "./Icon.module.scss";
 import objectToClassnames from "../utils/objectToClassnames";
 
 export type IconSize =
+  | "tiny"
   | "small"
   | "default"
   | "medium"
   | "large"
-  | "x-large"
-  | "xx-large";
+  | "x-large";
 
-export type IconTint =
-  | "blue"
-  | "green"
-  | "red"
-  | "white"
-  | "neutral"
-  | "inherit"
-  | "orange";
+export type IconIntent =
+  | "danger"
+  | "default"
+  | "info"
+  | "primary"
+  | "success"
+  | "warning";
+
+// The fill of an icon can be:
+//      intent based (types are defined in IconIntent)
+//      inverted (when the icon appears against a dark background)
+//      disabled (for when the background is neutral-2)
+//      disabled-light (for when the background is neutral-0)
+export type IconFill = IconIntent | "inverted" | "disabled" | "disabled-light";
 
 type OwnIconProps = {
   iconName: keyof typeof Icons;
   size?: IconSize;
-  tint?: IconTint;
+  fill?: IconFill;
 };
+
+const cx = classNames.bind(styles);
 
 type NativeIconProps = Omit<React.SVGProps<SVGSVGElement>, keyof OwnIconProps>;
 
 export type IconProps = NativeIconProps & OwnIconProps;
 
-const cx = classNames.bind(styles);
-
 export const Icon: FunctionComponent<IconProps> = ({
   iconName,
   size = "default",
-  tint = "neutral",
+  fill = "default",
   className,
   ...props
 }) => {
   const classnames = useMemo(
-    () => cx("icon", objectToClassnames({ size, tint }), className),
-    [className, size, tint],
+    () => cx("icon", objectToClassnames({ size, fill }), className),
+    [className, size, fill],
   );
+
   const Element = get(Icons, iconName, null);
 
   if (Element === null) {

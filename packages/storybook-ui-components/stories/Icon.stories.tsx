@@ -3,7 +3,7 @@ import { withKnobs, select } from "@storybook/addon-knobs";
 import { StoryContainer, StoryDescription } from "../layout";
 
 import * as Icons from "@cockroachlabs/icons";
-import { Icon, IconSize, IconTint } from "@cockroachlabs/ui-components";
+import { Icon, IconSize, IconFill } from "@cockroachlabs/ui-components";
 
 export default {
   title: "Icon",
@@ -107,16 +107,17 @@ const sizes: Array<{ key: IconSize; size: number }> = [
   { key: "medium", size: 32 },
   { key: "large", size: 48 },
   { key: "x-large", size: 56 },
-  { key: "xx-large", size: 80 },
 ];
-const tints: Array<IconTint> = [
-  "blue",
-  "green",
-  "red",
-  "white",
-  "neutral",
-  "inherit",
-  "orange",
+const fills: Array<IconFill> = [
+  "danger",
+  "default",
+  "info",
+  "primary",
+  "success",
+  "warning",
+  "inverted",
+  "disabled",
+  "disabled-light",
 ];
 
 export const Example = () => (
@@ -131,7 +132,7 @@ export const Example = () => (
     <section>
       <h2>Icon Names</h2>
       <IconDisplaySection>
-        {IconNames.map((name) => (
+        {IconNames.map(name => (
           <IconDisplay key={name}>
             <IconLabel text={name} />
             <IconFrame>
@@ -145,7 +146,7 @@ export const Example = () => (
     <section>
       <h2>Icon Sizes</h2>
       <IconDisplaySection>
-        {sizes.map((s) => (
+        {sizes.map(s => (
           <IconDisplay key={s.key}>
             <IconLabel text={`${s.key} (${s.size}px)`} />
             <IconFrame>
@@ -157,16 +158,21 @@ export const Example = () => (
     </section>
 
     <section>
-      <h2>Icon Tints</h2>
+      <h2>Icon Fills</h2>
       <IconDisplaySection>
-        {tints.map((tint) => (
-          <IconDisplay key={tint} backgroundColor="#c0c6d9">
-            <IconLabel text={tint} />
-            <IconFrame>
-              <Icon iconName="Plus" tint={tint} />
-            </IconFrame>
-          </IconDisplay>
-        ))}
+        {fills.map(fill => {
+          return (
+            <IconDisplay
+              key={fill}
+              backgroundColor={fill === "inverted" ? "#c0c6d9" : ""}
+            >
+              <IconLabel text={fill} />
+              <IconFrame>
+                <Icon iconName="Plus" fill={fill} />
+              </IconFrame>
+            </IconDisplay>
+          );
+        })}
       </IconDisplaySection>
     </section>
   </StoryContainer>
@@ -178,10 +184,10 @@ export const Demo = () => (
       iconName={select("Icon Name", IconNames, "Plus")}
       size={select(
         "Size",
-        sizes.map((s) => s.key),
+        sizes.map(s => s.key),
         "default",
       )}
-      tint={select("Tint", tints, "neutral")}
+      fill={select("Fill", fills, "default")}
     />
   </StoryContainer>
 );

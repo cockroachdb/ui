@@ -1,16 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`InlineAlert renders with error intent 1`] = `
+exports[`InlineAlert renders with danger intent 1`] = `
 <div
-  className="root intent-error"
+  className="root intent-danger"
 >
   <div
     className="icon-container"
   >
     <Component
+      fill="danger"
       iconName="ErrorCircleFilled"
       size="default"
-      tint="red"
     />
   </div>
   <div
@@ -33,9 +33,9 @@ exports[`InlineAlert renders with info intent 1`] = `
     className="icon-container"
   >
     <Component
+      fill="info"
       iconName="InfoCircleFilled"
       size="default"
-      tint="blue"
     />
   </div>
   <div
@@ -58,9 +58,9 @@ exports[`InlineAlert renders with provided description 1`] = `
     className="icon-container"
   >
     <Component
+      fill="info"
       iconName="InfoCircleFilled"
       size="default"
-      tint="blue"
     />
   </div>
   <div
@@ -83,9 +83,9 @@ exports[`InlineAlert renders with provided title 1`] = `
     className="icon-container"
   >
     <Component
+      fill="info"
       iconName="InfoCircleFilled"
       size="default"
-      tint="blue"
     />
   </div>
   <div
@@ -108,9 +108,9 @@ exports[`InlineAlert renders with provided title and description 1`] = `
     className="icon-container"
   >
     <Component
+      fill="info"
       iconName="InfoCircleFilled"
       size="default"
-      tint="blue"
     />
   </div>
   <div
@@ -138,9 +138,9 @@ exports[`InlineAlert renders with success intent 1`] = `
     className="icon-container"
   >
     <Component
+      fill="success"
       iconName="CheckCircleFilled"
       size="default"
-      tint="green"
     />
   </div>
   <div
@@ -163,9 +163,9 @@ exports[`InlineAlert renders with undefined intent 1`] = `
     className="icon-container"
   >
     <Component
+      fill="info"
       iconName="InfoCircleFilled"
       size="default"
-      tint="blue"
     />
   </div>
   <div
@@ -188,9 +188,9 @@ exports[`InlineAlert renders with warning intent 1`] = `
     className="icon-container"
   >
     <Component
+      fill="warning"
       iconName="Caution"
       size="default"
-      tint="orange"
     />
   </div>
   <div
