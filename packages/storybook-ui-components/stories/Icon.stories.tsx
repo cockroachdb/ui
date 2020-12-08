@@ -5,6 +5,7 @@ import { StoryContainer, StoryDescription } from "../layout";
 import {
   SystemIcons as IconSet,
   Pictograms as PictogramSet,
+  ThirdParty as ThirdPartySet,
 } from "@cockroachlabs/icons";
 import {
   Icon,
@@ -13,6 +14,8 @@ import {
   Pictogram,
   PictogramSize,
   PictogramFill,
+  ThirdPartyIcon,
+  ThirdPartySize,
 } from "@cockroachlabs/ui-components";
 
 export default {
@@ -90,11 +93,6 @@ const fills: Array<IconFill> = [
 export const SystemIcons = () => (
   <StoryContainer>
     <h1>Icons</h1>
-    <StoryDescription>
-      Icons are visual representations of commands, objects, or common actions
-      and are used to provide visual context and enhance usability. They should
-      be simple, yet bold enough to grab attention.{" "}
-    </StoryDescription>
 
     <section>
       <h2>Icon Names</h2>
@@ -157,15 +155,8 @@ export const Pictograms = () => (
   <StoryContainer>
     <h1>Pictograms</h1>
 
-    <StoryDescription>
-      Icons are visual representations of commands, objects, or common actions
-      and are used to provide visual context and enhance usability. They should
-      be simple, yet bold enough to grab attention.{" "}
-    </StoryDescription>
-
     <section>
       <h3>Pictogram Names</h3>
-
       <IconDisplaySection>
         {pictogramNames.map(name => (
           <IconDisplay key={name}>
@@ -200,6 +191,47 @@ export const Pictograms = () => (
             <IconLabel text={fill} />
             <IconFrame>
               <Pictogram pictogramName="Monitoring" fill={fill} />
+            </IconFrame>
+          </IconDisplay>
+        ))}
+      </IconDisplaySection>
+    </section>
+  </StoryContainer>
+);
+
+const thirdPartyIconNames: Array<keyof typeof ThirdPartySet> = keys(
+  ThirdPartySet,
+);
+const thirdPartySizes: Array<{ key: ThirdPartySize; size: number }> = [
+  { key: "tiny", size: 16 },
+  { key: "small", size: 24 },
+  { key: "medium", size: 32 },
+  { key: "large", size: 48 },
+  { key: "x-large", size: 56 },
+];
+export const ThirdPartyIcons = () => (
+  <StoryContainer>
+    <h1>Third Party Icons</h1>
+
+    <IconDisplaySection>
+      {thirdPartyIconNames.map(name => (
+        <IconDisplay key={name}>
+          <IconLabel text={name} />
+          <IconFrame>
+            <ThirdPartyIcon iconName={name} />
+          </IconFrame>
+        </IconDisplay>
+      ))}
+    </IconDisplaySection>
+
+    <section>
+      <h2>Third Party Icon Sizes</h2>
+      <IconDisplaySection>
+        {thirdPartySizes.map(s => (
+          <IconDisplay key={s.key}>
+            <IconLabel text={`${s.key} (${s.size}px)`} />
+            <IconFrame>
+              <ThirdPartyIcon iconName="Gcp" size={s.key} />
             </IconFrame>
           </IconDisplay>
         ))}
