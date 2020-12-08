@@ -47,7 +47,7 @@ export const InlineAlert: React.FC<InlineAlertProps> = ({
   return (
     <div className={cx("root", `intent-${intent}`, className)}>
       <div className={cx("icon-container")}>
-        <Icon iconName={iconName} size="default" intent={intent} />
+        <Icon iconName={iconName} size="default" fill={intent} />
       </div>
       <div className={cx("container")}>
         {title && <div className={cx("title")}>{title}</div>}
