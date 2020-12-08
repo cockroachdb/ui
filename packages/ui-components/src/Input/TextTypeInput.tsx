@@ -170,5 +170,5 @@ export const TextInput: React.FC<TextProps> = props => {
 };
 
 export const NumberInput: React.FC<NumberProps> = props => {
-  return <BaseTextInput {...props} />;
+  return <BaseTextInput type="number" {...props} />;
 };
