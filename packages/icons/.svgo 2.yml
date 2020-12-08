@@ -1,3 +1,0 @@
-plugins:
-  - removeAttrs:
-      attrs: "fill"
