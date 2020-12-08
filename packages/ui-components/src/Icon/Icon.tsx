@@ -33,7 +33,7 @@ export type IconFill = IconIntent | "inverted" | "disabled" | "disabled-light";
 type OwnIconProps = {
   iconName: keyof typeof Icons;
   size?: IconSize;
-  intent?: IconIntent;
+  fill?: IconFill;
 };
 
 const cx = classNames.bind(styles);
