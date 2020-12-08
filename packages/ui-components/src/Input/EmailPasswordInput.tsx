@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BaseTextInput, AllProps } from "./TextTypeInput";
-import "./EmailPassword.scss";
+import "./EmailPassword.module.scss";
 import { Icon } from "../Icon/Icon";
 import classNames from "classnames";
 

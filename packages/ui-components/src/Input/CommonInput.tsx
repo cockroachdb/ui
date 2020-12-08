@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames/bind";
-import "./input.scss";
+import "./input.module.scss";
 
 export interface CommonInputProps {
   id?: string;

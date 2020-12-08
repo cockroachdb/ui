@@ -33,10 +33,19 @@
 
 .type-code {
   font-family: $type-family-code;
-  font-size: 12px;
-  line-height: 20px;
-  font-weight: 600;
+  font-size: $type-size-font-small;
+  line-height: $type-size-line-height-small;
+  font-weight: $type-weight-semi-bold;
   letter-spacing: normal;
+}
+
+.type-error {
+  font-family: $type-family-ui;
+  font-size: $type-size-font-small;
+  line-height: $type-size-line-height-tiny;
+  font-weight: $type-weight-semi-bold;
+  color: $color-base-red;
+  letter-spacing: 0.02em;
 }
 
 .no-wrap {

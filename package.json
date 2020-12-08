@@ -2,6 +2,7 @@
   "name": "root",
   "private": true,
   "devDependencies": {
+    "@cockroachlabs/ui-components": "^0.2.12",
     "lerna": "^3.20.2"
   },
   "scripts": {

@@ -1,15 +1,16 @@
 @import "../styles/tokens.scss";
 @import "./constants.scss";
+@import "../Typography/Text.module.scss";
 
 .crl-input {
   outline: none;
-  @include crl-type-body;
+  @extend .type-body;
 
   &:not([type="checkbox"]) {
     display: block;
     width: 100%;
     padding: crl-gutters(1);
-    color: $crl-base-text--dark;
+    color: $color-font-2;
     background-color: $color-base-white;
     border-width: 1px;
     border-style: solid;
@@ -32,7 +33,7 @@
       border-color: $color-core-neutral-4;
 
       &::placeholder {
-        color: $crl-base-text--light;
+        color: $color-font-4;
       }
     }
 
@@ -47,7 +48,7 @@
   // border, color, and background do not
   &:focus {
     background-color: $color-base-white;
-    color: $crl-base-text--dark;
+    color: $color-font-2;
     border-color: $color-core-blue-4;
     @include crl-box-shadow(0, 0, 4px, 2px, rgba($color-core-blue-4, 0.4));
   }
@@ -127,11 +128,11 @@
   padding-top: crl-gutters(1);
 
   &-info {
-    @include crl-type-caption;
+    @extend .type-caption;
   }
 
   &-error {
-    @include crl-type-error;
+    @extend .type-error;
 
     & > .crl-icon__container {
       padding-right: crl-gutters(1);

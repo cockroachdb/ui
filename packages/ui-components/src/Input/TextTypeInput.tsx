@@ -11,7 +11,7 @@ import classNames from "classnames/bind";
 import { CommonInputProps, CommonInput } from "./CommonInput";
 import { isEmpty } from "lodash";
 import { FieldMetaState } from "react-final-form";
-import "./input.scss";
+import "./input.module.scss";
 
 export interface TextAndNumberProps<T = string | number> {
   initialValue?: T;
