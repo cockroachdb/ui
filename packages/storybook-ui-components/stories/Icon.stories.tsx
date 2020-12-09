@@ -1,11 +1,13 @@
 import React, { FunctionComponent, ReactElement } from "react";
 import { withKnobs, select } from "@storybook/addon-knobs";
-import { StoryContainer, StoryDescription } from "../layout";
+import { StoryContainer } from "../layout";
 
 import {
   SystemIcons as IconSet,
   Pictograms as PictogramSet,
   ThirdParty as ThirdPartySet,
+  Cards as CreditCardSet,
+  Flags as FlagSet,
 } from "@cockroachlabs/icons";
 import {
   Icon,
@@ -16,6 +18,10 @@ import {
   PictogramFill,
   ThirdPartyIcon,
   ThirdPartySize,
+  CreditCard,
+  CreditCardSize,
+  Flag,
+  FlagSize,
 } from "@cockroachlabs/ui-components";
 
 export default {
@@ -46,7 +52,8 @@ const IconDisplay: FunctionComponent<{
     style={{
       textAlign: "center",
       backgroundColor: backgroundColor,
-      margin: "2rem 1rem",
+      margin: "2rem 1.5rem",
+      padding: "0 0.5rem",
     }}
   >
     {children}
@@ -232,6 +239,82 @@ export const ThirdPartyIcons = () => (
             <IconLabel text={`${s.key} (${s.size}px)`} />
             <IconFrame>
               <ThirdPartyIcon iconName="Gcp" size={s.key} />
+            </IconFrame>
+          </IconDisplay>
+        ))}
+      </IconDisplaySection>
+    </section>
+  </StoryContainer>
+);
+
+const creditCardNames: Array<keyof typeof CreditCardSet> = keys(CreditCardSet);
+const creditCardSizes: Array<{ key: CreditCardSize; size: number }> = [
+  { key: "tiny", size: 16 },
+  { key: "small", size: 24 },
+  { key: "medium", size: 28 },
+  { key: "large", size: 32 },
+];
+export const CreditCards = () => (
+  <StoryContainer>
+    <h1>Credit Card Icons</h1>
+
+    <IconDisplaySection>
+      {creditCardNames.map(name => (
+        <IconDisplay key={name}>
+          <IconLabel text={name} />
+          <IconFrame>
+            <CreditCard creditCardName={name} />
+          </IconFrame>
+        </IconDisplay>
+      ))}
+    </IconDisplaySection>
+
+    <section>
+      <h2>Credit Card Icon Sizes</h2>
+      <IconDisplaySection>
+        {creditCardSizes.map(s => (
+          <IconDisplay key={s.key}>
+            <IconLabel text={`${s.key} (${s.size}px)`} />
+            <IconFrame>
+              <CreditCard creditCardName="Visa" size={s.key} />
+            </IconFrame>
+          </IconDisplay>
+        ))}
+      </IconDisplaySection>
+    </section>
+  </StoryContainer>
+);
+
+const flagNames: Array<keyof typeof FlagSet> = keys(FlagSet);
+const flagSizes: Array<{ key: FlagSize; size: number }> = [
+  { key: "tiny", size: 16 },
+  { key: "small", size: 24 },
+  { key: "medium", size: 28 },
+  { key: "large", size: 32 },
+];
+export const Flags = () => (
+  <StoryContainer>
+    <h1>Flags</h1>
+
+    <IconDisplaySection>
+      {flagNames.map(name => (
+        <IconDisplay key={name} backgroundColor="hsl(0, 0%, 97%)">
+          <IconLabel text={name} />
+          <IconFrame>
+            <Flag flagName={name} />
+          </IconFrame>
+        </IconDisplay>
+      ))}
+    </IconDisplaySection>
+
+    <section>
+      <h2>Flag Sizes</h2>
+      <IconDisplaySection>
+        {flagSizes.map(s => (
+          <IconDisplay key={s.key}>
+            <IconLabel text={`${s.key} (${s.size}px)`} />
+            <IconFrame>
+              <Flag flagName="Usa" size={s.key} />
             </IconFrame>
           </IconDisplay>
         ))}
