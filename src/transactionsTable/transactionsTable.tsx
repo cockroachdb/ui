@@ -12,7 +12,7 @@ import { longToInt } from "./utils";
 import { tableClasses } from "./transactionsTableClasses";
 import { textCell } from "./transactionsCells";
 import { FixLong } from "src/util";
-import { SortSetting } from "../sortabletable";
+import { SortSetting } from "../sortedtable";
 import {
   getStatementsById,
   collectStatementsText,

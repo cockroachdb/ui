@@ -3,13 +3,14 @@ import _ from "lodash";
 import * as Long from "long";
 import { Moment } from "moment";
 import { createSelector } from "reselect";
-import {
-  ExpandableConfig,
-  SortableColumn,
-  SortableTable,
-  SortSetting,
-  EmptyPanelProps,
-} from "src/index";
+
+import times from "lodash/times";
+import { EmptyPanel, EmptyPanelProps } from "../empty";
+import styles from "./sortedtable.module.scss";
+import classNames from "classnames/bind";
+import { TableSpinner } from "./tableSpinner";
+import { TableHead } from "./tableHead";
+import { TableRow } from "./tableRow";
 
 export interface ISortedTablePagination {
   current: number;
@@ -99,12 +100,77 @@ interface SortedTableState {
  * SortedTable should be preferred over the lower-level SortableTable when
  * all data rows to be displayed are available locally on the client side.
  */
+
+const cx = classNames.bind(styles);
+
+/**
+ * SortableColumn describes the contents a single column of a
+ * sortable table.
+ */
+export interface SortableColumn {
+  // Text that will appear in the title header of the table.
+  title: React.ReactNode;
+  // Function which provides the contents for this column for a given row index
+  // in the dataset.
+  cell: (rowIndex: number) => React.ReactNode;
+  // Contents that will appear in the "rollup" header of this column.
+  rollup?: React.ReactNode;
+  // Unique key that identifies this column from others, for the purpose of
+  // indicating sort order. If not provided, the column is not considered
+  // sortable.
+  sortKey?: any;
+  // className is a classname to apply to the td elements
+  className?: string;
+  titleAlign?: "left" | "right" | "center";
+  // uniq column identifier
+  name: string;
+}
+
+/**
+ * SortSetting is the structure that SortableTable uses to indicate its current
+ * sort preference to higher-level components. It contains a sortKey (taken from
+ * one of the currently displayed columns) and a boolean indicating that the
+ * sort should be ascending, rather than descending.
+ */
+export interface SortSetting {
+  sortKey: any;
+  ascending: boolean;
+  columnTitle?: string;
+}
+
+export interface ExpandableConfig {
+  // Called when the expand toggle is clicked. If this prop is not supplied,
+  // the table is not expandable and the expansion control is not shown.
+  onChangeExpansion: (rowIndex: number, expanded: boolean) => void;
+  // Given a row index, return whether that row is expanded.
+  rowIsExpanded: (rowIndex: number) => boolean;
+  // If a row is expanded, this function is called to get the content for the
+  // full-width expanded section.
+  expandedContent: (rowIndex: number) => React.ReactNode;
+}
+
+/**
+ * SortableTable is designed to display tabular data where the data set can be
+ * sorted by one or more columns.
+ *
+ * SortableTable is not responsible for sorting data; however, it does allow the
+ * user to indicate how data should be sorted by clicking on column headers.
+ * SortableTable can indicate this to higher-level components through the
+ * 'onChangeSortSetting' callback property.
+ */
+
 export class SortedTable<T> extends React.Component<
   SortedTableProps<T>,
   SortedTableState
 > {
   static defaultProps: Partial<SortedTableProps<any>> = {
     rowClass: (_obj: any) => "",
+    columns: [],
+    sortSetting: {
+      sortKey: null,
+      ascending: false,
+    },
+    onChangeSortSetting: _ss => {},
   };
 
   rollups = createSelector(
@@ -153,6 +219,7 @@ export class SortedTable<T> extends React.Component<
    * columns is a selector which computes the input columns to the underlying
    * sortableTable.
    */
+
   columns = createSelector(
     this.sortedAndPaginated,
     this.rollups,
@@ -247,6 +314,7 @@ export class SortedTable<T> extends React.Component<
       loadingLabel,
       empty,
       emptyProps,
+      className,
     } = this.props;
     let expandableConfig: ExpandableConfig = null;
     if (this.props.expandableConfig) {
@@ -256,22 +324,45 @@ export class SortedTable<T> extends React.Component<
         onChangeExpansion: this.onChangeExpansion,
       };
     }
+
+    const count = data ? this.paginatedData().length : 0;
+    const columns = this.columns(this.props);
+    const rowClass = this.rowClass(this.props);
+    const tableWrapperClass = cx("cl-table-wrapper");
+    const tableStyleClass = cx("sort-table", className);
+    const noResultsClass = cx("table__no-results");
+
+    if (empty) {
+      return <EmptyPanel {...emptyProps} />;
+    }
+
     return (
-      <SortableTable
-        count={data ? this.paginatedData().length : 0}
-        sortSetting={sortSetting}
-        onChangeSortSetting={onChangeSortSetting}
-        columns={this.columns(this.props)}
-        rowClass={this.rowClass(this.props)}
-        className={this.props.className}
-        expandableConfig={expandableConfig}
-        firstCellBordered={firstCellBordered}
-        renderNoResult={renderNoResult}
-        loading={loading}
-        loadingLabel={loadingLabel}
-        empty={empty}
-        emptyProps={emptyProps}
-      />
+      <div className={tableWrapperClass}>
+        <table className={tableStyleClass}>
+          <TableHead
+            columns={columns}
+            sortSetting={sortSetting}
+            onChangeSortSetting={onChangeSortSetting}
+            expandableConfig={expandableConfig}
+            firstCellBordered={firstCellBordered}
+          />
+          <tbody>
+            {!loading &&
+              times(count, (rowIndex: number) => (
+                <TableRow
+                  key={"row" + rowIndex}
+                  columns={columns}
+                  expandableConfig={expandableConfig}
+                  firstCellBordered={firstCellBordered}
+                  rowIndex={rowIndex}
+                  rowClass={rowClass}
+                />
+              ))}
+          </tbody>
+        </table>
+        {loading && <TableSpinner loadingLabel={loadingLabel} />}
+        {count === 0 && <div className={noResultsClass}>{renderNoResult}</div>}
+      </div>
     );
   }
 }

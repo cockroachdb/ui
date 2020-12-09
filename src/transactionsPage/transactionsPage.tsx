@@ -3,8 +3,7 @@ import * as protos from "@cockroachlabs/crdb-protobuf-client";
 import { RouteComponentProps } from "react-router-dom";
 import { TransactionsTable } from "../transactionsTable";
 import { TransactionDetails } from "../transactionDetails";
-import { ISortedTablePagination } from "../sortedtable";
-import { SortSetting } from "../sortabletable";
+import { ISortedTablePagination, SortSetting } from "../sortedtable";
 import { Pagination } from "../pagination";
 import { TransactionsPageStatistic } from "./transactionsPageStatistic";
 import {
