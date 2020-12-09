@@ -11,7 +11,7 @@ export type PictogramSize = "small" | "medium" | "large";
 export type PictogramFill = "default" | "primary";
 
 type OwnPictogramProps = {
-  pictogramName: string;
+  pictogramName: keyof typeof Pictograms;
   size?: PictogramSize;
   fill?: PictogramFill;
 };

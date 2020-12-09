@@ -10,7 +10,7 @@ import objectToClassNames from "../utils/objectToClassnames";
 export type ThirdPartySize = "tiny" | "small" | "medium" | "large" | "x-large";
 
 type OwnThirdPartyIconProps = {
-  iconName: string;
+  iconName: keyof typeof ThirdParty;
   size?: ThirdPartySize;
 };
 
