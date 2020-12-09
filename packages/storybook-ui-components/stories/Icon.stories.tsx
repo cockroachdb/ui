@@ -1,6 +1,6 @@
 import React, { FunctionComponent, ReactElement } from "react";
 import { withKnobs, select } from "@storybook/addon-knobs";
-import { StoryContainer } from "../layout";
+import { StoryContainer, StoryDescription } from "../layout";
 
 import {
   SystemIcons as IconSet,
@@ -22,6 +22,7 @@ import {
   CreditCardSize,
   Flag,
   FlagSize,
+  flagNameCountryCodeMap,
 } from "@cockroachlabs/ui-components";
 
 export default {
@@ -292,6 +293,8 @@ const flagSizes: Array<{ key: FlagSize; size: number }> = [
   { key: "medium", size: 28 },
   { key: "large", size: 32 },
 ];
+const countryCodes = flagNameCountryCodeMap.map(f => f.code);
+
 export const Flags = () => (
   <StoryContainer>
     <h1>Flags</h1>
@@ -306,6 +309,26 @@ export const Flags = () => (
         </IconDisplay>
       ))}
     </IconDisplaySection>
+
+    <section>
+      <h2>Flags by Country Code</h2>
+
+      <StoryDescription>
+        Flags can also be rendered by passing a <code>countryCode</code> prop
+        instead of a <code>flagName</code>
+      </StoryDescription>
+
+      <IconDisplaySection>
+        {countryCodes.map(code => (
+          <IconDisplay key={code} backgroundColor="hsl(0, 0%, 97%)">
+            <IconLabel text={code} />
+            <IconFrame>
+              <Flag countryCode={code} />
+            </IconFrame>
+          </IconDisplay>
+        ))}
+      </IconDisplaySection>
+    </section>
 
     <section>
       <h2>Flag Sizes</h2>
