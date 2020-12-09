@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactElement } from "react";
+import React, { FunctionComponent, ReactNode } from "react";
 import { withKnobs, select } from "@storybook/addon-knobs";
 import { StoryContainer, StoryDescription } from "../layout";
 
@@ -8,11 +8,13 @@ import {
   ThirdParty as ThirdPartySet,
   Cards as CreditCardSet,
   Flags as FlagSet,
+  Illustrations as IllustrationSet,
 } from "@cockroachlabs/icons";
 import {
   Icon,
   IconSize,
   IconFill,
+  Illustration,
   Pictogram,
   PictogramSize,
   PictogramFill,
@@ -31,9 +33,7 @@ export default {
   decorators: [withKnobs],
 };
 
-const IconDisplaySection: FunctionComponent<{
-  children: Array<ReactElement | null>;
-}> = ({ children }) => (
+const IconDisplaySection = ({ children }: { children: ReactNode }) => (
   <section
     style={{
       display: "flex",
@@ -45,10 +45,13 @@ const IconDisplaySection: FunctionComponent<{
   </section>
 );
 
-const IconDisplay: FunctionComponent<{
-  children: Array<ReactElement | null>;
+const IconDisplay = ({
+  children,
+  backgroundColor = "transparent",
+}: {
+  children: ReactNode;
   backgroundColor?: string;
-}> = ({ children, backgroundColor = "transparent" }) => (
+}) => (
   <div
     style={{
       textAlign: "center",
@@ -60,14 +63,15 @@ const IconDisplay: FunctionComponent<{
     {children}
   </div>
 );
-const IconFrame: FunctionComponent<{
-  children: ReactElement;
-}> = ({ children }) => (
+const IconFrame = ({ children }: { children: ReactNode }) => (
   <div
     style={{ display: "flex", height: "75px", width: "75px", margin: "auto" }}
   >
     {children}
   </div>
+);
+const IllustrationFrame = ({ children }: { children: ReactNode }) => (
+  <div style={{ margin: "1rem" }}>{children}</div>
 );
 
 const IconLabel: FunctionComponent<{
@@ -343,6 +347,25 @@ export const Flags = () => (
         ))}
       </IconDisplaySection>
     </section>
+  </StoryContainer>
+);
+
+const illustrationNames = keys(IllustrationSet);
+
+export const Illustrations = () => (
+  <StoryContainer>
+    <h1>Illustrations</h1>
+
+    <IconDisplaySection>
+      {illustrationNames.map(name => (
+        <IconDisplay key={name}>
+          <IconLabel text={name} />
+          <IllustrationFrame>
+            <Illustration illustrationName={name} />
+          </IllustrationFrame>
+        </IconDisplay>
+      ))}
+    </IconDisplaySection>
   </StoryContainer>
 );
 

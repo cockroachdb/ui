@@ -291,4 +291,5 @@ export {
   ThirdParty,
   Cards,
   Flags,
+  Illustrations,
 };
