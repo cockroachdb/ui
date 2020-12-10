@@ -77,7 +77,7 @@ import { default as SleepyMoon } from "./components/SleepyMoon";
 import { default as Aws } from "./components/Aws";
 import { default as Gcp } from "./components/Gcp";
 
-// Cards and Flags
+// Credit Cards
 import { default as CreditCard } from "./components/CreditCard";
 import { default as Visa } from "./components/Visa";
 
@@ -262,7 +262,7 @@ export {
   // 3rd party
   Aws,
   Gcp,
-  // cards
+  // credit cards
   CreditCard,
   Visa,
   // flags
