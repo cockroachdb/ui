@@ -12,9 +12,10 @@ import {
 } from "src/util";
 import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
 import { RouteComponentProps } from "react-router-dom";
-import { StatementsState } from "./statementsPage.reducer";
-import { selectLastDiagnosticsReportPerStatement } from "src/statementsDiagnostics";
-import { StateWithStatements } from "./index";
+
+import { AppState } from "src/store";
+import { StatementsState } from "../store/statements";
+import { selectLastDiagnosticsReportPerStatement } from "../store/statementDiagnostics";
 
 type ICollectedStatementStatistics = cockroach.server.serverpb.StatementsResponse.ICollectedStatementStatistics;
 
@@ -29,7 +30,7 @@ function keyByStatementAndImplicitTxn(stmt: ExecutionStatistics): string {
 }
 
 export const adminUISelector = createSelector(
-  (state: StateWithStatements) => state.adminUI,
+  (state: AppState) => state.adminUI,
   adminUiState => adminUiState,
 );
 
@@ -98,7 +99,7 @@ export const selectLastReset = createSelector(statementsSelector, state => {
 
 export const selectStatements = createSelector(
   statementsSelector,
-  (_: StateWithStatements, props: RouteComponentProps) => props,
+  (_: AppState, props: RouteComponentProps) => props,
   selectLastDiagnosticsReportPerStatement,
   (
     state: StatementsState,

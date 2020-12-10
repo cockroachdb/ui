@@ -16,20 +16,17 @@ import {
   Store,
 } from "redux";
 import { ConnectedStatementsPage } from "./statementsPageConnected";
-import {
-  statementsReducers,
-  StateWithStatements,
-  statementsSagas,
-} from "../store";
+import { statementsSaga } from "src/store/statements";
+import { AppState, rootReducer } from "src/store";
 
 const history = createMemoryHistory();
 const routerReducer = connectRouter(history);
 const sagaMiddleware = createSagaMiddleware();
 
-const store: Store<StateWithStatements> = createStore(
+const store: Store<AppState> = createStore(
   combineReducers({
     router: routerReducer,
-    adminUI: statementsReducers,
+    adminUI: rootReducer,
   }),
   compose(
     applyMiddleware(sagaMiddleware, routerMiddleware(history)),
@@ -38,7 +35,7 @@ const store: Store<StateWithStatements> = createStore(
   ),
 );
 
-sagaMiddleware.run(statementsSagas);
+sagaMiddleware.run(statementsSaga);
 
 storiesOf("statementsPageConnected", module)
   .addDecorator(storyFn => (

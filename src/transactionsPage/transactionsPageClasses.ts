@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
-import statementsPageStyles from "../statementsPage/components/statementsPage.module.scss";
-import sortedTableStyles from "../sortedtable/sortedtable.module.scss";
+import statementsPageStyles from "src/statementsPage/statementsPage.module.scss";
+import sortedTableStyles from "src/sortedtable/sortedtable.module.scss";
 
 const pageCx = classNames.bind(statementsPageStyles);
 const sortedTableCx = classNames.bind(sortedTableStyles);

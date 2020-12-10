@@ -1,9 +1,9 @@
 import React from "react";
-import { EmptyTable, EmptyTableProps } from "../../empty";
-import { Anchor } from "../../anchor";
-import { statementsTable } from "../../util";
-import magnifyingGlassImg from "../../assets/emptyState/magnifying-glass.svg";
-import emptyTableResultsImg from "../../assets/emptyState/empty-table-results.svg";
+import { EmptyTable, EmptyTableProps } from "src/empty";
+import { Anchor } from "src/anchor";
+import { statementsTable } from "src/util";
+import magnifyingGlassImg from "../assets/emptyState/magnifying-glass.svg";
+import emptyTableResultsImg from "../assets/emptyState/empty-table-results.svg";
 
 export const EmptyStatementsPlaceholder: React.FC<{
   isEmptySearchResults: boolean;

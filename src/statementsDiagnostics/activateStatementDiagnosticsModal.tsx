@@ -1,8 +1,7 @@
 import React, { useState, useCallback, useImperativeHandle } from "react";
-
-import { Modal } from "../../modal";
-import { Anchor } from "../../anchor";
-import { Text } from "../../text";
+import { Modal } from "src/modal";
+import { Anchor } from "src/anchor";
+import { Text } from "src/text";
 import { statementDiagnostics } from "src/util";
 
 export interface ActivateDiagnosticsModalProps {

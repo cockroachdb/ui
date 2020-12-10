@@ -30,6 +30,7 @@
     "@cockroachlabs/icons": "^0.2.2",
     "@cockroachlabs/ui-components": "^0.2.11",
     "@popperjs/core": "^2.4.0",
+    "@reduxjs/toolkit": "^1.5.0",
     "babel-polyfill": "^6.26.0",
     "d3-array": "^2.8.0",
     "d3-format": "^2.0.0",

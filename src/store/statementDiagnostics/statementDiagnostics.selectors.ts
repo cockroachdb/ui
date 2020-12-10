@@ -1,13 +1,13 @@
 import { createSelector } from "reselect";
 import { chain, last, sortBy } from "lodash";
-
 import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
-import { StateWithStatements } from "../../statementsPage/store";
+import { AppState } from "../reducers";
+
 type IStatementDiagnosticsReport = cockroach.server.serverpb.IStatementDiagnosticsReport;
 
 export const statementDiagnostics = createSelector(
-  (state: StateWithStatements) => state.adminUI,
-  state => state.statementDiagnosticsReports,
+  (state: AppState) => state.adminUI,
+  state => state.statementDiagnostics,
 );
 
 export const selectStatementDiagnosticsReports = createSelector(
