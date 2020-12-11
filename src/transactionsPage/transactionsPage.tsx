@@ -54,6 +54,7 @@ interface TransactionsPageProps {
   data: IStatementsResponse;
   refreshData: () => void;
   error?: Error | null;
+  pageSize?: number;
 }
 
 export class TransactionsPage extends React.Component<
@@ -67,7 +68,7 @@ export class TransactionsPage extends React.Component<
       ascending: false,
     },
     pagination: {
-      pageSize: 10,
+      pageSize: this.props.pageSize || 20,
       current: 1,
     },
     search: this.trxSearchParams("q", ""),

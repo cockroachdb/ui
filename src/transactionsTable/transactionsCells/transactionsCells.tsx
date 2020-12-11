@@ -16,6 +16,7 @@ const descriptionClassName = statementsCx("cl-table-link__description");
 const overlayClassName = statementsCx(
   "cl-table-link__statement-tooltip--fixed-width",
 );
+
 const textWrapper = ownCellStyles("text-wrapper");
 const hoverAreaClassName = ownCellStyles("hover-area");
 
