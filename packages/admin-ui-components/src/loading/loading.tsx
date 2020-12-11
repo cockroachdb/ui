@@ -3,13 +3,13 @@ import classNames from "classnames/bind";
 import { chain } from "lodash";
 import {
   InlineAlert,
-  InlineAlertIntent,
   InlineAlertProps,
   Spinner,
 } from "@cockroachlabs/ui-components";
 import { adminUIAccess, isForbiddenRequestError } from "src/util";
 import styles from "./loading.module.scss";
 import { Anchor } from "../anchor";
+import { IconIntent } from "@cockroachlabs/ui-components/dist/types";
 
 interface LoadingProps {
   loading: boolean;
@@ -70,13 +70,13 @@ export const Loading: React.FC<LoadingProps> = props => {
           };
         } else {
           return {
-            intent: "error",
+            intent: "danger",
             description: <span>{error.message}</span>,
           };
         }
       })
       .groupBy(alert => alert.intent)
-      .map((alerts, intent: InlineAlertIntent) => {
+      .map((alerts, intent: IconIntent) => {
         if (alerts.length === 1) {
           return <InlineAlert intent={intent} title={alerts[0].description} />;
         } else {
