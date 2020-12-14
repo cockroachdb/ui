@@ -80,6 +80,12 @@ import { default as Gcp } from "./components/Gcp";
 // Credit Cards
 import { default as CreditCard } from "./components/CreditCard";
 import { default as Visa } from "./components/Visa";
+import { default as Amex } from "./components/Amex";
+import { default as Dinersclub } from "./components/Dinersclub";
+import { default as Discover } from "./components/Discover";
+import { default as Jcb } from "./components/Jcb";
+import { default as Mastercard } from "./components/Mastercard";
+import { default as Unionpay } from "./components/Unionpay";
 
 // Country Flags
 import { default as Australia } from "./components/Australia";
@@ -175,7 +181,16 @@ const Illustrations = {
 
 const ThirdParty = { Aws, Gcp };
 
-const Cards = { CreditCard, Visa };
+const Cards = {
+  CreditCard,
+  Visa,
+  Amex,
+  Dinersclub,
+  Discover,
+  Mastercard,
+  Jcb,
+  Unionpay,
+};
 
 const Flags = {
   Australia,
@@ -265,6 +280,12 @@ export {
   // credit cards
   CreditCard,
   Visa,
+  Amex,
+  Dinersclub,
+  Discover,
+  Mastercard,
+  Jcb,
+  Unionpay,
   // flags
   Australia,
   Belgium,
