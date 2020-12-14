@@ -28,7 +28,8 @@ export const EmailInput: React.FC<EmailProps> = props => {
 };
 
 export const NewPasswordInput: React.FC<NewPasswordProps> = props => {
-  const { meta, validators } = props;
+  const { meta } = props;
+  const validators = props.validators || undefined;
   const [error, setError] = useState(meta && meta.error);
   const [touched, setTouched] = useState(meta && meta.touched);
 
@@ -37,18 +38,18 @@ export const NewPasswordInput: React.FC<NewPasswordProps> = props => {
     setTouched(meta && meta.touched);
   }, [meta]);
 
-  const validator = validators[0];
+  const validator = validators && validators.length > 0 && validators[0];
   return (
     <>
       <div className="new-password-input-container">
         <BaseTextInput type="password" {...props} />
       </div>
-      {touched && (
+      {touched && validator && (
         <ul className="new-password-validation-container">
           <li key={validator.label} className={"new-password-input-message"}>
             <div style={{ display: "inline-flex" }}>
               <Icon
-                size="medium"
+                size="small"
                 iconName={error ? "CancelCircleFilled" : "CheckCircleFilled"}
                 fill={error ? "default" : "success"}
                 className={"new-password-input-icon"}
