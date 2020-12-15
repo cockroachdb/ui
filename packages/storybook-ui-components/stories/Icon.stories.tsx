@@ -47,8 +47,8 @@ const IconDisplay = ({
   children,
   backgroundColor = "transparent",
 }: {
-  children: ReactNode;
   backgroundColor?: string;
+  children: ReactNode;
 }) => (
   <div
     style={{
@@ -56,7 +56,6 @@ const IconDisplay = ({
       backgroundColor: backgroundColor,
       margin: "2rem 1.5rem",
       padding: "0 0.5rem",
-      minWidth: "300px",
     }}
   >
     {children}
@@ -363,7 +362,7 @@ export const Illustrations = () => (
       {illustrationNames.map(name => (
         <IconDisplay key={name}>
           <IconLabel text={name} />
-          <IllustrationFrame>
+          <IllustrationFrame style={{ width: "300px", height: "200px" }}>
             <Illustration illustrationName={name} />
           </IllustrationFrame>
         </IconDisplay>
@@ -379,7 +378,7 @@ export const Illustrations = () => (
     <IconDisplaySection>
       <IconDisplay>
         <IconLabel text="Normal" />
-        <IllustrationFrame>
+        <IllustrationFrame style={{ width: "300px", height: "200px" }}>
           <Illustration illustrationName="Nodes" />
         </IllustrationFrame>
       </IconDisplay>
