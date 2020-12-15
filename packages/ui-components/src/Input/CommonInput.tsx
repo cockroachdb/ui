@@ -4,10 +4,9 @@ import "./input.module.scss";
 
 export interface CommonInputProps {
   id?: string;
-  // this should be the div containing the input
+  // this should be the element containing the input
   fieldInput?: JSX.Element;
   classes?: string;
-  className?: string;
   disabled?: boolean;
   help?: string | JSX.Element;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -19,6 +18,8 @@ export interface CommonInputProps {
   required?: boolean;
 }
 
+// provides a component defining how error and help messages
+// are shown in all input types
 export const CommonInput: React.FC<CommonInputProps> = ({
   help,
   error,

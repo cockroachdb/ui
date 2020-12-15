@@ -20,8 +20,8 @@ export enum PasswordInputType {
   Password = "password",
 }
 
-// textTypes are provided here, because although the Field passes them into these
-// Inptu components, if Input components are used without wrapper Fields,
+// types are provided here, because although the Field passes them into these
+// Input components, if Input components are used without wrapper Fields,
 // they need types
 export const EmailInput: React.FC<EmailProps> = props => {
   return <BaseTextInput type="email" {...props} />;
@@ -38,7 +38,11 @@ export const NewPasswordInput: React.FC<NewPasswordProps> = props => {
     setTouched(meta && meta.touched);
   }, [meta]);
 
+  // validators is a wrapper array of validation functions
   const validator = validators && validators.length > 0 && validators[0];
+
+  // returns a password input, followed by an icon and message denoting
+  // whether validation has been passed
   return (
     <>
       <div className="new-password-input-container">

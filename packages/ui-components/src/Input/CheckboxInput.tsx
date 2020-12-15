@@ -2,26 +2,20 @@ import React from "react";
 import classNames from "classnames/bind";
 import { CommonInputProps, CommonInput } from "./CommonInput";
 
-interface CheckboxProps {
-  value?: boolean;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: (event: React.FocusEvent<HTMLInputElement> | undefined) => void;
-  onFocus?: (event: React.FocusEvent<HTMLInputElement> | undefined) => void;
-  onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
-}
+type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement>;
 
 export type CheckboxInputProps = CommonInputProps & CheckboxProps;
 
 export const CheckboxInput: React.FC<CheckboxInputProps> = props => {
   const {
     id,
-    className,
+    classes,
     disabled,
     error,
     invalid,
     label,
     ariaLabel,
-    value,
+    checked,
     onChange,
     onBlur,
     onFocus,
@@ -30,7 +24,7 @@ export const CheckboxInput: React.FC<CheckboxInputProps> = props => {
   } = props;
   const inputProps = {
     id: id,
-    className: classNames("crl-input", className, {
+    className: classNames("crl-input", classes, {
       invalid: error || invalid,
     }),
     name: name,
@@ -38,18 +32,20 @@ export const CheckboxInput: React.FC<CheckboxInputProps> = props => {
     ["aria-invalid"]: !!error || invalid,
     ["aria-required"]: required,
     disabled: disabled,
+    checked: checked,
     onChange: onChange,
     onBlur: onBlur,
     onFocus,
     ...rest,
   };
 
+  // this is the input field rendered by CommonInput
   const fieldInput = (
     <div className="checkbox-container">
-      <input checked={!!value} {...inputProps} />
+      <input {...inputProps} />
       <label htmlFor={id}>{label}</label>
     </div>
   );
 
-  return <CommonInput classes={className} {...props} fieldInput={fieldInput} />;
+  return <CommonInput classes={classes} {...props} fieldInput={fieldInput} />;
 };

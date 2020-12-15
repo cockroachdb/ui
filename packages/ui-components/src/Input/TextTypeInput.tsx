@@ -5,22 +5,18 @@ import { isEmpty } from "lodash";
 import { FieldMetaState } from "react-final-form";
 import "./input.module.scss";
 
-export interface TextAndNumberProps<T = string | number> {
-  initialValue?: T;
-  value?: T;
-  maxLength?: number;
+export interface TextAndNumberProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  suffix?: JSX.Element;
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
-  suffix?: JSX.Element;
   onBlur?: (
     event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement> | undefined,
   ) => void;
   onFocus?: (
     event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement> | undefined,
   ) => void;
-  multiline?: boolean;
-  placeholder?: string;
   // prop only used internally for implementation
   type?: "text" | "email" | "password" | "number";
   // this defines the input type rendered by this field
@@ -29,10 +25,18 @@ export interface TextAndNumberProps<T = string | number> {
   JSXInput?: JSX.Element;
 }
 
+export interface MultilineProps
+  extends React.DetailedHTMLProps<
+    React.TextareaHTMLAttributes<HTMLTextAreaElement>,
+    HTMLTextAreaElement
+  > {
+  suffix?: JSX.Element;
+}
+
 // the following props are used to implement {Email, Password, Number}Input
 // it is recommended to use those components instead of passing an "email" type to TextInput
-interface CustomProps {
-  prefix?: JSX.Element;
+interface CustomProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  prefixElement?: JSX.Element;
   ariaLabel?: string;
   ariaLabelledBy?: string;
   autoFocus?: boolean;
@@ -52,21 +56,19 @@ interface CustomProps {
   meta?: FieldMetaState<any>;
 }
 
-export type TextInputProps = CommonInputProps & TextAndNumberProps<string>;
-export type NumberProps = CommonInputProps &
-  TextAndNumberProps<number> &
-  CustomProps;
-type InternalTextProps = TextInputProps & CustomProps;
-export type AllProps = Omit<InternalTextProps, "existingPassword">;
-type InternalTextOrNumberProps = NumberProps & CustomProps;
+export type TextInputProps = CommonInputProps & TextAndNumberProps;
+export type MultilineTextInputProps = CommonInputProps & MultilineProps;
+export type NumberProps = TextInputProps & CustomProps;
 
-export const BaseTextInput: React.FC<
-  InternalTextProps | InternalTextOrNumberProps
-> = props => {
+type InternalTextProps = TextInputProps & CustomProps;
+
+export type AllProps = Omit<InternalTextProps, "existingPassword">;
+
+export const BaseTextInput: React.FC<InternalTextProps> = props => {
   const {
     JSXInput,
     id,
-    className,
+    classes,
     disabled,
     error,
     invalid,
@@ -78,11 +80,10 @@ export const BaseTextInput: React.FC<
     suffix,
     onBlur,
     onFocus,
-    multiline,
     placeholder,
     required,
     type = "text",
-    prefix,
+    prefixElement,
     ariaLabelledBy,
     autoFocus,
     tabIndex,
@@ -93,8 +94,8 @@ export const BaseTextInput: React.FC<
 
   const inputProps = {
     id: id,
-    className: classNames("crl-input", className, {
-      "crl-input--prefix": prefix,
+    className: classNames("crl-input", classes, {
+      "crl-input--prefix": prefixElement,
       "crl-input--suffix": suffix,
       invalid: error || invalid,
     }),
@@ -116,15 +117,7 @@ export const BaseTextInput: React.FC<
     ...rest,
   };
 
-  const multilineOrSingleLineInput = multiline ? (
-    // multiline inputs define different types for onKeyDown and onClick
-    // these shouldn't be needed for text inputs in general.
-    <textarea {...inputProps} onKeyDown={undefined} onClick={undefined} />
-  ) : (
-    <input {...inputProps} />
-  );
-
-  const input = JSXInput || multilineOrSingleLineInput;
+  const input = JSXInput || <input {...inputProps} />;
 
   const labelDiv = (
     <>
@@ -155,18 +148,55 @@ export const BaseTextInput: React.FC<
     <>
       {labelElement}
       <div className="affix-container">
-        {prefix && <span className="crl-input__prefix">{prefix}</span>}
+        {prefixElement && (
+          <span className="crl-input__prefix">{prefixElement}</span>
+        )}
         {input}
         {suffix && <span className="crl-input__suffix">{suffix}</span>}
       </div>
     </>
   );
 
-  return <CommonInput classes={className} {...props} fieldInput={fieldInput} />;
+  return <CommonInput classes={classes} {...props} fieldInput={fieldInput} />;
 };
 
-export const TextInput: React.FC<TextInputProps> = props => {
+export const SingleLineTextInput: React.FC<TextInputProps> = props => {
   return <BaseTextInput {...props} />;
+};
+
+export const MultilineTextInput: React.FC<MultilineTextInputProps> = props => {
+  const inputProps = {
+    id: props.id,
+    className: classNames("crl-input", props.classes, {
+      "crl-input--suffix": props.suffix,
+      invalid: props.error || props.invalid,
+    }),
+    name: name,
+    ["aria-label"]: props.ariaLabel,
+    ["aria-invalid"]: !!props.error || props.invalid,
+    ["aria-required"]: props.required,
+    maxLength: props.maxLength,
+    placeholder: props.placeholder,
+    value: props.value,
+    disabled: props.disabled,
+    onChange: props.onChange,
+    onBlur: props.onBlur,
+    onFocus: props.onFocus,
+    type: "text",
+    autoFocus: props.autoFocus,
+    tabIndex: props.tabIndex,
+  };
+  const JSXInput = <textarea {...inputProps} />;
+  return (
+    <BaseTextInput
+      label={props.label}
+      name={props.name}
+      suffix={props.suffix}
+      required={props.required}
+      id={props.id}
+      JSXInput={JSXInput}
+    />
+  );
 };
 
 export const NumberInput: React.FC<NumberProps> = props => {
