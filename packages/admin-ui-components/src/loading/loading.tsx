@@ -5,11 +5,11 @@ import {
   InlineAlert,
   InlineAlertProps,
   Spinner,
+  IconIntent,
 } from "@cockroachlabs/ui-components";
 import { adminUIAccess, isForbiddenRequestError } from "src/util";
 import styles from "./loading.module.scss";
 import { Anchor } from "../anchor";
-import { IconIntent } from "@cockroachlabs/ui-components/dist/types";
 
 interface LoadingProps {
   loading: boolean;

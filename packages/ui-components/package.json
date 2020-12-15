@@ -45,7 +45,7 @@
     "@types/jest": "^25.1.2",
     "@types/lodash": "^4.14.149",
     "@types/node": "^13.7.0",
-    "@types/react": "^16.9.17",
+    "@types/react": "^16.9.48",
     "@typescript-eslint/eslint-plugin": "^2.19.2",
     "@typescript-eslint/parser": "^2.19.2",
     "astroturf": "^0.10.2",
@@ -81,6 +81,11 @@
   "peerDependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
+  },
+  "resolutions": {
+    "@types/react": "16.9.48",
+    "react": "16.12.0",
+    "react-dom": "16.12.0"
   },
   "gitHead": "a77405daccfaf2d38cc08ef7c322172ee93776fd"
 }
