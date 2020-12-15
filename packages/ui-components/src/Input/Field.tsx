@@ -2,7 +2,7 @@ import React, { FunctionComponent, useState } from "react";
 import { Field, FieldProps, FieldRenderProps } from "react-final-form";
 
 import {
-  TextInput,
+  SingleLineTextInput,
   TextInputProps,
   NumberInput,
   NumberProps,
@@ -118,7 +118,7 @@ const InputField: FunctionComponent<InternalFieldProps> = props => {
 // isn't defined
 
 export const TextField: FunctionComponent<TextInputFieldProps> = props => {
-  return <InputField type="text" InputFieldComponent={TextInput} {...props} />;
+  return <InputField type="text" InputFieldComponent={SingleLineTextInput} {...props} />;
 };
 
 export const NumberField: FunctionComponent<NumberInputFieldProps> = props => {

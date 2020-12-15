@@ -9,6 +9,8 @@ const cx = classNames.bind(styles);
 
 export type NumberInputProps = NumberProps & {
   onChange?: (value: number) => void;
+  initialValue: number;
+  value: number;
 };
 
 // Use NumberInput instead of this
