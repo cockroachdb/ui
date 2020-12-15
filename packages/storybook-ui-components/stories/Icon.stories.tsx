@@ -1,5 +1,4 @@
-import React, { FunctionComponent, ReactNode } from "react";
-import { withKnobs, select } from "@storybook/addon-knobs";
+import React, { FunctionComponent, ReactNode, CSSProperties } from "react";
 import { StoryContainer, StoryDescription } from "../layout";
 
 import {
@@ -30,7 +29,6 @@ import {
 export default {
   title: "Icons",
   component: Icon,
-  decorators: [withKnobs],
 };
 
 const IconDisplaySection = ({ children }: { children: ReactNode }) => (
@@ -58,6 +56,7 @@ const IconDisplay = ({
       backgroundColor: backgroundColor,
       margin: "2rem 1.5rem",
       padding: "0 0.5rem",
+      minWidth: "300px",
     }}
   >
     {children}
@@ -70,9 +69,13 @@ const IconFrame = ({ children }: { children: ReactNode }) => (
     {children}
   </div>
 );
-const IllustrationFrame = ({ children }: { children: ReactNode }) => (
-  <div style={{ margin: "1rem" }}>{children}</div>
-);
+const IllustrationFrame = ({
+  style,
+  children,
+}: {
+  style?: CSSProperties;
+  children: ReactNode;
+}) => <div style={{ margin: "1rem", ...style }}>{children}</div>;
 
 const IconLabel: FunctionComponent<{
   text: string;
@@ -366,19 +369,34 @@ export const Illustrations = () => (
         </IconDisplay>
       ))}
     </IconDisplaySection>
-  </StoryContainer>
-);
 
-export const Demo = () => (
-  <StoryContainer>
-    <Icon
-      iconName={select("Icon Name", IconNames, "Plus")}
-      size={select(
-        "Size",
-        sizes.map(s => s.key),
-        "default",
-      )}
-      fill={select("Fill", fills, "default")}
-    />
+    <h2>Flexible Sizes</h2>
+    <StoryDescription>
+      Illustrations are intented to be displayed in their full resolution (
+      <code>152x240</code>) but if their container is smaller than that they
+      will shrink rather that overflowing
+    </StoryDescription>
+    <IconDisplaySection>
+      <IconDisplay>
+        <IconLabel text="Normal" />
+        <IllustrationFrame>
+          <Illustration illustrationName="Nodes" />
+        </IllustrationFrame>
+      </IconDisplay>
+
+      <IconDisplay>
+        <IconLabel text="Smaller" />
+        <IllustrationFrame style={{ margin: "1rem auto", width: "150px" }}>
+          <Illustration illustrationName="Nodes" />
+        </IllustrationFrame>
+      </IconDisplay>
+
+      <IconDisplay>
+        <IconLabel text="Smallest" />
+        <IllustrationFrame style={{ margin: "1rem auto", width: "100px" }}>
+          <Illustration illustrationName="Nodes" />
+        </IllustrationFrame>
+      </IconDisplay>
+    </IconDisplaySection>
   </StoryContainer>
 );
