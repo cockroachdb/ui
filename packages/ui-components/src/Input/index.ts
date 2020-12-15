@@ -2,7 +2,7 @@ export * from "./Field";
 export * from "./EmailPasswordInput";
 export * from "./CheckboxInput";
 export {
-  TextInput,
+  SingleLineTextInput as TextInput,
   TextInputProps,
   NumberInput,
   NumberProps,
