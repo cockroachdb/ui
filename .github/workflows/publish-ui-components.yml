@@ -20,7 +20,7 @@ jobs:
           node-version: "12.x"
           registry-url: "https://registry.npmjs.org"
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --production
         working-directory: ./packages/ui-components
       - name: Configure Git User
         run: |
