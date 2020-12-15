@@ -6,17 +6,17 @@ import {
   reducer as statementDiagnostics,
 } from "./statementDiagnostics";
 
-export type AdminUiState = {
+export type DBConsoleState = {
   statements: StatementsState;
   statementDiagnostics: StatementDiagnosticsState;
   localStorage: LocalStorageState;
 };
 
 export type AppState = {
-  adminUI: AdminUiState;
+  dbConsole: DBConsoleState;
 };
 
-export const rootReducer = combineReducers<AdminUiState>({
+export const rootReducer = combineReducers<DBConsoleState>({
   localStorage,
   statementDiagnostics,
   statements,

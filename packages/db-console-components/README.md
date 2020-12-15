@@ -1,15 +1,15 @@
-# Admin UI Components
+# DB console Components
 
-This library contains components used by the CockroachDB Admin UI. 
+This library contains components used by the CockroachDB Console. 
 
 ```
-  npm install --save-dev @cockroachlabs/admin-ui-components
+  npm install --save-dev @cockroachlabs/db-console-components
 ```
 
 Components are exported individually from the package,
 
 ```javascript
-import { Drawer } from "@cockroachlabs/admin-ui-components";
+import { Drawer } from "@cockroachlabs/db-console-components";
 
 export default props => (
   <div>

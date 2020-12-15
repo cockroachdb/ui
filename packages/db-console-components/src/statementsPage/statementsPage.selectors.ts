@@ -29,14 +29,14 @@ function keyByStatementAndImplicitTxn(stmt: ExecutionStatistics): string {
   return stmt.statement + stmt.implicit_txn;
 }
 
-export const adminUISelector = createSelector(
-  (state: AppState) => state.adminUI,
-  adminUiState => adminUiState,
+export const dbConsoleUISelector = createSelector(
+  (state: AppState) => state.dbConsole,
+  dbConsoleState => dbConsoleState,
 );
 
 export const statementsSelector = createSelector(
-  adminUISelector,
-  adminUiState => adminUiState.statements,
+  dbConsoleUISelector,
+  dbConsoleState => dbConsoleState.statements,
 );
 
 // selectApps returns the array of all apps with statement statistics present

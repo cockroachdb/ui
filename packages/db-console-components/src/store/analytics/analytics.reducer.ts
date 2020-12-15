@@ -17,7 +17,7 @@ type SortingPayload = {
   ascending?: boolean;
 };
 
-const PREFIX = "adminUI/analytics";
+const PREFIX = "dbConsole/analytics";
 
 /**
  * actions accept payload with "page" field which specifies the page where

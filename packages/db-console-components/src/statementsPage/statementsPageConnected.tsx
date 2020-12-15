@@ -38,7 +38,7 @@ export const ConnectedStatementsPage = withRouter(
       refreshStatementDiagnosticsRequests: statementDiagnosticsActions.refresh,
       dismissAlertMessage: () =>
         localStorageActions.update({
-          key: "adminUi/showDiagnosticsModal",
+          key: "dbConsole/showDiagnosticsModal",
           value: false,
         }),
       onActivateStatementDiagnostics: statementDiagnosticsActions.createReport,

@@ -9,7 +9,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "main.js",
-    library: "adminUI",
+    library: "DBConsole",
     libraryTarget: "umd",
   },
 
@@ -103,7 +103,7 @@ module.exports = {
 
   plugins: [
     new WebpackBar({
-      name: "admin-ui",
+      name: "db-console",
       color: "cyan",
       profile: true,
     }),

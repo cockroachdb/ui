@@ -6,7 +6,7 @@ import { AppState } from "../reducers";
 type IStatementDiagnosticsReport = cockroach.server.serverpb.IStatementDiagnosticsReport;
 
 export const statementDiagnostics = createSelector(
-  (state: AppState) => state.adminUI,
+  (state: AppState) => state.dbConsole,
   state => state.statementDiagnostics,
 );
 

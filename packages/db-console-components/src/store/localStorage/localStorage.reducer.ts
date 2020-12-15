@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { DOMAIN_NAME } from "../utils";
 
 export type LocalStorageState = {
-  "adminUi/showDiagnosticsModal": boolean;
+  "dbConsole/showDiagnosticsModal": boolean;
 };
 
 type Payload = {
@@ -12,7 +12,7 @@ type Payload = {
 
 // TODO (koorosh): initial state should be restored from preserved keys in LocalStorage
 const initialState: LocalStorageState = {
-  "adminUi/showDiagnosticsModal": false,
+  "dbConsole/showDiagnosticsModal": false,
 };
 
 const localStorageSlice = createSlice({

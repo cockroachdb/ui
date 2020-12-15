@@ -26,7 +26,7 @@ const sagaMiddleware = createSagaMiddleware();
 const store: Store<AppState> = createStore(
   combineReducers({
     router: routerReducer,
-    adminUI: rootReducer,
+    dbConsole: rootReducer,
   }),
   compose(
     applyMiddleware(sagaMiddleware, routerMiddleware(history)),
