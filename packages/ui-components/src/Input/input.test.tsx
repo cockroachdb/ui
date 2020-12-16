@@ -11,7 +11,6 @@ describe("TextInput", () => {
       const inputWrapper = wrapper.find(BaseTextInput);
       const props = inputWrapper.props();
       expect(props.disabled).toBeFalsy();
-      expect(props.initialValue).toBeUndefined();
       expect(props.value).toBeUndefined();
       expect(props.className).toBeUndefined();
       expect(props.id).toBeUndefined();
