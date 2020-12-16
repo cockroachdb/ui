@@ -62,24 +62,23 @@ type InternalFieldProps =
   | NewPasswordInputFieldProps
   | ExistingPasswordInputFieldProps;
 
-const InputField: FunctionComponent<InternalFieldProps> = props => {
-  const {
-    afterSubmit,
-    allowNull = false,
-    beforeSubmit,
-    format,
-    formatOnBlur,
-    initialValue,
-    isEqual,
-    parse,
-    subscription,
-    type,
-    validate,
-    validateFields,
-    name,
-    InputFieldComponent,
-    ...inputProps
-  } = props;
+const InputField = ({
+  afterSubmit,
+  allowNull = false,
+  beforeSubmit,
+  format,
+  formatOnBlur,
+  initialValue,
+  isEqual,
+  parse,
+  subscription,
+  type,
+  validate,
+  validateFields,
+  name,
+  InputFieldComponent,
+  ...inputProps
+}: InternalFieldProps) => {
   return (
     <Field
       afterSubmit={afterSubmit}

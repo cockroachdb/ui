@@ -5,10 +5,7 @@ import { CommonInputProps } from "./CommonInput";
 
 const cx = classNames.bind(styles);
 
-export type InputWrapperProps = Pick<
-  CommonInputProps,
-  "disabled" | "invalid" | "className"
->;
+export type InputWrapperProps = Pick<CommonInputProps, "invalid" | "className">;
 
 export interface InputPrefixProps {
   className?: string;
@@ -29,13 +26,11 @@ export const InputWrapper: React.FC<InputWrapperProps> = ({
   children,
   className,
   invalid,
-  disabled,
 }) => {
   const wrapperClassName = cx(
     "container",
     {
-      active: !invalid && !disabled,
-      disabled: disabled,
+      active: !invalid,
       invalid: invalid,
     },
     className,

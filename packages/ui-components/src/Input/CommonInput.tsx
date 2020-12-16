@@ -3,19 +3,17 @@ import classNames from "classnames/bind";
 import "./input.module.scss";
 
 export interface CommonInputProps {
-  id?: string;
   // this should be the element containing the input
   fieldInput?: JSX.Element;
   className?: string;
-  disabled?: boolean;
   help?: string | JSX.Element;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   error?: any;
   inline?: boolean;
+  // used in Checkbox, TextType Inputs, which render CommonInput
   invalid?: boolean;
   label?: string | JSX.Element;
   ariaLabel?: string;
-  required?: boolean;
 }
 
 // a component defining how error and help messages

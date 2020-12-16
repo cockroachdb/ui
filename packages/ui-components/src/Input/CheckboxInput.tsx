@@ -6,17 +6,16 @@ type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement>;
 
 export type CheckboxInputProps = CommonInputProps & CheckboxProps;
 
-export const CheckboxInput: React.FC<CheckboxInputProps> = props => {
-  const {
-    id,
-    className,
-    error,
-    invalid,
-    label,
-    ariaLabel,
-    required,
-    ...rest
-  } = props;
+export const CheckboxInput = ({
+  id,
+  className,
+  error,
+  invalid,
+  label,
+  ariaLabel,
+  required,
+  ...rest
+}: CheckboxInputProps) => {
   const inputProps = {
     id: id,
     className: classNames("crl-input", className, {
@@ -36,5 +35,15 @@ export const CheckboxInput: React.FC<CheckboxInputProps> = props => {
     </div>
   );
 
-  return <CommonInput {...props} fieldInput={fieldInput} />;
+  return (
+    <CommonInput
+      className={className}
+      error={error}
+      invalid={invalid}
+      label={label}
+      ariaLabel={ariaLabel}
+      {...rest}
+      fieldInput={fieldInput}
+    />
+  );
 };

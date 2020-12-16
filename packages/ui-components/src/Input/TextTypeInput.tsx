@@ -140,11 +140,11 @@ export const BaseTextInput: React.FC<InternalTextProps> = props => {
   return <CommonInput {...props} fieldInput={fieldInput} />;
 };
 
-export const SingleLineTextInput: React.FC<TextInputProps> = props => {
+export const SingleLineTextInput = ({ ...props }: TextInputProps) => {
   return <BaseTextInput {...props} />;
 };
 
-export const MultilineTextInput: React.FC<MultilineTextInputProps> = props => {
+export const MultilineTextInput = ({ ...props }: MultilineTextInputProps) => {
   const inputProps = {
     className: classNames("crl-input", props.className, {
       "crl-input--suffix": props.suffix,
@@ -170,6 +170,6 @@ export const MultilineTextInput: React.FC<MultilineTextInputProps> = props => {
   );
 };
 
-export const NumberInput: React.FC<NumberProps> = props => {
+export const NumberInput = ({ ...props }: NumberProps) => {
   return <BaseTextInput type="number" {...props} />;
 };

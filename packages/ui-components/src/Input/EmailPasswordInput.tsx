@@ -23,13 +23,15 @@ export enum PasswordInputType {
 // types are provided here, because although the Field passes them into these
 // Input components, if Input components are used without wrapper Fields,
 // they need types
-export const EmailInput: React.FC<EmailProps> = props => {
+export const EmailInput = ({ ...props }: EmailProps) => {
   return <BaseTextInput type="email" {...props} />;
 };
 
-export const NewPasswordInput: React.FC<NewPasswordProps> = props => {
-  const { meta } = props;
-  const validators = props.validators || undefined;
+export const NewPasswordInput = ({
+  meta,
+  validators = undefined,
+  ...rest
+}: NewPasswordProps) => {
   const [error, setError] = useState(meta && meta.error);
   const [touched, setTouched] = useState(meta && meta.touched);
 
@@ -46,7 +48,7 @@ export const NewPasswordInput: React.FC<NewPasswordProps> = props => {
   return (
     <>
       <div className="new-password-input-container">
-        <BaseTextInput type="password" {...props} />
+        <BaseTextInput type="password" meta={meta} {...rest} />
       </div>
       {touched && validator && (
         <ul className="new-password-validation-container">
@@ -67,6 +69,6 @@ export const NewPasswordInput: React.FC<NewPasswordProps> = props => {
   );
 };
 
-export const ExistingPasswordInput: React.FC<ExistingPasswordProps> = props => {
+export const ExistingPasswordInput = ({ ...props }: ExistingPasswordProps) => {
   return <BaseTextInput type="password" existingPassword={true} {...props} />;
 };

@@ -14,7 +14,7 @@ export type NumberInputProps = NumberProps & {
 };
 
 // Use NumberInput instead of this
-export const DeprecatedNumberInput: React.FC<NumberInputProps> = ({
+export const DeprecatedNumberInput = ({
   onChange,
   value: outerValue,
   initialValue,
@@ -22,7 +22,7 @@ export const DeprecatedNumberInput: React.FC<NumberInputProps> = ({
   invalid,
   disabled,
   ...props
-}) => {
+}: NumberInputProps) => {
   const [value, setValue] = useState<number>(outerValue || initialValue || 0);
   const onSpinClickHandler = useCallback(
     (increase: -1 | 1) => () => {
@@ -40,7 +40,7 @@ export const DeprecatedNumberInput: React.FC<NumberInputProps> = ({
   const spinButton = cx("spin-button");
 
   return (
-    <InputWrapper disabled={disabled} invalid={invalid} className="number-type">
+    <InputWrapper invalid={invalid} className="number-type" {...props}>
       <InputPrefix>{prefix}</InputPrefix>
       <NumberInput
         {...props}
