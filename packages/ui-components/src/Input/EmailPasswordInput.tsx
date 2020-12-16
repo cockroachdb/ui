@@ -48,7 +48,13 @@ export const NewPasswordInput = ({
   return (
     <>
       <div className="new-password-input-container">
-        <BaseTextInput type="password" meta={meta} {...rest} />
+        <BaseTextInput
+          type="password"
+          meta={meta}
+          {...rest}
+          invalid={meta && meta.touched && meta.invalid}
+          error={undefined}
+        />
       </div>
       {touched && validator && (
         <ul className="new-password-validation-container">

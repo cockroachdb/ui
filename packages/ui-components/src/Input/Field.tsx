@@ -94,17 +94,13 @@ const InputField = ({
       validate={validate}
       validateFields={validateFields}
       name={name}
-      render={({ input, meta, existingPassword }) => {
+      render={({ input, meta }) => {
         return (
           <InputFieldComponent
             meta={meta}
             {...input}
             {...inputProps}
-            error={
-              type === "password" && !existingPassword
-                ? meta.touched && meta.invalid
-                : meta.touched && meta.error
-            }
+            error={meta.touched && meta.error}
           />
         );
       }}
