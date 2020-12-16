@@ -118,7 +118,13 @@ const InputField: FunctionComponent<InternalFieldProps> = props => {
 // isn't defined
 
 export const TextField: FunctionComponent<TextInputFieldProps> = props => {
-  return <InputField type="text" InputFieldComponent={SingleLineTextInput} {...props} />;
+  return (
+    <InputField
+      type="text"
+      InputFieldComponent={SingleLineTextInput}
+      {...props}
+    />
+  );
 };
 
 export const NumberField: FunctionComponent<NumberInputFieldProps> = props => {
