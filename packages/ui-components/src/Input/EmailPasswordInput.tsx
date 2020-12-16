@@ -52,6 +52,8 @@ export const NewPasswordInput = ({
           type="password"
           meta={meta}
           {...rest}
+          // we don't want to show standard React Input error in NewPasswordInput fields
+          // instead error is indicated by the conditional validation message below
           invalid={meta && meta.touched && meta.invalid}
           error={undefined}
         />
