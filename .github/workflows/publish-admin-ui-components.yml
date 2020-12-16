@@ -33,7 +33,7 @@ jobs:
           node-version: '12.x'
           registry-url: 'https://registry.npmjs.org'
       - name: Install dependencies
-        run: yarn install --production
+        run: yarn install
         working-directory: ./packages/admin-ui-components
       - name: Store github user name and email in ENV variables
         run: |
