@@ -52,16 +52,20 @@ export const NewPasswordInput = ({
       </div>
       {touched && validator && (
         <ul className="new-password-validation-container">
-          <li key={validator.label} className={"new-password-input-message"}>
+          <li
+            key={validator.label}
+            className={"new-password-validation-message"}
+          >
             <div style={{ display: "inline-flex" }}>
               <Icon
                 size="small"
                 iconName={error ? "CancelCircleFilled" : "CheckCircleFilled"}
                 fill={error ? "default" : "success"}
-                className={"new-password-input-icon"}
               />
             </div>
-            {validator.label}
+            <div className="new-password-validation-label">
+              {validator.label}
+            </div>
           </li>
         </ul>
       )}

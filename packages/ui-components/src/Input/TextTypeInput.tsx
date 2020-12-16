@@ -94,6 +94,7 @@ export const BaseTextInput: React.FC<InternalTextProps> = props => {
     ["aria-invalid"]: !!error || invalid,
     ["aria-required"]: required,
     ["aria-labelledby"]: ariaLabelledBy,
+    type: type,
     ...rest,
   };
 
