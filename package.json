@@ -10,5 +10,6 @@
   },
   "resolutions": {
     "dot-prop": "^4.2.1"
-  }
+  },
+  "workspaces": ["packages/*"]
 }

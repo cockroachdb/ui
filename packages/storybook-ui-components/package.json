@@ -35,6 +35,9 @@
     "typescript": "^3.8.3"
   },
   "resolutions": {
-    "prismjs": "^1.21.0"
+    "@types/react": "16.9.48",
+    "prismjs": "^1.21.0",
+    "react": "16.12.0",
+    "react-dom": "16.12.0"
   }
 }
