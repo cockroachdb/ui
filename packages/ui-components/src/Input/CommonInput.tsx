@@ -6,7 +6,7 @@ export interface CommonInputProps {
   id?: string;
   // this should be the element containing the input
   fieldInput?: JSX.Element;
-  classes?: string;
+  className?: string;
   disabled?: boolean;
   help?: string | JSX.Element;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -18,15 +18,15 @@ export interface CommonInputProps {
   required?: boolean;
 }
 
-// provides a component defining how error and help messages
+// a component defining how error and help messages
 // are shown in all input types
-export const CommonInput: React.FC<CommonInputProps> = ({
+export const CommonInput = ({
   help,
   error,
   inline,
   fieldInput,
-  classes,
-}) => {
+  className,
+}: CommonInputProps) => {
   const helpMsg = !help ? null : <div className="message-info">{help}</div>;
 
   const errorMsg =
@@ -36,7 +36,7 @@ export const CommonInput: React.FC<CommonInputProps> = ({
 
   return (
     <div
-      className={classNames("input-container", classes, {
+      className={classNames("input-container", className, {
         inline: inline,
       })}
     >

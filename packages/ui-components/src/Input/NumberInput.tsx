@@ -40,7 +40,7 @@ export const DeprecatedNumberInput: React.FC<NumberInputProps> = ({
   const spinButton = cx("spin-button");
 
   return (
-    <InputWrapper disabled={disabled} invalid={invalid} classes="number-type">
+    <InputWrapper disabled={disabled} invalid={invalid} className="number-type">
       <InputPrefix>{prefix}</InputPrefix>
       <NumberInput
         {...props}

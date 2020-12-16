@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 
 export type InputWrapperProps = Pick<
   CommonInputProps,
-  "disabled" | "invalid" | "classes"
+  "disabled" | "invalid" | "className"
 >;
 
 export interface InputPrefixProps {
@@ -27,7 +27,7 @@ export const InputPrefix: React.FC<InputPrefixProps> = ({
 
 export const InputWrapper: React.FC<InputWrapperProps> = ({
   children,
-  classes,
+  className,
   invalid,
   disabled,
 }) => {
@@ -38,7 +38,7 @@ export const InputWrapper: React.FC<InputWrapperProps> = ({
       disabled: disabled,
       invalid: invalid,
     },
-    classes,
+    className,
   );
   return <div className={wrapperClassName}>{children}</div>;
 };

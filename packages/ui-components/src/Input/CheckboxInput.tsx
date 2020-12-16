@@ -9,33 +9,22 @@ export type CheckboxInputProps = CommonInputProps & CheckboxProps;
 export const CheckboxInput: React.FC<CheckboxInputProps> = props => {
   const {
     id,
-    classes,
-    disabled,
+    className,
     error,
     invalid,
     label,
     ariaLabel,
-    checked,
-    onChange,
-    onBlur,
-    onFocus,
     required,
     ...rest
   } = props;
   const inputProps = {
     id: id,
-    className: classNames("crl-input", classes, {
+    className: classNames("crl-input", className, {
       invalid: error || invalid,
     }),
-    name: name,
     ["aria-label"]: ariaLabel,
     ["aria-invalid"]: !!error || invalid,
     ["aria-required"]: required,
-    disabled: disabled,
-    checked: checked,
-    onChange: onChange,
-    onBlur: onBlur,
-    onFocus,
     ...rest,
   };
 
@@ -47,5 +36,5 @@ export const CheckboxInput: React.FC<CheckboxInputProps> = props => {
     </div>
   );
 
-  return <CommonInput classes={classes} {...props} fieldInput={fieldInput} />;
+  return <CommonInput {...props} fieldInput={fieldInput} />;
 };

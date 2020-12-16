@@ -66,35 +66,25 @@ export type AllProps = Omit<InternalTextProps, "existingPassword">;
 
 export const BaseTextInput: React.FC<InternalTextProps> = props => {
   const {
-    JSXInput,
     id,
-    classes,
-    disabled,
+    JSXInput,
+    className,
     error,
     invalid,
     label,
     ariaLabel,
-    value,
-    maxLength,
-    onChange,
-    suffix,
-    onBlur,
-    onFocus,
-    placeholder,
     required,
+    suffix,
     type = "text",
     prefixElement,
     ariaLabelledBy,
-    autoFocus,
-    tabIndex,
     existingPassword = false,
     forgotPasswordLinkElement,
     ...rest
   } = props;
 
   const inputProps = {
-    id: id,
-    className: classNames("crl-input", classes, {
+    className: classNames("crl-input", className, {
       "crl-input--prefix": prefixElement,
       "crl-input--suffix": suffix,
       invalid: error || invalid,
@@ -104,16 +94,6 @@ export const BaseTextInput: React.FC<InternalTextProps> = props => {
     ["aria-invalid"]: !!error || invalid,
     ["aria-required"]: required,
     ["aria-labelledby"]: ariaLabelledBy,
-    maxLength: maxLength,
-    placeholder: placeholder,
-    value: value,
-    disabled: disabled,
-    onChange: onChange,
-    onBlur: onBlur,
-    onFocus,
-    type: type,
-    autoFocus: autoFocus,
-    tabIndex: tabIndex,
     ...rest,
   };
 
@@ -157,7 +137,7 @@ export const BaseTextInput: React.FC<InternalTextProps> = props => {
     </>
   );
 
-  return <CommonInput classes={classes} {...props} fieldInput={fieldInput} />;
+  return <CommonInput {...props} fieldInput={fieldInput} />;
 };
 
 export const SingleLineTextInput: React.FC<TextInputProps> = props => {
@@ -166,8 +146,7 @@ export const SingleLineTextInput: React.FC<TextInputProps> = props => {
 
 export const MultilineTextInput: React.FC<MultilineTextInputProps> = props => {
   const inputProps = {
-    id: props.id,
-    className: classNames("crl-input", props.classes, {
+    className: classNames("crl-input", props.className, {
       "crl-input--suffix": props.suffix,
       invalid: props.error || props.invalid,
     }),
@@ -175,16 +154,8 @@ export const MultilineTextInput: React.FC<MultilineTextInputProps> = props => {
     ["aria-label"]: props.ariaLabel,
     ["aria-invalid"]: !!props.error || props.invalid,
     ["aria-required"]: props.required,
-    maxLength: props.maxLength,
-    placeholder: props.placeholder,
-    value: props.value,
-    disabled: props.disabled,
-    onChange: props.onChange,
-    onBlur: props.onBlur,
-    onFocus: props.onFocus,
     type: "text",
-    autoFocus: props.autoFocus,
-    tabIndex: props.tabIndex,
+    ...props,
   };
   const JSXInput = <textarea {...inputProps} />;
   return (
