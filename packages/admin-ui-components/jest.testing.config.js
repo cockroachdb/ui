@@ -2,9 +2,9 @@ module.exports = {
   displayName: "test",
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
   moduleNameMapper: {
-    "\\.(jpg|ico|jpeg|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "identity-obj-proxy",
+    "\\.(jpg|ico|jpeg|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "identity-obj-proxy",
     "\\.(css|scss|less)$": "identity-obj-proxy",
-    "\\.(gif|png)$": "<rootDir>/.jest/fileMock.js",
+    "\\.(gif|png|svg)$": "<rootDir>/.jest/fileMock.js",
   },
   "moduleDirectories": [
     ".",
