@@ -2,7 +2,6 @@ import React from "react";
 import classNames from "classnames/bind";
 import { CommonInputProps, CommonInput } from "./CommonInput";
 import { isEmpty } from "lodash";
-import { FieldMetaState } from "react-final-form";
 import "./input.module.scss";
 
 export interface TextAndNumberProps
@@ -47,13 +46,6 @@ interface CustomProps extends React.InputHTMLAttributes<HTMLInputElement> {
   // this prop is only used for internal implementation
   // whether the password exists or not, should be indicated by New/Existing PasswordInput
   existingPassword?: boolean;
-  //The actual type below as a parameter is called FieldValue
-  // not exported by react-final-form, but by google protobuf
-  // which would need to be added as a dependency
-  // since this prop comes from the Field component of react-final-form
-  // we can be fairly certain that the type won't be unexpected
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  meta?: FieldMetaState<any>;
 }
 
 export type TextInputProps = CommonInputProps & TextAndNumberProps;
@@ -141,11 +133,11 @@ export const BaseTextInput: React.FC<InternalTextProps> = props => {
   return <CommonInput {...props} fieldInput={fieldInput} />;
 };
 
-export const SingleLineTextInput = ({ ...props }: TextInputProps) => {
+export const SingleLineTextInput = (props: TextInputProps) => {
   return <BaseTextInput {...props} />;
 };
 
-export const MultilineTextInput = ({ ...props }: MultilineTextInputProps) => {
+export const MultilineTextInput = (props: MultilineTextInputProps) => {
   const inputProps = {
     className: classNames("crl-input", props.className, {
       "crl-input--suffix": props.suffix,
@@ -166,11 +158,12 @@ export const MultilineTextInput = ({ ...props }: MultilineTextInputProps) => {
       suffix={props.suffix}
       required={props.required}
       id={props.id}
+      meta={props.meta}
       JSXInput={JSXInput}
     />
   );
 };
 
-export const NumberInput = ({ ...props }: NumberProps) => {
+export const NumberInput = (props: NumberProps) => {
   return <BaseTextInput type="number" {...props} />;
 };

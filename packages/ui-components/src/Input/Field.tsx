@@ -19,6 +19,8 @@ import {
 import { CheckboxInput, CheckboxInputProps } from "./CheckboxInput";
 import Icon from "../Icon/Icon";
 
+// the following omit statements can be removed
+// once type better limits what props can be passed in
 type TextInputFieldProps = Omit<
   FieldProps<string, FieldRenderProps<string, HTMLElement>, HTMLElement> &
     TextInputProps,
@@ -112,7 +114,7 @@ const InputField = ({
 // This is to prevent passing a type for which the input component
 // isn't defined
 
-export const TextField: FunctionComponent<TextInputFieldProps> = props => {
+export const TextField = (props: TextInputFieldProps) => {
   return (
     <InputField
       type="text"
@@ -122,13 +124,13 @@ export const TextField: FunctionComponent<TextInputFieldProps> = props => {
   );
 };
 
-export const NumberField: FunctionComponent<NumberInputFieldProps> = props => {
+export const NumberField = (props: NumberInputFieldProps) => {
   return (
     <InputField type="number" InputFieldComponent={NumberInput} {...props} />
   );
 };
 
-export const CheckboxField: FunctionComponent<CheckboxInputFieldProps> = props => {
+export const CheckboxField = (props: CheckboxInputFieldProps) => {
   return (
     <InputField
       type="checkbox"
@@ -138,13 +140,13 @@ export const CheckboxField: FunctionComponent<CheckboxInputFieldProps> = props =
   );
 };
 
-export const EmailField: FunctionComponent<EmailInputFieldProps> = props => {
+export const EmailField = (props: EmailInputFieldProps) => {
   return (
     <InputField type="email" InputFieldComponent={EmailInput} {...props} />
   );
 };
 
-export const NewPasswordField: FunctionComponent<NewPasswordInputFieldProps> = props => {
+export const NewPasswordField = (props: NewPasswordInputFieldProps) => {
   const { meta } = props;
   const [type, setType] = useState<PasswordInputType>(
     PasswordInputType.Password,
@@ -182,7 +184,9 @@ export const NewPasswordField: FunctionComponent<NewPasswordInputFieldProps> = p
   );
 };
 
-export const ExistingPasswordField: FunctionComponent<ExistingPasswordInputFieldProps> = props => {
+export const ExistingPasswordField = (
+  props: ExistingPasswordInputFieldProps,
+) => {
   return (
     <InputField
       type="password"
