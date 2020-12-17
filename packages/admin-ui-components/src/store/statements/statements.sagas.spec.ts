@@ -1,4 +1,4 @@
-import { expectSaga, testSaga } from "redux-saga-test-plan";
+import { expectSaga } from "redux-saga-test-plan";
 import { throwError } from "redux-saga-test-plan/providers";
 import * as matchers from "redux-saga-test-plan/matchers";
 import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
@@ -51,14 +51,6 @@ describe("StatementsPage sagas", () => {
           valid: false,
         })
         .run();
-    });
-
-    it("accepts custom apiPath as an argument for statements api", () => {
-      const customBasePath = "customBasePath";
-      testSaga(requestStatementsSaga, customBasePath)
-        .next()
-        .call(getStatements, customBasePath)
-        .finish();
     });
   });
 

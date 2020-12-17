@@ -1,6 +1,7 @@
 import "antd/dist/antd.less";
 import "./protobufInit";
 import * as util from "./util";
+import * as api from "./api";
 export * from "./anchor";
 export * from "./badge";
 export * from "./barCharts";
@@ -22,4 +23,4 @@ export * from "./transactionsPage";
 export * from "./text";
 export * from "./tooltip";
 export * from "./tooltip2";
-export { util };
+export { util, api };

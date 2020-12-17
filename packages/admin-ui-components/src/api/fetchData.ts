@@ -1,5 +1,6 @@
 import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
 import { RequestError } from "../util";
+import { getBasePath } from "./basePath";
 
 interface ProtoBuilder<
   P extends ConstructorType,
@@ -45,8 +46,9 @@ export const fetchData = <P extends ProtoBuilder<P>, T extends ProtoBuilder<T>>(
     params.method = "POST";
     params.body = toArrayBuffer(encodedRequest);
   }
+  const basePath = getBasePath();
 
-  return fetch(path, params)
+  return fetch(`${basePath}${path}`, params)
     .then(response => {
       if (!response.ok) {
         return response.arrayBuffer().then(buffer => {

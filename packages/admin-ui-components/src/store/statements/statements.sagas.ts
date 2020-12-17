@@ -8,9 +8,9 @@ export function* refreshStatementsSaga() {
   yield put(actions.request());
 }
 
-export function* requestStatementsSaga(apiBasePath: string) {
+export function* requestStatementsSaga() {
   try {
-    const result = yield call(getStatements, apiBasePath);
+    const result = yield call(getStatements);
     yield put(actions.received(result));
   } catch (e) {
     yield put(actions.failed(e));
@@ -24,7 +24,6 @@ export function* receivedStatementsSaga(delayMs: number) {
 
 export function* statementsSaga(
   cacheInvalidationPeriod: number = CACHE_INVALIDATION_PERIOD,
-  apiBasePath: string = undefined,
 ) {
   yield all([
     throttleWithReset(
@@ -33,7 +32,7 @@ export function* statementsSaga(
       [actions.invalidated, actions.failed],
       refreshStatementsSaga,
     ),
-    takeLatest(actions.request, requestStatementsSaga, apiBasePath),
+    takeLatest(actions.request, requestStatementsSaga),
     takeLatest(
       actions.received,
       receivedStatementsSaga,
