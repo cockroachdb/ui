@@ -95,8 +95,7 @@ export const StatementTableTitle = {
             {
               " for each statement. If activated, this displays the status of diagnostics collection ("
             }
-            <code>WAITING FOR QUERY</code>, <code>READY</code>, OR{" "}
-            <code>ERROR</code>).
+            <code>WAITING</code>, <code>READY</code>, OR <code>ERROR</code>).
           </p>
         </div>
       }
@@ -249,7 +248,7 @@ export const StatementTableCell = {
                 name: (
                   <a
                     className={cx("download-diagnostics-link")}
-                    href={`_admin/v1/stmtbundle/${dr.statement_diagnostics_id}`}
+                    href={`/_admin/v1/stmtbundle/${dr.statement_diagnostics_id}`}
                   >
                     {`${TimestampToMoment(dr.requested_at).format(
                       "ll [at] LT [diagnostic]",

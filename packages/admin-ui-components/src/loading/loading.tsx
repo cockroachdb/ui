@@ -99,7 +99,7 @@ export const Loading: React.FC<LoadingProps> = props => {
 
     return (
       <div className={cx("alerts-container", props.errorClassName)}>
-        {errorAlerts}
+        {React.Children.toArray(errorAlerts)}
       </div>
     );
   }

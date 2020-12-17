@@ -1,14 +1,4 @@
-// Copyright 2018 The Cockroach Authors.
-//
-// Use of this software is governed by the Business Source License
-// included in the file licenses/BSL.txt.
-//
-// As of the Change Date specified in that file, in accordance with
-// the Business Source License, use of this software will be governed
-// by the Apache License, Version 2.0, included in the file
-// licenses/APL.txt.
-
-@import "../core/index.module.scss";
+@import "../core/index.module";
 
 .summary--card {
   border-radius: 3px;
@@ -23,7 +13,7 @@
     background: $table-border;
   }
   &__title {
-    font-family: SourceSansPro-Regular;
+    font-family: $font-family--base;
     font-size: 20px;
     line-height: 1.6;
     letter-spacing: -0.2px;
@@ -32,7 +22,7 @@
   }
   &__counting {
     &--value {
-      font-family: SourceSansPro-Regular;
+      font-family: $font-family--base;
       font-size: 20pt;
       line-height: 1.6;
       letter-spacing: -0.2px;
@@ -40,7 +30,7 @@
       margin-bottom: 15px;
     }
     &--label {
-      font-family: SourceSansPro-Regular;
+      font-family: $font-family--base;
       font-size: 14pt;
       line-height: 1.67;
       letter-spacing: 0.3px;
@@ -53,7 +43,7 @@
     justify-content: space-between;
     margin-bottom: 10px;
     &--label {
-      font-family: SourceSansPro-Regular;
+      font-family: $font-family--base;
       font-size: 14px;
       line-height: 1.57;
       letter-spacing: 0.1px;
@@ -62,7 +52,7 @@
       margin-bottom: 0;
     }
     &--value {
-      font-family: SourceSansPro-Regular;
+      font-family: $font-family--base;
       font-size: 14px;
       font-weight: 600;
       line-height: 1.71;

@@ -87,6 +87,7 @@ export class Search extends React.Component<TSearchProps, ISearchState> {
 
   render() {
     const { value, submitted } = this.state;
+    const { onClear, ...inputProps } = this.props;
     const className = submitted ? cx("_submitted") : "";
 
     return (
@@ -99,7 +100,7 @@ export class Search extends React.Component<TSearchProps, ISearchState> {
             prefix={<SearchIcon className={cx("_prefix-icon")} />}
             suffix={this.renderSuffix()}
             value={value}
-            {...this.props}
+            {...inputProps}
           />
         </Form.Item>
       </Form>
