@@ -1,24 +1,28 @@
 import React, { useCallback, useState } from "react";
 import classNames from "classnames/bind";
 import { CaretUp, CaretDown } from "@cockroachlabs/icons";
-import isNumber from "../utils/isNumber";
-import { BaseInput, InputProps } from "./BaseInput";
+import { NumberInput, NumberProps } from "./TextTypeInput";
 import styles from "./styles.module.scss";
 import { InputPrefix, InputWrapper } from "./helpers";
 
 const cx = classNames.bind(styles);
 
-export type NumberInputProps = Omit<InputProps<number>, "type">;
+export type NumberInputProps = NumberProps & {
+  onChange?: (value: number) => void;
+  initialValue: number;
+  value: number;
+};
 
-export const NumberInput: React.FC<NumberInputProps> = ({
+// Use NumberInput instead of this
+export const DeprecatedNumberInput = ({
   onChange,
   value: outerValue,
   initialValue,
-  prefixIcon,
+  prefix,
   invalid,
   disabled,
   ...props
-}) => {
+}: NumberInputProps) => {
   const [value, setValue] = useState<number>(outerValue || initialValue || 0);
   const onSpinClickHandler = useCallback(
     (increase: -1 | 1) => () => {
@@ -32,31 +36,16 @@ export const NumberInput: React.FC<NumberInputProps> = ({
     [value, onChange, disabled],
   );
 
-  const onChangeHandler = useCallback(
-    (nextValue: string) => {
-      const parsedValue = Number(nextValue);
-      if (!isNumber(parsedValue)) {
-        return;
-      }
-      setValue(parsedValue);
-      onChange(parsedValue);
-    },
-    [onChange],
-  );
-
   const spinButtonsGroupClassName = cx("spin-buttons-group");
   const spinButton = cx("spin-button");
 
   return (
-    <InputWrapper disabled={disabled} invalid={invalid} className="number-type">
-      <InputPrefix>{prefixIcon}</InputPrefix>
-      <BaseInput
+    <InputWrapper invalid={invalid} className="number-type" {...props}>
+      <InputPrefix>{prefix}</InputPrefix>
+      <NumberInput
         {...props}
         disabled={disabled}
         invalid={invalid}
-        onChange={onChangeHandler}
-        value={value}
-        initialValue={initialValue}
         type="number"
       />
       <div className={spinButtonsGroupClassName}>

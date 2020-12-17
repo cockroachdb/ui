@@ -1,4 +1,9 @@
-export * from "./BaseInput";
-export * from "./TextInput";
-export { TextInput as Input } from "./TextInput";
-export * from "./NumberInput";
+export * from "./Field";
+export * from "./EmailPasswordInput";
+export * from "./CheckboxInput";
+export {
+  SingleLineTextInput as TextInput,
+  TextInputProps,
+  NumberInput,
+  NumberProps,
+} from "./TextTypeInput";
