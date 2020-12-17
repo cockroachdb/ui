@@ -7,15 +7,7 @@ import "./input.module.scss";
 export interface TextAndNumberProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   suffix?: JSX.Element;
-  onChange?: (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => void;
-  onBlur?: (
-    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement> | undefined,
-  ) => void;
-  onFocus?: (
-    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement> | undefined,
-  ) => void;
+  prefixElement?: JSX.Element;
   // prop only used internally for implementation
   type?: "text" | "email" | "password" | "number";
   // this defines the input type rendered by this field
@@ -35,13 +27,8 @@ export interface MultilineProps
 // the following props are used to implement {Email, Password, Number}Input
 // it is recommended to use those components instead of passing an "email" type to TextInput
 interface CustomProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  prefixElement?: JSX.Element;
   ariaLabel?: string;
   ariaLabelledBy?: string;
-  autoFocus?: boolean;
-  tabIndex?: number;
-  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-  onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
   forgotPasswordLinkElement?: JSX.Element;
   // this prop is only used for internal implementation
   // whether the password exists or not, should be indicated by New/Existing PasswordInput
