@@ -16,8 +16,7 @@ import {
   Store,
 } from "redux";
 import { ConnectedStatementsPage } from "./statementsPageConnected";
-import { statementsSaga } from "src/store/statements";
-import { AppState, rootReducer } from "src/store";
+import { AppState, rootReducer, sagas } from "src/store";
 
 const history = createMemoryHistory();
 const routerReducer = connectRouter(history);
@@ -35,7 +34,7 @@ const store: Store<AppState> = createStore(
   ),
 );
 
-sagaMiddleware.run(statementsSaga);
+sagaMiddleware.run(sagas);
 
 storiesOf("statementsPageConnected", module)
   .addDecorator(storyFn => (

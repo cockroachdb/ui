@@ -14,3 +14,7 @@ type FirstConstructorParameter<
 > = ConstructorParameters<P>[0];
 
 type Tuple<T> = [T, T];
+
+type Dictionary<V> = {
+  [key: string]: V;
+};
