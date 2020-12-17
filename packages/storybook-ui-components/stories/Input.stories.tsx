@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
-import { NumberInput, TextInput } from "@cockroachlabs/ui-components";
+import { NumberInput, TextInput, EmailInput, NewPasswordInput, ExistingPasswordInput, CheckboxInput } from "@cockroachlabs/ui-components";
 import { Search } from "@cockroachlabs/icons";
 
 import { StoryContainer, StoryDescription } from "../layout";
 
 export default {
   title: "Input",
-  components: [NumberInput, TextInput],
+  components: [NumberInput, TextInput, EmailInput, NewPasswordInput, ExistingPasswordInput, CheckboxInput],
   decorators: [withKnobs],
 };
 
@@ -28,7 +28,6 @@ export const Number = () => {
 };
 
 export const Text = () => {
-  const [value, setValue] = useState<string | undefined>();
   return (
     <StoryContainer>
       <h1>Text Input</h1>
@@ -42,9 +41,7 @@ export const Text = () => {
 
       <TextInput
         initialValue={text("Initial value", "some text")}
-        value={value}
         disabled={boolean("disabled", false)}
-        onChange={setValue}
         invalid={boolean("invalid", false)}
       />
     </StoryContainer>
@@ -70,7 +67,7 @@ export const SearchInput = () => {
   );
 };
 
-export const EmailInput = () => {
+export const Email = () => {
   return (
     <StoryContainer>
       <h1>Email Input</h1>
@@ -87,7 +84,7 @@ export const EmailInput = () => {
   );
 };
 
-export const NewPasswordInput = () => {
+export const NewPassword = () => {
   return (
     <StoryContainer>
       <h1>New Password Input</h1>
@@ -105,7 +102,7 @@ export const NewPasswordInput = () => {
   );
 };
 
-export const ExistingPasswordInput = () => {
+export const ExistingPassword = () => {
   return (
     <StoryContainer>
       <h1>Existing Password Input</h1>
@@ -123,7 +120,7 @@ export const ExistingPasswordInput = () => {
   );
 };
 
-export const CheckboxInput = () => {
+export const Checkbox = () => {
   return (
     <StoryContainer>
       <h1>Checkbox Input</h1>

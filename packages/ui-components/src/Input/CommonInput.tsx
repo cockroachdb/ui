@@ -1,15 +1,9 @@
 import React from "react";
 import classNames from "classnames/bind";
 import "./input.module.scss";
-import { FieldRenderProps } from "react-final-form";
+import { FieldRenderProps, FieldMetaState } from "react-final-form";
 
-// FieldValue is string fro all TextTypeInputs, boolean for CheckboxInput, and number for NumberInput
-type fieldProps = Pick<
-  FieldRenderProps<string | number | boolean, HTMLElement>,
-  "meta"
->;
-
-export interface CommonInputProps extends fieldProps {
+export interface CommonInputProps {
   // this should be the element containing the input
   fieldInput?: JSX.Element;
   className?: string;
@@ -20,6 +14,9 @@ export interface CommonInputProps extends fieldProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   error?: any;
   inline?: boolean;
+  // FieldValue passed to meta is string for all TextTypeInputs
+  // boolean for CheckboxInput, and number for NumberInput
+  meta?: FieldMetaState<string | number | boolean>;
   // following are used in Checkbox, TextType Inputs, which render CommonInput
   invalid?: boolean;
   label?: string | JSX.Element;
