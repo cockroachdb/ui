@@ -1,0 +1,31 @@
+import React from "react";
+import { mount } from "enzyme";
+import { MemoryRouter as Router } from "react-router-dom";
+import { createMemoryHistory, History } from "history";
+import { StatementDetails } from "./statementDetails";
+
+describe("StatementDetails page", () => {
+  let history: History;
+
+  beforeEach(() => {
+    history = createMemoryHistory();
+  });
+
+  it("displays loading indicator when data isn't loaded yet", () => {
+    const wrapper = mount(
+      <Router>
+        <StatementDetails history={history} />
+      </Router>,
+    );
+  });
+  it("displays error alert when statementsError is provided");
+  it("displays statement info for provided statement");
+
+  describe("Back button", () => {
+    it("navigates to `/statements` route", () => {});
+  });
+  describe("Overview tab", () => {});
+  describe("Diagnostics tab", () => {});
+  describe("Logical Plan", () => {});
+  describe("Execution Stats", () => {});
+});

@@ -21,7 +21,7 @@ module.exports = {
       'node_modules',
       path.join(__dirname, 'src/fonts'),
     ],
-    extensions: [".ts", ".tsx", ".js", ".jsx", ".less"],
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".less", ".scss"],
     alias: {
       src: path.resolve(__dirname, "src"),
     },
@@ -98,6 +98,7 @@ module.exports = {
         test: /\.js$/,
         loader: "source-map-loader",
       },
+      { test: /\.css$/, use: [ "style-loader", "css-loader" ] },
     ],
   },
 

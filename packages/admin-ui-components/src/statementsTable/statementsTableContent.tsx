@@ -249,7 +249,7 @@ export const StatementTableCell = {
                 name: (
                   <a
                     className={cx("download-diagnostics-link")}
-                    href={`_admin/v1/stmtbundle/${dr.statement_diagnostics_id}`}
+                    href={`/_admin/v1/stmtbundle/${dr.statement_diagnostics_id}`}
                   >
                     {`${TimestampToMoment(dr.requested_at).format(
                       "ll [at] LT [diagnostic]",
