@@ -53,7 +53,7 @@ export const NewPasswordInput = ({
           error={undefined}
         />
       </div>
-      {touched && (validatorLabel !== undefined) && (
+      {touched && validatorLabel !== undefined && (
         <ul className="new-password-validation-container">
           <li
             key={validatorLabel}
