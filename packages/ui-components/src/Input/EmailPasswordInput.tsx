@@ -8,7 +8,7 @@ export type ExistingPasswordProps = Omit<AllProps, "multiline">;
 // since we use at most one validator currently
 // we only want to accept one validator label
 export type NewPasswordProps = Omit<
-  ExistingPasswordProps & { validatorLabel: string },
+  ExistingPasswordProps & { validatorLabel?: string },
   "forgotPasswordLinkElement"
 >;
 export type EmailProps = NewPasswordProps;
