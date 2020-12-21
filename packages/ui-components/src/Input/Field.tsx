@@ -6,6 +6,8 @@ import {
   TextInputProps,
   NumberInput,
   NumberProps,
+  MultilineTextInput,
+  MultilineTextInputProps,
 } from "./TextTypeInput";
 import {
   EmailInput,
@@ -119,6 +121,16 @@ export const TextField = (props: TextInputFieldProps) => {
     <InputField
       type="text"
       InputFieldComponent={SingleLineTextInput}
+      {...props}
+    />
+  );
+};
+
+export const MultilineTextField = (props: MultilineTextInputProps) => {
+  return (
+    <InputField
+      type="text"
+      InputFieldComponent={MultilineTextInput}
       {...props}
     />
   );

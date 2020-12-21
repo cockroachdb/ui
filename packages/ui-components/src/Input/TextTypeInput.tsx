@@ -63,6 +63,7 @@ export const BaseTextInput: React.FC<InternalTextProps> = props => {
   } = props;
 
   const inputProps = {
+    id: id,
     className: classNames("crl-input", className, {
       "crl-input--prefix": prefixElement,
       "crl-input--suffix": suffix,
