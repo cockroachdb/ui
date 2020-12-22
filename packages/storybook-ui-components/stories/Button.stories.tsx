@@ -114,9 +114,9 @@ export const Example = () => (
       <ButtonDisplaySection>
         <ButtonDisplay>
           <p>Primary</p>
-          <Button intent="primary">Primary</Button>
-          <Button intent="primary" style={{marginLeft: "12px"}}>Active</Button>
+          <Button intent="primary" style={{marginLeft: "12px"}}>Primary</Button>
           <Button intent="primary" style={{marginLeft: "12px"}}>Hover</Button>
+          <Button intent="primary" style={{marginLeft: "12px"}}>Active</Button>
           <Button intent="primary" style={{marginLeft: "12px"}}>Focus</Button>
           <Button intent="primary" disabled style={{marginLeft: "12px"}}>Disabled</Button>
         </ButtonDisplay>
@@ -126,9 +126,9 @@ export const Example = () => (
       <ButtonDisplaySection>
         <ButtonDisplay>
           <p>Secondary</p>
-          <Button intent="secondary">Primary</Button>
-          <Button intent="secondary" style={{marginLeft: "12px"}}>Active</Button>
+          <Button intent="secondary">Secondary</Button>
           <Button intent="secondary" style={{marginLeft: "12px"}}>Hover</Button>
+          <Button intent="secondary" style={{marginLeft: "12px"}}>Active</Button>
           <Button intent="secondary" style={{marginLeft: "12px"}}>Focus</Button>
           <Button intent="secondary" disabled style={{marginLeft: "12px"}}>Disabled</Button>
         </ButtonDisplay>
@@ -138,9 +138,9 @@ export const Example = () => (
       <ButtonDisplaySection>
         <ButtonDisplay>
           <p>Tertiary</p>
-          <Button intent="tertiary">Primary</Button>
-          <Button intent="tertiary" style={{marginLeft: "12px"}}>Active</Button>
+          <Button intent="tertiary">Tertiary</Button>
           <Button intent="tertiary" style={{marginLeft: "12px"}}>Hover</Button>
+          <Button intent="tertiary" style={{marginLeft: "12px"}}>Active</Button>
           <Button intent="tertiary" style={{marginLeft: "12px"}}>Focus</Button>
           <Button intent="tertiary" disabled style={{marginLeft: "12px"}}>Disabled</Button>
         </ButtonDisplay>
@@ -150,9 +150,9 @@ export const Example = () => (
       <ButtonDisplaySection>
         <ButtonDisplay>
           <p>Danger</p>
-          <Button intent="danger">Primary</Button>
-          <Button intent="danger" style={{marginLeft: "12px"}}>Active</Button>
+          <Button intent="danger">Danger</Button>
           <Button intent="danger" style={{marginLeft: "12px"}}>Hover</Button>
+          <Button intent="danger" style={{marginLeft: "12px"}}>Active</Button>
           <Button intent="danger" style={{marginLeft: "12px"}}>Focus</Button>
           <Button intent="danger" disabled style={{marginLeft: "12px"}}>Disabled</Button>
         </ButtonDisplay>
@@ -166,16 +166,16 @@ export const Example = () => (
       <ButtonDisplaySection>
         <ButtonDisplay>
           <Button>Text only</Button>
-          <Button style={{marginLeft: "12px"}}>With Icon Left</Button>
-          <Button style={{marginLeft: "12px"}}>With Icon Right</Button>
-          <Button style={{marginLeft: "12px"}}>Icon Only</Button>
+          <Button style={{marginLeft: "12px"}}><Icon size="small" iconName="Plus" style={{margin: "0px 8px 0px 0px"}}/>Icon Left</Button>
+          <Button style={{marginLeft: "12px"}}>Icon Right<Icon size="small" iconName="CaretDown" style={{marginLeft: "8px"}}/></Button>
+          <Button style={{marginLeft: "12px"}}><Icon size="small" iconName="Ellipsis"/></Button>
           <p
           style={{ textAlign: "left", lineHeight: "24px", fontSize: "16px" }}>
             <b>Text only:</b> Use Text only to clearly describe the action.
             <br></br>
-            <b>Text + Icon:</b>Use an Icon with Text to convey more meaning. Icon can be left or right aligned. 
+            <b>Text + Icon:</b> Use an Icon with Text to convey more meaning. Icon can be left or right aligned. 
             <br></br>
-            <b>Icon only:</b>Use Icon only sparingly, to save space. Never as the primary action. The icon should be easily understood.
+            <b>Icon only:</b> Use Icon only sparingly, to save space. Never as the primary action. The icon should be easily understood.
           </p>
         </ButtonDisplay>
       </ButtonDisplaySection>
