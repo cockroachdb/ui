@@ -10,7 +10,7 @@ import {
   baseHeadingClasses,
   statisticsClasses,
 } from "./transactionsPageClasses";
-import { getTrxAppFilterOptions } from "./utils";
+import {aggregateAcrossNodeIDs, getTrxAppFilterOptions} from "./utils";
 import {
   searchTransactionsData,
   filterTransactions,
@@ -193,7 +193,8 @@ export class TransactionsPage extends React.Component<
           render={() => {
             const { data } = this.props;
             const { pagination, search, filters } = this.state;
-            const { statements, transactions, internal_app_name_prefix } = data;
+            const { statements, internal_app_name_prefix } = data;
+            const transactions = aggregateAcrossNodeIDs(data.transactions, statements)
             const appNames = getTrxAppFilterOptions(
               transactions,
               internal_app_name_prefix,
