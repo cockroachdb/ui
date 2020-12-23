@@ -4,7 +4,7 @@ import { SelectOptions } from "./filter";
 import { AggregateStatistics } from "../statementsTable";
 import Long from "long";
 import _ from "lodash";
-import { addNumericStats, FixLong } from "../util";
+import { aggregateNumericStats, FixLong } from "../util";
 
 type Statement = protos.cockroach.server.serverpb.StatementsResponse.ICollectedStatementStatistics;
 type TransactionStats = protos.cockroach.sql.ITransactionStatistics;
@@ -131,10 +131,20 @@ function addTransactionStats(
     max_retries: a.max_retries.greaterThan(b.max_retries)
       ? a.max_retries
       : b.max_retries,
-    num_rows: addNumericStats(a.num_rows, b.num_rows, countA, countB),
-    service_lat: addNumericStats(a.service_lat, b.service_lat, countA, countB),
-    retry_lat: addNumericStats(a.retry_lat, b.retry_lat, countA, countB),
-    commit_lat: addNumericStats(a.commit_lat, b.commit_lat, countA, countB),
+    num_rows: aggregateNumericStats(a.num_rows, b.num_rows, countA, countB),
+    service_lat: aggregateNumericStats(
+      a.service_lat,
+      b.service_lat,
+      countA,
+      countB,
+    ),
+    retry_lat: aggregateNumericStats(a.retry_lat, b.retry_lat, countA, countB),
+    commit_lat: aggregateNumericStats(
+      a.commit_lat,
+      b.commit_lat,
+      countA,
+      countB,
+    ),
   };
 }
 
