@@ -209,6 +209,7 @@ export class TransactionsPage extends React.Component<
             } = filterTransactions(
               searchTransactionsData(search, data.transactions, statements),
               filters,
+              internal_app_name_prefix,
             );
             const transactionsToDisplay = aggregateAcrossNodeIDs(
               filteredTransactions,

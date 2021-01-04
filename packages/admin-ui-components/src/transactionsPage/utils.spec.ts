@@ -32,7 +32,10 @@ describe("Filter transactions", () => {
       timeNumber: "0",
       timeUnit: "seconds",
     };
-    assert.equal(filterTransactions(txData, filter).transactions.length, 10);
+    assert.equal(
+      filterTransactions(txData, filter, "$ internal").transactions.length,
+      11,
+    );
   });
 
   it("filters by app", () => {
@@ -41,7 +44,22 @@ describe("Filter transactions", () => {
       timeNumber: "0",
       timeUnit: "seconds",
     };
-    assert.equal(filterTransactions(txData, filter).transactions.length, 3);
+    assert.equal(
+      filterTransactions(txData, filter, "$ internal").transactions.length,
+      3,
+    );
+  });
+
+  it("filters by app exactly", () => {
+    const filter: Filters = {
+      app: "$ TEST EXACT",
+      timeNumber: "0",
+      timeUnit: "seconds",
+    };
+    assert.equal(
+      filterTransactions(txData, filter, "$ internal").transactions.length,
+      1,
+    );
   });
 
   it("filters by internal prefix", () => {
@@ -50,7 +68,10 @@ describe("Filter transactions", () => {
       timeNumber: "0",
       timeUnit: "seconds",
     };
-    assert.equal(filterTransactions(txData, filter).transactions.length, 7);
+    assert.equal(
+      filterTransactions(txData, filter, "$ internal").transactions.length,
+      7,
+    );
   });
 
   it("filters by time", () => {
@@ -59,6 +80,9 @@ describe("Filter transactions", () => {
       timeNumber: "40",
       timeUnit: "miliseconds",
     };
-    assert.equal(filterTransactions(txData, filter).transactions.length, 8);
+    assert.equal(
+      filterTransactions(txData, filter, "$ internal").transactions.length,
+      8,
+    );
   });
 });

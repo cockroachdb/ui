@@ -74,6 +74,7 @@ function getTimeValue(timeNumber: string, timeUnit: string): number | "empty" {
 export const filterTransactions = (
   data: Transaction[],
   filters: Filters,
+  internalAppNamePrefix: string,
 ): { transactions: Transaction[]; activeFilters: number } => {
   if (!filters)
     return {
@@ -89,8 +90,13 @@ export const filterTransactions = (
   const activeFilters = filtersStatus.filter(f => f).length;
 
   const filteredTransactions = data.filter((t: Transaction) => {
+    const matchAppNameExactly = t.stats_data.app === filters.app;
+    const filterIsSetToAll = filters.app === "All";
+    const filterIsInternalMatchByPrefix =
+      filters.app === internalAppNamePrefix &&
+      t.stats_data.app.includes(filters.app);
     const validateTransaction = [
-      t.stats_data.app.includes(filters.app) || filters.app === "All",
+      matchAppNameExactly || filterIsSetToAll || filterIsInternalMatchByPrefix,
       t.stats_data.stats.service_lat.mean >= timeValue || timeValue === "empty",
     ];
     return validateTransaction.every(f => f);
@@ -159,6 +165,9 @@ function combineTransactionStats(
 // merged stats object that aggregates statistics from every copy of the fingerprint in the list
 // provided
 const mergeTransactionStats = function(txns: Transaction[]): Transaction {
+  if (txns.length === 0) {
+    return null;
+  }
   const txn = { ...txns[0] };
   txn.stats_data.stats = combineTransactionStats(
     txns.map(t => t.stats_data.stats),
