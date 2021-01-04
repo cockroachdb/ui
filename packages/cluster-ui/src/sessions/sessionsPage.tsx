@@ -26,12 +26,14 @@ import { sessionsTable } from "src/util/docs";
 import emptyTableResultsIcon from "../assets/emptyState/empty-table-results.svg";
 
 import { Pagination } from "antd";
-import { SortSetting, ISortedTablePagination } from "src/sortedtable";
-import { ResultsPerPageLabel } from "src/pagination";
-import { Loading } from "src/loading";
-import { Anchor } from "src/anchor";
-import { EmptyTable } from "src/empty";
-
+import { SortSetting } from "../sortedtable";
+import {
+  ISortedTablePagination,
+  ResultsPerPageLabel,
+  EmptyTable,
+  Anchor,
+  Loading,
+} from "src";
 import TerminateQueryModal, {
   TerminateQueryModalRef,
 } from "./terminateQueryModal";
