@@ -11,6 +11,7 @@ const cx = classnames.bind(styles);
 export interface DropdownOption<T = string> {
   value: T;
   name: React.ReactNode | string;
+  disabled?: boolean;
 }
 
 export interface DropdownProps<T> {
@@ -52,9 +53,14 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
 };
 
 function DropdownItem<T = string>(props: DropdownItemProps<T>) {
-  const { children, value, onClick } = props;
+  const { children, value, onClick, disabled } = props;
   return (
-    <div onClick={() => onClick(value)} className={cx("crl-dropdown__item")}>
+    <div
+      onClick={() => onClick(value)}
+      className={cx("crl-dropdown__item", {
+        "crl-dropdown__item--disabled": disabled,
+      })}
+    >
       {children}
     </div>
   );
@@ -121,6 +127,7 @@ export class Dropdown<T = string> extends React.Component<
         value={menuItem.value}
         onClick={this.handleItemSelection}
         key={idx}
+        disabled={menuItem.disabled}
       >
         {menuItem.name}
       </DropdownItem>
@@ -150,4 +157,5 @@ export interface DropdownItemProps<T> {
   children: React.ReactNode;
   value: T;
   onClick: (value: T) => void;
+  disabled?: boolean;
 }
