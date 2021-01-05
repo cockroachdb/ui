@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import classNames from "classnames/bind";
 import { noop } from "lodash";
 import {
@@ -25,6 +24,7 @@ import { shortStatement } from "./statementsTable";
 import styles from "./statementsTableContent.module.scss";
 import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
 import { Download } from "@cockroachlabs/icons";
+import { useNavigation } from "../routeNavigation";
 
 export type NodeNames = { [nodeId: string]: string };
 const cx = classNames.bind(styles);
@@ -276,13 +276,13 @@ export const StatementTableCell = {
   ),
 };
 
-interface StatementLinkProps {
+export type StatementLinkProps = {
   statement: string;
   app: string;
   implicitTxn: boolean;
   search: string;
   anonStatement?: string;
-}
+};
 
 // StatementLinkTarget returns the link to the relevant statement page, given
 // the input statement details.
@@ -302,9 +302,14 @@ export const StatementLinkTarget = (props: StatementLinkProps) => {
 };
 
 export const StatementLink = (props: StatementLinkProps) => {
-  const summary = summarize(props.statement);
+  const { statement } = props;
+  const summary = summarize(statement);
+  const { navigate } = useNavigation();
+  const onLinkClick = React.useCallback(() => {
+    navigate(StatementLinkTarget(props));
+  }, [props, navigate]);
   return (
-    <Link to={StatementLinkTarget(props)}>
+    <Anchor onClick={onLinkClick} target="_self">
       <div>
         <Tooltip
           placement="bottom"
@@ -324,14 +329,25 @@ export const StatementLink = (props: StatementLinkProps) => {
           </div>
         </Tooltip>
       </div>
-    </Link>
+    </Anchor>
   );
 };
 
-export const NodeLink = (props: { nodeId: string; nodeNames: NodeNames }) => (
-  <Link to={`/node/${props.nodeId}`}>
-    <div className={cx("node-name-tooltip__info-icon")}>
-      {props.nodeNames[props.nodeId]}
-    </div>
-  </Link>
-);
+export type NodeLinkProps = {
+  nodeId: string;
+  nodeNames: NodeNames;
+};
+
+export const NodeLink = ({ nodeId, nodeNames }: NodeLinkProps) => {
+  const { navigate } = useNavigation();
+  const onLinkClick = React.useCallback(() => {
+    navigate(`/node/${nodeId}`);
+  }, [nodeId, navigate]);
+  return (
+    <Anchor onClick={onLinkClick} target="_self">
+      <div className={cx("node-name-tooltip__info-icon")}>
+        {nodeNames[nodeId]}
+      </div>
+    </Anchor>
+  );
+};

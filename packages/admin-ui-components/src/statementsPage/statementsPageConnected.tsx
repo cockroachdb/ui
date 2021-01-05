@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router-dom";
+import { compose } from "redux";
 
 import { AppState } from "src/store";
 import { actions as statementActions } from "src/store/statements";
@@ -21,10 +22,13 @@ import {
   selectTotalFingerprints,
 } from "./statementsPage.selectors";
 import { AggregateStatistics } from "../statementsTable";
+import { withNavigation } from "../routeNavigation";
 
 type OwnProps = StatementsPageOuterProps & RouteComponentProps;
 
-export const ConnectedStatementsPage = withRouter(
+export const ConnectedStatementsPage = compose(
+  withNavigation,
+  withRouter,
   connect<StatementsPageStateProps, StatementsPageDispatchProps, OwnProps>(
     (state: AppState, props: StatementsPageProps) => ({
       statements: selectStatements(state, props),
@@ -68,5 +72,5 @@ export const ConnectedStatementsPage = withRouter(
           },
         }),
     },
-  )(StatementsPage),
-);
+  ),
+)(StatementsPage);

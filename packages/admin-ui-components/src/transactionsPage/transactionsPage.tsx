@@ -24,6 +24,7 @@ import { Loading } from "../loading";
 import { PageConfig, PageConfigItem } from "../pageConfig";
 import { Search } from "../search";
 import { Filter } from "./filter";
+import { WithNavigationProps } from "../routeNavigation";
 
 type IStatementsResponse = protos.cockroach.server.serverpb.IStatementsResponse;
 
@@ -58,7 +59,7 @@ interface TransactionsPageProps {
 }
 
 export class TransactionsPage extends React.Component<
-  RouteComponentProps & TransactionsPageProps
+  RouteComponentProps & TransactionsPageProps & WithNavigationProps
 > {
   trxSearchParams = getSearchParams(this.props.history.location.search);
 
@@ -88,7 +89,7 @@ export class TransactionsPage extends React.Component<
   }
 
   syncHistory = (params: Record<string, string | undefined>) => {
-    const { history } = this.props;
+    const { history, navigate } = this.props;
     const currentSearchParams = new URLSearchParams(history.location.search);
 
     forIn(params, (value, key) => {
@@ -100,7 +101,7 @@ export class TransactionsPage extends React.Component<
     });
 
     history.location.search = currentSearchParams.toString();
-    history.replace(history.location);
+    navigate(history.location, "REPLACE");
   };
 
   onChangeSortSetting = (ss: SortSetting) => {

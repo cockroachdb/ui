@@ -427,6 +427,7 @@ const statementsPagePropsFixture: StatementsPageProps = {
   onDiagnosticsModalOpen: noop,
   onSearchComplete: noop,
   onDiagnosticsReportDownload: noop,
+  navigate: noop,
 };
 
 export const statementsPagePropsWithRequestError: StatementsPageProps = {

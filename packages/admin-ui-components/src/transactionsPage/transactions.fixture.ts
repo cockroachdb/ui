@@ -2,6 +2,7 @@
 import { createMemoryHistory } from "history";
 import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
 import Long from "long";
+import { noop } from "lodash";
 
 const history = createMemoryHistory({ initialEntries: ["/transactions"] });
 
@@ -21,6 +22,7 @@ export const routeProps = {
     isExact: true,
     params: {},
   },
+  navigate: noop,
 };
 
 export const data: cockroach.server.serverpb.IStatementsResponse = {

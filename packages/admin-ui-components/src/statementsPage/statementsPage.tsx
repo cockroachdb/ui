@@ -34,6 +34,7 @@ import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
 
 type IStatementDiagnosticsReport = cockroach.server.serverpb.IStatementDiagnosticsReport;
 import sortableTableStyles from "src/sortedtable/sortedtable.module.scss";
+import { WithNavigationProps } from "../routeNavigation";
 
 const cx = classNames.bind(styles);
 const sortableTableCx = classNames.bind(sortableTableStyles);
@@ -79,7 +80,8 @@ export interface StatementsPageState {
 export type StatementsPageProps = StatementsPageDispatchProps &
   StatementsPageStateProps &
   StatementsPageOuterProps &
-  RouteComponentProps<any>;
+  RouteComponentProps<any> &
+  WithNavigationProps;
 
 export class StatementsPage extends React.Component<
   StatementsPageProps,
@@ -123,7 +125,7 @@ export class StatementsPage extends React.Component<
   };
 
   syncHistory = (params: Record<string, string | undefined>) => {
-    const { history } = this.props;
+    const { history, navigate } = this.props;
     const currentSearchParams = new URLSearchParams(history.location.search);
 
     forIn(params, (value, key) => {
@@ -135,7 +137,7 @@ export class StatementsPage extends React.Component<
     });
 
     history.location.search = currentSearchParams.toString();
-    history.replace(history.location);
+    navigate(history.location, "REPLACE");
   };
 
   changeSortSetting = (ss: SortSetting) => {
@@ -155,9 +157,9 @@ export class StatementsPage extends React.Component<
   };
 
   selectApp = (value: string) => {
-    const { history } = this.props;
+    const { history, navigate } = this.props;
     history.location.pathname = `/statements/${encodeURIComponent(value)}`;
-    history.replace(history.location);
+    navigate(history.location, "REPLACE");
     this.resetPagination();
   };
 

@@ -23,5 +23,6 @@ export * from "./transactionsPage";
 export * from "./text";
 export * from "./tooltip";
 export * from "./tooltip2";
+export * from "./routeNavigation";
 export { util, api };
 export * from "./sessions";
