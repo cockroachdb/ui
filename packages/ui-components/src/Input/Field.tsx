@@ -17,7 +17,7 @@ export interface InputFieldProps<
   IComponent extends React.ComponentType<InputTypes>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 > extends FieldProps<any, FieldRenderProps<any, HTMLElement>, HTMLElement> {
-  as: IComponent;  
+  as: IComponent;
   // should include types currently supported
   type?: "text" | "email" | "password" | "number" | "checkbox";
 }
