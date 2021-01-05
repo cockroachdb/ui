@@ -52,23 +52,21 @@ export const PasswordInput = ({
 
   // we only want to show the check icon if the user is retyping the password
   // and the password matches the previous password field
-  const doesRetypedPasswordMatch = !error && meta && meta.touched &&  (
-    <Icon
-      iconName={"Check"}
-      size="medium"
-      fill="success"
-    />
+  const doesRetypedPasswordMatch = !error && meta && meta.touched && (
+    <Icon iconName={"Check"} size="medium" fill="success" />
   );
 
   const suffixIcon = (
     <div style={{ display: "inline-flex" }}>
       {retypePassword && doesRetypedPasswordMatch}
-      {reveal && <Icon
-        iconName={type === PasswordInputType.Password ? "Eye" : "EyeOff"}
-        size="medium"
-        fill={meta && meta.active ? "info" : "default"}
-        onClick={toggleType}
-      />}
+      {reveal && (
+        <Icon
+          iconName={type === PasswordInputType.Password ? "Eye" : "EyeOff"}
+          size="medium"
+          fill={meta && meta.active ? "info" : "default"}
+          onClick={toggleType}
+        />
+      )}
     </div>
   );
 
@@ -84,7 +82,11 @@ export const PasswordInput = ({
           suffix={suffixIcon}
           // for new passwords, the error should reflect whether the password is valid
           // for existing/retyped passwords, the error should be consistent with a standard input error
-          {...(newPassword && !retypePassword && { error: undefined, invalid: meta && meta.touched && meta.invalid })}
+          {...(newPassword &&
+            !retypePassword && {
+              error: undefined,
+              invalid: meta && meta.touched && meta.invalid,
+            })}
         />
       </div>
       {// we don't want to show the validations if the user is retyping password

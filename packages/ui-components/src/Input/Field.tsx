@@ -1,61 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Field, FieldProps, FieldRenderProps } from "react-final-form";
+import { SingleLineTextInput, NumberInput } from "./TextTypeInput";
+import { EmailInput, PasswordInput } from "./EmailPasswordInput";
+import { CheckboxInput } from "./CheckboxInput";
 
-import {
-  SingleLineTextInput,
-  TextInputProps,
-  NumberInput,
-  NumberProps,
-  MultilineTextInput,
-  MultilineTextInputProps,
-} from "./TextTypeInput";
-import {
-  EmailInput,
-  PasswordInput,
-  PasswordProps,
-  EmailProps,
-} from "./EmailPasswordInput";
-import { CheckboxInput, CheckboxInputProps } from "./CheckboxInput";
+type propTypes =
+  | typeof PasswordInput
+  | typeof EmailInput
+  | typeof SingleLineTextInput
+  | typeof NumberInput
+  | typeof CheckboxInput;
 
-// the following omit statements can be removed
-// once type better limits what props can be passed in
-type TextInputFieldProps = Omit<
-  FieldProps<string, FieldRenderProps<string, HTMLElement>, HTMLElement> &
-    TextInputProps,
-  "type"
->;
+export interface InputFieldProps<
+  IComponent extends React.ComponentType<propTypes>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+> extends FieldProps<any, FieldRenderProps<any, HTMLElement>, HTMLElement> {
+  as: IComponent;
+  type?: "text" | "email" | "password" | "number";
+}
 
-type NumberInputFieldProps = Omit<
-  FieldProps<number, FieldRenderProps<number, HTMLElement>, HTMLElement> &
-    NumberProps,
-  "type"
->;
+type FieldPropsTwo<
+  IComponent extends React.ComponentType<propTypes>
+> = InputFieldProps<IComponent> &
+  Omit<
+    React.ComponentPropsWithoutRef<IComponent>,
+    keyof InputFieldProps<IComponent>
+  >;
 
-type CheckboxInputFieldProps = Omit<
-  FieldProps<boolean, FieldRenderProps<boolean, HTMLElement>, HTMLElement> &
-    CheckboxInputProps,
-  "type"
->;
-
-type EmailInputFieldProps = Omit<
-  FieldProps<string, FieldRenderProps<string, HTMLElement>, HTMLElement> &
-    EmailProps,
-  "type"
->;
-
-type PasswordInputFieldProps = Omit<
-  FieldProps<string, FieldRenderProps<string, HTMLElement>, HTMLElement> &
-    PasswordProps,
-  "type"
->;
-
-type InternalFieldProps =
-  | ({ InputFieldComponent: React.FunctionComponent } & TextInputFieldProps)
-  | CheckboxInputFieldProps
-  | EmailInputFieldProps
-  | PasswordInputFieldProps;
-
-const InputField = ({
+export function InputField({
+  as: ComponentReturned,
   afterSubmit,
   allowNull = false,
   beforeSubmit,
@@ -69,9 +42,8 @@ const InputField = ({
   validate,
   validateFields,
   name,
-  InputFieldComponent,
-  ...inputProps
-}: InternalFieldProps) => {
+  ...rest
+}: FieldPropsTwo<propTypes>) {
   return (
     <Field
       afterSubmit={afterSubmit}
@@ -89,69 +61,14 @@ const InputField = ({
       name={name}
       render={({ input, meta }) => {
         return (
-          <InputFieldComponent
+          <ComponentReturned
             meta={meta}
             {...input}
-            {...inputProps}
+            {...rest}
             error={meta.touched && meta.error}
           />
         );
       }}
     />
   );
-};
-
-// It's not necessary to pass the type prop for a Field
-// This is to prevent passing a type for which the input component
-// isn't defined
-
-export const TextField = (props: TextInputFieldProps) => {
-  return (
-    <InputField
-      type="text"
-      InputFieldComponent={SingleLineTextInput}
-      {...props}
-    />
-  );
-};
-
-export const MultilineTextField = (props: MultilineTextInputProps) => {
-  return (
-    <InputField
-      type="text"
-      InputFieldComponent={MultilineTextInput}
-      {...props}
-    />
-  );
-};
-
-export const NumberField = (props: NumberInputFieldProps) => {
-  return (
-    <InputField type="number" InputFieldComponent={NumberInput} {...props} />
-  );
-};
-
-export const CheckboxField = (props: CheckboxInputFieldProps) => {
-  return (
-    <InputField
-      type="checkbox"
-      InputFieldComponent={CheckboxInput}
-      {...props}
-    />
-  );
-};
-
-export const EmailField = (props: EmailInputFieldProps) => {
-  return (
-    <InputField type="email" InputFieldComponent={EmailInput} {...props} />
-  );
-};
-
-export const PasswordField = (props: PasswordInputFieldProps) => {
-  return (
-    <InputField
-      InputFieldComponent={PasswordInput}
-      {...props}
-    />
-  );
-};
+}

@@ -8,8 +8,6 @@ export interface TextAndNumberProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   suffix?: JSX.Element;
   prefixElement?: JSX.Element;
-  // prop only used internally for implementation
-  type?: "text" | "email" | "password" | "number";
   // this defines the input type rendered by this field
   // for multiline text types, this will be <textarea>
   // for text/email/password/number types this will be <input> with a type field
@@ -26,7 +24,7 @@ export interface MultilineProps
 
 // the following props are used to implement {Email, Password, Number}Input
 // it is recommended to use those components instead of passing an "email" type to TextInput
-interface CustomProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface CustomProps {
   ariaLabel?: string;
   ariaLabelledBy?: string;
   validatorLabel?: string;
