@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Field, FieldProps, FieldRenderProps } from "react-final-form";
 
 import {
@@ -11,15 +11,11 @@ import {
 } from "./TextTypeInput";
 import {
   EmailInput,
-  NewPasswordInput,
-  ExistingPasswordInput,
+  PasswordInput,
+  PasswordProps,
   EmailProps,
-  NewPasswordProps,
-  ExistingPasswordProps,
-  PasswordInputType,
 } from "./EmailPasswordInput";
 import { CheckboxInput, CheckboxInputProps } from "./CheckboxInput";
-import Icon from "../Icon/Icon";
 
 // the following omit statements can be removed
 // once type better limits what props can be passed in
@@ -47,15 +43,9 @@ type EmailInputFieldProps = Omit<
   "type"
 >;
 
-type NewPasswordInputFieldProps = Omit<
+type PasswordInputFieldProps = Omit<
   FieldProps<string, FieldRenderProps<string, HTMLElement>, HTMLElement> &
-    NewPasswordProps,
-  "type"
->;
-
-type ExistingPasswordInputFieldProps = Omit<
-  FieldProps<string, FieldRenderProps<string, HTMLElement>, HTMLElement> &
-    ExistingPasswordProps,
+    PasswordProps,
   "type"
 >;
 
@@ -63,8 +53,7 @@ type InternalFieldProps =
   | ({ InputFieldComponent: React.FunctionComponent } & TextInputFieldProps)
   | CheckboxInputFieldProps
   | EmailInputFieldProps
-  | NewPasswordInputFieldProps
-  | ExistingPasswordInputFieldProps;
+  | PasswordInputFieldProps;
 
 const InputField = ({
   afterSubmit,
@@ -158,51 +147,10 @@ export const EmailField = (props: EmailInputFieldProps) => {
   );
 };
 
-export const NewPasswordField = (props: NewPasswordInputFieldProps) => {
-  const { meta } = props;
-  const [type, setType] = useState<PasswordInputType>(
-    PasswordInputType.Password,
-  );
-
-  const toggleType = () => {
-    setType(
-      type === PasswordInputType.Password
-        ? PasswordInputType.Text
-        : PasswordInputType.Password,
-    );
-  };
-
-  const suffixIcon = (
-    <div style={{ display: "inline-flex" }}>
-      <Icon
-        iconName={type === PasswordInputType.Password ? "Eye" : "EyeOff"}
-        size="medium"
-        fill={meta && meta.active ? "info" : "default"}
-        onClick={toggleType}
-      />
-    </div>
-  );
-
-  // hidden password will render a password field
-  // open password will render a text field
-  // the hidden/open state is toggled by the suffix icon
+export const PasswordField = (props: PasswordInputFieldProps) => {
   return (
     <InputField
-      type={type}
-      suffix={suffixIcon}
-      InputFieldComponent={NewPasswordInput}
-      {...props}
-    />
-  );
-};
-
-export const ExistingPasswordField = (
-  props: ExistingPasswordInputFieldProps,
-) => {
-  return (
-    <InputField
-      type="password"
-      InputFieldComponent={ExistingPasswordInput}
+      InputFieldComponent={PasswordInput}
       {...props}
     />
   );

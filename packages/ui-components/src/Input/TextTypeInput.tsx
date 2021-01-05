@@ -29,21 +29,18 @@ export interface MultilineProps
 interface CustomProps extends React.InputHTMLAttributes<HTMLInputElement> {
   ariaLabel?: string;
   ariaLabelledBy?: string;
-  forgotPasswordLinkElement?: JSX.Element;
-  // this prop is only used for internal implementation
-  // whether the password exists or not, should be indicated by New/Existing PasswordInput
-  existingPassword?: boolean;
+  validatorLabel?: string;
+  reveal?: boolean;
+  newPassword?: boolean;
+  retypePassword?: boolean;
 }
 
 export type TextInputProps = CommonInputProps & TextAndNumberProps;
 export type MultilineTextInputProps = CommonInputProps & MultilineProps;
 export type NumberProps = TextInputProps & CustomProps;
+export type AllProps = TextInputProps & CustomProps;
 
-type InternalTextProps = TextInputProps & CustomProps;
-
-export type AllProps = Omit<InternalTextProps, "existingPassword">;
-
-export const BaseTextInput: React.FC<InternalTextProps> = props => {
+export const BaseTextInput: React.FC<AllProps> = props => {
   const {
     id,
     JSXInput,
@@ -57,8 +54,6 @@ export const BaseTextInput: React.FC<InternalTextProps> = props => {
     type = "text",
     prefixElement,
     ariaLabelledBy,
-    existingPassword = false,
-    forgotPasswordLinkElement,
     ...rest
   } = props;
 
@@ -69,7 +64,6 @@ export const BaseTextInput: React.FC<InternalTextProps> = props => {
       "crl-input--suffix": suffix,
       invalid: error || invalid,
     }),
-    name: name,
     ["aria-label"]: ariaLabel,
     ["aria-invalid"]: !!error || invalid,
     ["aria-required"]: required,
@@ -96,18 +90,9 @@ export const BaseTextInput: React.FC<InternalTextProps> = props => {
     </>
   );
 
-  const labelElement = existingPassword ? (
-    <div className="existing-password-label">
-      {labelDiv}
-      {forgotPasswordLinkElement}
-    </div>
-  ) : (
-    labelDiv
-  );
-
   const fieldInput = (
     <>
-      {labelElement}
+      {labelDiv}
       <div className="affix-container">
         {prefixElement && (
           <span className="crl-input__prefix">{prefixElement}</span>
