@@ -3,9 +3,12 @@ import classNames from "classnames/bind";
 import { CommonInputProps, CommonInput } from "./CommonInput";
 import { isEmpty } from "lodash";
 import "./input.module.scss";
+import { FieldRenderProps } from "react-final-form";
 
-export interface TextAndNumberProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+// extending the fieldrender props here ensures that we have access to meta and input
+// if we need thems
+export interface TextAndNumberProps<T>
+  extends Partial<FieldRenderProps<T, HTMLInputElement>> {
   suffix?: JSX.Element;
   prefixElement?: JSX.Element;
   // this defines the input type rendered by this field
@@ -22,23 +25,11 @@ export interface MultilineProps
   suffix?: JSX.Element;
 }
 
-// the following props are used to implement {Email, Password, Number}Input
-// it is recommended to use those components instead of passing an "email" type to TextInput
-interface CustomProps {
-  ariaLabel?: string;
-  ariaLabelledBy?: string;
-  validatorLabel?: string;
-  reveal?: boolean;
-  newPassword?: boolean;
-  retypePassword?: boolean;
-}
-
-export type TextInputProps = CommonInputProps & TextAndNumberProps;
+export type TextInputProps = CommonInputProps & TextAndNumberProps<string>;
 export type MultilineTextInputProps = CommonInputProps & MultilineProps;
-export type NumberProps = TextInputProps & CustomProps;
-export type AllProps = TextInputProps & CustomProps;
+export type NumberProps = CommonInputProps & TextAndNumberProps<number>;
 
-export const BaseTextInput: React.FC<AllProps> = props => {
+export const BaseTextInput: React.FC<TextInputProps | NumberProps> = props => {
   const {
     id,
     JSXInput,
@@ -52,6 +43,8 @@ export const BaseTextInput: React.FC<AllProps> = props => {
     type = "text",
     prefixElement,
     ariaLabelledBy,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    inline,
     ...rest
   } = props;
 
@@ -112,11 +105,11 @@ export const MultilineTextInput = (props: MultilineTextInputProps) => {
   const inputProps = {
     className: classNames("crl-input", props.className, {
       "crl-input--suffix": props.suffix,
-      invalid: props.error || props.invalid,
+      invalid: props.error,
     }),
     name: name,
     ["aria-label"]: props.ariaLabel,
-    ["aria-invalid"]: !!props.error || props.invalid,
+    ["aria-invalid"]: !!props.error,
     ["aria-required"]: props.required,
     type: "text",
     ...props,
@@ -129,7 +122,6 @@ export const MultilineTextInput = (props: MultilineTextInputProps) => {
       suffix={props.suffix}
       required={props.required}
       id={props.id}
-      meta={props.meta}
       JSXInput={JSXInput}
     />
   );

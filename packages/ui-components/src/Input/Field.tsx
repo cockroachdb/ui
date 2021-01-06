@@ -19,7 +19,7 @@ export interface InputFieldProps<
 > extends FieldProps<any, FieldRenderProps<any, HTMLElement>, HTMLElement> {
   as: IComponent;
   // should include types currently supported
-  type?: "text" | "email" | "password" | "number" | "checkbox";
+  type: "text" | "email" | "password" | "number" | "checkbox";
 }
 
 // remove any properties defined in InputFieldProps, so we can handle them exclusively.

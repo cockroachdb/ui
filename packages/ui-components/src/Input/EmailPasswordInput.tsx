@@ -1,29 +1,33 @@
 import React, { useState, useEffect } from "react";
-import { BaseTextInput, AllProps } from "./TextTypeInput";
+import { BaseTextInput, TextInputProps } from "./TextTypeInput";
 import "./EmailPassword.module.scss";
 import { Icon } from "../Icon/Icon";
 
-// since we use at most one validator currently
-// we only want to accept one validator label
-export type PasswordProps = AllProps;
-export type EmailProps = AllProps;
+export interface Validator {
+  fn: (val: string) => boolean;
+  label: string;
+}
+
+export type PasswordProps = TextInputProps & {
+  validatorArray?: Validator[];
+  reveal?: boolean;
+  newPassword?: boolean;
+  retypePassword?: boolean;
+};
 
 export enum PasswordInputType {
   Text = "text",
   Password = "password",
 }
-
-// types are provided here, because although the Field passes them into these
-// Input components, if Input components are used without wrapper Fields,
-// they need types
-export const EmailInput = (props: EmailProps) => {
-  return <BaseTextInput type="email" {...props} />;
-};
+export const EmailInput = (props: TextInputProps) => (
+  <BaseTextInput {...props} type="email" />
+);
 
 export const PasswordInput = ({
   meta,
+  input,
   reveal,
-  validatorLabel = undefined,
+  validatorArray = undefined,
   newPassword,
   retypePassword,
   ...rest
@@ -76,9 +80,10 @@ export const PasswordInput = ({
     <>
       <div className="new-password-input-container">
         <BaseTextInput
-          type={type}
           meta={meta}
+          input={input}
           {...rest}
+          type={type}
           suffix={suffixIcon}
           // for new passwords, the error should reflect whether the password is valid
           // for existing/retyped passwords, the error should be consistent with a standard input error
@@ -91,23 +96,39 @@ export const PasswordInput = ({
       </div>
       {// we don't want to show the validations if the user is retyping password
       // or hasn't begun to type the password
-      !retypePassword && touched && validatorLabel && (
+      !retypePassword && touched && validatorArray && (
         <ul className="new-password-validation-container">
-          <li
-            key={validatorLabel}
-            className={"new-password-validation-message"}
-          >
-            <div style={{ display: "inline-flex" }}>
-              <Icon
-                size="small"
-                iconName={error ? "CancelCircleFilled" : "CheckCircleFilled"}
-                fill={error ? "default" : "success"}
-              />
-            </div>
-            <div className="new-password-validation-label">
-              {validatorLabel}
-            </div>
-          </li>
+          {validatorArray.map((v: Validator) => {
+            // TODO: replace once optional chaining is available.
+            const value = input ? input.value : undefined;
+            const validatorLabel = v.label;
+            const passesValidation = typeof value === "string" && v.fn(value);
+            <li
+              key={validatorLabel}
+              className={"new-password-validation-message"}
+            >
+              <div className={"new-password-validation-icon"}>
+                <Icon
+                  size="small"
+                  iconName={
+                    passesValidation
+                      ? "CancelCircleFilled"
+                      : "CheckCircleFilled"
+                  }
+                  fill={passesValidation ? "default" : "success"}
+                />
+              </div>
+              <div
+                className={
+                  passesValidation
+                    ? "new-password-validation-success"
+                    : "new-password-validation-error"
+                }
+              >
+                {validatorLabel}
+              </div>
+            </li>;
+          })}
         </ul>
       )}
     </>

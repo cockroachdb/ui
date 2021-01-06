@@ -2,10 +2,6 @@ import React from "react";
 import classNames from "classnames/bind";
 import { CommonInputProps, CommonInput } from "./CommonInput";
 
-type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement>;
-
-export type CheckboxInputProps = CommonInputProps & CheckboxProps;
-
 export const CheckboxInput = ({
   id,
   className,
@@ -15,7 +11,7 @@ export const CheckboxInput = ({
   ariaLabel,
   required,
   ...rest
-}: CheckboxInputProps) => {
+}: CommonInputProps) => {
   const inputProps = {
     id: id,
     className: classNames("crl-input", className, {
