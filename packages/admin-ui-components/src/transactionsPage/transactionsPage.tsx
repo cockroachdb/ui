@@ -10,7 +10,7 @@ import {
   baseHeadingClasses,
   statisticsClasses,
 } from "./transactionsPageClasses";
-import { getTrxAppFilterOptions } from "./utils";
+import { aggregateAcrossNodeIDs, getTrxAppFilterOptions } from "./utils";
 import {
   searchTransactionsData,
   filterTransactions,
@@ -193,17 +193,30 @@ export class TransactionsPage extends React.Component<
           render={() => {
             const { data } = this.props;
             const { pagination, search, filters } = this.state;
-            const { statements, transactions, internal_app_name_prefix } = data;
+            const { statements, internal_app_name_prefix } = data;
             const appNames = getTrxAppFilterOptions(
-              transactions,
+              data.transactions,
               internal_app_name_prefix,
             );
-            const searchedAndFilteredData = filterTransactions(
-              searchTransactionsData(search, transactions, statements),
+            // We apply the search filters and app name filters prior to aggregating across Node IDs
+            // in order to match what's done on the Statements Page.
+            //
+            // TODO(davidh): Once the redux layer for TransactionsPage is added to this repo,
+            // extract this work into the selector
+            const {
+              transactions: filteredTransactions,
+              activeFilters,
+            } = filterTransactions(
+              searchTransactionsData(search, data.transactions, statements),
               filters,
+              internal_app_name_prefix,
+            );
+            const transactionsToDisplay = aggregateAcrossNodeIDs(
+              filteredTransactions,
+              statements,
             );
             const { current, pageSize } = pagination;
-            const hasData = transactions?.length > 0;
+            const hasData = data.transactions?.length > 0;
             const isUsedFilter = search?.length > 0;
             return (
               <>
@@ -220,7 +233,7 @@ export class TransactionsPage extends React.Component<
                     <Filter
                       onSubmitFilters={this.onSubmitFilters}
                       appNames={appNames}
-                      activeFilters={searchedAndFilteredData.activeFilters}
+                      activeFilters={activeFilters}
                       filters={filters}
                     />
                   </PageConfigItem>
@@ -230,13 +243,13 @@ export class TransactionsPage extends React.Component<
                     pagination={pagination}
                     lastReset={this.lastReset()}
                     search={search}
-                    totalCount={searchedAndFilteredData.transactions.length}
+                    totalCount={transactionsToDisplay.length}
                     arrayItemName="transactions"
-                    activeFilters={searchedAndFilteredData.activeFilters}
+                    activeFilters={activeFilters}
                     onClearFilters={this.onClearFilters}
                   />
                   <TransactionsTable
-                    transactions={searchedAndFilteredData.transactions}
+                    transactions={transactionsToDisplay}
                     statements={statements}
                     sortSetting={this.state.sortSetting}
                     onChangeSortSetting={this.onChangeSortSetting}
@@ -253,7 +266,7 @@ export class TransactionsPage extends React.Component<
                 <Pagination
                   pageSize={pageSize}
                   current={current}
-                  total={searchedAndFilteredData.transactions.length}
+                  total={transactionsToDisplay.length}
                   onChange={this.onChangePage}
                 />
               </>

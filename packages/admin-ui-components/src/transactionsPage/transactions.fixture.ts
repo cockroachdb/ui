@@ -895,5 +895,26 @@ export const data: cockroach.server.serverpb.IStatementsResponse = {
       },
       node_id: 4,
     },
+    {
+      stats_data: {
+        statement_ids: [Long.fromInt(107)],
+        app: "$ TEST EXACT",
+        stats: {
+          count: Long.fromInt(280),
+          max_retries: Long.fromInt(0),
+          num_rows: { mean: 0, squared_diffs: 0 },
+          service_lat: {
+            mean: 0.01983223571428572,
+            squared_diffs: 146.70526074151044,
+          },
+          retry_lat: { mean: 0, squared_diffs: 0 },
+          commit_lat: {
+            mean: 0.000008235714285714293,
+            squared_diffs: 1.5384442857142857e-8,
+          },
+        },
+      },
+      node_id: 4,
+    },
   ],
 };

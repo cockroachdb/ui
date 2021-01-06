@@ -23,7 +23,9 @@ export function stdDevLong(stat: NumericStat, count: number | Long) {
   return stdDev(stat, Number(FixLong(count)));
 }
 
-export function addNumericStats(
+// aggregateNumericStats computes a new `NumericStat` instance from 2 arguments by using the counts
+// to generate new `mean` and `squared_diffs` values.
+export function aggregateNumericStats(
   a: NumericStat,
   b: NumericStat,
   countA: number,
@@ -64,12 +66,17 @@ export function addStatementStats(
     max_retries: a.max_retries.greaterThan(b.max_retries)
       ? a.max_retries
       : b.max_retries,
-    num_rows: addNumericStats(a.num_rows, b.num_rows, countA, countB),
-    parse_lat: addNumericStats(a.parse_lat, b.parse_lat, countA, countB),
-    plan_lat: addNumericStats(a.plan_lat, b.plan_lat, countA, countB),
-    run_lat: addNumericStats(a.run_lat, b.run_lat, countA, countB),
-    service_lat: addNumericStats(a.service_lat, b.service_lat, countA, countB),
-    overhead_lat: addNumericStats(
+    num_rows: aggregateNumericStats(a.num_rows, b.num_rows, countA, countB),
+    parse_lat: aggregateNumericStats(a.parse_lat, b.parse_lat, countA, countB),
+    plan_lat: aggregateNumericStats(a.plan_lat, b.plan_lat, countA, countB),
+    run_lat: aggregateNumericStats(a.run_lat, b.run_lat, countA, countB),
+    service_lat: aggregateNumericStats(
+      a.service_lat,
+      b.service_lat,
+      countA,
+      countB,
+    ),
+    overhead_lat: aggregateNumericStats(
       a.overhead_lat,
       b.overhead_lat,
       countA,

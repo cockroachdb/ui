@@ -4,7 +4,7 @@ import Long from "long";
 
 import * as protos from "@cockroachlabs/crdb-protobuf-client";
 import {
-  addNumericStats,
+  aggregateNumericStats,
   NumericStat,
   flattenStatementStats,
   StatementStatistics,
@@ -80,12 +80,12 @@ describe("addNumericStats", () => {
     assert.approximately(b.mean, sumB / countB, 0.0000001);
     assert.approximately(ab.mean, sumAB / countAB, 0.0000001);
 
-    const combined = addNumericStats(a, b, countA, countB);
+    const combined = aggregateNumericStats(a, b, countA, countB);
 
     assert.approximately(combined.mean, ab.mean, 0.0000001);
     assert.approximately(combined.squared_diffs, ab.squared_diffs, 0.0000001);
 
-    const reversed = addNumericStats(b, a, countB, countA);
+    const reversed = aggregateNumericStats(b, a, countB, countA);
 
     assert.deepEqual(reversed, combined);
   });
