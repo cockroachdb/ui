@@ -43,15 +43,17 @@ export const CommonInput = ({
 
   return (
     <div
-      className={classNames("input-container", className, {
+      className={classNames(className, {
         inline: inline,
       })}
     >
       {fieldInput}
-      <div className="message">
-        {errorMsg}
-        {helpMsg}
-      </div>
+      {(errorMsg || helpMsg) && (
+        <div className="message">
+          {errorMsg}
+          {helpMsg}
+        </div>
+      )}
     </div>
   );
 };

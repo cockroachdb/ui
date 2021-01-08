@@ -51,8 +51,6 @@ export const BaseTextInput: React.FC<TextInputProps | NumberProps> = props => {
   const inputProps = {
     id: id,
     className: classNames("crl-input", className, {
-      "crl-input--prefix": prefixElement,
-      "crl-input--suffix": suffix,
       invalid: error || invalid,
     }),
     ["aria-label"]: ariaLabel,

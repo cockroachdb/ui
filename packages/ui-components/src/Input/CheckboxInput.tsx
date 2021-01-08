@@ -35,9 +35,6 @@ export const CheckboxInput = ({
     <CommonInput
       className={className}
       error={error}
-      invalid={invalid}
-      label={label}
-      ariaLabel={ariaLabel}
       {...rest}
       fieldInput={fieldInput}
     />

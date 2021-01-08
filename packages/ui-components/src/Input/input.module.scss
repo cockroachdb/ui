@@ -58,6 +58,16 @@
   &[type="checkbox"] {
     margin-right: crl-gutters(1);
   }
+
+  &.invalid {
+    background-color: rgba($color-base-red, 0.05);
+    color: $color-base-red;
+    border-color: $color-base-red;
+  
+    &:focus {
+      @include crl-box-shadow(0, 0, 4px, 2px, rgba($color-base-red, 0.4));
+    }
+  }
 }
 
 .checkbox-container {
@@ -65,8 +75,15 @@
   align-items: center;
   label {
     margin-bottom: 0;
+    @include crl-type-body;
+    color: $crl-base-text;
+
+    &--human-readable {
+      display: block;
+      @include crl-type-body--strong;
+    }
   }
-}
+}s
 
 .prefix {
   padding-left: 30px;
@@ -112,15 +129,20 @@
 }
 
 .inline {
+  width: 100%;
+  position: relative;
   display: inline-block;
-  margin-right: 6%;
-  width: 47%;
   vertical-align: top;
 }
 
 .crl-form-group {
-  .inline:last-child {
-    margin-right: 0;
+  .inline {
+    margin-right: 6%;
+    width: 47%;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }
 
