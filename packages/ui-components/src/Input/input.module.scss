@@ -83,7 +83,7 @@
       @include crl-type-body--strong;
     }
   }
-}s
+}
 
 .prefix {
   padding-left: 30px;
@@ -107,25 +107,10 @@
   color: $color-base-red;
 }
 
-.invalid {
-  background-color: rgba($color-base-red, 0.05);
-  color: $color-base-red;
-  border-color: $color-base-red;
-
-  &:focus {
-    @include crl-box-shadow(0, 0, 4px, 2px, rgba($color-base-red, 0.4));
-  }
-}
-
 .input-reference:not([type="checkbox"]):disabled {
   color: $color-core-neutral-7;
   background-color: $color-core-neutral-1;
   border-color: $color-core-neutral-1;
-}
-
-.input-container {
-  width: 100%;
-  position: relative;
 }
 
 .inline {
