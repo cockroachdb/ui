@@ -80,8 +80,6 @@ export const PasswordInput = ({
     <>
       <div className="new-password-input-container">
         <BaseTextInput
-          meta={meta}
-          input={input}
           {...rest}
           type={type}
           suffix={suffixIcon}
