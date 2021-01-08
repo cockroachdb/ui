@@ -75,12 +75,12 @@
   align-items: center;
   label {
     margin-bottom: 0;
-    @include crl-type-body;
+    @extend .type-body;
     color: $crl-base-text;
 
     &--human-readable {
       display: block;
-      @include crl-type-body--strong;
+      @extend .type-body-strong;
     }
   }
 }
