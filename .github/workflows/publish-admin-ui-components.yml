@@ -1,11 +1,11 @@
-name: Publish admin-ui-components to NPM Registry
+name: Publish cluster-ui to NPM Registry
 
 on:
   push:
     branches:
       - master
     paths:
-      - "packages/admin-ui-components/**"
+      - "packages/cluster-ui/**"
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -16,10 +16,10 @@ jobs:
           node-version: '12.x'
       - name: Install dependencies
         run: yarn install
-        working-directory: ./packages/admin-ui-components
+        working-directory: ./packages/cluster-ui
       - name: Test
         run: yarn ci
-        working-directory: ./packages/admin-ui-components
+        working-directory: ./packages/cluster-ui
   publish:
     runs-on: ubuntu-latest
     needs: test
@@ -34,24 +34,24 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Install dependencies
         run: yarn install
-        working-directory: ./packages/admin-ui-components
+        working-directory: ./packages/cluster-ui
       - name: Store github user name and email in ENV variables
         run: |
           echo "GITHUB_EMAIL=$(git show -s --format='%ae' HEAD)" >> $GITHUB_ENV
           echo "GITHUB_NAME=$(git show -s --format='%an' HEAD)" >> $GITHUB_ENV
-        working-directory: ./packages/admin-ui-components
+        working-directory: ./packages/cluster-ui
       - name: Configure Git User
         run: |
           git config user.name "${{ env.GITHUB_NAME }}"
           git config user.email "${{ env.GITHUB_EMAIL}}"
-        working-directory: ./packages/admin-ui-components
+        working-directory: ./packages/cluster-ui
       - name: Bump version (prerelease)
         run: |
           yarn version --patch
           git push --follow-tags
-        working-directory: ./packages/admin-ui-components
+        working-directory: ./packages/cluster-ui
       - name: Publish ui-components
         run: yarn publish --access public
-        working-directory: ./packages/admin-ui-components
+        working-directory: ./packages/cluster-ui
         env:
           NODE_AUTH_TOKEN: ${{ secrets.YARN_TOKEN }}
