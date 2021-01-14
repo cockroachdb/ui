@@ -7,7 +7,7 @@
     "url": "https://github.com/cockroachdb/admin-ui-components"
   },
   "main": "dist/main.js",
-  "types": "dist/types/src/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "scripts": {
     "build": "npm-run-all build:typescript build:bundle",
     "build:bundle": "NODE_ENV=production webpack --display-error-details",
