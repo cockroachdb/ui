@@ -16,7 +16,7 @@ export interface CommonInputProps
   inline?: boolean;
   // following are used in Checkbox, TextType Inputs, which render CommonInput
   invalid?: boolean;
-  label?: string;
+  label?: string | JSX.Element;
   // these props are used for accessibility and aren't part of DetailedHTMLProps
   // because they're formatted with dashes (i.e. aria-label)
   // recall objects don't accept a dash in keys (passed to inputProps in [])
