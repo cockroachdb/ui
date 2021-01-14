@@ -1,13 +1,13 @@
 import React, { useCallback, useState } from "react";
 import classNames from "classnames/bind";
 import { CaretUp, CaretDown } from "@cockroachlabs/icons";
-import { NumberInput, NumberProps } from "./TextTypeInput";
+import { NumberInput, TextAndNumberProps } from "./TextTypeInput";
 import styles from "./styles.module.scss";
 import { InputPrefix, InputWrapper } from "./helpers";
 
 const cx = classNames.bind(styles);
 
-export type NumberInputProps = NumberProps & {
+export type NumberInputProps = TextAndNumberProps & {
   onChange?: (value: number) => void;
   initialValue: number;
   value: number;
