@@ -3,33 +3,26 @@ import classNames from "classnames/bind";
 import { CommonInputProps, CommonInput } from "./CommonInput";
 import { isEmpty } from "lodash";
 import "./input.module.scss";
-import { FieldRenderProps } from "react-final-form";
 
-// extending the fieldrender props here ensures that we have access to meta and input
-// if we need thems
-export interface TextAndNumberProps<T>
-  extends Partial<FieldRenderProps<T, HTMLInputElement>> {
+export interface TextAndNumberProps {
   suffix?: JSX.Element;
   prefixElement?: JSX.Element;
-  // this defines the input type rendered by this field
   // for multiline text types, this will be <textarea>
   // for text/email/password/number types this will be <input> with a type field
   JSXInput?: JSX.Element;
+  forgotPasswordLinkElement?: boolean;
 }
 
-export interface MultilineProps
-  extends React.DetailedHTMLProps<
-    React.TextareaHTMLAttributes<HTMLTextAreaElement>,
-    HTMLTextAreaElement
-  > {
-  suffix?: JSX.Element;
-}
+export type TextInputProps = CommonInputProps & TextAndNumberProps;
+export type MultilineTextInputProps = CommonInputProps &
+  Partial<
+    React.DetailedHTMLProps<
+      React.TextareaHTMLAttributes<HTMLTextAreaElement>,
+      HTMLTextAreaElement
+    >
+  >;
 
-export type TextInputProps = CommonInputProps & TextAndNumberProps<string>;
-export type MultilineTextInputProps = CommonInputProps & MultilineProps;
-export type NumberProps = CommonInputProps & TextAndNumberProps<number>;
-
-export const BaseTextInput: React.FC<TextInputProps | NumberProps> = props => {
+export const BaseTextInput = (props: TextInputProps) => {
   const {
     id,
     JSXInput,
@@ -43,6 +36,7 @@ export const BaseTextInput: React.FC<TextInputProps | NumberProps> = props => {
     type = "text",
     prefixElement,
     ariaLabelledBy,
+    forgotPasswordLinkElement,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     inline,
     ...rest
@@ -63,25 +57,24 @@ export const BaseTextInput: React.FC<TextInputProps | NumberProps> = props => {
 
   const input = JSXInput || <input {...inputProps} />;
 
-  const labelDiv = (
-    <>
-      {!isEmpty(label) && (
-        <label
-          aria-label={name}
-          className={classNames({
-            required: required,
-          })}
-          htmlFor={id}
-        >
-          {label}
-        </label>
-      )}
-    </>
+  const labelDiv = !isEmpty(label) && (
+    <label
+      aria-label={name}
+      className={classNames({
+        required: required,
+      })}
+      htmlFor={id}
+    >
+      {label}
+    </label>
   );
 
   const fieldInput = (
     <>
-      {labelDiv}
+      <div className="existing-password-label">
+        {labelDiv}
+        {forgotPasswordLinkElement}
+      </div>
       <div className="affix-container">
         {prefixElement && (
           <span className="crl-input__prefix">{prefixElement}</span>
@@ -102,29 +95,17 @@ export const SingleLineTextInput = (props: TextInputProps) => {
 export const MultilineTextInput = (props: MultilineTextInputProps) => {
   const inputProps = {
     className: classNames("crl-input", props.className, {
-      "crl-input--suffix": props.suffix,
       invalid: props.error,
     }),
-    name: name,
     ["aria-label"]: props.ariaLabel,
     ["aria-invalid"]: !!props.error,
     ["aria-required"]: props.required,
-    type: "text",
     ...props,
   };
   const JSXInput = <textarea {...inputProps} />;
-  return (
-    <BaseTextInput
-      label={props.label}
-      name={props.name}
-      suffix={props.suffix}
-      required={props.required}
-      id={props.id}
-      JSXInput={JSXInput}
-    />
-  );
+  return <BaseTextInput {...props} JSXInput={JSXInput} />;
 };
 
-export const NumberInput = (props: NumberProps) => {
+export const NumberInput = (props: TextInputProps) => {
   return <BaseTextInput type="number" {...props} />;
 };

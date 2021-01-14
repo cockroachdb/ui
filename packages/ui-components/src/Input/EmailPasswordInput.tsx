@@ -2,18 +2,21 @@ import React, { useState, useEffect } from "react";
 import { BaseTextInput, TextInputProps } from "./TextTypeInput";
 import "./EmailPassword.module.scss";
 import { Icon } from "../Icon/Icon";
+import { FieldRenderProps } from "react-final-form";
 
 export interface Validator {
   fn: (val: string) => boolean;
   label: string;
 }
 
-export type PasswordProps = TextInputProps & {
+export interface PasswordProps
+  extends Partial<FieldRenderProps<"text", HTMLInputElement>>,
+    TextInputProps {
   validatorArray?: Validator[];
   reveal?: boolean;
   newPassword?: boolean;
   retypePassword?: boolean;
-};
+}
 
 export enum PasswordInputType {
   Text = "text",

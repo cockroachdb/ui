@@ -1,30 +1,36 @@
 import React from "react";
 import { Field, FieldProps, FieldRenderProps } from "react-final-form";
-import { SingleLineTextInput, NumberInput } from "./TextTypeInput";
+import {
+  SingleLineTextInput,
+  MultilineTextInput,
+  NumberInput,
+} from "./TextTypeInput";
 import { EmailInput, PasswordInput } from "./EmailPasswordInput";
 import { CheckboxInput } from "./CheckboxInput";
 
-// not including multiline input as it depends on Figma designs
-type InputTypes =
+type InputTypes = "text" | "email" | "password" | "number" | "checkbox";
+
+type InputComponentTypes =
   | typeof PasswordInput
   | typeof EmailInput
   | typeof SingleLineTextInput
+  | typeof MultilineTextInput
   | typeof NumberInput
   | typeof CheckboxInput;
 
 // Extends field render props, which will be passed to the Field component in InputField
 export interface InputFieldProps<
-  IComponent extends React.ComponentType<InputTypes>
+  IComponent extends React.ComponentType<InputComponentTypes>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 > extends FieldProps<any, FieldRenderProps<any, HTMLElement>, HTMLElement> {
   as: IComponent;
   // should include types currently supported
-  type: "text" | "email" | "password" | "number" | "checkbox";
+  type: InputTypes;
 }
 
 // remove any properties defined in InputFieldProps, so we can handle them exclusively.
 type FieldPropsRefined<
-  IComponent extends React.ComponentType<InputTypes>
+  IComponent extends React.ComponentType<InputComponentTypes>
 > = InputFieldProps<IComponent> &
   Omit<
     React.ComponentPropsWithoutRef<IComponent>,
@@ -47,7 +53,7 @@ export function InputField({
   validateFields,
   name,
   ...rest
-}: FieldPropsRefined<InputTypes>) {
+}: FieldPropsRefined<InputComponentTypes>) {
   return (
     <Field
       afterSubmit={afterSubmit}

@@ -10,14 +10,13 @@ export interface CommonInputProps
   // this should be the element containing the input
   fieldInput?: JSX.Element;
   help?: string | JSX.Element;
-  // derived from final form type
-  // error is assigned a value of meta.error which has type any
+  // error is assigned a value of meta.error which has type any in react-final-forms
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   error?: any;
   inline?: boolean;
   // following are used in Checkbox, TextType Inputs, which render CommonInput
   invalid?: boolean;
-  label?: string | JSX.Element;
+  label?: string;
   // these props are used for accessibility and aren't part of DetailedHTMLProps
   // because they're formatted with dashes (i.e. aria-label)
   // recall objects don't accept a dash in keys (passed to inputProps in [])
