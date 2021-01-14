@@ -8,8 +8,6 @@ import {
 import { EmailInput, PasswordInput } from "./EmailPasswordInput";
 import { CheckboxInput } from "./CheckboxInput";
 
-type InputTypes = "text" | "email" | "password" | "number" | "checkbox";
-
 type InputComponentTypes =
   | typeof PasswordInput
   | typeof EmailInput
@@ -25,7 +23,7 @@ export interface InputFieldProps<
 > extends FieldProps<any, FieldRenderProps<any, HTMLElement>, HTMLElement> {
   as: IComponent;
   // should include types currently supported
-  type: InputTypes;
+  type: "text" | "email" | "password" | "number" | "checkbox";
 }
 
 // remove any properties defined in InputFieldProps, so we can handle them exclusively.
