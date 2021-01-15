@@ -15,4 +15,4 @@
 # This should make it easy to add new rules without breaking existing ones.
 
 *   @nathanstilwell @j-low @laurenbarker
-packages/admin-ui-components @dhartunian @nkodali @nathanstilwell
+packages/cluster-ui @dhartunian @nkodali @nathanstilwell
