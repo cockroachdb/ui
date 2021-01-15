@@ -1,4 +1,4 @@
-export * from "./Field";
+export * from "./InputField";
 export * from "./EmailPasswordInput";
 export * from "./CheckboxInput";
 export {
