@@ -1,5 +1,6 @@
 const path = require("path");
 const WebpackBar = require("webpackbar");
+const MomentLocalesPlugin = require("moment-locales-webpack-plugin");
 
 module.exports = {
   mode: "development",
@@ -108,6 +109,7 @@ module.exports = {
       color: "cyan",
       profile: true,
     }),
+    new MomentLocalesPlugin(),
   ],
 
   // When importing a module whose path matches one of the following, just
