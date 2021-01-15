@@ -6,5 +6,5 @@ export {
   MultilineTextInput,
   MultilineTextInputProps,
   TextInputProps,
-  NumberInput
+  NumberInput,
 } from "./TextTypeInput";

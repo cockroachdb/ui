@@ -9,8 +9,11 @@ const cx = classNames.bind(styles);
 
 export type NumberInputProps = TextAndNumberProps & {
   onChange?: (value: number) => void;
-  initialValue: number;
-  value: number;
+  initialValue?: number;
+  value?: number;
+  prefix?: JSX.Element;
+  invalid?: boolean;
+  disabled?: boolean;
 };
 
 // Use NumberInput instead of this
@@ -18,9 +21,9 @@ export const DeprecatedNumberInput = ({
   onChange,
   value: outerValue,
   initialValue,
-  prefix,
-  invalid,
   disabled,
+  invalid,
+  prefix,
   ...props
 }: NumberInputProps) => {
   const [value, setValue] = useState<number>(outerValue || initialValue || 0);

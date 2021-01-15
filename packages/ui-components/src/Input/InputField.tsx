@@ -8,6 +8,7 @@ import {
 import { EmailInput, PasswordInput } from "./EmailPasswordInput";
 import { CheckboxInput } from "./CheckboxInput";
 
+// this type ensures the props always match one that of one of these InputProps
 type InputComponentTypes =
   | typeof PasswordInput
   | typeof EmailInput
@@ -35,7 +36,7 @@ type FieldPropsRefined<
     keyof InputFieldProps<IComponent>
   >;
 
-export function InputField({
+export default function InputField({
   as: ComponentReturned,
   afterSubmit,
   allowNull = false,
