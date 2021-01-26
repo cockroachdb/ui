@@ -50,7 +50,7 @@ jobs:
           yarn version --patch
           git push --follow-tags
         working-directory: ./packages/cluster-ui
-      - name: Publish ui-components
+      - name: Publish cluster-ui
         run: yarn publish --access public
         working-directory: ./packages/cluster-ui
         env:
