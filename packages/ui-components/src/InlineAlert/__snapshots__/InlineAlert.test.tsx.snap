@@ -16,11 +16,12 @@ exports[`InlineAlert renders with danger intent 1`] = `
   <div
     className="container"
   >
-    <div
+    <Component
       className="title"
+      type="body-strong"
     >
       Hello world!
-    </div>
+    </Component>
   </div>
 </div>
 `;
@@ -41,93 +42,181 @@ exports[`InlineAlert renders with info intent 1`] = `
   <div
     className="container"
   >
-    <div
+    <Component
       className="title"
+      type="body-strong"
     >
       Hello world!
-    </div>
+    </Component>
   </div>
 </div>
 `;
 
 exports[`InlineAlert renders with provided description 1`] = `
-<div
-  className="root intent-info"
+<Component
+  description="Hello world!"
 >
   <div
-    className="icon-container"
-  >
-    <Component
-      fill="info"
-      iconName="InfoCircleFilled"
-      size="default"
-    />
-  </div>
-  <div
-    className="container"
+    className="root intent-info"
   >
     <div
-      className="description"
+      className="icon-container"
     >
-      Hello world!
+      <Component
+        fill="info"
+        iconName="InfoCircleFilled"
+        size="default"
+      >
+        <SvgInfoCircleFilled
+          className="icon fill-info size-default"
+        >
+          <svg
+            className="icon fill-info size-default"
+            height="1em"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clipRule="evenodd"
+              d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm1 17a1 1 0 11-2 0v-6a1 1 0 112 0v6zM11 7a1 1 0 112 0 1 1 0 01-2 0z"
+              fillRule="evenodd"
+            />
+          </svg>
+        </SvgInfoCircleFilled>
+      </Component>
+    </div>
+    <div
+      className="container"
+    >
+      <Component
+        className="description"
+        type="body"
+      >
+        <span
+          className="type-body description"
+        >
+          Hello world!
+        </span>
+      </Component>
     </div>
   </div>
-</div>
+</Component>
 `;
 
 exports[`InlineAlert renders with provided title 1`] = `
-<div
-  className="root intent-info"
+<Component
+  title="Hello world!"
 >
   <div
-    className="icon-container"
-  >
-    <Component
-      fill="info"
-      iconName="InfoCircleFilled"
-      size="default"
-    />
-  </div>
-  <div
-    className="container"
+    className="root intent-info"
   >
     <div
-      className="title"
+      className="icon-container"
     >
-      Hello world!
+      <Component
+        fill="info"
+        iconName="InfoCircleFilled"
+        size="default"
+      >
+        <SvgInfoCircleFilled
+          className="icon fill-info size-default"
+        >
+          <svg
+            className="icon fill-info size-default"
+            height="1em"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clipRule="evenodd"
+              d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm1 17a1 1 0 11-2 0v-6a1 1 0 112 0v6zM11 7a1 1 0 112 0 1 1 0 01-2 0z"
+              fillRule="evenodd"
+            />
+          </svg>
+        </SvgInfoCircleFilled>
+      </Component>
+    </div>
+    <div
+      className="container"
+    >
+      <Component
+        className="title"
+        type="body-strong"
+      >
+        <span
+          className="type-body-strong title"
+        >
+          Hello world!
+        </span>
+      </Component>
     </div>
   </div>
-</div>
+</Component>
 `;
 
 exports[`InlineAlert renders with provided title and description 1`] = `
-<div
-  className="root intent-info"
+<Component
+  description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  title="Hello world!"
 >
   <div
-    className="icon-container"
-  >
-    <Component
-      fill="info"
-      iconName="InfoCircleFilled"
-      size="default"
-    />
-  </div>
-  <div
-    className="container"
+    className="root intent-info"
   >
     <div
-      className="title"
+      className="icon-container"
     >
-      Hello world!
+      <Component
+        fill="info"
+        iconName="InfoCircleFilled"
+        size="default"
+      >
+        <SvgInfoCircleFilled
+          className="icon fill-info size-default"
+        >
+          <svg
+            className="icon fill-info size-default"
+            height="1em"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clipRule="evenodd"
+              d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm1 17a1 1 0 11-2 0v-6a1 1 0 112 0v6zM11 7a1 1 0 112 0 1 1 0 01-2 0z"
+              fillRule="evenodd"
+            />
+          </svg>
+        </SvgInfoCircleFilled>
+      </Component>
     </div>
     <div
-      className="description"
+      className="container"
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      <Component
+        className="title"
+        type="body-strong"
+      >
+        <span
+          className="type-body-strong title"
+        >
+          Hello world!
+        </span>
+      </Component>
+      <Component
+        className="description"
+        type="body"
+      >
+        <span
+          className="type-body description"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </span>
+      </Component>
     </div>
   </div>
-</div>
+</Component>
 `;
 
 exports[`InlineAlert renders with success intent 1`] = `
@@ -146,11 +235,12 @@ exports[`InlineAlert renders with success intent 1`] = `
   <div
     className="container"
   >
-    <div
+    <Component
       className="title"
+      type="body-strong"
     >
       Hello world!
-    </div>
+    </Component>
   </div>
 </div>
 `;
@@ -171,11 +261,12 @@ exports[`InlineAlert renders with undefined intent 1`] = `
   <div
     className="container"
   >
-    <div
+    <Component
       className="title"
+      type="body-strong"
     >
       Hello world!
-    </div>
+    </Component>
   </div>
 </div>
 `;
@@ -196,11 +287,12 @@ exports[`InlineAlert renders with warning intent 1`] = `
   <div
     className="container"
   >
-    <div
+    <Component
       className="title"
+      type="body-strong"
     >
       Hello world!
-    </div>
+    </Component>
   </div>
 </div>
 `;
