@@ -2,21 +2,21 @@
   "component": {
     "badge": {
       "background-color": {
-        "neutral": { "value": "{color.core.neutral.2.value}" },
-        "success": { "value": "{color.core.green.1.value}" },
-        "warning": { "value": "{color.core.orange.1.value}" },
-        "danger": { "value": "{color.core.red.1.value}" },
-        "info": { "value": "{color.core.blue.1.value}" }
+        "neutral": { "value": "{color.intent.neutral.2.value}" },
+        "success": { "value": "{color.intent.success.1.value}" },
+        "warning": { "value": "{color.intent.warning.1.value}" },
+        "danger": { "value": "{color.intent.danger.1.value}" },
+        "info": { "value": "{color.intent.info.1.value}" }
       },
       "border-color": {
-        "default": { "value": "{color.core.neutral.5.value}" }
+        "default": { "value": "{color.intent.neutral.5.value}" }
       },
       "font-color": {
-        "neutral": { "value": "{color.font.3.value}" },
-        "success": { "value": "{color.core.green.4.value}" },
-        "warning": { "value": "{color.core.orange.4.value}" },
-        "info": { "value": "{color.core.blue.4.value}" },
-        "danger": { "value": "{color.core.red.4.value}" }
+        "neutral": { "value": "{color.intent.neutral.6.value}" },
+        "success": { "value": "{color.intent.success.4.value}" },
+        "warning": { "value": "{color.intent.warning.4.value}" },
+        "info": { "value": "{color.intent.info.4.value}" },
+        "danger": { "value": "{color.intent.danger.4.value}" }
       }
     }
   }
