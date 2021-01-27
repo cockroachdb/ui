@@ -1,0 +1,53 @@
+{
+  "color": {
+    "intent": {
+      "primary": {
+        "1": { "value": "#e6ddff" },
+        "2": { "value": "#cbbcfc" },
+        "3": { "value": "#6933ff" },
+        "4": { "value": "#501fe5" },
+        "5": { "value": "#300d8f" }
+      },
+      "neutral": {
+        "0": { "value": "#ffffff" },
+        "1": { "value": "#f5f7fa" },
+        "2": { "value": "#e7ecf3" },
+        "3": { "value": "#d6dbe7" },
+        "4": { "value": "#c0c6d9" },
+        "5": { "value": "#7e89a9" },
+        "6": { "value": "#475872" },
+        "7": { "value": "#394455" },
+        "8": { "value": "#242a35" },
+        "9": { "value": "#060c12" }
+      },
+      "info": {
+        "1": { "value": "#e1ecff" },
+        "2": { "value": "#89b0ff" },
+        "3": { "value": "#0055ff" },
+        "4": { "value": "#0037a5" },
+        "5": { "value": "#0c1628" }
+      },
+      "success": {
+        "1": { "value": "#e3f5e0" },
+        "2": { "value": "#a5dd8d" },
+        "3": { "value": "#37a806" },
+        "4": { "value": "#237300" },
+        "5": { "value": "#123d00" }
+      },
+      "danger": {
+        "1": { "value": "#ffe9eb" },
+        "2": { "value": "#f8bfc6" },
+        "3": { "value": "#ff3b4e" },
+        "4": { "value": "#cd2939" },
+        "5": { "value": "#99000f" }
+      },
+      "warning": {
+        "1": { "value": "#fff4e1" },
+        "2": { "value": "#ffd099" },
+        "3": { "value": "#ffa53b" },
+        "4": { "value": "#b26000" },
+        "5": { "value": "#644004" }
+      }
+    }
+  }
+}
