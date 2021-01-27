@@ -26,22 +26,22 @@
 
 .intent-default {
   background: $component-avatar-background-color-default;
-  color: $color-core-neutral-7;
+  color: $component-avatar-font-color-default;
 }
 
 .intent-active {
-  background: $component-avatar-background-color-focus;
-  color: $color-base-blue;
+  background: $component-avatar-background-color-active;
+  color: $component-avatar-font-color-active;
 }
 
 .intent-pending {
   background: $component-avatar-background-color-pending;
-  color: $color-core-orange-4;
+  color: $component-avatar-font-color-pending;
 }
 
 .intent-invalid {
   background: $component-avatar-background-color-invalid;
-  color: $color-core-red-4;
+  color: $component-avatar-font-color-invalid;
 }
 
 .size-default {
@@ -88,7 +88,7 @@
     }
 
     &.intent-active {
-      @include selectable-border($component-avatar-border-color-focus);
+      @include selectable-border($component-avatar-border-color-active);
     }
 
     &.intent-pending {

@@ -3,6 +3,7 @@ import classNames from "classnames/bind";
 
 import styles from "./InlineAlert.module.scss";
 import { Icon, IconIntent } from "../Icon/Icon";
+import { Text } from "../Typography";
 
 const cx = classNames.bind(styles);
 
@@ -50,8 +51,16 @@ export const InlineAlert: React.FC<InlineAlertProps> = ({
         <Icon iconName={iconName} size="default" fill={intent} />
       </div>
       <div className={cx("container")}>
-        {title && <div className={cx("title")}>{title}</div>}
-        {description && <div className={cx("description")}>{description}</div>}
+        {title && (
+          <Text type="body-strong" className={cx("title")}>
+            {title}
+          </Text>
+        )}
+        {description && (
+          <Text type="body" className={cx("description")}>
+            {description}
+          </Text>
+        )}
       </div>
     </div>
   );

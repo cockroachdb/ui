@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import { IconIntent } from "../Icon/Icon";
 import { InlineAlert } from "./InlineAlert";
 
@@ -23,15 +23,17 @@ describe("InlineAlert", () => {
 
   test("renders with provided title", () => {
     const title = "Hello world!";
-    const wrapper = shallow(<InlineAlert title={title} />);
-    expect(wrapper.text()).toContain(title);
+    const wrapper = mount(<InlineAlert title={title} />);
+    expect(wrapper.find(".type-body-strong.title").text()).toContain(title);
     expect(wrapper).toMatchSnapshot();
   });
 
   test("renders with provided description", () => {
     const description = "Hello world!";
-    const wrapper = shallow(<InlineAlert description={description} />);
-    expect(wrapper.text()).toContain(description);
+    const wrapper = mount(<InlineAlert description={description} />);
+    expect(wrapper.find(".type-body.description").text()).toContain(
+      description,
+    );
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -39,11 +41,11 @@ describe("InlineAlert", () => {
     const title = "Hello world!";
     const description =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
-    const wrapper = shallow(
+    const wrapper = mount(
       <InlineAlert title={title} description={description} />,
     );
-    expect(wrapper.text()).toContain(title);
-    expect(wrapper.text()).toContain(description);
+    expect(wrapper.find(".type-body-strong").text()).toContain(title);
+    expect(wrapper.find(".type-body").text()).toContain(description);
     expect(wrapper).toMatchSnapshot();
   });
 });

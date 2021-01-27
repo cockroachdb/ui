@@ -8,7 +8,12 @@
       "green": { "value": "{color.core.green.3.value}" },
       "yellow": { "value": "{color.core.yellow.3.value}" },
       "orange": { "value": "{color.core.orange.3.value}" },
-      "red": { "value": "{color.core.red.3.value}" }
+      "red": { "value": "{color.core.red.3.value}" },
+      "primary": { "value": "{color.intent.primary.3.value}" },
+      "info": { "value": "{color.intent.info.3.value}" },
+      "success": { "value": "{color.intent.success.3.value}" },
+      "danger": { "value": "{color.intent.danger.3.value}" },
+      "warning": { "value": "{color.intent.warning.3.value}" }
     }
   }
 }
