@@ -4,8 +4,8 @@
   display: flex;
   flex-direction: row;
   flex-grow: 1;
-  border-left: solid crl-gutters(.5);
-  border-radius: crl-gutters(.5);
+  border-left: solid crl-gutters(0.5);
+  border-radius: crl-gutters(0.5);
   padding: crl-gutters(1.5) crl-gutters(3) crl-gutters(1.5) 0;
 }
 
@@ -16,9 +16,7 @@
 }
 
 .title {
-  line-height: crl-gutters(3);
-  margin-bottom: crl-gutters(.5);
-  font-weight: 600;
+  margin-bottom: crl-gutters(0.5);
 }
 
 .icon-container {
@@ -26,21 +24,21 @@
 }
 
 .intent-info {
-  border-left-color: $component-badge-background-color-info;
-  background-color: $component-badge-background-color-info;
+  border-left-color: $component-inline-alert-border-color-info;
+  background-color: $component-inline-alert-background-color-info;
 }
 
-.intent-error {
-  border-left-color: $component-badge-background-color-danger;
-  background-color: $component-badge-background-color-danger;
+.intent-danger {
+  border-left-color: $component-inline-alert-border-color-danger;
+  background-color: $component-inline-alert-background-color-danger;
 }
 
 .intent-warning {
-  border-left-color: $color-base-orange;
-  background-color: $component-badge-background-color-warning;
+  border-left-color: $component-inline-alert-border-color-warning;
+  background-color: $component-inline-alert-background-color-warning;
 }
 
 .intent-success {
-  border-left-color: $color-core-green-3;
-  background-color: $color-core-green-1;
+  border-left-color: $component-inline-alert-border-color-success;
+  background-color: $component-inline-alert-background-color-success;
 }

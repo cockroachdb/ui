@@ -9,7 +9,7 @@ export default {
   decorators: [withKnobs],
 };
 
-const alertIntents: InlineAlertIntent[] = ["warning", "success", "error", "info"];
+const alertIntents: InlineAlertIntent[] = ["warning", "success", "danger", "info"];
 
 export const Example = () => (
   <StoryContainer>
@@ -52,7 +52,7 @@ export const Example = () => (
         alertIntents.map((intent, idx) => (
           <div key={idx}>
             <InlineAlert title="Inline alert" description={`with "${intent}" intent`} intent={intent} />
-            <p/>
+            <p />
           </div>
         ))
       }
