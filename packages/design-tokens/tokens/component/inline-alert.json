@@ -1,0 +1,18 @@
+{
+  "component": {
+    "inline-alert": {
+      "border-color": {
+        "info": { "value": "{color.intent.info.3.value}" },
+        "danger": { "value": "{color.intent.danger.3.value}" },
+        "warning": { "value": "{color.intent.warning.3.value}" },
+        "success": { "value": "{color.intent.success.3.value}" }
+      },
+      "background-color": {
+        "info": { "value": "{color.intent.info.1.value}" },
+        "danger": { "value": "{color.intent.danger.1.value}" },
+        "warning": { "value": "{color.intent.warning.1.value}" },
+        "success": { "value": "{color.intent.success.1.value}" }
+      }
+    }
+  }
+}
