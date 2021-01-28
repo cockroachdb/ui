@@ -14,9 +14,6 @@
   "workspaces": {
     "packages": [
       "packages/*"
-    ],
-    "nohoist": [
-      "**/storybook-ui-components/**"
     ]
   }
 }

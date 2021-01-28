@@ -46,6 +46,9 @@ jobs:
       - name: Lerna bootstrap
         run: npx lerna bootstrap
 
+      - name: Build packages
+        run: npx lerna run build
+
       - name: Build storybook
         run: yarn run build-storybook
         working-directory: ./packages/storybook-ui-components
