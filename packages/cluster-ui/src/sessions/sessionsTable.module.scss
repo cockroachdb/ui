@@ -22,6 +22,10 @@
   width: 400px;
   text-decoration: none;
   cursor: pointer;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   &:hover {
     color: $colors--link;
     text-decoration: underline;
