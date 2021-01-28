@@ -4,6 +4,9 @@ name: Build and Deploy Storybook
 # events where files change in the storybook-ui-components package
 # but only for the master branch
 on:
+  pull_request:
+    paths:
+      - "packages/storybook-ui-components/**"
   push:
     branches: [master]
     paths:
@@ -40,8 +43,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Lerna bootstrap
+        run: npx lerna bootstrap
+
       - name: Build storybook
-        run: yarn && npm run build-storybook
+        run: yarn run build-storybook
         working-directory: ./packages/storybook-ui-components
 
       - name: Deploy
