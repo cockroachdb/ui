@@ -45,13 +45,14 @@ import {
 
 type ICancelQueryRequest = any;
 interface OwnProps {
-  id: string;
+  id?: string;
   nodeNames: { [nodeId: string]: string };
   session: SessionInfo;
   sessionError: Error | null;
   //refreshSessions: typeof refreshSessions;
   refreshSessions: any;
-  cancel?: (req: ICancelQueryRequest) => void;
+  cancelSession: (req: ICancelQueryRequest) => void,
+  cancelQuery: (req: ICancelQueryRequest) => void,
 }
 
 const cx = classNames.bind(styles);
@@ -108,7 +109,7 @@ export class SessionDetails extends React.Component<SessionDetailsProps, {}> {
 
   render() {
     const sessionID = getMatchParamByName(this.props.match, sessionAttr);
-    const { sessionError, cancel } = this.props;
+    const { sessionError, cancelSession, cancelQuery } = this.props;
     const session = this.props.session?.session;
     const showActionButtons = !!session && !sessionError;
     return (
@@ -168,8 +169,8 @@ export class SessionDetails extends React.Component<SessionDetailsProps, {}> {
             render={this.renderContent}
           />
         </section>
-        <TerminateSessionModal ref={this.terminateSessionRef} cancel={cancel} />
-        <TerminateQueryModal ref={this.terminateQueryRef} cancel={cancel} />
+        <TerminateSessionModal ref={this.terminateSessionRef} cancel={cancelSession} />
+        <TerminateQueryModal ref={this.terminateQueryRef} cancel={cancelQuery} />
       </div>
     );
   }

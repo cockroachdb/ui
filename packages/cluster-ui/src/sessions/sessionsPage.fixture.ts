@@ -151,6 +151,8 @@ export const sessionsPagePropsFixture: SessionsPageProps = {
   sessions: sessionsList,
   sessionsError: null,
   refreshSessions: (() => {}) as any,
+  cancelSession: (() => {}) as any,
+  cancelQuery: (() => {}) as any,
 };
 
 export const sessionsPagePropsEmptyFixture: SessionsPageProps = {
@@ -170,5 +172,6 @@ export const sessionsPagePropsEmptyFixture: SessionsPageProps = {
   sessions: [],
   sessionsError: null,
   refreshSessions: (() => {}) as any,
-  cancel: (() => {}) as any,
+  cancelSession: (() => {}) as any,
+  cancelQuery: (() => {}) as any,
 };

@@ -7,6 +7,8 @@ import {
 } from "./statementDiagnostics";
 import { NodesState, reducer as nodes } from "./nodes";
 import { LivenessState, reducer as liveness } from "./liveness";
+import { SessionsState, reducer as sessions } from "./sessions";
+import { TerninateQueryState, reducer as terminateQuery } from "./terminateQuery";
 
 export type AdminUiState = {
   statements: StatementsState;
@@ -14,6 +16,8 @@ export type AdminUiState = {
   localStorage: LocalStorageState;
   nodes: NodesState;
   liveness: LivenessState;
+  sessions: SessionsState;
+  terminateQuery: TerninateQueryState
 };
 
 export type AppState = {
@@ -26,4 +30,6 @@ export const rootReducer = combineReducers<AdminUiState>({
   statements,
   nodes,
   liveness,
+  sessions,
+  terminateQuery
 });

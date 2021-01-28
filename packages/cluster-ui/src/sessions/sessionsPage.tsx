@@ -51,7 +51,8 @@ interface OwnProps {
   sessionsError: Error | null;
   //refreshSessions: typeof refreshSessions;
   refreshSessions: any;
-  cancel?: (req: ICancelQueryRequest) => void;
+  cancelSession: (req: ICancelQueryRequest) => void;
+  cancelQuery: (req: ICancelQueryRequest) => void;
   onPageChanged?: (newPage: number) => void;
 }
 
@@ -206,7 +207,7 @@ export class SessionsPage extends React.Component<
   };
 
   render() {
-    const { match, cancel } = this.props;
+    const { match, cancelSession, cancelQuery } = this.props;
     const app = getMatchParamByName(match, appAttr);
     return (
       <React.Fragment>
@@ -221,8 +222,8 @@ export class SessionsPage extends React.Component<
           error={this.props.sessionsError}
           render={this.renderSessions}
         />
-        <TerminateSessionModal ref={this.terminateSessionRef} cancel={cancel} />
-        <TerminateQueryModal ref={this.terminateQueryRef} cancel={cancel} />
+        <TerminateSessionModal ref={this.terminateSessionRef} cancel={cancelSession} />
+        <TerminateQueryModal ref={this.terminateQueryRef} cancel={cancelQuery} />
       </React.Fragment>
     );
   }

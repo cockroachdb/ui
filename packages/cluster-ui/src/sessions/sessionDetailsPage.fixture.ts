@@ -42,7 +42,8 @@ const sessionDetailsPropsBase: SessionDetailsProps = {
   },
   //refreshSessions: (() => {}) as (typeof refreshSessions),
   refreshSessions: (() => {}) as any,
-  cancel: (() => {}) as any,
+  cancelSession: (() => {}) as any,
+  cancelQuery: (() => {}) as any,
 };
 
 export const sessionDetailsIdlePropsFixture: SessionDetailsProps = {
