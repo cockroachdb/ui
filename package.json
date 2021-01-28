@@ -11,5 +11,12 @@
   "resolutions": {
     "dot-prop": "^4.2.1"
   },
-  "workspaces": ["packages/*"]
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/storybook-ui-components/**"
+    ]
+  }
 }
