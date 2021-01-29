@@ -67,7 +67,5 @@ h2.base-heading {
     items in the app filter dropdown
   */
   max-width: 80ch;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+  @include text-overflow;
 }
