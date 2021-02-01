@@ -41,17 +41,22 @@ import {
   StatementLinkTarget,
 } from "src/statementsTable/statementsTableContent";
 
-//import {refreshSessions} from "src/redux/apiReducers";
+import { actions as sessionsActions } from "src/store/sessions";
+import { actions as nodesActions } from "src/store/nodes";
+import { actions as nodesLivenessActions } from "src/store/liveness";
+import { actions as queryActions } from "src/store/terminateQuery";
 
 type ICancelQueryRequest = any;
 interface OwnProps {
-  id: string;
+  id?: string;
   nodeNames: { [nodeId: string]: string };
   session: SessionInfo;
   sessionError: Error | null;
-  //refreshSessions: typeof refreshSessions;
-  refreshSessions: any;
-  cancel?: (req: ICancelQueryRequest) => void;
+  refreshSessions: typeof sessionsActions.refresh;
+  refreshNodes: typeof nodesActions.refresh;
+  refreshNodesLiveness: typeof nodesLivenessActions.refresh;
+  cancelSession: typeof queryActions.terminateSession;
+  cancelQuery: typeof queryActions.terminateQuery;
 }
 
 const cx = classNames.bind(styles);
@@ -79,6 +84,8 @@ export class SessionDetails extends React.Component<SessionDetailsProps, {}> {
   terminateQueryRef: React.RefObject<TerminateQueryModalRef>;
 
   componentDidMount() {
+    this.props.refreshNodes();
+    this.props.refreshNodesLiveness();
     this.props.refreshSessions();
   }
 
@@ -108,7 +115,7 @@ export class SessionDetails extends React.Component<SessionDetailsProps, {}> {
 
   render() {
     const sessionID = getMatchParamByName(this.props.match, sessionAttr);
-    const { sessionError, cancel } = this.props;
+    const { sessionError, cancelSession, cancelQuery } = this.props;
     const session = this.props.session?.session;
     const showActionButtons = !!session && !sessionError;
     return (
@@ -168,8 +175,14 @@ export class SessionDetails extends React.Component<SessionDetailsProps, {}> {
             render={this.renderContent}
           />
         </section>
-        <TerminateSessionModal ref={this.terminateSessionRef} cancel={cancel} />
-        <TerminateQueryModal ref={this.terminateQueryRef} cancel={cancel} />
+        <TerminateSessionModal
+          ref={this.terminateSessionRef}
+          cancel={cancelSession}
+        />
+        <TerminateQueryModal
+          ref={this.terminateQueryRef}
+          cancel={cancelQuery}
+        />
       </div>
     );
   }

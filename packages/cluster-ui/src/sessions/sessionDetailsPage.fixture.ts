@@ -18,6 +18,11 @@ import {
 } from "./sessionsPage.fixture";
 import { sessionAttr } from "src/util/constants";
 
+import { actions as sessionsActions } from "src/store/sessions";
+import { actions as nodesActions } from "src/store/nodes";
+import { actions as nodesLivenessActions } from "src/store/liveness";
+import { actions as terminateQueryActions } from "src/store/terminateQuery";
+
 const history = createMemoryHistory({ initialEntries: ["/sessions"] });
 
 const sessionDetailsPropsBase: SessionDetailsProps = {
@@ -40,9 +45,12 @@ const sessionDetailsPropsBase: SessionDetailsProps = {
     isExact: true,
     params: { [sessionAttr]: "blah" },
   },
-  //refreshSessions: (() => {}) as (typeof refreshSessions),
-  refreshSessions: (() => {}) as any,
-  cancel: (() => {}) as any,
+
+  refreshSessions: (() => {}) as typeof sessionsActions.refresh,
+  cancelSession: (() => {}) as typeof terminateQueryActions.terminateSession,
+  cancelQuery: (() => {}) as typeof terminateQueryActions.terminateQuery,
+  refreshNodes: (() => {}) as typeof nodesActions.refresh,
+  refreshNodesLiveness: (() => {}) as typeof nodesLivenessActions.refresh,
 };
 
 export const sessionDetailsIdlePropsFixture: SessionDetailsProps = {

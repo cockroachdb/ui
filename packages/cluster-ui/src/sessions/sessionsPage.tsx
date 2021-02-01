@@ -41,17 +41,17 @@ import TerminateSessionModal, {
   TerminateSessionModalRef,
 } from "./terminateSessionModal";
 
-import sortableTableStyles from "src/sortedtable/sortedtable.module.scss";
+import { actions as sessionsActions } from "src/store/sessions";
+import { actions as queryActions } from "src/store/terminateQuery";
 
-const sortableTableCx = classNames.bind(sortableTableStyles);
-
-type ICancelQueryRequest = any;
+import sortedTableStyles from "src/sortedtable/sortedtable.module.scss";
+const sortableTableCx = classNames.bind(sortedTableStyles);
 interface OwnProps {
   sessions: SessionInfo[];
-  sessionsError: Error | null;
-  //refreshSessions: typeof refreshSessions;
-  refreshSessions: any;
-  cancel?: (req: ICancelQueryRequest) => void;
+  sessionsError: Error | Error[];
+  refreshSessions: typeof sessionsActions.refresh;
+  cancelSession: typeof queryActions.terminateSession;
+  cancelQuery: typeof queryActions.terminateQuery;
   onPageChanged?: (newPage: number) => void;
 }
 
@@ -156,6 +156,7 @@ export class SessionsPage extends React.Component<
   renderSessions = () => {
     const sessionsData = this.props.sessions;
     const { pagination } = this.state;
+
     return (
       <div>
         <section className={sortableTableCx("cl-table-container")}>
@@ -206,7 +207,7 @@ export class SessionsPage extends React.Component<
   };
 
   render() {
-    const { match, cancel } = this.props;
+    const { match, cancelSession, cancelQuery } = this.props;
     const app = getMatchParamByName(match, appAttr);
     return (
       <React.Fragment>
@@ -221,8 +222,14 @@ export class SessionsPage extends React.Component<
           error={this.props.sessionsError}
           render={this.renderSessions}
         />
-        <TerminateSessionModal ref={this.terminateSessionRef} cancel={cancel} />
-        <TerminateQueryModal ref={this.terminateQueryRef} cancel={cancel} />
+        <TerminateSessionModal
+          ref={this.terminateSessionRef}
+          cancel={cancelSession}
+        />
+        <TerminateQueryModal
+          ref={this.terminateQueryRef}
+          cancel={cancelQuery}
+        />
       </React.Fragment>
     );
   }
