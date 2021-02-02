@@ -9,7 +9,6 @@
 // licenses/APL.txt.
 
 import { SessionsPageProps } from "./sessionsPage";
-//import {refreshSessions} from "src/redux/apiReducers";
 import { createMemoryHistory } from "history";
 import { SessionInfo } from "./sessionsTable";
 import Long from "long";
@@ -150,7 +149,9 @@ export const sessionsPagePropsFixture: SessionsPageProps = {
   },
   sessions: sessionsList,
   sessionsError: null,
-  refreshSessions: (() => {}) as any,
+  refreshSessions: () => {},
+  cancelSession: () => {},
+  cancelQuery: () => {},
 };
 
 export const sessionsPagePropsEmptyFixture: SessionsPageProps = {
@@ -169,6 +170,7 @@ export const sessionsPagePropsEmptyFixture: SessionsPageProps = {
   },
   sessions: [],
   sessionsError: null,
-  refreshSessions: (() => {}) as any,
-  cancel: (() => {}) as any,
+  refreshSessions: () => {},
+  cancelSession: () => {},
+  cancelQuery: () => {},
 };
