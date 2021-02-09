@@ -1,7 +1,8 @@
 import React, { FunctionComponent, ReactElement, useState } from "react";
-import { usePopper } from "react-popper";
+// import { usePopperTooltip } from "react-popper-tooltip";
 import classNames from "classnames/bind";
 import css from "./Tooltip.module.scss";
+import { createPopper } from "@popperjs/core/lib/createPopper";
 
 export type TooltipPosition =
   | "left"
@@ -37,19 +38,23 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
   const [popperElement, setPopperElement] = useState(null);
   const [arrowElement, setArrowElement] = useState(null);
 
-  const { styles, attributes } = usePopper(referenceElement, popperElement, {
-    placement,
-    modifiers: [
-      { name: "arrow", options: { element: arrowElement } },
-      { name: "offset", options: { offset: [0, 10] } },
-      {
-        name: "computeStyles",
-        options: {
-          gpuAcceleration: false, // true by default
+  const { styles, attributes }: any = createPopper(
+    referenceElement,
+    popperElement,
+    {
+      placement,
+      modifiers: [
+        { name: "arrow", options: { element: arrowElement } },
+        { name: "offset", options: { offset: [0, 10] } },
+        {
+          name: "computeStyles",
+          options: {
+            gpuAcceleration: false, // true by default
+          },
         },
-      },
-    ],
-  });
+      ],
+    },
+  );
 
   if (!content) {
     return <>{children}</>;
@@ -60,7 +65,7 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
     popperElement.setAttribute("data-show", "");
   }
 
-  const wrappedChildren = React.Children.map(children, child => {
+  const wrappedChildren = React.Children.map(children, (child) => {
     return React.cloneElement(
       typeof children === "string" ? (
         <span>{child}</span>

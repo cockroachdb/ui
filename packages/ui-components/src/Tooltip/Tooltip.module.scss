@@ -90,17 +90,29 @@ $tooltip-arrow-half-width: 5px;
 // Default style
 // --------------------------------------------------
 .default {
-  @include crl-tooltip-style($color-core-neutral-6, $color-core-neutral-6, $color-base-white);
+  @include crl-tooltip-style(
+    $color-core-neutral-6,
+    $color-core-neutral-6,
+    $color-base-white
+  );
 }
 //
 // Dark style
 // --------------------------------------------------
 .dark {
-  @include crl-tooltip-style($color-base-black, $color-base-black, $color-base-white);
+  @include crl-tooltip-style(
+    $color-base-black,
+    $color-base-black,
+    $color-base-white
+  );
 }
 //
 // Light style
 // --------------------------------------------------
 .light {
-  @include crl-tooltip-style($color-base-white, $color-core-neutral-2, $color-font-3);
+  @include crl-tooltip-style(
+    $color-base-white,
+    $color-core-neutral-2,
+    $color-font-3
+  );
 }

@@ -1,11 +1,11 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent } from 'react';
 
 const StoryContainer: FunctionComponent = ({ children }) => (
   <section
     style={{
-      marginLeft: "25px",
+      marginLeft: '25px',
       fontFamily: "'Source Sans Pro', sans-serif",
-      color: "#394455",
+      color: '#394455',
     }}
   >
     {children}

@@ -1,10 +1,10 @@
-import React from "react";
-import { withKnobs, text, select } from "@storybook/addon-knobs";
-import { Tooltip } from "@cockroachlabs/ui-components";
-import { StoryContainer, StoryDescription } from "../layout";
+import React from 'react';
+import { withKnobs, text, select } from '@storybook/addon-knobs';
+import { Tooltip } from '@cockroachlabs/ui-components';
+import { StoryContainer, StoryDescription } from '../layout';
 
 export default {
-  title: "Tooltip",
+  title: 'Tooltip',
   components: Tooltip,
   decorators: [withKnobs],
 };
@@ -12,25 +12,25 @@ export default {
 export const Example = () => {
   const text = (
     <span>
-      reasonble tooltip text,
+      reasonable tooltip text,
       <br />
       some more text
     </span>
   );
 
   const styles: React.CSSProperties = {
-    display: "table-cell",
-    height: "80px",
-    width: "80px",
-    textAlign: "center",
-    background: "#f6f6f6",
-    verticalAlign: "middle",
-    border: "5px solid white",
-    boxSizing: "border-box",
+    display: 'table-cell',
+    height: '80px',
+    width: '80px',
+    textAlign: 'center',
+    background: '#f6f6f6',
+    verticalAlign: 'middle',
+    border: '5px solid white',
+    boxSizing: 'border-box',
   };
 
   const rowStyle: React.CSSProperties = {
-    display: "table-row",
+    display: 'table-row',
   };
 
   return (
@@ -50,7 +50,7 @@ export const Example = () => {
       </StoryDescription>
       <section>
         <h1>Positions</h1>
-        <div style={{ display: "table", margin: "0 auto" }}>
+        <div style={{ display: 'table', margin: '0 auto' }}>
           <div style={rowStyle}>
             <Tooltip placement="left" content={text}>
               <div style={styles}>Left</div>
@@ -98,15 +98,20 @@ export const Example = () => {
         <section>
           <h3>Styles</h3>
 
-          <div style={{ display: "table", margin: "0 auto 100px auto" }}>
-            <div style={{ display: "table-row" }}>
+          <div
+            style={{
+              display: 'table',
+              margin: '0 auto 100px auto',
+            }}
+          >
+            <div style={{ display: 'table-row' }}>
               <Tooltip
                 placement="bottom"
                 style="default"
                 visible={true}
                 content={text}
               >
-                <div style={{ ...styles, width: "200px" }}>default</div>
+                <div style={{ ...styles, width: '200px' }}>default</div>
               </Tooltip>
               <Tooltip
                 placement="bottom"
@@ -114,7 +119,7 @@ export const Example = () => {
                 visible={true}
                 content={text}
               >
-                <div style={{ ...styles, width: "200px" }}>dark</div>
+                <div style={{ ...styles, width: '200px' }}>dark</div>
               </Tooltip>
               <Tooltip
                 placement="bottom"
@@ -122,7 +127,7 @@ export const Example = () => {
                 visible={true}
                 content={text}
               >
-                <div style={{ ...styles, width: "200px" }}>light</div>
+                <div style={{ ...styles, width: '200px' }}>light</div>
               </Tooltip>
             </div>
           </div>
@@ -136,36 +141,36 @@ export const Demo = () => (
   <StoryContainer>
     <div
       style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
         height: 300,
       }}
     >
       <Tooltip
         placement={select(
-          "Position",
+          'Position',
           [
-            "left",
-            "left-start",
-            "left-end",
-            "right",
-            "right-start",
-            "right-end",
-            "top",
-            "top-start",
-            "top-end",
-            "bottom",
-            "bottom-start",
-            "bottom-end",
+            'left',
+            'left-start',
+            'left-end',
+            'right',
+            'right-start',
+            'right-end',
+            'top',
+            'top-start',
+            'top-end',
+            'bottom',
+            'bottom-start',
+            'bottom-end',
           ],
-          "bottom",
+          'bottom'
         )}
-        style={select("Style", ["default", "dark", "light"], "default")}
+        style={select('Style', ['default', 'dark', 'light'], 'default')}
         content={text(
-          "Text",
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          'Text',
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
         )}
       >
         hover me
