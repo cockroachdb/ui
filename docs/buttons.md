@@ -6,25 +6,39 @@ Buttons allow users to perform an action or to navigate to another page. They ha
 
 ### Primary button
 
+![alt text](https://github.com/cockroachdb/ui/blob/master/docs/assets/types_primary.png "Primary Type")
+
+
 Use a primary button to highlight the strongest call to action on a page. They are meant to look heavy in order to direct the user’s attention to the primary action on a page. 
 
 ### Secondary button
+
+![alt text](https://github.com/cockroachdb/ui/blob/master/docs/assets/types_secondary.png "Secondary Type")
+
 
 Use for actions that complement a primary action, or when there are multiple actions of equal weight. 
 
 ### Tertiary button
 
+![alt text](https://github.com/cockroachdb/ui/blob/master/docs/assets/types_tertiary.png "Tertiary Type")
+
 Use as an alternative to the secondary button for complementary actions. They can be used inline because they are different from content in style and recognizable as buttons alongside content.
 
 ### Danger button
+
+![alt text](https://github.com/cockroachdb/ui/blob/master/docs/assets/types_danger.png "Danger Type")
 
 Use a danger button for destructive actions like deleting. They indicate high severity and are meant to stand out so a user will proceed with caution.  
 
 ### External link
 
+![alt text](https://github.com/cockroachdb/ui/blob/master/docs/assets/types_external-link.png "External Link Type")
+
 Use to open an external URL
 
 ### CTA link
+
+![alt text](https://github.com/cockroachdb/ui/blob/master/docs/assets/types_cta-link.png "CTA Link Type")
 
 Use to perform an action within the application
 <br/><br/>
@@ -33,21 +47,21 @@ Use to perform an action within the application
 
 ### Primary 
 
-Default | Hover | Active | Focus | Disabled
+![alt text](https://github.com/cockroachdb/ui/blob/master/docs/assets/states_primary.png "Primary States")
 
 
 ### Secondary 
 
-Default | Hover | Active | Focus | Disabled
+![alt text](https://github.com/cockroachdb/ui/blob/master/docs/assets/states_secondary.png "Secondary States")
 
 
 ### Tertiary 
 
-Default | Hover | Active | Focus | Disabled
+![alt text](https://github.com/cockroachdb/ui/blob/master/docs/assets/states_tertiary.png "Tertiary States")
 
 ### Danger 
 
-Default | Hover | Active | Focus | Disabled
+![alt text](https://github.com/cockroachdb/ui/blob/master/docs/assets/states_danger.png "Danger States")
 <br/><br/>
 ## Formatting
 
