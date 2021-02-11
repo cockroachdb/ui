@@ -2,6 +2,7 @@
 import { createMemoryHistory } from "history";
 import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
 import Long from "long";
+type ITransactionStatistics = cockroach.sql.ITransactionStatistics;
 
 const history = createMemoryHistory({ initialEntries: ["/transactions"] });
 
@@ -20,6 +21,41 @@ export const routeProps = {
     url: "/transactions",
     isExact: true,
     params: {},
+  },
+};
+
+const txnStatsExample: Required<ITransactionStatistics> = {
+  count: Long.fromInt(280),
+  max_retries: Long.fromInt(0),
+  num_rows: { mean: 0, squared_diffs: 0 },
+  service_lat: {
+    mean: 0.06983223571428572,
+    squared_diffs: 146.70526074151044,
+  },
+  retry_lat: { mean: 0, squared_diffs: 0 },
+  commit_lat: {
+    mean: 0.000008235714285714293,
+    squared_diffs: 1.5384442857142857e-8,
+  },
+  rows_read: { mean: 1, squared_diffs: 0 },
+  bytes_read: {
+    mean: 61.021543985637344,
+    squared_diffs: 47.74147217235174,
+  },
+  exec_stats: {
+    contention_time: {
+      mean: 61.021543985637344,
+      squared_diffs: 47.74147217235174,
+    },
+    count: Long.fromInt(23),
+    max_mem_usage: {
+      mean: 61.021543985637344,
+      squared_diffs: 47.74147217235174,
+    },
+    network_bytes: {
+      mean: 61.021543985637344,
+      squared_diffs: 47.74147217235174,
+    },
   },
 };
 
@@ -713,20 +749,7 @@ export const data: cockroach.server.serverpb.IStatementsResponse = {
       stats_data: {
         statement_ids: [Long.fromInt(100)],
         app: "$ internal-select-running/get-claimed-jobs",
-        stats: {
-          count: Long.fromInt(93),
-          max_retries: Long.fromInt(0),
-          num_rows: { mean: 0, squared_diffs: 0 },
-          service_lat: {
-            mean: 0.05745331182795698,
-            squared_diffs: 14.213222686585958,
-          },
-          retry_lat: { mean: 0, squared_diffs: 0 },
-          commit_lat: {
-            mean: 0.000010258064516129034,
-            squared_diffs: 3.1277806451612896e-8,
-          },
-        },
+        stats: txnStatsExample,
       },
       node_id: 5,
     },
@@ -734,20 +757,7 @@ export const data: cockroach.server.serverpb.IStatementsResponse = {
       stats_data: {
         statement_ids: [Long.fromInt(101)],
         app: "$ internal-stmt-diag-poll",
-        stats: {
-          count: Long.fromInt(281),
-          max_retries: Long.fromInt(0),
-          num_rows: { mean: 0, squared_diffs: 0 },
-          service_lat: {
-            mean: 0.024999483985765122,
-            squared_diffs: 4.3998952051121805,
-          },
-          retry_lat: { mean: 0, squared_diffs: 0 },
-          commit_lat: {
-            mean: 0.000010387900355871875,
-            squared_diffs: 1.8959871886121012e-7,
-          },
-        },
+        stats: txnStatsExample,
       },
       node_id: 5,
     },
@@ -755,14 +765,7 @@ export const data: cockroach.server.serverpb.IStatementsResponse = {
       stats_data: {
         statement_ids: [Long.fromInt(102)],
         app: "$ internal-get-tables",
-        stats: {
-          count: Long.fromInt(1),
-          max_retries: Long.fromInt(0),
-          num_rows: { mean: 0, squared_diffs: 0 },
-          service_lat: { mean: 0.081996, squared_diffs: 0 },
-          retry_lat: { mean: 0, squared_diffs: 0 },
-          commit_lat: { mean: 0.000011, squared_diffs: 0 },
-        },
+        stats: txnStatsExample,
       },
       node_id: 5,
     },
@@ -770,14 +773,7 @@ export const data: cockroach.server.serverpb.IStatementsResponse = {
       stats_data: {
         statement_ids: [Long.fromInt(103)],
         app: "$ internal-read orphaned leases",
-        stats: {
-          count: Long.fromInt(1),
-          max_retries: Long.fromInt(0),
-          num_rows: { mean: 0, squared_diffs: 0 },
-          service_lat: { mean: 0.027685, squared_diffs: 0 },
-          retry_lat: { mean: 0, squared_diffs: 0 },
-          commit_lat: { mean: 0.000004, squared_diffs: 0 },
-        },
+        stats: txnStatsExample,
       },
       node_id: 5,
     },
@@ -785,17 +781,7 @@ export const data: cockroach.server.serverpb.IStatementsResponse = {
       stats_data: {
         statement_ids: [Long.fromInt(104)],
         app: "$ internal-expire-sessions",
-        stats: {
-          count: Long.fromInt(280),
-          max_retries: Long.fromInt(0),
-          num_rows: { mean: 0, squared_diffs: 0 },
-          service_lat: {
-            mean: 0.07074643571428572,
-            squared_diffs: 192.57823989665084,
-          },
-          retry_lat: { mean: 0, squared_diffs: 0 },
-          commit_lat: { mean: 0, squared_diffs: 0 },
-        },
+        stats: txnStatsExample,
       },
       node_id: 5,
     },
@@ -803,14 +789,7 @@ export const data: cockroach.server.serverpb.IStatementsResponse = {
       stats_data: {
         statement_ids: [Long.fromInt(105)],
         app: "$ internal-show-version",
-        stats: {
-          count: Long.fromInt(1),
-          max_retries: Long.fromInt(0),
-          num_rows: { mean: 0, squared_diffs: 0 },
-          service_lat: { mean: 0.066901, squared_diffs: 0 },
-          retry_lat: { mean: 0, squared_diffs: 0 },
-          commit_lat: { mean: 0.000003, squared_diffs: 0 },
-        },
+        stats: txnStatsExample,
       },
       node_id: 5,
     },
@@ -818,20 +797,7 @@ export const data: cockroach.server.serverpb.IStatementsResponse = {
       stats_data: {
         statement_ids: [Long.fromInt(106), Long.fromInt(107)],
         app: "$ internal-delete-sessions",
-        stats: {
-          count: Long.fromInt(141),
-          max_retries: Long.fromInt(0),
-          num_rows: { mean: 0, squared_diffs: 0 },
-          service_lat: {
-            mean: 0.04333560992907801,
-            squared_diffs: 11.010815031621545,
-          },
-          retry_lat: { mean: 0, squared_diffs: 0 },
-          commit_lat: {
-            mean: 0.000010248226950354606,
-            squared_diffs: 5.068431205673761e-8,
-          },
-        },
+        stats: txnStatsExample,
       },
       node_id: 5,
     },
@@ -839,17 +805,7 @@ export const data: cockroach.server.serverpb.IStatementsResponse = {
       stats_data: {
         statement_ids: [Long.fromInt(108)],
         app: "$ TEST",
-        stats: {
-          count: Long.fromInt(278),
-          max_retries: Long.fromInt(0),
-          num_rows: { mean: 5, squared_diffs: 0 },
-          service_lat: {
-            mean: 0.10633510071942444,
-            squared_diffs: 354.59311369326707,
-          },
-          retry_lat: { mean: 0, squared_diffs: 0 },
-          commit_lat: { mean: 0, squared_diffs: 0 },
-        },
+        stats: txnStatsExample,
       },
       node_id: 4,
     },
@@ -857,20 +813,7 @@ export const data: cockroach.server.serverpb.IStatementsResponse = {
       stats_data: {
         statement_ids: [Long.fromInt(109)],
         app: "$ TEST",
-        stats: {
-          count: Long.fromInt(140),
-          max_retries: Long.fromInt(0),
-          num_rows: { mean: 3, squared_diffs: 0 },
-          service_lat: {
-            mean: 0.08878077142857142,
-            squared_diffs: 105.5228685349407,
-          },
-          retry_lat: { mean: 0, squared_diffs: 0 },
-          commit_lat: {
-            mean: 0.00000877857142857143,
-            squared_diffs: 5.338135714285717e-9,
-          },
-        },
+        stats: txnStatsExample,
       },
       node_id: 4,
     },
@@ -878,20 +821,7 @@ export const data: cockroach.server.serverpb.IStatementsResponse = {
       stats_data: {
         statement_ids: [Long.fromInt(107)],
         app: "$ TEST",
-        stats: {
-          count: Long.fromInt(280),
-          max_retries: Long.fromInt(0),
-          num_rows: { mean: 0, squared_diffs: 0 },
-          service_lat: {
-            mean: 0.06983223571428572,
-            squared_diffs: 146.70526074151044,
-          },
-          retry_lat: { mean: 0, squared_diffs: 0 },
-          commit_lat: {
-            mean: 0.000008235714285714293,
-            squared_diffs: 1.5384442857142857e-8,
-          },
-        },
+        stats: txnStatsExample,
       },
       node_id: 4,
     },
@@ -899,20 +829,7 @@ export const data: cockroach.server.serverpb.IStatementsResponse = {
       stats_data: {
         statement_ids: [Long.fromInt(107)],
         app: "$ TEST EXACT",
-        stats: {
-          count: Long.fromInt(280),
-          max_retries: Long.fromInt(0),
-          num_rows: { mean: 0, squared_diffs: 0 },
-          service_lat: {
-            mean: 0.01983223571428572,
-            squared_diffs: 146.70526074151044,
-          },
-          retry_lat: { mean: 0, squared_diffs: 0 },
-          commit_lat: {
-            mean: 0.000008235714285714293,
-            squared_diffs: 1.5384442857142857e-8,
-          },
-        },
+        stats: txnStatsExample,
       },
       node_id: 4,
     },
