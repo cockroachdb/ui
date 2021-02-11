@@ -1,3 +1,4 @@
+import React from "react";
 import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 
@@ -8,6 +9,7 @@ import { actions as analyticsActions } from "src/store/analytics";
 import { actions as localStorageActions } from "src/store/localStorage";
 import {
   StatementsPage,
+  StatementsPage_20_2,
   StatementsPageDispatchProps,
   StatementsPageOuterProps,
   StatementsPageProps,
@@ -24,49 +26,60 @@ import { AggregateStatistics } from "../statementsTable";
 
 type OwnProps = StatementsPageOuterProps & RouteComponentProps;
 
-export const ConnectedStatementsPage = withRouter(
-  connect<StatementsPageStateProps, StatementsPageDispatchProps, OwnProps>(
-    (state: AppState, props: StatementsPageProps) => ({
-      statements: selectStatements(state, props),
-      statementsError: selectStatementsLastError(state),
-      apps: selectApps(state),
-      totalFingerprints: selectTotalFingerprints(state),
-      lastReset: selectLastReset(state),
-    }),
-    {
-      refreshStatements: statementActions.refresh,
-      refreshStatementDiagnosticsRequests: statementDiagnosticsActions.refresh,
-      dismissAlertMessage: () =>
-        localStorageActions.update({
-          key: "adminUi/showDiagnosticsModal",
-          value: false,
-        }),
-      onActivateStatementDiagnostics: statementDiagnosticsActions.createReport,
-      onDiagnosticsModalOpen: (statementFingerprint: string) =>
-        analyticsActions.activateDiagnostics({
-          page: "statements",
-          value: statementFingerprint,
-        }),
-      onSearchComplete: (results: AggregateStatistics[]) =>
-        analyticsActions.search({
-          page: "statements",
-          value: results?.length || 0,
-        }),
-      onPageChanged: (pageNum: number) =>
-        analyticsActions.pagination({ page: "statements", value: pageNum }),
-      onSortingChange: (
-        tableName: string,
-        columnName: string,
-        ascending: boolean,
-      ) =>
-        analyticsActions.sorting({
-          page: "statements",
-          value: {
-            tableName,
-            columnName,
-            ascending,
-          },
-        }),
-    },
-  )(StatementsPage),
+const connectedStatementsPageFactory = (Component: React.ComponentClass) =>
+  withRouter(
+    connect<StatementsPageStateProps, StatementsPageDispatchProps, OwnProps>(
+      (state: AppState, props: StatementsPageProps) => ({
+        statements: selectStatements(state, props),
+        statementsError: selectStatementsLastError(state),
+        apps: selectApps(state),
+        totalFingerprints: selectTotalFingerprints(state),
+        lastReset: selectLastReset(state),
+      }),
+      {
+        refreshStatements: statementActions.refresh,
+        refreshStatementDiagnosticsRequests:
+          statementDiagnosticsActions.refresh,
+        dismissAlertMessage: () =>
+          localStorageActions.update({
+            key: "adminUi/showDiagnosticsModal",
+            value: false,
+          }),
+        onActivateStatementDiagnostics:
+          statementDiagnosticsActions.createReport,
+        onDiagnosticsModalOpen: (statementFingerprint: string) =>
+          analyticsActions.activateDiagnostics({
+            page: "statements",
+            value: statementFingerprint,
+          }),
+        onSearchComplete: (results: AggregateStatistics[]) =>
+          analyticsActions.search({
+            page: "statements",
+            value: results?.length || 0,
+          }),
+        onPageChanged: (pageNum: number) =>
+          analyticsActions.pagination({ page: "statements", value: pageNum }),
+        onSortingChange: (
+          tableName: string,
+          columnName: string,
+          ascending: boolean,
+        ) =>
+          analyticsActions.sorting({
+            page: "statements",
+            value: {
+              tableName,
+              columnName,
+              ascending,
+            },
+          }),
+      },
+    )(Component),
+  );
+
+export const ConnectedStatementsPage = connectedStatementsPageFactory(
+  StatementsPage,
+);
+
+export const ConnectedStatementsPage_20_2 = connectedStatementsPageFactory(
+  StatementsPage_20_2,
 );

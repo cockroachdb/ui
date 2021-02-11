@@ -2,6 +2,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   StatementDetails,
+  StatementDetails_20_2,
   StatementDetailsDispatchProps,
   StatementDetailsProps,
   StatementDetailsStateProps,
@@ -61,4 +62,8 @@ const mapDispatchToProps: StatementDetailsDispatchProps = {
 
 export const ConnectedStatementDetailsPage = withRouter(
   connect(mapStateToProps, mapDispatchToProps)(StatementDetails),
+);
+
+export const ConnectedStatementDetailsPage_20_2 = withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(StatementDetails_20_2),
 );

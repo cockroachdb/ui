@@ -11,6 +11,7 @@ import {
   maxMemUsageBarChart,
   networkBytesBarChart,
   retryBarChart,
+  rowsBarChart,
 } from "src/barCharts";
 import { ActivateDiagnosticsModalRef } from "src/statementsDiagnostics";
 import { ColumnDescriptor, SortedTable } from "src/sortedtable";
@@ -18,6 +19,7 @@ import { ColumnDescriptor, SortedTable } from "src/sortedtable";
 import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
 import {
   StatementTableTitle,
+  StatementTableTitle_20_2,
   StatementTableCell,
   NodeNames,
 } from "./statementsTableContent";
@@ -96,6 +98,66 @@ function makeCommonColumns(
       cell: retryBar,
       sort: stmt =>
         longToInt(stmt.stats.count) - longToInt(stmt.stats.first_attempt_count),
+    },
+  ];
+}
+
+function makeCommonColumns_20_2(
+  statements: AggregateStatistics[],
+): ColumnDescriptor<AggregateStatistics>[] {
+  const countBar = countBarChart(statements, {
+    classes: {
+      root: cx("statements-table__col-count--bar-chart"),
+      label: cx("statements-table__col-count--bar-chart__label"),
+    },
+  });
+  const retryBar = retryBarChart(statements, {
+    classes: {
+      root: cx("statements-table__col-retries--bar-chart"),
+      label: cx("statements-table__col-retries--bar-chart__label"),
+    },
+  });
+  const rowsBar = rowsBarChart(statements, {
+    classes: {
+      root: cx("statements-table__col-rows--bar-chart"),
+      label: cx("statements-table__col-rows--bar-chart__label"),
+    },
+  });
+  const latencyBar = latencyBarChart(statements, {
+    classes: {
+      root: cx("statements-table__col-latency--bar-chart"),
+    },
+  });
+
+  return [
+    {
+      name: "retries",
+      title: StatementTableTitle_20_2.retries,
+      className: cx("statements-table__col-retries"),
+      cell: retryBar,
+      sort: stmt =>
+        longToInt(stmt.stats.count) - longToInt(stmt.stats.first_attempt_count),
+    },
+    {
+      name: "executionCount",
+      title: StatementTableTitle_20_2.executionCount,
+      className: cx("statements-table__col-count"),
+      cell: countBar,
+      sort: stmt => FixLong(Number(stmt.stats.count)),
+    },
+    {
+      name: "rowsAffected",
+      title: StatementTableTitle_20_2.rowsAffected,
+      className: cx("statements-table__col-rows"),
+      cell: rowsBar,
+      sort: stmt => stmt.stats.num_rows.mean,
+    },
+    {
+      name: "latency",
+      title: StatementTableTitle_20_2.latency,
+      className: cx("statements-table__col-latency"),
+      cell: latencyBar,
+      sort: stmt => stmt.stats.service_lat.mean,
     },
   ];
 }
@@ -179,6 +241,54 @@ export function makeStatementsColumns(
   return columns;
 }
 
+export function makeStatementsColumns_20_2(
+  statements: AggregateStatistics[],
+  selectedApp: string,
+  search?: string,
+  activateDiagnosticsRef?: React.RefObject<ActivateDiagnosticsModalRef>,
+  onDiagnosticsDownload?: (report: IStatementDiagnosticsReport) => void,
+): ColumnDescriptor<AggregateStatistics>[] {
+  const columns: ColumnDescriptor<AggregateStatistics>[] = [
+    {
+      name: "statements",
+      title: StatementTableTitle.statements,
+      className: cx("cl-table__col-query-text"),
+      cell: StatementTableCell.statements(search, selectedApp),
+      sort: stmt => stmt.label,
+    },
+    {
+      name: "txtType",
+      title: StatementTableTitle.txtType,
+      className: cx("statements-table__col-time"),
+      cell: stmt => (stmt.implicitTxn ? "Implicit" : "Explicit"),
+      sort: stmt => (stmt.implicitTxn ? "Implicit" : "Explicit"),
+    },
+  ];
+  columns.push(...makeCommonColumns_20_2(statements));
+
+  if (activateDiagnosticsRef) {
+    const diagnosticsColumn: ColumnDescriptor<AggregateStatistics> = {
+      name: "diagnostics",
+      title: StatementTableTitle.diagnostics,
+      cell: StatementTableCell.diagnostics(
+        activateDiagnosticsRef,
+        onDiagnosticsDownload,
+      ),
+      sort: stmt => {
+        if (stmt.diagnosticsReports?.length > 0) {
+          // Perform sorting by first diagnostics report as only
+          // this one can be either in ready or waiting status.
+          return stmt.diagnosticsReports[0].completed ? "READY" : "WAITING";
+        }
+        return null;
+      },
+      titleAlign: "right",
+    };
+    columns.push(diagnosticsColumn);
+  }
+  return columns;
+}
+
 export function makeNodesColumns(
   statements: AggregateStatistics[],
   nodeNames: NodeNames,
@@ -192,4 +302,19 @@ export function makeNodesColumns(
   ];
 
   return original.concat(makeCommonColumns(statements));
+}
+
+export function makeNodesColumns_20_2(
+  statements: AggregateStatistics[],
+  nodeNames: NodeNames,
+): ColumnDescriptor<AggregateStatistics>[] {
+  const original: ColumnDescriptor<AggregateStatistics>[] = [
+    {
+      name: "nodes",
+      title: null,
+      cell: StatementTableCell.nodeLink(nodeNames),
+    },
+  ];
+
+  return original.concat(makeCommonColumns_20_2(statements));
 }

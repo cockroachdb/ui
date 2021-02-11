@@ -16,6 +16,10 @@ const countBars = [
   ),
 ];
 
+const rowsBars = [
+  bar("rows", (d: StatementStatistics) => d.stats.num_rows.mean),
+];
+
 const rowsReadBars = [
   bar("rows-read", (d: StatementStatistics) => d.stats.rows_read.mean),
 ];
@@ -63,6 +67,9 @@ const latencyStdDev = bar(
   cx("bar-chart__overall-dev"),
   (d: StatementStatistics) => stdDevLong(d.stats.service_lat, d.stats.count),
 );
+const rowsStdDev = bar(cx("rows-dev"), (d: StatementStatistics) =>
+  stdDevLong(d.stats.num_rows, d.stats.count),
+);
 const maxMemUsageStdDev = bar(
   cx("max-mem-usage-dev"),
   (d: StatementStatistics) =>
@@ -90,6 +97,13 @@ export const bytesReadBarChart = barChartFactory(
   bytesReadBars,
   Bytes,
   bytesReadStdDev,
+);
+export const rowsBarChart = barChartFactory(
+  "grey",
+  rowsBars,
+  approximify,
+  rowsStdDev,
+  formatTwoPlaces,
 );
 export const latencyBarChart = barChartFactory(
   "grey",
