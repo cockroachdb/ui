@@ -9,32 +9,32 @@ Buttons allow users to perform an action or to navigate to another page. They ha
 ![alt text](https://github.com/cockroachdb/ui/blob/master/docs/assets/types_primary.png "Primary Type")
 
 
-Use a primary button to highlight the strongest call to action on a page. They are meant to look heavy in order to direct the user’s attention to the primary action on a page. 
+* Use a primary button to highlight the strongest call to action on a page. They are meant to look heavy in order to direct the user’s attention to the primary action on a page. 
 
 ![alt text](https://github.com/cockroachdb/ui/blob/master/docs/assets/types_secondary.png "Secondary Type")
 
 
-Use a secondary button for actions that complement a primary action, or when there are multiple actions of equal weight. 
+* Use a secondary button for actions that complement a primary action, or when there are multiple actions of equal weight. 
 
 
 ![alt text](https://github.com/cockroachdb/ui/blob/master/docs/assets/types_tertiary.png "Tertiary Type")
 
-Use a tertiary button as an alternative to the secondary button for complementary actions. They can be used inline because they are different from content in style and recognizable as buttons alongside content.
+* Use a tertiary button as an alternative to the secondary button for complementary actions. They can be used inline because they are different from content in style and recognizable as buttons alongside content.
 
 
 ![alt text](https://github.com/cockroachdb/ui/blob/master/docs/assets/types_danger.png "Danger Type")
 
-Use a danger button for destructive actions like deleting. They indicate high severity and are meant to stand out so a user will proceed with caution.  
+* Use a danger button for destructive actions like deleting. They indicate high severity and are meant to stand out so a user will proceed with caution.  
 
 
 ![alt text](https://github.com/cockroachdb/ui/blob/master/docs/assets/types_external-link.png "External Link Type")
 
-Use an external link to open an external URL
+* Use an external link to open an external URL
 
 
 ![alt text](https://github.com/cockroachdb/ui/blob/master/docs/assets/types_cta-link.png "CTA Link Type")
 
-Use a CTA link to perform an action within the application
+* Use a CTA link to perform an action within the application
 <br/><br/>
 
 ## States
