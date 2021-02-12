@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - cluster-ui-20.2
     paths:
       - "packages/cluster-ui/**"
 jobs:
