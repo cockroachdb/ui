@@ -20,7 +20,7 @@
   "homepage": "https://github.com/cockroachdb/ui#readme",
   "dependencies": {
     "@cockroachlabs/icons": "^0.4.0",
-    "@cockroachlabs/ui-components": "next"
+    "@cockroachlabs/ui-components": "link:packages/ui-components"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
