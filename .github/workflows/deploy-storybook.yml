@@ -40,8 +40,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Install dependencies and build packages
+        run: yarn && yarn lerna run build
+
       - name: Build storybook
-        run: yarn && npm run build-storybook
+        run: yarn build-storybook
         working-directory: ./packages/storybook-ui-components
 
       - name: Deploy
