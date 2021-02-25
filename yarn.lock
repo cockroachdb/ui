@@ -1478,10 +1478,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@cockroachlabs/crdb-protobuf-client@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@cockroachlabs/crdb-protobuf-client/-/crdb-protobuf-client-0.0.6.tgz#e3ccc5b81987be7c525c6f71d52e2a2fced22deb"
-  integrity sha512-8A9QiLJ/9PlFJTtzzMTMCGb/VCt3jckHtwt/XWWqbFyZn4JuekUhZVM3XwiWf/vYG+rtrVaRpxuUKy8dLMw1pA==
+"@cockroachlabs/crdb-protobuf-client@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@cockroachlabs/crdb-protobuf-client/-/crdb-protobuf-client-0.0.7.tgz#b0b405f04acc56932ed698a7d532c71c0b7f43bd"
+  integrity sha512-LjpKVeeeIrUG91uxi5jq3g6AXU6oj/HgvfnhL2YJaUeVC4S12AcSVMLMQ2S06mgB7pVXBs66mH2Lt4R0s6l4Lg==
 
 "@cockroachlabs/icons@0.3.0", "@cockroachlabs/icons@^0.3.0":
   version "0.3.0"
