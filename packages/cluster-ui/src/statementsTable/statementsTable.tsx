@@ -8,6 +8,7 @@ import {
   rowsReadBarChart,
   bytesReadBarChart,
   latencyBarChart,
+  contentionBarChart,
   maxMemUsageBarChart,
   networkBytesBarChart,
   retryBarChart,
@@ -42,6 +43,7 @@ function makeCommonColumns(
   const rowsReadBar = rowsReadBarChart(statements, barChartOptions);
   const bytesReadBar = bytesReadBarChart(statements, barChartOptions);
   const latencyBar = latencyBarChart(statements, barChartOptions);
+  const contentionBar = contentionBarChart(statements, barChartOptions);
   const maxMemUsageBar = maxMemUsageBarChart(statements, barChartOptions);
   const networkBytesBar = networkBytesBarChart(statements, barChartOptions);
   const retryBar = retryBarChart(statements, barChartOptions);
@@ -74,6 +76,15 @@ function makeCommonColumns(
       className: cx("statements-table__col-latency"),
       cell: latencyBar,
       sort: stmt => stmt.stats.service_lat.mean,
+    },
+    {
+      name: "contention",
+      title: StatementTableTitle.contention,
+      // TODO(asubiotto): Looks like none of these class names are defined?
+      //  What's going on here?
+      className: cx("statements-table__col-contention"),
+      cell: contentionBar,
+      sort: stmt => FixLong(Number(stmt.stats.exec_stats.contention_time.mean)),
     },
     {
       name: "maxMemoryUsage",
