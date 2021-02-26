@@ -17,15 +17,37 @@ import {
 } from "redux";
 import { SessionsPageConnected } from "./sessionsPageConnected";
 import { AppState, rootReducer, sagas } from "../store";
+import { createReducer, PayloadAction } from "@reduxjs/toolkit";
+import {
+  actions as TerminateQueryActions,
+  ICancelSessionRequest,
+} from "src/store/terminateQuery";
 
 const history = createMemoryHistory();
 const routerReducer = connectRouter(history);
 const sagaMiddleware = createSagaMiddleware();
 
+const exampleNotificationsReducer = createReducer(
+  {
+    nodeId: "",
+  },
+  {
+    [TerminateQueryActions.terminateSession.type]: (
+      state,
+      action: PayloadAction<ICancelSessionRequest>,
+    ) => {
+      state.nodeId = action.payload.node_id;
+    },
+    [TerminateQueryActions.terminateSessionCompleted.type]: state => {
+      alert("Hiya you want to close the session on node: " + state.nodeId);
+    },
+  },
+);
 const store: Store<AppState> = createStore(
   combineReducers({
     router: routerReducer,
     adminUI: rootReducer,
+    adminUINotifications: exampleNotificationsReducer,
   }),
   compose(
     applyMiddleware(sagaMiddleware, routerMiddleware(history)),
@@ -45,10 +67,4 @@ storiesOf("Sessions Page Connected", module)
   .addDecorator(storyFn => (
     <div style={{ backgroundColor: "#F5F7FA" }}>{storyFn()}</div>
   ))
-  .add("with data", () => (
-    <SessionsPageConnected
-      sendNotification={(type, text) => {
-        alert(`${type}, ${text}`);
-      }}
-    />
-  ));
+  .add("with data", () => <SessionsPageConnected />);
