@@ -40,10 +40,12 @@ import {
   NodeLink,
   StatementLinkTarget,
 } from "src/statementsTable/statementsTableContent";
+
 import {
-  CancelQueryRequestMessage,
-  CancelSessionRequestMessage,
-} from "src/api/terminateQueryApi";
+  CancelSessionPayload,
+  CancelQueryPayload,
+  SendNotification,
+} from "src/store/terminateQuery";
 interface OwnProps {
   id?: string;
   nodeNames: { [nodeId: string]: string };
@@ -52,8 +54,9 @@ interface OwnProps {
   refreshSessions: () => void;
   refreshNodes: () => void;
   refreshNodesLiveness: () => void;
-  cancelSession: (req: CancelSessionRequestMessage) => void;
-  cancelQuery: (req: CancelQueryRequestMessage) => void;
+  cancelSession: (payload: CancelSessionPayload) => void;
+  cancelQuery: (payload: CancelQueryPayload) => void;
+  sendNotification?: SendNotification;
 }
 
 const cx = classNames.bind(styles);
@@ -112,7 +115,12 @@ export class SessionDetails extends React.Component<SessionDetailsProps, {}> {
 
   render() {
     const sessionID = getMatchParamByName(this.props.match, sessionAttr);
-    const { sessionError, cancelSession, cancelQuery } = this.props;
+    const {
+      sessionError,
+      cancelSession,
+      cancelQuery,
+      sendNotification,
+    } = this.props;
     const session = this.props.session?.session;
     const showActionButtons = !!session && !sessionError;
     return (
@@ -175,10 +183,12 @@ export class SessionDetails extends React.Component<SessionDetailsProps, {}> {
         <TerminateSessionModal
           ref={this.terminateSessionRef}
           cancel={cancelSession}
+          sendNotification={sendNotification}
         />
         <TerminateQueryModal
           ref={this.terminateQueryRef}
           cancel={cancelQuery}
+          sendNotification={sendNotification}
         />
       </div>
     );

@@ -14,12 +14,14 @@ import React, {
   useImperativeHandle,
   useState,
 } from "react";
+import {
+  ICancelSessionRequest,
+  SendNotification,
+  CancelSessionPayload,
+} from "src/store/terminateQuery";
 import { Modal } from "../modal";
 import { Text } from "../text";
 
-//import {cockroach} from "src/js/protos";
-//import ICancelSessionRequest = cockroach.server.serverpb.ICancelSessionRequest;
-type ICancelSessionRequest = any;
 //import {trackTerminateSession} from "src/util/analytics/trackTerminate";
 
 export interface TerminateSessionModalRef {
@@ -27,24 +29,23 @@ export interface TerminateSessionModalRef {
 }
 
 interface TerminateSessionModalProps {
-  //cancel: (req: ICancelSessionRequest) => void;
-  cancel?: (req: ICancelSessionRequest) => void;
+  cancel: (payload: CancelSessionPayload) => void;
+  sendNotification: SendNotification;
 }
 
-// tslint:disable-next-line:variable-name
 const TerminateSessionModal = (
   props: TerminateSessionModalProps,
   ref: React.RefObject<TerminateSessionModalRef>,
 ) => {
-  const { cancel } = props;
+  const { cancel, sendNotification } = props;
   const [visible, setVisible] = useState(false);
   const [req, setReq] = useState<ICancelSessionRequest>();
 
   const onOkHandler = useCallback(() => {
-    cancel(req);
+    sendNotification ? cancel({ req, sendNotification }) : cancel(req);
     //trackTerminateSession();
     setVisible(false);
-  }, [req, cancel]);
+  }, [req, cancel, sendNotification]);
 
   const onCancelHandler = useCallback(() => setVisible(false), []);
 

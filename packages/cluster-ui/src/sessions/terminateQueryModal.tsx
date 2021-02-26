@@ -16,36 +16,36 @@ import React, {
 } from "react";
 import { Modal } from "../modal";
 import { Text } from "../text";
+import {
+  CancelQueryPayload,
+  ICancelQueryRequest,
+  SendNotification,
+} from "src/store/terminateQuery";
 
-// import {cockroach} from "src/js/protos";
 // import {trackTerminateQuery} from "src/util/analytics/trackTerminate";
-
-// import ICancelQueryRequest = cockroach.server.serverpb.ICancelQueryRequest;
-type ICancelQueryRequest = any;
 
 export interface TerminateQueryModalRef {
   showModalFor: (req: ICancelQueryRequest) => void;
 }
 
 interface TerminateQueryModalProps {
-  //cancel: (req: ICancelQueryRequest) => void;
-  cancel?: (req: ICancelQueryRequest) => void;
+  cancel: (payload: CancelQueryPayload) => void;
+  sendNotification: SendNotification;
 }
 
-// tslint:disable-next-line:variable-name
 const TerminateQueryModal = (
   props: TerminateQueryModalProps,
   ref: React.RefObject<TerminateQueryModalRef>,
 ) => {
-  const { cancel } = props;
+  const { cancel, sendNotification } = props;
   const [visible, setVisible] = useState(false);
   const [req, setReq] = useState<ICancelQueryRequest>();
 
   const onOkHandler = useCallback(() => {
-    cancel(req);
+    sendNotification ? cancel({ req, sendNotification }) : cancel(req);
     //trackTerminateQuery();
     setVisible(false);
-  }, [req, cancel]);
+  }, [req, cancel, sendNotification]);
 
   const onCancelHandler = useCallback(() => setVisible(false), []);
 

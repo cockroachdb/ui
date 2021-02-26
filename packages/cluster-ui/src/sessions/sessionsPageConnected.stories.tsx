@@ -45,4 +45,10 @@ storiesOf("Sessions Page Connected", module)
   .addDecorator(storyFn => (
     <div style={{ backgroundColor: "#F5F7FA" }}>{storyFn()}</div>
   ))
-  .add("with data", () => <SessionsPageConnected />);
+  .add("with data", () => (
+    <SessionsPageConnected
+      sendNotification={(type, text) => {
+        alert(`${type}, ${text}`);
+      }}
+    />
+  ));

@@ -39,20 +39,24 @@ import TerminateSessionModal, {
 } from "./terminateSessionModal";
 
 import {
-  CancelSessionRequestMessage,
-  CancelQueryRequestMessage,
-} from "src/api/terminateQueryApi";
+  CancelQueryPayload,
+  CancelSessionPayload,
+  SendNotification,
+} from "src/store/terminateQuery";
 
 import sortedTableStyles from "src/sortedtable/sortedtable.module.scss";
 import styles from "src/statementsPage/statementsPage.module.scss";
+
 const sortableTableCx = classNames.bind(sortedTableStyles);
 const cx = classNames.bind(styles);
+
 interface OwnProps {
   sessions: SessionInfo[];
   sessionsError: Error | Error[];
   refreshSessions: () => void;
-  cancelSession: (req: CancelSessionRequestMessage) => void;
-  cancelQuery: (req: CancelQueryRequestMessage) => void;
+  cancelSession: (payload: CancelSessionPayload) => void;
+  cancelQuery: (req: CancelQueryPayload) => void;
+  sendNotification?: SendNotification;
   onPageChanged?: (newPage: number) => void;
 }
 
@@ -208,7 +212,7 @@ export class SessionsPage extends React.Component<
   };
 
   render() {
-    const { match, cancelSession, cancelQuery } = this.props;
+    const { match, cancelSession, cancelQuery, sendNotification } = this.props;
     const app = getMatchParamByName(match, appAttr);
     return (
       <div>
@@ -226,10 +230,12 @@ export class SessionsPage extends React.Component<
         <TerminateSessionModal
           ref={this.terminateSessionRef}
           cancel={cancelSession}
+          sendNotification={sendNotification}
         />
         <TerminateQueryModal
           ref={this.terminateQueryRef}
           cancel={cancelQuery}
+          sendNotification={sendNotification}
         />
       </div>
     );
