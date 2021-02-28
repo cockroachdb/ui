@@ -1,76 +1,72 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { render, fireEvent, screen } from "@testing-library/react";
 
 import Button from "./Button";
 
 describe("Button: intent prop", () => {
   it("should default to `secondary`", () => {
-    const wrapper = shallow(<Button>intent test</Button>);
-    expect(wrapper.prop("className")).toContain("intent-secondary");
+    const { getByRole } = render(<Button>intent test</Button>);
+    expect(getByRole("button")).toHaveClass("intent-secondary");
   });
 
   it("should render the button according to the `type` prop value", () => {
-    const wrapper = shallow(<Button>intent test</Button>);
+    const { rerender } = render(<Button>intent test</Button>);
 
-    // primary-success
-    wrapper.setProps({ intent: "primary-success" });
-    expect(wrapper.prop("className")).toContain("intent-primary-success");
+    // primary
+    rerender(<Button intent="primary">size test</Button>);
+    expect(screen.getByRole("button")).toHaveClass("intent-primary");
 
-    // primary-danger
-    wrapper.setProps({ intent: "primary-danger" });
-    expect(wrapper.prop("className")).toContain("intent-primary-danger");
+    // success
+    rerender(<Button intent="success">size test</Button>);
+    expect(screen.getByRole("button")).toHaveClass("intent-success");
 
-    // secondary
-    wrapper.setProps({ intent: "secondary" });
-    expect(wrapper.prop("className")).toContain("intent-secondary");
+    // danger
+    rerender(<Button intent="danger">size test</Button>);
+    expect(screen.getByRole("button")).toHaveClass("intent-danger");
 
     // tertiary
-    wrapper.setProps({ intent: "tertiary" });
-    expect(wrapper.prop("className")).toContain("intent-tertiary");
+    rerender(<Button intent="tertiary">size test</Button>);
+    expect(screen.getByRole("button")).toHaveClass("intent-tertiary");
   });
 });
 
 describe("Button: size prop", () => {
   it("should default to `standard`", () => {
-    const wrapper = shallow(<Button>size test</Button>);
-    expect(wrapper.prop("className")).toContain("size-standard");
+    render(<Button>size test</Button>);
+    expect(screen.getByRole("button")).toHaveClass("size-standard");
   });
 
   it("should render the button according to the `size` prop value", () => {
-    const wrapper = shallow(<Button>size test</Button>);
+    const { rerender } = render(<Button>size test</Button>);
 
-    // primary-success
-    wrapper.setProps({ size: "small" });
-    expect(wrapper.prop("className")).toContain("size-small");
-
-    // primary-danger
-    wrapper.setProps({ size: "standard" });
-    expect(wrapper.prop("className")).toContain("size-standard");
+    // small
+    rerender(<Button size="small">size test</Button>);
+    expect(screen.getByRole("button")).toHaveClass("size-small");
   });
 });
 
 describe("Button: onClick prop", () => {
   it("should call the `onClick` callback when clicked", () => {
     const cb = jest.fn();
-    const wrapper = shallow(
+    const { getByRole } = render(
       <Button as="button" onClick={cb}>
         onClick test
       </Button>,
     );
 
-    wrapper.find("button").simulate("click");
-    expect(cb.mock.calls.length).toEqual(1);
+    fireEvent.click(getByRole("button"));
+    expect(cb).toHaveBeenCalledTimes(1);
   });
 });
 
 describe("Button: as <a>", () => {
   it("should render anchor using as prop", () => {
-    const wrapper = shallow(
+    render(
       <Button as="a" href="#test">
         anchor
       </Button>,
     );
-    expect(wrapper.name()).toEqual("a");
-    expect(wrapper.prop("href")).toContain("#");
+    expect(screen.getByRole("link").localName).toBe("a");
+    expect(screen.getByRole("link")).toHaveAttribute("href", "#test");
   });
 });
