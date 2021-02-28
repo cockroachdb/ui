@@ -7,12 +7,15 @@ describe("Avatar", () => {
   describe("Default props", () => {
     it("assigns default style classes based on props", () => {
       render(<Avatar>CL</Avatar>);
-      const className = screen.getByTestId("avatar").className;
-      expect(className).toContain("intent-default");
-      expect(className).toContain("size-default");
-      expect(className).toContain("transformCase-uppercase");
-      expect(className).not.toContain("disabled");
-      expect(className).not.toContain("selectable");
+      expect(screen.getByTestId("avatar")).toHaveClass(
+        "intent-default",
+        "size-default",
+        "transformCase-uppercase",
+      );
+      expect(screen.getByTestId("avatar")).not.toHaveClass(
+        "disabled",
+        "selectable",
+      );
     });
   });
 
@@ -20,16 +23,19 @@ describe("Avatar", () => {
     it("appends user provided className", () => {
       const testClass = "nathan-test-stuff";
       render(<Avatar className={testClass}>NS</Avatar>);
-      const className = screen.getByTestId("avatar").className;
-      expect(className).toContain(testClass);
-      expect(className).toContain("intent-default");
+      expect(screen.getByTestId("avatar")).toHaveClass(
+        testClass,
+        "intent-default",
+      );
     });
 
     it("accepts data attributes", () => {
       const datatest = "nathan-data";
       render(<Avatar data-test={datatest}>NS</Avatar>);
-      const result = screen.getByTestId("avatar").dataset["test"];
-      expect(result).toBe(datatest);
+      expect(screen.getByTestId("avatar")).toHaveAttribute(
+        "data-test",
+        datatest,
+      );
     });
   });
 
@@ -89,8 +95,8 @@ describe("Avatar", () => {
     intents.forEach(intent => {
       it("applies correct classNames depending on intent", () => {
         expect(
-          render(<Avatar intent={intent} />).getByTestId("avatar").className,
-        ).toContain(`intent-${intent}`);
+          render(<Avatar intent={intent} />).getByTestId("avatar"),
+        ).toHaveClass(`intent-${intent}`);
       });
     });
   });
@@ -101,25 +107,23 @@ describe("Avatar", () => {
     sizes.forEach(size => {
       it("applies correct classNames depending on size", () => {
         expect(
-          render(<Avatar size={size} />).getByTestId("avatar").className,
-        ).toContain(`size-${size}`);
+          render(<Avatar size={size} />).getByTestId("avatar"),
+        ).toHaveClass(`size-${size}`);
       });
     });
   });
 
   describe("Disabled prop", () => {
     it("excludes intent className", () => {
-      const { getByTestId } = render(<Avatar intent="invalid" disabled />);
-      const className = getByTestId("avatar").className;
-      expect(className.includes("disabled")).toBeTruthy();
-      expect(className.includes("intent-invalid")).toBeFalsy();
+      render(<Avatar intent="invalid" disabled />);
+      expect(screen.getByTestId("avatar")).toHaveClass("disabled");
+      expect(screen.getByTestId("avatar")).not.toHaveClass("intent-invalid");
     });
 
     it("excludes selectable className", () => {
-      const { getByTestId } = render(<Avatar disabled selectable />);
-      const className = getByTestId("avatar").className;
-      expect(className.includes("disabled")).toBeTruthy();
-      expect(className.includes("selectable")).toBeFalsy();
+      render(<Avatar disabled selectable />);
+      expect(screen.getByTestId("avatar")).toHaveClass("disabled");
+      expect(screen.getByTestId("avatar")).not.toHaveClass("selectable");
     });
   });
 });
