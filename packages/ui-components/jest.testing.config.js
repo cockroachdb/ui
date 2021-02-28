@@ -5,7 +5,10 @@ module.exports = {
     "\\.(css|scss)$": "identity-obj-proxy",
   },
   roots: ["<rootDir>/src"],
-  setupFilesAfterEnv: ["jest-enzyme"],
+  setupFilesAfterEnv: [
+    "@testing-library/jest-dom/extend-expect",
+    "jest-enzyme",
+  ],
   testEnvironment: "enzyme",
   testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
   transform: {
