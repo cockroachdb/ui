@@ -56,14 +56,12 @@ describe("Avatar", () => {
   describe("Content rendering", () => {
     it("renders with string passed as children", () => {
       render(<Avatar>foo bar</Avatar>);
-      const textContent = screen.getByTestId("avatar").textContent;
-      expect(textContent).toBe("foo bar");
+      expect(screen.getByTestId("avatar")).toHaveTextContent("foo bar");
     });
 
     it("renders with empty content", () => {
       render(<Avatar />);
-      const textContent = screen.getByTestId("avatar").textContent;
-      expect(textContent).toBe("");
+      expect(screen.getByTestId("avatar")).toHaveTextContent("");
     });
 
     it("renders with svg passed as children", () => {

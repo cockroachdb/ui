@@ -15,7 +15,7 @@
     "build:watch": "webpack --watch",
     "ci": "jest --ci -i",
     "clean": "rm -rf  ./dist/*",
-    "lint": "eslint ./src/**/*.{tsx,ts,js} --format=codeframe",
+    "lint": "eslint \"src/**/*.{tsx,ts,js}\" --format=codeframe",
     "prepublishOnly": "npm-run-all clean build",
     "test": "jest --watch",
     "test:version": "npm version prerelease --preid='alpha'",
