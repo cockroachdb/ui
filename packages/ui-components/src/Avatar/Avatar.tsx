@@ -59,7 +59,12 @@ export const Avatar: React.FC<AvatarProps> = ({
   }, [onClick, disabled]);
 
   return (
-    <div className={classnames} onClick={onClickHandler} {...rest}>
+    <div
+      data-testid="avatar"
+      className={classnames}
+      onClick={onClickHandler}
+      {...rest}
+    >
       {children}
     </div>
   );
