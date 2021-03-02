@@ -15,5 +15,5 @@
 # This should make it easy to add new rules without breaking existing ones.
 
 *   @nathanstilwell @j-low @laurenbarker
-packages/cluster-ui @dhartunian @nkodali @nathanstilwell
+packages/cluster-ui @cockroachdb/cluster-ui-prs
 docs @annebirzin @rsadres
