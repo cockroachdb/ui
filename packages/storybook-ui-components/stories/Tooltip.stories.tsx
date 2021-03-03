@@ -12,7 +12,7 @@ export default {
 export const Example = () => {
   const text = (
     <span>
-      reasonble tooltip text,
+      reasonable tooltip text,
       <br />
       some more text
     </span>
