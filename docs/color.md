@@ -14,7 +14,7 @@ Used for primary buttons and to call attention to key actions or information
 ![#a686ff](https://placehold.it/300px40px/a686ff/000000?text=PRIMARY-2++A686FF)  
 ![#6933FF](https://placehold.it/300px40px/6933FF/FFFFFF?text=PRIMARY-3++6933FF++BASE)  
 ![#400BD3](https://placehold.it/300px40px/400BD3/FFFFFF?text=PRIMARY-4++400BD3)   
-![#300D8F](https://placehold.it/300px40px/190F33/FFFFFF?text=PRIMARY-5++300D8F)   
+![#190f33](https://placehold.it/300px40px/190F33/FFFFFF?text=PRIMARY-5++190F33)   
  
 ## Neutrals
 
