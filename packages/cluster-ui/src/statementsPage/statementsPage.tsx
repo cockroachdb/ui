@@ -1,25 +1,23 @@
 import React from "react";
 import { RouteComponentProps } from "react-router-dom";
 import { isNil, merge, forIn } from "lodash";
-import moment from "moment";
 import Helmet from "react-helmet";
 import classNames from "classnames/bind";
 
-import { Text } from "@cockroachlabs/ui-components";
-
-import { Dropdown } from "src/dropdown";
 import { Loading } from "src/loading";
 import { PageConfig, PageConfigItem } from "src/pageConfig";
 import { SortSetting } from "src/sortedtable";
 import { Search } from "src/search";
-import { Pagination, ResultsPerPageLabel } from "src/pagination";
+import { Pagination } from "src/pagination";
+import { TransactionsPageStatistic } from "../transactionsPage/transactionsPageStatistic";
 
-import { DATE_FORMAT, appAttr, getMatchParamByName } from "src/util";
+import { appAttr, getMatchParamByName } from "src/util";
 import {
   AggregateStatistics,
   makeStatementsColumns,
   StatementsSortedTable,
 } from "../statementsTable";
+import { filterTransactions } from "./utils";
 import {
   ActivateStatementDiagnosticsModal,
   ActivateDiagnosticsModalRef,
@@ -28,6 +26,7 @@ import { ISortedTablePagination } from "../sortedtable";
 import styles from "./statementsPage.module.scss";
 import { EmptyStatementsPlaceholder } from "./emptyStatementsPlaceholder";
 import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
+import { Filter } from "../transactionsPage/filter";
 
 type IStatementDiagnosticsReport = cockroach.server.serverpb.IStatementDiagnosticsReport;
 import sortableTableStyles from "src/sortedtable/sortedtable.module.scss";
@@ -63,6 +62,26 @@ export interface StatementsPageStateProps {
   lastReset: string;
 }
 
+export interface Filters {
+  app?: string;
+  transactionsType?: string;
+  timeNumber?: string;
+  timeUnit?: string;
+  fullScans?: boolean;
+  distributed?: boolean;
+}
+
+interface SelectOptions {
+  label: string;
+  value: string;
+}
+
+const defaultFilters = {
+  app: "All",
+  timeNumber: "0",
+  timeUnit: "seconds",
+};
+
 export interface StatementsPageOuterProps {
   onDiagnosticsReportDownload?: (report: IStatementDiagnosticsReport) => void;
 }
@@ -70,6 +89,7 @@ export interface StatementsPageOuterProps {
 export interface StatementsPageState {
   sortSetting: SortSetting;
   search?: string;
+  filters?: Filters;
   pagination: ISortedTablePagination;
   fullScan: boolean;
 }
@@ -99,6 +119,7 @@ export class StatementsPage extends React.Component<
       },
       search: "",
       fullScan: false,
+      filters: defaultFilters,
     };
 
     const stateFromHistory = this.getStateFromHistory();
@@ -112,13 +133,21 @@ export class StatementsPage extends React.Component<
     const sortKey = searchParams.get("sortKey") || undefined;
     const ascending = searchParams.get("ascending") || undefined;
     const searchQuery = searchParams.get("q") || undefined;
-
+    const app = searchParams.get("app") || defaultFilters.app;
+    const timeNumber =
+      searchParams.get("timeNumber") || defaultFilters.timeNumber;
+    const timeUnit = searchParams.get("timeUnit") || defaultFilters.timeUnit;
     return {
       sortSetting: {
         sortKey,
         ascending: Boolean(ascending),
       },
       search: searchQuery,
+      filters: {
+        app,
+        timeNumber,
+        timeUnit,
+      },
     };
   };
 
@@ -182,7 +211,7 @@ export class StatementsPage extends React.Component<
     prevState: StatementsPageState,
   ) => {
     if (this.state.search && this.state.search !== prevState.search) {
-      this.props.onSearchComplete(this.filteredStatementsData());
+      this.props.onSearchComplete(this.searchStatementsData());
     }
     this.props.refreshStatements();
     this.props.refreshStatementDiagnosticsRequests();
@@ -213,7 +242,7 @@ export class StatementsPage extends React.Component<
     });
   };
 
-  filteredStatementsData = () => {
+  searchStatementsData = () => {
     const { search } = this.state;
     const { statements } = this.props;
     return statements
@@ -230,24 +259,45 @@ export class StatementsPage extends React.Component<
   fullScanChange = () => {
     this.setState({ fullScan: !this.state.fullScan });
   };
+  onSubmitFilters = (filters: Filters) => {
+    this.setState({
+      filters: {
+        ...this.state.filters,
+        ...filters,
+      },
+    });
+    this.resetPagination();
+    this.syncHistory({
+      app: filters.app,
+      timeNumber: filters.timeNumber,
+      timeUnit: filters.timeUnit,
+    });
+  };
 
-  renderLastCleared = () => {
-    const { lastReset } = this.props;
-    return `Last cleared ${moment.utc(lastReset).format(DATE_FORMAT)}`;
+  onClearFilters = () => {
+    this.setState({
+      filters: {
+        ...defaultFilters,
+      },
+    });
+    this.resetPagination();
+    this.syncHistory({
+      app: undefined,
+      timeNumber: undefined,
+      timeUnit: undefined,
+    });
   };
 
   renderStatements = () => {
-    const { pagination, search } = this.state;
-    const { statements, match, onDiagnosticsReportDownload } = this.props;
-    const appAttrValue = getMatchParamByName(match, appAttr);
-    const selectedApp = appAttrValue || "";
-    const appOptions = [{ value: "", name: "All" }];
-    this.props.apps.forEach(app => appOptions.push({ value: app, name: app }));
-    const currentOption = appOptions.find(o => o.value === selectedApp);
-    const data = this.filteredStatementsData();
-    const totalCount = data.length;
+    const { pagination, search, filters } = this.state;
+    const { lastReset, statements, onDiagnosticsReportDownload } = this.props;
+    const appOptions: SelectOptions[] = [{ value: "All", label: "All" }];
+    this.props.apps.forEach(app => appOptions.push({ value: app, label: app }));
     const isEmptySearchResults = statements?.length > 0 && search?.length > 0;
-
+    const {
+      statements: filteredStatements,
+      activeFilters,
+    } = filterTransactions(statements, filters);
     return (
       <div>
         <PageConfig>
@@ -259,19 +309,12 @@ export class StatementsPage extends React.Component<
             />
           </PageConfigItem>
           <PageConfigItem>
-            <Dropdown
-              items={appOptions}
-              onChange={this.selectApp}
-              itemsClassname={cx("app-filter-dropdown-item")}
-            >
-              <Text
-                type="body-strong"
-                noWrap={true}
-                className={cx("app-filter-dropdown")}
-              >
-                {`App: ${decodeURIComponent(currentOption.name)}`}
-              </Text>
-            </Dropdown>
+            <Filter
+              onSubmitFilters={this.onSubmitFilters}
+              appNames={appOptions}
+              activeFilters={activeFilters}
+              filters={filters}
+            />
           </PageConfigItem>
           <PageConfigItem>
             <div>
@@ -289,25 +332,21 @@ export class StatementsPage extends React.Component<
           </PageConfigItem>
         </PageConfig>
         <section className={sortableTableCx("cl-table-container")}>
-          <div className={cx("cl-table-statistic")}>
-            <h4 className={cx("cl-count-title")}>
-              <ResultsPerPageLabel
-                pagination={{ ...pagination, total: totalCount }}
-                pageName={"statements"}
-                selectedApp={selectedApp}
-                search={search}
-              />
-            </h4>
-            <h4 className={cx("last-cleared-title")}>
-              {this.renderLastCleared()}
-            </h4>
-          </div>
+          <TransactionsPageStatistic
+            pagination={pagination}
+            lastReset={lastReset}
+            search={search}
+            totalCount={filteredStatements.length}
+            arrayItemName="statements"
+            activeFilters={activeFilters}
+            onClearFilters={this.onClearFilters}
+          />
           <StatementsSortedTable
             className="statements-table"
-            data={data}
+            data={filteredStatements}
             columns={makeStatementsColumns(
-              statements,
-              selectedApp,
+              filteredStatements,
+              filters.app,
               search,
               this.activateDiagnosticsRef,
               onDiagnosticsReportDownload,
@@ -325,7 +364,7 @@ export class StatementsPage extends React.Component<
         <Pagination
           pageSize={pagination.pageSize}
           current={pagination.current}
-          total={data.length}
+          total={filteredStatements.length}
           onChange={this.onChangePage}
         />
       </div>
