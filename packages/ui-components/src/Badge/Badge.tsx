@@ -36,7 +36,7 @@ export const Badge: FunctionComponent<BadgeProps> = ({
 
   if (children !== undefined) {
     return (
-      <div data-testid="badge" className={classnames} {...props}>
+      <div className={classnames} {...props}>
         {children}
       </div>
     );

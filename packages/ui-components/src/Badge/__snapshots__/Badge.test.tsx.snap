@@ -4,7 +4,6 @@ exports[`Badge content should render using children 1`] = `
 <div>
   <div
     class="badge transformCase-uppercase intent-neutral"
-    data-testid="badge"
   >
     child content
   </div>
