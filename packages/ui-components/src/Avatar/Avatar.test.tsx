@@ -1,7 +1,13 @@
 import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
 
-import Avatar, { AvatarIntent, AvatarSize } from "./Avatar";
+import UiAvatar, { AvatarIntent, AvatarSize, AvatarProps } from "./Avatar";
+
+const Avatar: React.FC<AvatarProps> = ({ children, ...props }) => (
+  <UiAvatar data-testid="avatar" {...props}>
+    {children}
+  </UiAvatar>
+);
 
 describe("Avatar", () => {
   describe("Default props", () => {
