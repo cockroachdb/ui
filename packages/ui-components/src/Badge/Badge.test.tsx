@@ -1,55 +1,49 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { render, screen } from "@testing-library/react";
 
 import Badge from "./Badge";
 
 describe("Badge content", () => {
-  test("can render using children", () => {
-    const wrapper = shallow(<Badge>child content</Badge>);
-    expect(wrapper).toMatchSnapshot();
+  const text = "intent test";
+  it("should render using children", () => {
+    const { container } = render(<Badge>child content</Badge>);
+    expect(container).toMatchSnapshot();
   });
 
-  test("if empty shouldn't render", () => {
-    const wrapper = shallow(<Badge />);
-    expect(wrapper.isEmptyRender()).toBe(true);
-    expect(wrapper).toMatchSnapshot();
-  });
-});
-
-describe("Badge Intent prop", () => {
-  test("will be neutral by default", () => {
-    const wrapper = shallow(<Badge>intent test</Badge>);
-    expect(wrapper.prop("className")).toContain("intent-neutral");
+  it("should should return empty div if children is empty", () => {
+    const { container } = render(<Badge />);
+    expect(container).toMatchSnapshot();
   });
 
-  test("will change the display of a badge", () => {
-    const wrapper = shallow(<Badge>intent test</Badge>);
+  describe("Badge Intent prop", () => {
+    it("should render the component with neutral intent by default", () => {
+      render(<Badge>{text}</Badge>);
+      expect(screen.getByText(text)).toHaveClass("intent-neutral");
+    });
 
-    // success
-    wrapper.setProps({ intent: "success" });
-    expect(wrapper.prop("className")).toContain("intent-success");
+    it("should able to change the intent type", () => {
+      const { rerender } = render(<Badge>{text}</Badge>);
 
-    // warning
-    wrapper.setProps({ intent: "warning" });
-    expect(wrapper.prop("className")).toContain("intent-warning");
+      // success
+      rerender(<Badge intent="success">{text}</Badge>);
+      expect(screen.getByText(text)).toHaveClass("intent-success");
 
-    // danger
-    wrapper.setProps({ intent: "danger" });
-    expect(wrapper.prop("className")).toContain("intent-danger");
+      // warning
+      rerender(<Badge intent="warning">{text}</Badge>);
+      expect(screen.getByText(text)).toHaveClass("intent-warning");
 
-    // neutral
-    wrapper.setProps({ intent: "neutral" });
-    expect(wrapper.prop("className")).toContain("intent-neutral");
+      // danger
+      rerender(<Badge intent="danger">{text}</Badge>);
+      expect(screen.getByText(text)).toHaveClass("intent-danger");
 
-    // neutral
-    wrapper.setProps({ intent: "info" });
-    expect(wrapper.prop("className")).toContain("intent-info");
+      // info
+      rerender(<Badge intent="info">{text}</Badge>);
+      expect(screen.getByText(text)).toHaveClass("intent-info");
+    });
   });
-});
 
-test("A badge can render the text case provided by content via a prop", () => {
-  const wrapper = shallow(
-    <Badge transformCase="none">transformCase test</Badge>,
-  );
-  expect(wrapper.prop("className")).toContain("transformCase-none");
+  it("should not tranform the text passed as a prop", () => {
+    render(<Badge transformCase="none">{text}</Badge>);
+    expect(screen.getByText(text)).toHaveClass("transformCase-none");
+  });
 });
