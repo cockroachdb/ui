@@ -2,6 +2,7 @@ import React from "react";
 import * as protos from "@cockroachlabs/crdb-protobuf-client";
 import { stdDevLong } from "src/util/appStats";
 import { Duration, Bytes } from "src/util/format";
+import { Tooltip2 as Tooltip } from "src/tooltip2";
 import classNames from "classnames/bind";
 import styles from "./barCharts.module.scss";
 import { bar, formatTwoPlaces, longToInt, approximify } from "./utils";

@@ -10,11 +10,12 @@ import { normalizeClosedDomain } from "./utils";
 
 const cx = classNames.bind(styles);
 
-export interface BarChartOptions {
+export interface BarChartOptions<T> {
   classes?: {
     root?: string;
     label?: string;
   };
+  displayNoSamples?: (d: T) => boolean;
 }
 
 export function barChartFactory<T>(
@@ -34,7 +35,7 @@ export function barChartFactory<T>(
     legendFormatter = formatter;
   }
 
-  return (rows: T[] = [], options: BarChartOptions = {}) => {
+  return (rows: T[] = [], options: BarChartOptions<T> = {}) => {
     const getTotal = (d: T) => _.sum(_.map(accessors, ({ value }) => value(d)));
     const getTotalWithStdDev = (d: T) => getTotal(d) + stdDevAccessor.value(d);
 
@@ -50,6 +51,22 @@ export function barChartFactory<T>(
     return (d: T) => {
       if (rows.length === 0) {
         scale.domain(normalizeClosedDomain([0, getTotal(d)]));
+      }
+
+      if (options?.displayNoSamples ? options.displayNoSamples(d) : false) {
+        return (
+          <Tooltip
+            text={
+              <p>
+                Either the statement sample rate is set to 0 or statements have
+                not yet been sampled. You can update your cluster settings to
+                turn on sampling and enable this metric.
+              </p>
+            }
+          >
+            no samples
+          </Tooltip>
+        );
       }
 
       let sum = 0;
