@@ -108,6 +108,11 @@ import { default as Taiwan } from "./components/Taiwan";
 import { default as UnitedKingdom } from "./components/UnitedKingdom";
 import { default as Usa } from "./components/Usa";
 
+// other
+import { default as Community } from "./components/Community";
+import { default as Docs } from "./components/Docs";
+import { default as Learning } from "./components/Learning";
+
 /** 
 oooooooooooo                                               .            
 `888'     `8                                             .o8            
@@ -313,4 +318,8 @@ export {
   Cards,
   Flags,
   Illustrations,
+  // other
+  Community,
+  Docs,
+  Learning,
 };
