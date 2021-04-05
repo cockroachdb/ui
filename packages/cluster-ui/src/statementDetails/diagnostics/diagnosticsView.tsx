@@ -117,7 +117,7 @@ export class DiagnosticsView extends React.Component<
     },
     {
       key: "status",
-      title: "status",
+      title: "Status",
       sorter: sortByCompletedField,
       width: "160px",
       render: (_text, record) => {
