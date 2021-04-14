@@ -58,6 +58,15 @@ export const StatementTableTitle = {
       Statements
     </Tooltip>
   ),
+  database: (
+    <Tooltip
+      placement="bottom"
+      style="tableTitle"
+      content={<p>Database on which the statement was executed.</p>}
+    >
+      Database
+    </Tooltip>
+  ),
   executionCount: (
     <Tooltip
       placement="bottom"
@@ -258,7 +267,7 @@ export const StatementTableTitle = {
               data transferred over the network
             </Anchor>
             {
-              " (e.g., between regions and nodes) for statements with this fingerprint within the last hour or speicifed "
+              " (e.g., between regions and nodes) for statements with this fingerprint within the last hour or specified "
             }
             <Anchor href={statementsTimeInterval} target="_blank">
               time interval
@@ -312,7 +321,7 @@ export const StatementTableTitle = {
         </p>
       }
     >
-      % of all runtime
+      % of All Runtime
     </Tooltip>
   ),
   diagnostics: (
@@ -347,6 +356,7 @@ export const StatementTableCell = {
   ) => (stmt: any) => (
     <StatementLink
       statement={stmt.label}
+      database={stmt.database}
       implicitTxn={stmt.implicitTxn}
       search={search}
       app={selectedApp}
@@ -432,6 +442,7 @@ interface StatementLinkProps {
   implicitTxn: boolean;
   search: string;
   anonStatement?: string;
+  database?: string;
   onClick?: (statement: string) => void;
 }
 
@@ -440,9 +451,14 @@ interface StatementLinkProps {
 export const StatementLinkTarget = (props: StatementLinkProps) => {
   let base: string;
   if (props.app && props.app.length > 0) {
-    base = `/statements/${props.app}/${props.implicitTxn}`;
+    base = `/statements/${props.app}`;
   } else {
-    base = `/statement/${props.implicitTxn}`;
+    base = `/statement`;
+  }
+  if (props.database && props.database.length > 0) {
+    base = base + `/${props.database}/${props.implicitTxn}`;
+  } else {
+    base = base + `/${props.implicitTxn}`;
   }
 
   let linkStatement = props.statement;

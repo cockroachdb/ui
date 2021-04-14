@@ -16,10 +16,12 @@ import {
 } from "./statementsPage";
 import {
   selectApps,
+  selectDatabases,
   selectLastReset,
   selectStatements,
   selectStatementsLastError,
   selectTotalFingerprints,
+  selectColumns,
 } from "./statementsPage.selectors";
 import { AggregateStatistics } from "../statementsTable";
 
@@ -33,8 +35,10 @@ export const ConnectedStatementsPage = withRouter(
       statements: selectStatements(state, props),
       statementsError: selectStatementsLastError(state),
       apps: selectApps(state),
+      databases: selectDatabases(state),
       totalFingerprints: selectTotalFingerprints(state),
       lastReset: selectLastReset(state),
+      columns: selectColumns(state),
     }),
     (dispatch: Dispatch) => ({
       refreshStatements: () => dispatch(statementActions.refresh()),
@@ -98,6 +102,13 @@ export const ConnectedStatementsPage = withRouter(
           analyticsActions.track({
             name: "Statement Clicked",
             page: "Statements",
+          }),
+        ),
+      onColumnsChange: (selected: string) =>
+        dispatch(
+          localStorageActions.update({
+            key: "showColumns/StatementsPage",
+            value: selected,
           }),
         ),
     }),
