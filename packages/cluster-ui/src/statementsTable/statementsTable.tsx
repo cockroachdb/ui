@@ -33,6 +33,7 @@ const longToInt = (d: number | Long) => Number(FixLong(d));
 function makeCommonColumns(
   statements: AggregateStatistics[],
   totalWorkload: number,
+  displayColumns?: string,
 ): ColumnDescriptor<AggregateStatistics>[] {
   const defaultBarChartOptions = {
     classes: {
@@ -65,58 +66,73 @@ function makeCommonColumns(
   );
   const retryBar = retryBarChart(statements, defaultBarChartOptions);
 
-  return [
+  // If adding new columns, also add it to src/statementsPage/statementsPage.tsx
+  // and if the column should be hidden by default add it to ignoreColumnsOnDefault
+  // on that same file.
+  const columns = [
     {
       name: "executionCount",
       title: StatementTableTitle.executionCount,
       className: cx("statements-table__col-count"),
       cell: countBar,
-      sort: stmt => FixLong(Number(stmt.stats.count)),
+      sort: (stmt: AggregateStatistics) => FixLong(Number(stmt.stats.count)),
+    },
+    {
+      name: "database",
+      title: StatementTableTitle.database,
+      className: cx("statements-table__col-database"),
+      cell: (stmt: AggregateStatistics) => stmt.database,
+      sort: (stmt: AggregateStatistics) => FixLong(Number(stmt.database)),
     },
     {
       name: "rowsRead",
       title: StatementTableTitle.rowsRead,
       className: cx("statements-table__col-rows-read"),
       cell: rowsReadBar,
-      sort: stmt => FixLong(Number(stmt.stats.rows_read.mean)),
+      sort: (stmt: AggregateStatistics) =>
+        FixLong(Number(stmt.stats.rows_read.mean)),
     },
     {
       name: "bytesRead",
       title: StatementTableTitle.bytesRead,
       cell: bytesReadBar,
-      sort: stmt => FixLong(Number(stmt.stats.bytes_read.mean)),
+      sort: (stmt: AggregateStatistics) =>
+        FixLong(Number(stmt.stats.bytes_read.mean)),
     },
     {
       name: "latency",
       title: StatementTableTitle.statementTime,
       className: cx("statements-table__col-latency"),
       cell: latencyBar,
-      sort: stmt => stmt.stats.service_lat.mean,
+      sort: (stmt: AggregateStatistics) => stmt.stats.service_lat.mean,
     },
     {
       name: "contention",
       title: StatementTableTitle.contention,
       cell: contentionBar,
-      sort: stmt => FixLong(Number(stmt.stats.exec_stats.contention_time.mean)),
+      sort: (stmt: AggregateStatistics) =>
+        FixLong(Number(stmt.stats.exec_stats.contention_time.mean)),
     },
     {
       name: "maxMemoryUsage",
       title: StatementTableTitle.maxMemUsage,
       cell: maxMemUsageBar,
-      sort: stmt => FixLong(Number(stmt.stats.exec_stats.max_mem_usage.mean)),
+      sort: (stmt: AggregateStatistics) =>
+        FixLong(Number(stmt.stats.exec_stats.max_mem_usage.mean)),
     },
     {
       name: "networkBytes",
       title: StatementTableTitle.networkBytes,
       cell: networkBytesBar,
-      sort: stmt => FixLong(Number(stmt.stats.exec_stats.network_bytes.mean)),
+      sort: (stmt: AggregateStatistics) =>
+        FixLong(Number(stmt.stats.exec_stats.network_bytes.mean)),
     },
     {
       name: "retries",
       title: StatementTableTitle.retries,
       className: cx("statements-table__col-retries"),
       cell: retryBar,
-      sort: stmt =>
+      sort: (stmt: AggregateStatistics) =>
         longToInt(stmt.stats.count) - longToInt(stmt.stats.first_attempt_count),
     },
     {
@@ -127,11 +143,21 @@ function makeCommonColumns(
         defaultBarChartOptions,
         totalWorkload,
       ),
-      sort: stmt =>
+      sort: (stmt: AggregateStatistics) =>
         (stmt.stats.service_lat.mean * longToInt(stmt.stats.count)) /
         totalWorkload,
     },
   ];
+  if (
+    displayColumns == undefined ||
+    displayColumns == "" ||
+    displayColumns == "default"
+  )
+    return columns;
+
+  return columns.filter(option => {
+    return displayColumns.split(",").includes(option.name);
+  });
 }
 
 export interface AggregateStatistics {
@@ -139,6 +165,7 @@ export interface AggregateStatistics {
   label: string;
   implicitTxn: boolean;
   fullScan: boolean;
+  database: string;
   stats: StatementStatistics;
   drawer?: boolean;
   firstCellBordered?: boolean;
@@ -173,6 +200,7 @@ export function makeStatementsColumns(
   selectedApp: string,
   // totalWorkload is the sum of service latency of all statements listed on the table.
   totalWorkload: number,
+  displayColumns?: string,
   search?: string,
   activateDiagnosticsRef?: React.RefObject<ActivateDiagnosticsModalRef>,
   onDiagnosticsDownload?: (report: IStatementDiagnosticsReport) => void,
@@ -191,7 +219,7 @@ export function makeStatementsColumns(
       sort: stmt => stmt.label,
     },
   ];
-  columns.push(...makeCommonColumns(statements, totalWorkload));
+  columns.push(...makeCommonColumns(statements, totalWorkload, displayColumns));
 
   if (activateDiagnosticsRef) {
     const diagnosticsColumn: ColumnDescriptor<AggregateStatistics> = {
@@ -220,6 +248,7 @@ export function makeNodesColumns(
   statements: AggregateStatistics[],
   nodeNames: NodeNames,
   totalWorkload: number,
+  displayColumns?: string,
 ): ColumnDescriptor<AggregateStatistics>[] {
   const original: ColumnDescriptor<AggregateStatistics>[] = [
     {
@@ -229,5 +258,7 @@ export function makeNodesColumns(
     },
   ];
 
-  return original.concat(makeCommonColumns(statements, totalWorkload));
+  return original.concat(
+    makeCommonColumns(statements, totalWorkload, displayColumns),
+  );
 }

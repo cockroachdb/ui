@@ -20,6 +20,7 @@ storiesOf("StatementsSortedTable", module)
         statements,
         "(internal)",
         calculateTotalWorkload(statements),
+        "default",
       )}
       sortSetting={{
         ascending: false,

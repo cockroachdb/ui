@@ -35,6 +35,8 @@ import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
 
 type IStatementDiagnosticsReport = cockroach.server.serverpb.IStatementDiagnosticsReport;
 import sortableTableStyles from "src/sortedtable/sortedtable.module.scss";
+import ColumnsSelector from "../columnsSelector/columnsSelector";
+import { SelectOption } from "../multiSelectCheckbox/multiSelectCheckbox";
 
 const cx = classNames.bind(styles);
 const sortableTableCx = classNames.bind(sortableTableStyles);
@@ -61,14 +63,17 @@ export interface StatementsPageDispatchProps {
   onDiagnosticsReportDownload?: (report: IStatementDiagnosticsReport) => void;
   onFilterChange?: (value: string) => void;
   onStatementClick?: (statement: string) => void;
+  onColumnsChange?: (value: string) => void;
 }
 
 export interface StatementsPageStateProps {
   statements: AggregateStatistics[];
   statementsError: Error | null;
   apps: string[];
+  databases: string[];
   totalFingerprints: number;
   lastReset: string;
+  columns: string;
 }
 
 export interface StatementsPageState {
@@ -77,6 +82,8 @@ export interface StatementsPageState {
   pagination: ISortedTablePagination;
   filters?: Filters;
   activeFilters?: number;
+  tableColumnsSelected?: string;
+  ignoreColumnsOnDefault?: string[];
 }
 
 export type StatementsPageProps = StatementsPageDispatchProps &
@@ -106,6 +113,8 @@ export class StatementsPage extends React.Component<
       search: "",
       filters: filters,
       activeFilters: calculateActiveFilters(filters),
+      tableColumnsSelected: this.props.columns,
+      ignoreColumnsOnDefault: ["database"],
     };
 
     const stateFromHistory = this.getStateFromHistory();
@@ -230,6 +239,7 @@ export class StatementsPage extends React.Component<
       timeNumber: filters.timeNumber,
       timeUnit: filters.timeUnit,
       sqlType: filters.sqlType,
+      database: filters.database,
     });
     this.selectApp(filters.app);
   };
@@ -254,6 +264,7 @@ export class StatementsPage extends React.Component<
       timeNumber: undefined,
       timeUnit: undefined,
       sqlType: undefined,
+      database: undefined,
     });
     this.selectApp("");
   };
@@ -270,8 +281,14 @@ export class StatementsPage extends React.Component<
             return "Type" + sqlType;
           })
         : [];
+    const databases =
+      filters.database.length > 0 ? filters.database.split(",") : [];
 
     return statements
+      .filter(
+        statement =>
+          databases.length == 0 || databases.includes(statement.database),
+      )
       .filter(statement =>
         this.state.filters.fullScan ? statement.fullScan : true,
       )
@@ -293,10 +310,41 @@ export class StatementsPage extends React.Component<
       );
   };
 
+  onColumnsUpdated = (selected: string) => {
+    this.setState({
+      tableColumnsSelected: selected,
+    });
+    this.props.onColumnsChange(selected);
+  };
+
+  // the first time the tableColumnsSelected value is initialized
+  // it will be "default", but on this page it should deselect the columns
+  // on ignoreColumnsOnDefault.
+  isColumnSelected = (option: string) => {
+    if (
+      this.state.tableColumnsSelected == undefined ||
+      this.state.tableColumnsSelected.length == 0 ||
+      (this.state.tableColumnsSelected == "default" &&
+        !this.state.ignoreColumnsOnDefault.includes(option))
+    )
+      return true;
+    const selection = this.state.tableColumnsSelected.split(",");
+    if (selection.includes(option)) return true;
+    return false;
+  };
+
   renderStatements = () => {
-    const { pagination, search, filters, activeFilters } = this.state;
+    const {
+      pagination,
+      search,
+      filters,
+      activeFilters,
+      tableColumnsSelected,
+      ignoreColumnsOnDefault,
+    } = this.state;
     const {
       statements,
+      databases,
       match,
       lastReset,
       onDiagnosticsReportDownload,
@@ -311,6 +359,69 @@ export class StatementsPage extends React.Component<
     const totalWorkload = calculateTotalWorkload(data);
     const totalCount = data.length;
     const isEmptySearchResults = statements?.length > 0 && search?.length > 0;
+    const tableColumns = [
+      {
+        label: "Execution Count",
+        value: "executionCount",
+        isSelected: this.isColumnSelected("executionCount"),
+      },
+      {
+        label: "Database",
+        value: "database",
+        isSelected: this.isColumnSelected("database"),
+      },
+      {
+        label: "Rows Read",
+        value: "rowsRead",
+        isSelected: this.isColumnSelected("rowsRead"),
+      },
+      {
+        label: "Bytes Read",
+        value: "bytesRead",
+        isSelected: this.isColumnSelected("bytesRead"),
+      },
+      {
+        label: "Statement Time",
+        value: "latency",
+        isSelected: this.isColumnSelected("latency"),
+      },
+      {
+        label: "Contention",
+        value: "contention",
+        isSelected: this.isColumnSelected("contention"),
+      },
+      {
+        label: "Max Memory",
+        value: "maxMemoryUsage",
+        isSelected: this.isColumnSelected("maxMemoryUsage"),
+      },
+      {
+        label: "Network",
+        value: "networkBytes",
+        isSelected: this.isColumnSelected("networkBytes"),
+      },
+      {
+        label: "Retries",
+        value: "retries",
+        isSelected: this.isColumnSelected("retries"),
+      },
+      {
+        label: "% of All Runtime",
+        value: "workloadPct",
+        isSelected: this.isColumnSelected("workloadPct"),
+      },
+    ];
+
+    // Hide columns on ignoreColumnsOnDefault if the current value is "default"
+    const columnsSelected =
+      tableColumnsSelected == "default"
+        ? tableColumns
+            .filter(column => !ignoreColumnsOnDefault.includes(column.value))
+            .map(function(option: SelectOption) {
+              return option.value;
+            })
+            .toString()
+        : tableColumnsSelected;
 
     return (
       <div>
@@ -326,24 +437,33 @@ export class StatementsPage extends React.Component<
             <Filter
               onSubmitFilters={this.onSubmitFilters}
               appNames={appOptions}
+              dbNames={databases}
               activeFilters={activeFilters}
               filters={filters}
+              showDB={true}
               showSqlType={true}
               showScan={true}
             />
           </PageConfigItem>
         </PageConfig>
         <section className={sortableTableCx("cl-table-container")}>
-          <TableStatistics
-            pagination={pagination}
-            lastReset={lastReset}
-            search={search}
-            totalCount={totalCount}
-            arrayItemName="statements"
-            activeFilters={activeFilters}
-            onClearFilters={this.onClearFilters}
-            resetSQLStats={resetSQLStats}
-          />
+          <div>
+            <ColumnsSelector
+              options={tableColumns}
+              selected={columnsSelected}
+              onSubmitColumns={this.onColumnsUpdated}
+            />
+            <TableStatistics
+              pagination={pagination}
+              lastReset={lastReset}
+              search={search}
+              totalCount={totalCount}
+              arrayItemName="statements"
+              activeFilters={activeFilters}
+              onClearFilters={this.onClearFilters}
+              resetSQLStats={resetSQLStats}
+            />
+          </div>
           <StatementsSortedTable
             className="statements-table"
             data={data}
@@ -351,6 +471,7 @@ export class StatementsPage extends React.Component<
               statements,
               selectedApp,
               totalWorkload,
+              columnsSelected,
               search,
               this.activateDiagnosticsRef,
               onDiagnosticsReportDownload,
