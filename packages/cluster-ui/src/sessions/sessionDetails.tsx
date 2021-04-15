@@ -55,6 +55,10 @@ interface OwnProps {
   refreshNodesLiveness: () => void;
   cancelSession: (payload: ICancelSessionRequest) => void;
   cancelQuery: (payload: ICancelQueryRequest) => void;
+  onBackButtonClick?: () => void;
+  onSessionActionClicked?: (
+    action: "Terminate Statement" | "Terminate Session",
+  ) => void;
 }
 
 const cx = classNames.bind(styles);
@@ -104,7 +108,8 @@ export class SessionDetails extends React.Component<SessionDetailsProps, {}> {
   }
 
   backToSessionsPage = () => {
-    const { history, location } = this.props;
+    const { history, location, onBackButtonClick } = this.props;
+    onBackButtonClick && onBackButtonClick();
     history.push({
       ...location,
       pathname: "/sessions",
@@ -113,7 +118,12 @@ export class SessionDetails extends React.Component<SessionDetailsProps, {}> {
 
   render() {
     const sessionID = getMatchParamByName(this.props.match, sessionAttr);
-    const { sessionError, cancelSession, cancelQuery } = this.props;
+    const {
+      sessionError,
+      cancelSession,
+      cancelQuery,
+      onSessionActionClicked,
+    } = this.props;
     const session = this.props.session?.session;
     const showActionButtons = !!session && !sessionError;
     return (
@@ -138,6 +148,8 @@ export class SessionDetails extends React.Component<SessionDetailsProps, {}> {
                 <Button
                   disabled={session.active_queries?.length === 0}
                   onClick={() => {
+                    onSessionActionClicked &&
+                      onSessionActionClicked("Terminate Statement");
                     if (session.active_queries?.length > 0) {
                       this.terminateQueryRef?.current?.showModalFor({
                         query_id: session.active_queries[0].id,
@@ -151,12 +163,14 @@ export class SessionDetails extends React.Component<SessionDetailsProps, {}> {
                   Cancel query
                 </Button>
                 <Button
-                  onClick={() =>
+                  onClick={() => {
+                    onSessionActionClicked &&
+                      onSessionActionClicked("Terminate Statement");
                     this.terminateSessionRef?.current?.showModalFor({
                       session_id: session.id,
                       node_id: session.node_id.toString(),
-                    })
-                  }
+                    });
+                  }}
                   type="secondary"
                   size="small"
                 >
