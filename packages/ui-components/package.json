@@ -1,6 +1,6 @@
 {
   "name": "@cockroachlabs/ui-components",
-  "version": "0.2.17-alpha.0",
+  "version": "0.2.18-alpha.0",
   "description": "UI Components is a reusable component library. It provides the core components for the Cockroach design system.",
   "repository": {
     "type": "git",
@@ -16,6 +16,7 @@
     "ci": "jest --ci -i",
     "clean": "rm -rf  ./dist/*",
     "lint": "eslint ./src/**/*.{tsx,ts,js} --format=codeframe",
+    "lint:fix": "eslint \"src/**/*.{tsx,ts,js}\" --format=codeframe --fix",
     "prepublishOnly": "npm-run-all clean build",
     "test": "jest --watch",
     "test:version": "npm version prerelease --preid='alpha'",
