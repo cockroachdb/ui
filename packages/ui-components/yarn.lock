@@ -1183,10 +1183,10 @@
     "@typescript-eslint/parser" "^2.34.0"
     eslint-config-prettier "^6.11.0"
 
-"@cockroachlabs/icons@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@cockroachlabs/icons/-/icons-0.4.0.tgz#8575465fac0207bc7114558953dc98684e2ae086"
-  integrity sha512-/m5za9niJ5BUB6w/fiCjwDRlHnM4yTUaG6452LeI5gPKWzpuzg/IzEPcg+sGfrTh5x1MX80/lpI2oGmxCVavUA==
+"@cockroachlabs/icons@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@cockroachlabs/icons/-/icons-0.4.1.tgz#5772f94ce625279a4789f8e48c9b4e903c5bc5d7"
+  integrity sha512-JaiYFDhqhvGPqAFkHGCnEYiBe6Gas2HjqhLOQa4T5FRRMJ07liswOPARXyX120hTPwqEUaQyaHLxzqYDFwfdzQ==
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
@@ -7749,9 +7749,9 @@ sshpk@^1.7.0:
     tweetnacl "~0.14.0"
 
 ssri@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/ssri/-/ssri-6.0.1.tgz#2a3c41b28dd45b62b63676ecb74001265ae9edd8"
-  integrity sha512-3Wge10hNcT1Kur4PDFwEieXSCMCJs/7WvSACcrMYrNp+b8kDL1/0wJch5Ni2WrtwEa2IO8OsVfeKIciKCDx/QA==
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/ssri/-/ssri-6.0.2.tgz#157939134f20464e7301ddba3e90ffa8f7728ac5"
+  integrity sha512-cepbSq/neFK7xB6A50KHN0xHDotYzq58wWCa5LeWqnPrHG8GzfEjO/4O8kpmcGW+oaxkvhEJCWgbgNk4/ZV93Q==
   dependencies:
     figgy-pudding "^3.5.1"
 
