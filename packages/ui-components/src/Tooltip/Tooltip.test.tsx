@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import { Tooltip } from "./Tooltip";
+import Tooltip from "./Tooltip";
 
 const TooltipExample = (
   <Tooltip content={<div id="content">test</div>}>

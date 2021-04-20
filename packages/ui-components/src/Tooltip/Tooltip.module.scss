@@ -13,87 +13,69 @@ $tooltip-arrow-half-width: 5px;
 
 // Base class
 .Tooltip {
-  all: initial;
+  @include crl-depth(1);
+  padding: 8px 10px;
+  text-align: left;
+  text-decoration: none;
+  border-radius: $border-radius-base;
+  border: $tooltip-border-width solid;
+  max-width: 300px;
   visibility: hidden;
-  opacity: 0;
   position: absolute;
-  z-index: 0;
-  transition: opacity 0.1s, visibility 0.1s, z-index 0.1s;
-  min-width: 300px;
-  max-width: 500px;
-
-  & > .content {
-    @include crl-depth(1);
-    padding: 8px 10px;
-    margin: 30px;
-    text-align: left;
-    text-decoration: none;
-    border-radius: $border-radius-base;
-    border: $tooltip-border-width solid;
-    position: relative;
-    overflow: visible;
-    font-family: $type-family-ui;
-  }
 
   &[data-show] {
     visibility: visible;
-    opacity: 1;
-    z-index: 9999;
-    transition: opacity 0.1s, visibility 0.1s, z-index 0.1s;
   }
 
-  .arrow,
-  .arrowInner {
-    position: absolute;
-    width: $tooltip-arrow-width;
-    height: $tooltip-arrow-width;
-    overflow: visible;
-    &:before {
-      content: "";
-      position: absolute;
-      width: $tooltip-arrow-width;
-      height: $tooltip-arrow-width;
-      transform: rotate(45deg);
-      border: $tooltip-border-width solid;
-    }
-  }
-
-  .arrow:before {
-    @include crl-depth(1);
-    z-index: -5;
-  }
-
-  .arrowInner:before {
-    z-index: 5;
-  }
-
-  &[data-popper-placement^="top"] .arrow,
-  &[data-popper-placement^="top"] .arrowInner {
+  &[data-popper-placement^="top"] > .arrow,
+  &[data-popper-placement^="top"] > .arrowInner {
     bottom: -$tooltip-arrow-half-width;
   }
 
-  &[data-popper-placement^="bottom"] .arrow,
-  &[data-popper-placement^="bottom"] .arrowInner {
+  &[data-popper-placement^="bottom"] > .arrow,
+  &[data-popper-placement^="bottom"] > .arrowInner {
     top: -$tooltip-arrow-half-width;
   }
 
-  &[data-popper-placement^="left"] .arrow,
-  &[data-popper-placement^="left"] .arrowInner {
+  &[data-popper-placement^="left"] > .arrow,
+  &[data-popper-placement^="left"] > .arrowInner {
     right: -$tooltip-arrow-half-width;
   }
 
-  &[data-popper-placement^="right"] .arrow,
-  &[data-popper-placement^="right"] .arrowInner {
+  &[data-popper-placement^="right"] > .arrow,
+  &[data-popper-placement^="right"] > .arrowInner {
     left: -$tooltip-arrow-half-width;
   }
 }
 
-@mixin crl-tooltip-style($bg, $border, $color) {
-  .content {
-    border-color: $border;
-    background-color: $bg;
-    color: $color;
+.arrow,
+.arrowInner {
+  position: absolute;
+  width: $tooltip-arrow-width;
+  height: $tooltip-arrow-width;
+  &:before {
+    content: "";
+    position: absolute;
+    width: $tooltip-arrow-width;
+    height: $tooltip-arrow-width;
+    transform: rotate(45deg);
+    border: $tooltip-border-width solid;
   }
+}
+
+.arrow:before {
+  @include crl-depth(1);
+  z-index: -5;
+}
+
+.arrowInner:before {
+  z-index: 5;
+}
+
+@mixin crl-tooltip-style($bg, $border, $color) {
+  border-color: $border;
+  background-color: $bg;
+  color: $color;
   .arrow:before {
     border-color: $border;
     background-color: $bg;
@@ -108,64 +90,17 @@ $tooltip-arrow-half-width: 5px;
 // Default style
 // --------------------------------------------------
 .default {
-  @include crl-tooltip-style(
-    $color-core-neutral-6,
-    $color-core-neutral-6,
-    $color-base-white
-  );
+  @include crl-tooltip-style($color-core-neutral-6, $color-core-neutral-6, $color-base-white);
 }
 //
 // Dark style
 // --------------------------------------------------
 .dark {
-  @include crl-tooltip-style(
-    $color-base-black,
-    $color-base-black,
-    $color-base-white
-  );
+  @include crl-tooltip-style($color-base-black, $color-base-black, $color-base-white);
 }
-
-//
-// TableTitle
-// --------------------------------------------------
-.tableTitle {
-  @include crl-tooltip-style(
-    $color-core-neutral-6,
-    $color-core-neutral-6,
-    $color-base-white
-  );
-  .text {
-    font-weight: 600;
-    font-size: $type-size-font-small;
-    line-height: $type-size-line-height-small;
-    letter-spacing: 0.3px;
-    color: $color-intent-neutral-0;
-    a {
-      color: $color-intent-neutral-0;
-      text-decoration: underline;
-      &:hover {
-        opacity: 0.7;
-        color: $color-intent-neutral-0;
-      }
-    }
-    code {
-      font-family: $type-family-code;
-      line-height: $type-size-line-height-regular;
-      color: $color-intent-neutral-8;
-      background: $color-intent-neutral-0;
-      border-radius: 3px;
-      padding: 2px 5px;
-    }
-  }
-}
-
 //
 // Light style
 // --------------------------------------------------
 .light {
-  @include crl-tooltip-style(
-    $color-base-white,
-    $color-core-neutral-2,
-    $color-font-3
-  );
+  @include crl-tooltip-style($color-base-white, $color-core-neutral-2, $color-font-3);
 }

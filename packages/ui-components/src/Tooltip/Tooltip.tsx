@@ -2,7 +2,6 @@ import React, { FunctionComponent, ReactElement, useState } from "react";
 import { usePopper } from "react-popper";
 import classNames from "classnames/bind";
 import css from "./Tooltip.module.scss";
-import { debounce, throttle } from "lodash";
 
 export type TooltipPosition =
   | "left"
@@ -18,14 +17,13 @@ export type TooltipPosition =
   | "bottom-start"
   | "bottom-end";
 
-export type TooltipStyle = "default" | "light" | "dark" | "tableTitle";
+export type TooltipStyle = "default" | "light" | "dark";
 
 export interface TooltipProps {
   placement?: TooltipPosition;
   style?: TooltipStyle;
   content: ReactElement | string;
   visible?: boolean;
-  timeout?: number;
 }
 
 export const Tooltip: FunctionComponent<TooltipProps> = ({
@@ -34,7 +32,6 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
   children,
   content,
   visible = false,
-  timeout = 500,
 }) => {
   const [referenceElement, setReferenceElement] = useState(null);
   const [popperElement, setPopperElement] = useState(null);
@@ -44,7 +41,7 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
     placement,
     modifiers: [
       { name: "arrow", options: { element: arrowElement } },
-      { name: "offset", options: { offset: [0, -25] } },
+      { name: "offset", options: { offset: [0, 10] } },
       {
         name: "computeStyles",
         options: {
@@ -70,25 +67,21 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
       ) : (
         (child as ReactElement)
       ),
+      {
+        ref: setReferenceElement,
+        onMouseOver: () => {
+          popperElement.setAttribute("data-show", "");
+        },
+        onMouseOut: () => {
+          if (visible) return;
+          popperElement.removeAttribute("data-show");
+        },
+      },
     );
   });
 
-  const timers: any = [];
   return (
-    <div
-      ref={setReferenceElement}
-      onMouseOver={() => {
-        const t = setTimeout(() => {
-          popperElement.setAttribute("data-show", "");
-        }, timeout);
-        timers.push(t);
-      }}
-      onMouseLeave={() => {
-        timers.forEach((t: any) => {
-          clearTimeout(t);
-        });
-      }}
-    >
+    <>
       {wrappedChildren}
 
       <div
@@ -96,22 +89,14 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
         ref={setPopperElement}
         style={styles.popper}
         data-jest="tooltip"
-        onMouseLeave={e => {
-          if (visible) return;
-          popperElement.removeAttribute("data-show");
-        }}
         {...attributes.popper}
       >
-        <div className={css.content}>
-          <div
-            className={css.arrow}
-            ref={setArrowElement}
-            style={styles.arrow}
-          />
-          <div className={css.arrowInner} style={styles.arrow} />
-          <div className={css.text}>{content}</div>
-        </div>
+        {content}
+        <div className={css.arrow} ref={setArrowElement} style={styles.arrow} />
+        <div className={css.arrowInner} style={styles.arrow} />
       </div>
-    </div>
+    </>
   );
 };
+
+export default Tooltip;
