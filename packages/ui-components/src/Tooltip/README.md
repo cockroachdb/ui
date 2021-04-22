@@ -33,7 +33,7 @@ Placement of tooltip around anchor content.
 
 This prop is **optional**.
 
-### `style?: Enum("default", "light", "dark")`
+### `style?: Enum("default", "light", "dark", "tableTitle")`
 
 **default value: `default`**
 
