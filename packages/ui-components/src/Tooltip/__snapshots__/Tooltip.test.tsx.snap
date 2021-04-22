@@ -1,12 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Tooltip renders 1`] = `
-<Fragment>
+<div
+  onMouseLeave={[Function]}
+  onMouseOver={[Function]}
+>
   <div
     id="hoverme"
     key=".0"
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
   >
     hover me
   </div>
@@ -36,6 +37,7 @@ exports[`Tooltip renders 1`] = `
 		return classes.join(' ');
 	} Tooltip"
     data-jest="tooltip"
+    onMouseLeave={[Function]}
     style={
       Object {
         "left": "0",
@@ -45,16 +47,24 @@ exports[`Tooltip renders 1`] = `
     }
   >
     <div
-      id="content"
+      className="content"
     >
-      test
+      <div
+        className="arrow"
+      />
+      <div
+        className="arrowInner"
+      />
+      <div
+        className="text"
+      >
+        <div
+          id="content"
+        >
+          test
+        </div>
+      </div>
     </div>
-    <div
-      className="arrow"
-    />
-    <div
-      className="arrowInner"
-    />
   </div>
-</Fragment>
+</div>
 `;
