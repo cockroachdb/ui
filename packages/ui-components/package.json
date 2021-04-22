@@ -16,6 +16,7 @@
     "ci": "jest --ci -i",
     "clean": "rm -rf  ./dist/*",
     "lint": "eslint \"src/**/*.{tsx,ts,js}\" --format=codeframe",
+    "lint:fix": "eslint \"src/**/*.{tsx,ts,js}\" --format=codeframe --fix",
     "prepublishOnly": "npm-run-all clean build",
     "test": "jest --watch",
     "test:version": "npm version prerelease --preid='alpha'",
