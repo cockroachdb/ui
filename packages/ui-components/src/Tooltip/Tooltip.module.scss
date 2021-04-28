@@ -17,10 +17,18 @@ $tooltip-arrow-half-width: 5px;
   visibility: hidden;
   opacity: 0;
   position: absolute;
-  z-index: 0;
+  z-index: -1;
   transition: opacity 0.1s, visibility 0.1s, z-index 0.1s;
   min-width: 300px;
   max-width: 500px;
+
+  p,
+  pre,
+  code {
+    all: initial;
+    font-family: $type-family-ui;
+    font-size: $type-size-font-medium;
+  }
 
   & > .content {
     @include crl-depth(1);
@@ -93,6 +101,11 @@ $tooltip-arrow-half-width: 5px;
     border-color: $border;
     background-color: $bg;
     color: $color;
+    p,
+    pre,
+    code {
+      color: $color;
+    }
   }
   .arrow:before {
     border-color: $border;
@@ -135,13 +148,16 @@ $tooltip-arrow-half-width: 5px;
     $color-base-white
   );
   .text {
-    font-weight: 600;
-    font-size: $type-size-font-small;
-    line-height: $type-size-line-height-small;
-    letter-spacing: 0.3px;
-    color: $color-intent-neutral-0;
-    a {
+    &,
+    p, a {
+      font-weight: 600;
+      font-size: $type-size-font-small;
+      line-height: $type-size-line-height-small;
+      letter-spacing: 0.3px;
       color: $color-intent-neutral-0;
+    }
+
+    a {
       text-decoration: underline;
       &:hover {
         opacity: 0.7;
@@ -150,6 +166,7 @@ $tooltip-arrow-half-width: 5px;
     }
     code {
       font-family: $type-family-code;
+      font-size: $type-size-font-small;
       line-height: $type-size-line-height-regular;
       color: $color-intent-neutral-8;
       background: $color-intent-neutral-0;
