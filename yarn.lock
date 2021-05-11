@@ -2288,7 +2288,7 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@cockroachlabs/crdb-protobuf-client@^0.0.11":
+"@cockroachlabs/crdb-protobuf-client@^0.0.12":
   version "0.0.11"
   resolved "https://registry.yarnpkg.com/@cockroachlabs/crdb-protobuf-client/-/crdb-protobuf-client-0.0.11.tgz#02454d0800317bd0bea5487469009ed2ab8ad04a"
   integrity sha512-ggW3HpjL1nD/YfJjO60K3tDXvAeuLn2VPCWYZS7O9C3puI/EKSaDduxPU6GcK8NglGqx9arvqYqdRJubxggahA==
