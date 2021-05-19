@@ -1,0 +1,61 @@
+// Renovate is a service that allows us to group and schedule
+// dependency updates.
+
+// The config can be validated using renovate-config-validator.
+// https://docs.renovatebot.com/reconfigure-renovate/#reconfigure-via-pr
+{
+  extends: ["config:base"],
+  // We currently only use renovate for JavaScript dependencies.
+  enabledManagers: ["npm"],
+  ignoreDeps: [],
+  ignorePaths: [],
+  schedule: ["on Thursday"],
+  packageRules: [
+    {
+      updateTypes: ["patch", "minor"],
+      groupName: "all non-major dependencies",
+      groupSlug: "all-minor-patch",
+      // Excluded packages will be submitted as separate PRs.
+      excludePackageNames: ["typescript", "@testing-library/react"],
+    },
+  ],
+  major: {
+    // Using "before x time" format as is listed in the docs is too
+    // narrow of a window since the job only runs once or twice a day.
+    schedule: ["on the first day of the month"],
+    packageRules: [
+      {
+        packagePatterns: ["^eslint"],
+        groupName: "eslint packages",
+      },
+      {
+        packagePatterns: ["^typescript"],
+        packageNames: ["ts-loader"],
+        groupName: "typescript packages",
+      },
+      {
+        packagePatterns: ["^webpack"],
+        groupName: "webpack packages",
+      },
+      {
+        packagePatterns: ["^sass"],
+        groupName: "sass packages",
+      },
+      {
+        packagePatterns: ["^enzyme"],
+        groupName: "enzyme packages",
+      },
+      {
+        packageNames: ["jest", "ts-jest", "@types/jest"],
+        groupName: "jest packages",
+      },
+    ],
+  },
+
+  // Do we need to add this here? Unsure if Lerna package updates will occur
+  // properly without it.
+  // Relevant documentation:
+  // - https://docs.renovatebot.com/presets-monorepo/
+  // - https://docs.renovatebot.com/configuration-options/#matchsourceurlprefixes
+  matchSourceUrlPrefixes: ["https://github.com/lerna/lerna"],
+}
