@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - cluster-ui-20.2
+      - cluster-ui-21.1
     paths:
       - "packages/cluster-ui/**"
   workflow_dispatch:
