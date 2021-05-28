@@ -7,7 +7,7 @@ import { actions as statementActions } from "src/store/statements";
 import { actions as resetSQLStatsActions } from "src/store/sqlStats";
 import { TransactionsPage } from "./transactionsPage";
 import {
-  TransactionsPageProps,
+  TransactionsPageStateProps,
   TransactionsPageDispatchProps,
 } from "./transactionsPage";
 import {
@@ -18,7 +18,7 @@ import { nodeRegionsByIDSelector } from "../store/nodes";
 
 export const TransactionsPageConnected = withRouter(
   connect<
-    TransactionsPageProps,
+    TransactionsPageStateProps,
     TransactionsPageDispatchProps,
     RouteComponentProps
   >(
