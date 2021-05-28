@@ -9,7 +9,7 @@ export const selectTransactionsSlice = createSelector(
 
 export const selectTransactionsData = createSelector(
   selectTransactionsSlice,
-  transactionsState => transactionsState.data || [],
+  transactionsState => transactionsState.data,
 );
 
 export const selectTransactionsLastError = createSelector(
