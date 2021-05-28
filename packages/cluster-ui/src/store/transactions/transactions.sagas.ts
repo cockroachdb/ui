@@ -5,7 +5,7 @@ import { rootActions } from "../reducers";
 
 import { CACHE_INVALIDATION_PERIOD, throttleWithReset } from "src/store/utils";
 
-export function* refreshStatementsSaga() {
+export function* refreshTransactionssSaga() {
   yield put(actions.request());
 }
 
@@ -31,7 +31,7 @@ export function* transactionsSaga(
       cacheInvalidationPeriod,
       actions.refresh,
       [actions.invalidated, actions.failed, rootActions.resetState],
-      refreshStatementsSaga,
+      refreshTransactionssSaga,
     ),
     takeLatest(actions.request, requestTransactionsSaga),
     takeLatest(
