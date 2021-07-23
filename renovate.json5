@@ -49,13 +49,13 @@
         packageNames: ["jest", "ts-jest", "@types/jest"],
         groupName: "jest packages",
       },
+      {
+        // Relevant documentation:
+        // - https://docs.renovatebot.com/presets-monorepo/
+        // - https://docs.renovatebot.com/configuration-options/#matchsourceurlprefixes
+        matchSourceUrlPrefixes: ["https://github.com/lerna/lerna"],
+        groupName: "All lerna packages",
+      },
     ],
   },
-
-  // Do we need to add this here? Unsure if Lerna package updates will occur
-  // properly without it.
-  // Relevant documentation:
-  // - https://docs.renovatebot.com/presets-monorepo/
-  // - https://docs.renovatebot.com/configuration-options/#matchsourceurlprefixes
-  matchSourceUrlPrefixes: ["https://github.com/lerna/lerna"],
 }
