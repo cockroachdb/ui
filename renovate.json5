@@ -9,7 +9,7 @@
   enabledManagers: ["npm"],
   ignoreDeps: [],
   ignorePaths: [],
-  schedule: ["on Thursday"],
+  schedule: ["on Friday"],
   packageRules: [
     {
       updateTypes: ["patch", "minor"],
