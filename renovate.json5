@@ -5,7 +5,6 @@
 // https://docs.renovatebot.com/reconfigure-renovate/#reconfigure-via-pr
 {
   extends: ["config:base"],
-  // We currently only use renovate for JavaScript dependencies.
   enabledManagers: ["npm"],
   ignoreDeps: [],
   ignorePaths: [],
