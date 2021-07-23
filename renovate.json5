@@ -5,17 +5,18 @@
 // https://docs.renovatebot.com/reconfigure-renovate/#reconfigure-via-pr
 {
   extends: ["config:base"],
+  // We currently only use renovate for JavaScript dependencies.
   enabledManagers: ["npm"],
   ignoreDeps: [],
   ignorePaths: [],
-  schedule: ["on Friday"],
+  schedule: ["on Thursday"],
   packageRules: [
     {
-      updateTypes: ["patch", "minor"],
       groupName: "all non-major dependencies",
       groupSlug: "all-minor-patch",
       // Excluded packages will be submitted as separate PRs.
-      excludePackageNames: ["typescript"],
+      excludePackageNames: ["typescript", "@testing-library/react"],
+      matchUpdateTypes: ["patch", "minor"],
     },
   ],
   major: {
@@ -24,28 +25,28 @@
     schedule: ["on the first day of the month"],
     packageRules: [
       {
-        packagePatterns: ["^eslint"],
+        matchPackagePatterns: ["^eslint"],
         groupName: "eslint packages",
       },
       {
-        packagePatterns: ["^typescript"],
-        packageNames: ["ts-loader"],
+        matchPackagePatterns: ["^typescript"],
+        matchPackageNames: ["ts-loader"],
         groupName: "typescript packages",
       },
       {
-        packagePatterns: ["^webpack"],
+        matchPackagePatterns: ["^webpack"],
         groupName: "webpack packages",
       },
       {
-        packagePatterns: ["^sass"],
+        matchPackagePatterns: ["^sass"],
         groupName: "sass packages",
       },
       {
-        packagePatterns: ["^enzyme"],
+        matchPackagePatterns: ["^enzyme"],
         groupName: "enzyme packages",
       },
       {
-        packageNames: ["jest", "ts-jest", "@types/jest"],
+        matchPackageNames: ["jest", "ts-jest", "@types/jest"],
         groupName: "jest packages",
       },
       {
