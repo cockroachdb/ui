@@ -26,13 +26,13 @@
     "@babel/core": "7.12.10",
     "@storybook/addon-actions": "6.2.9",
     "@storybook/addon-docs": "6.2.9",
-    "@storybook/addon-knobs": "^6.1.21",
+    "@storybook/addon-knobs": "6.2.9",
     "@storybook/addon-links": "6.2.9",
     "@storybook/addons": "6.2.9",
     "@storybook/react": "6.2.9",
     "babel-loader": "8.2.2",
-    "ts-loader": "^7.0.3",
-    "typescript": "^3.8.3"
+    "ts-loader": "7.0.5",
+    "typescript": "3.9.7"
   },
   "resolutions": {
     "@types/react": "16.9.48",
