@@ -23,14 +23,14 @@
     "@cockroachlabs/ui-components": "link:packages/ui-components"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
+    "@babel/core": "7.12.10",
     "@storybook/addon-actions": "6.2.9",
     "@storybook/addon-docs": "6.2.9",
     "@storybook/addon-knobs": "^6.1.21",
     "@storybook/addon-links": "6.2.9",
     "@storybook/addons": "6.2.9",
     "@storybook/react": "6.2.9",
-    "babel-loader": "^8.1.0",
+    "babel-loader": "8.2.2",
     "ts-loader": "^7.0.3",
     "typescript": "^3.8.3"
   },
