@@ -61,7 +61,7 @@
     "@storybook/react": "6.3.5",
     "@types/chai": "4.2.11",
     "@types/classnames": "2.2.10",
-    "@types/d3": "3.5.43",
+    "@types/d3": "7.0.0",
     "@types/d3-array": "2.2.0",
     "@types/d3-format": "2.0.0",
     "@types/d3-scale": "3.2.0",
