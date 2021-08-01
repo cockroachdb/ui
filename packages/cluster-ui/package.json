@@ -78,7 +78,7 @@
     "@types/react-select": "4.0.17",
     "@types/redux-saga": "0.10.5",
     "@types/reselect": "2.2.0",
-    "@types/sinon": "9.0.4",
+    "@types/sinon": "10.0.2",
     "@typescript-eslint/eslint-plugin": "2.29.0",
     "@typescript-eslint/parser": "2.29.0",
     "antd": "3.26.18",
