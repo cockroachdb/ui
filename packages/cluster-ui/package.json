@@ -109,7 +109,7 @@
     "less": "3.12.2",
     "less-loader": "6.2.0",
     "moment-locales-webpack-plugin": "1.2.0",
-    "node-sass": "4.13.1",
+    "node-sass": "6.0.1",
     "prettier": "1.19.1",
     "protobufjs": "6.8.6",
     "react": "16.12.0",
