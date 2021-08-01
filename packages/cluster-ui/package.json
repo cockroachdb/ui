@@ -99,7 +99,7 @@
     "eslint-plugin-react-hooks": "2.5.1",
     "fetch-mock": "9.10.7",
     "file-loader": "6.0.0",
-    "http-proxy-middleware": "1.0.5",
+    "http-proxy-middleware": "2.0.1",
     "identity-obj-proxy": "3.0.0",
     "jest": "25.5.4",
     "jest-environment-enzyme": "7.1.2",
