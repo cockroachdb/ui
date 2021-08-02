@@ -81,7 +81,7 @@
     "@types/sinon": "9.0.4",
     "@typescript-eslint/eslint-plugin": "2.29.0",
     "@typescript-eslint/parser": "2.29.0",
-    "antd": "3.26.18",
+    "antd": "4.16.10",
     "astroturf": "0.10.4",
     "babel-jest": "26.3.0",
     "babel-loader": "8.1.0",
