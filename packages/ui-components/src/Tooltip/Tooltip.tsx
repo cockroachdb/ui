@@ -1,4 +1,9 @@
-import React, { FunctionComponent, ReactElement, useState } from "react";
+import React, {
+  FunctionComponent,
+  ReactElement,
+  useEffect,
+  useState,
+} from "react";
 import { usePopper } from "react-popper";
 import classNames from "classnames/bind";
 import css from "./Tooltip.module.scss";
@@ -53,6 +58,14 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
     ],
   });
 
+  useEffect(() => {
+    const onScroll = () => {
+      popperElement.removeAttribute("data-show");
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [popperElement]);
+
   if (!content) {
     return <>{children}</>;
   }
@@ -64,11 +77,7 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
 
   const wrappedChildren = React.Children.map(children, child => {
     return React.cloneElement(
-      typeof children === "string" ? (
-        <span>{child}</span>
-      ) : (
-        (child as ReactElement)
-      ),
+      typeof children === "string" ? <>{child}</> : (child as ReactElement),
     );
   });
 
@@ -85,6 +94,7 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
       onMouseLeave={() => {
         timers.forEach((t: ReturnType<typeof setTimeout>) => {
           clearTimeout(t);
+          popperElement.removeAttribute("data-show");
         });
       }}
     >
@@ -98,6 +108,9 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
         onMouseLeave={() => {
           if (visible) return;
           popperElement.removeAttribute("data-show");
+        }}
+        onClick={e => {
+          e.stopPropagation();
         }}
         {...attributes.popper}
       >

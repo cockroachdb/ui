@@ -37,6 +37,7 @@ exports[`Tooltip renders 1`] = `
 		return classes.join(' ');
 	} Tooltip"
     data-jest="tooltip"
+    onClick={[Function]}
     onMouseLeave={[Function]}
     style={
       Object {
