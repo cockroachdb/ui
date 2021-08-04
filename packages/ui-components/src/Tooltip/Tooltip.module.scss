@@ -21,6 +21,7 @@ $tooltip-arrow-half-width: 5px;
   transition: opacity 0.1s, visibility 0.1s, z-index 0.1s;
   min-width: 300px;
   max-width: 500px;
+  pointer-events: none;
 
   p,
   pre,
@@ -41,6 +42,7 @@ $tooltip-arrow-half-width: 5px;
     position: relative;
     overflow: visible;
     font-family: $type-family-ui;
+    pointer-events: all;
   }
 
   &[data-show] {
