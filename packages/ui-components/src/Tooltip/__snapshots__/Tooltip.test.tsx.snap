@@ -56,9 +56,19 @@ exports[`Tooltip renders 1`] = `
     >
       <div
         className="arrow"
+        style={
+          Object {
+            "position": "absolute",
+          }
+        }
       />
       <div
         className="arrowInner"
+        style={
+          Object {
+            "position": "absolute",
+          }
+        }
       />
       <div
         className="text"
