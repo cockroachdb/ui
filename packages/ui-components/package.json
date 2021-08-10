@@ -43,7 +43,7 @@
     "@cockroachlabs/design-tokens": "^0.3.0",
     "@cockroachlabs/eslint-config": "^0.1.11",
     "@testing-library/jest-dom": "5.11.9",
-    "@testing-library/react": "11.2.5",
+    "@testing-library/react": "11.2.7",
     "@types/classnames": "2.2.10",
     "@types/enzyme": "3.10.5",
     "@types/jest": "25.2.3",
