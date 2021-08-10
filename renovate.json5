@@ -7,7 +7,7 @@
   extends: ["config:base"],
   // We currently only use renovate for JavaScript dependencies.
   enabledManagers: ["npm"],
-  ignoreDeps: [],
+  ignoreDeps: ["@svgr/cli"],
   ignorePaths: [],
   schedule: ["on Friday"],
   packageRules: [
