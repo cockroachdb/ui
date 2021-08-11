@@ -68,7 +68,7 @@
     "jest-environment-enzyme": "7.1.2",
     "jest-enzyme": "7.1.2",
     "jest-runner-eslint": "0.10.1",
-    "prettier": "1.19.1",
+    "prettier": "2.3.2",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-final-form": "6.5.3",
