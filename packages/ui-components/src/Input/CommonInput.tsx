@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames/bind";
 import "./input.module.scss";
-import { FieldRenderProps, FieldMetaState } from "react-final-form";
+import { FieldMetaState } from "react-final-form";
 
 export interface CommonInputProps {
   // this should be the element containing the input

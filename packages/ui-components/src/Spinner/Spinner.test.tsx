@@ -11,7 +11,7 @@ describe("Spinner", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  spinnerSizes.forEach(size => {
+  spinnerSizes.forEach((size) => {
     test(`renders with provided ${size} size`, () => {
       const wrapper = shallow(<Spinner size={size} />);
       expect(wrapper.hasClass(`size-${size}`)).toBeTruthy();

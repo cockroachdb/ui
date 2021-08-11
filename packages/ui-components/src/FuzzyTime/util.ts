@@ -80,7 +80,7 @@ export const fuzzyFormatter = (offset: number) => (unit: TimeUnit) => {
 export const setFuzzy = (now: Date) => (timedate: Date) => {
   const diff = now.getTime() - timedate.getTime();
   const format = fuzzyFormatter(diff);
-  const unit = TimeUnits.find(t => t.comparator(diff));
+  const unit = TimeUnits.find((t) => t.comparator(diff));
 
   return format(unit);
 };

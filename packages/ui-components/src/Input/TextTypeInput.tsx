@@ -43,7 +43,7 @@ type InternalTextProps = TextInputProps & CustomProps;
 
 export type AllProps = Omit<InternalTextProps, "existingPassword">;
 
-export const BaseTextInput: React.FC<InternalTextProps> = props => {
+export const BaseTextInput: React.FC<InternalTextProps> = (props) => {
   const {
     id,
     JSXInput,

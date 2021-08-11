@@ -55,7 +55,7 @@ export const flagNameCountryCodeMap: Array<{
 ];
 
 const getFlagNameFromCountryCode = (countryCode: string): keyof typeof Flags =>
-  flagNameCountryCodeMap.find(m => m.code === countryCode).flag;
+  flagNameCountryCodeMap.find((m) => m.code === countryCode).flag;
 
 export const Flag = ({
   flagName: flagNameProp,

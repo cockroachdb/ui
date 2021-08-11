@@ -12,7 +12,7 @@ const alertIntents: IconIntent[] = [
 ];
 
 describe("InlineAlert", () => {
-  alertIntents.forEach(intent => {
+  alertIntents.forEach((intent) => {
     test(`renders with ${intent} intent`, () => {
       const wrapper = shallow(
         <InlineAlert intent={intent} title="Hello world!" />,
