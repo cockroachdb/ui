@@ -19,18 +19,29 @@ jobs:
         with:
           node-version: "12.x"
           registry-url: "https://registry.npmjs.org"
-      - name: Install dependencies
-        run: yarn install
-        working-directory: ./packages/ui-components
+
+      - name: Lerna bootstrap
+        run: npx lerna bootstrap
+
+      - name: Build packages
+        run: npx lerna run build
+
+      - name: Continuous Integration for all packages
+        run: npx lerna run ci --stream
+        env:
+          CI: true
+
       - name: Configure Git User
         run: |
           git config user.name "Github Actions"
           git config user.email "<actions@github.com>"
+
       - name: Bump version (prerelease)
         run: |
           yarn version --prerelease --preid="alpha"
           git push --all
         working-directory: ./packages/ui-components
+
       - name: Publish ui-components
         run: yarn publish --access public --tag next
         working-directory: ./packages/ui-components
