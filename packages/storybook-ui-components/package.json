@@ -23,21 +23,21 @@
     "@cockroachlabs/ui-components": "link:../../packages/ui-components"
   },
   "devDependencies": {
-    "@babel/core": "7.12.10",
-    "@storybook/addon-actions": "6.2.9",
-    "@storybook/addon-docs": "6.2.9",
+    "@babel/core": "7.15.0",
+    "@storybook/addon-actions": "6.3.7",
+    "@storybook/addon-docs": "6.3.7",
     "@storybook/addon-knobs": "6.2.9",
-    "@storybook/addon-links": "6.2.9",
-    "@storybook/addons": "6.2.9",
-    "@storybook/react": "6.2.9",
+    "@storybook/addon-links": "6.3.7",
+    "@storybook/addons": "6.3.7",
+    "@storybook/react": "6.3.7",
     "babel-loader": "8.2.2",
     "ts-loader": "7.0.5",
     "typescript": "3.9.10"
   },
   "resolutions": {
-    "@types/react": "16.9.48",
+    "@types/react": "16.14.13",
     "prismjs": "^1.21.0",
-    "react": "16.12.0",
-    "react-dom": "16.12.0"
+    "react": "16.14.0",
+    "react-dom": "16.14.0"
   }
 }
