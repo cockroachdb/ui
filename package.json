@@ -9,7 +9,7 @@
     "start": "lerna run start --parallel"
   },
   "resolutions": {
-    "dot-prop": "^4.2.1"
+    "dot-prop": "^6.0.0"
   },
   "workspaces": ["packages/*"]
 }
