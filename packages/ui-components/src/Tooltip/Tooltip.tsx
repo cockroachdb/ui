@@ -75,7 +75,7 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
     popperElement.setAttribute("data-show", "");
   }
 
-  const wrappedChildren = React.Children.map(children, child => {
+  const wrappedChildren = React.Children.map(children, (child) => {
     return React.cloneElement(
       typeof children === "string" ? <>{child}</> : (child as ReactElement),
     );
@@ -109,7 +109,7 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
           if (visible) return;
           popperElement.removeAttribute("data-show");
         }}
-        onClick={e => {
+        onClick={(e) => {
           e.stopPropagation();
         }}
         {...attributes.popper}

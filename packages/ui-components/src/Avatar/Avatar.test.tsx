@@ -98,7 +98,7 @@ describe("Avatar", () => {
   describe("Intent prop", () => {
     const intents: AvatarIntent[] = ["invalid", "default", "active", "pending"];
 
-    intents.forEach(intent => {
+    intents.forEach((intent) => {
       it("applies correct classNames depending on intent", () => {
         expect(
           render(<Avatar intent={intent} />).getByTestId("avatar"),
@@ -110,7 +110,7 @@ describe("Avatar", () => {
   describe("Size prop", () => {
     const sizes: AvatarSize[] = ["default", "small"];
 
-    sizes.forEach(size => {
+    sizes.forEach((size) => {
       it("applies correct classNames depending on size", () => {
         expect(
           render(<Avatar size={size} />).getByTestId("avatar"),
