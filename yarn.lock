@@ -2425,7 +2425,7 @@
     minimist "^1.2.0"
 
 "@cockroachlabs/ui-components@link:packages/ui-components":
-  version "0.2.19-alpha.19"
+  version "0.2.19-alpha.20"
   dependencies:
     "@cockroachlabs/icons" "^0.4.1"
     "@popperjs/core" "^2.9.2"
@@ -19662,7 +19662,7 @@ webpack@4:
     watchpack "^1.7.4"
     webpack-sources "^1.4.1"
 
-webpack@^5.5.0:
+webpack@5.50.0:
   version "5.50.0"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.50.0.tgz#5562d75902a749eb4d75131f5627eac3a3192527"
   integrity sha512-hqxI7t/KVygs0WRv/kTgUW8Kl3YC81uyWQSo/7WUs5LsuRw0htH/fCwbVBGCuiX/t4s7qzjXFcf41O8Reiypag==
