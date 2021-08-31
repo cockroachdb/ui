@@ -1,0 +1,34 @@
+{
+  "color": {
+    "metrics": {
+      "core": {
+        "1": { "value": "#003ebd"},
+        "2": { "value": "#2aaf44"},
+        "3": { "value": "#2da6eb"},
+        "4": { "value": "#9c55d9"},
+        "5": { "value": "#c9cc01"},
+        "6": { "value": "#26dcab"},
+        "7": { "value": "#050f6d"},
+        "8": { "value": "#e38c09"},
+        "9": { "value": "#d93946"}
+      },
+      "light": {
+        "1": { "value": "#eaf1ff"},
+        "2": { "value": "#e0fbe5"},
+        "3": { "value": "#e7f6ff"},
+        "4": { "value": "#f7edff"},
+        "5": { "value": "#f8f9e1"},
+        "6": { "value": "#d5faf0"},
+        "7": { "value": "#edefff"},
+        "8": { "value": "#fff0da"},
+        "9": { "value": "#ffe4e7"}
+      },
+      "baseline": {
+        "1": { "value": "#00997f"},
+        "2": { "value": "#b92dff"},
+        "3": { "value": "#3b4251"},
+        "4": { "value": "#458eff"}
+      }
+    }
+  }
+}
