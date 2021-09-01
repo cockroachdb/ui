@@ -18,7 +18,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "style-dictionary": "2.10.3"
+    "style-dictionary": "3.0.2"
   },
   "publishConfig": {
     "access": "public"
