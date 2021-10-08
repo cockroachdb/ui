@@ -60,7 +60,7 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
 
   useEffect(() => {
     const onScroll = () => {
-      popperElement.removeAttribute("data-show");
+      popperElement?.removeAttribute("data-show");
     };
     document.addEventListener("scroll", onScroll, true);
     return () => document.removeEventListener("scroll", onScroll);
