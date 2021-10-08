@@ -75,7 +75,7 @@
     "sass": "1.39.2",
     "sass-loader": "12.1.0",
     "source-map-loader": "3.0.0",
-    "style-loader": "1.3.0",
+    "style-loader": "3.3.0",
     "ts-jest": "25.5.1",
     "typescript": "3.9.10",
     "webpack": "5.52.1",
