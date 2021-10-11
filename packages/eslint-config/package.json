@@ -16,7 +16,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@typescript-eslint/parser": "^2.34.0",
+    "@typescript-eslint/parser": "^5.0.0",
     "eslint-config-prettier": "^6.15.0"
   },
   "devDependencies": {
@@ -25,7 +25,7 @@
     "typescript": "3.9.10"
   },
   "peerDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.6.1",
+    "@typescript-eslint/eslint-plugin": "^2.6.1 || ^5.0.0",
     "eslint": ">=6",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
