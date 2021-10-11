@@ -37,7 +37,7 @@
   "resolutions": {
     "@types/react": "16.14.15",
     "prismjs": "^1.21.0",
-    "react": "16.14.0",
-    "react-dom": "16.14.0"
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
   }
 }
