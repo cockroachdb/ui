@@ -132,7 +132,7 @@ export const Example = () => {
   );
 };
 
-export const Demo = () => (
+export const PlainString = () => (
   <StoryContainer>
     <div
       style={{
@@ -171,5 +171,30 @@ export const Demo = () => (
         hover me
       </Tooltip>
     </div>
+  </StoryContainer>
+);
+
+export const Inline = () => (
+  <StoryContainer>
+      <div style={{padding: "5px"}}>
+          <Tooltip
+            content={text(
+              "Text",
+              "should be centered around inline element",
+            )}
+          >
+            <span style={{ backgroundColor: "yellow", padding: "5px" }}>I'm an inline element</span>
+          </Tooltip>
+      </div>
+      <div style={{padding: "5px"}}>
+          <Tooltip
+            content={text(
+              "Text",
+              "should be centered around block element",
+            )}
+          >
+            <div style={{ backgroundColor: "yellow", padding: "5px" }}>I'm a block element</div>
+          </Tooltip>
+      </div>
   </StoryContainer>
 );
