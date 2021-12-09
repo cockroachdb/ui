@@ -31,8 +31,8 @@
     "@storybook/addons": "6.3.12",
     "@storybook/react": "6.3.12",
     "babel-loader": "8.2.3",
-    "ts-loader": "7.0.5",
-    "typescript": "3.9.10"
+    "ts-loader": "9.2.6",
+    "typescript": "4.5.3"
   },
   "resolutions": {
     "@types/react": "16.14.20",
