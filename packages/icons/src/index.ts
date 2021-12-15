@@ -75,6 +75,7 @@ import { default as SleepyMoon } from "./components/SleepyMoon";
 
 // 3rd Party Icons
 import { default as Aws } from "./components/Aws";
+import { default as Datadog } from "./components/Datadog";
 import { default as Gcp } from "./components/Gcp";
 
 // Credit Cards
@@ -184,7 +185,7 @@ const Illustrations = {
   SleepyMoon,
 };
 
-const ThirdParty = { Aws, Gcp };
+const ThirdParty = { Aws, Datadog, Gcp };
 
 const Cards = {
   CreditCard,
