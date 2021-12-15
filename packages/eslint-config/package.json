@@ -1,6 +1,6 @@
 {
   "name": "@cockroachlabs/eslint-config",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "Shared eslint config for Cockroach Labs.",
   "repository": {
     "type": "git",
