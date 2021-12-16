@@ -11,6 +11,16 @@
         }
       ]
     },
+    "stylus": {
+      "transformGroup": "css",
+      "buildPath": "dist/web/",
+      "files": [
+        {
+          "destination": "tokens.styl",
+          "format": "stylus/variables"
+        }
+      ]
+    },
     "js": {
       "transformGroup": "js",
       "buildPath": "dist/web/",
