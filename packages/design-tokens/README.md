@@ -32,6 +32,19 @@ npm run build
 }
 ```
 
+### Stylus
+
+`tokens.styl` contains exported token values as Stylus variables.
+
+```stylus
+@require "~@cockroachlabs/design-tokens/dist/web/tokens"
+
+.example
+  color $color-intent-success-4
+  background-color $color-intent-success-1
+  border-radius 3px
+```
+
 ### JavaScript
 
 `tokens.js` contains exported token values as JavaScript constants.
