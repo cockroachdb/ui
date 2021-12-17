@@ -14,6 +14,7 @@
   "scripts": {
     "build": "style-dictionary build",
     "clean": "style-dictionary clean",
+    "prepublishOnly": "npm run clean && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "MIT",
