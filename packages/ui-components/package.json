@@ -1,6 +1,6 @@
 {
   "name": "@cockroachlabs/ui-components",
-  "version": "0.2.23-alpha.0",
+  "version": "0.2.23",
   "description": "UI Components is a reusable component library. It provides the core components for the Cockroach design system.",
   "repository": {
     "type": "git",
@@ -40,7 +40,7 @@
     "@babel/preset-env": "7.16.4",
     "@babel/preset-react": "7.16.0",
     "@babel/preset-typescript": "7.16.0",
-    "@cockroachlabs/design-tokens": "^0.4.3",
+    "@cockroachlabs/design-tokens": "^0.4.5",
     "@cockroachlabs/eslint-config": "^0.1.14",
     "@testing-library/jest-dom": "5.16.1",
     "@testing-library/react": "12.1.2",
