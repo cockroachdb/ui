@@ -1,0 +1,12 @@
+# https://github.com/blog/2392-introducing-code-owners
+# https://help.github.com/articles/about-codeowners/
+#
+# Code owners are automatically requested for review when someone
+# opens a pull request that modifies code that they own.
+#
+# Remember, *the last rule to match wins.*
+
+
+*                           @cockroachdb/CRUX
+#TODO(nathanstilwell) - do we want to make this a team?
+/docs                       @annebirzin @rsadres @rachwangcrl
