@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Icon should render given an iconName 1`] = `
-<SvgPlus
-  className="icon fill-default size-default"
-/>
-`;

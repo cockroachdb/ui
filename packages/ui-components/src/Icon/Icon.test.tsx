@@ -1,36 +1,25 @@
 import React from "react";
-import { shallow } from "enzyme";
-import { MinusCircle } from "@cockroachlabs/icons";
+import { render, screen } from "@testing-library/react";
 
 import Icon, { IconProps, IconSize, IconFill } from "./Icon";
 
-const defaultProps = {
+const defaultProps: IconProps = {
   iconName: "Plus",
 };
 
-const renderSubject = (overrideProps?: IconProps) => {
-  const props = Object.assign(defaultProps, overrideProps);
-  return shallow<IconProps>(<Icon {...props} />);
-};
-
-test("Icon should render given an iconName", () => {
-  const wrapper = renderSubject();
-  expect(wrapper).toMatchSnapshot();
-});
-
 test("Icon name should correspond to an SVG", () => {
-  const wrapper = renderSubject({ iconName: "MinusCircle" });
-  expect(wrapper.find(MinusCircle).length).toBe(1);
+  render(<Icon iconName="MinusCircle" aria-label="circle svg" />);
+  // If a corresponding SVG isn't found, nothing is rendered.
+  screen.getByLabelText("circle svg");
 });
 
 describe("Icon size prop", () => {
   test("will be defaulted", () => {
-    const wrapper = renderSubject();
-    expect(wrapper.prop("className")).toContain("size-default");
+    const { container } = render(<Icon {...defaultProps} />);
+    expect(container.getElementsByClassName("size-default").length).toBe(1);
   });
 
   test("will change the size of the Icon", () => {
-    const wrapper = renderSubject();
     const iconSizes: Array<[IconSize, string]> = [
       [undefined, "size-default"],
       ["default", "size-default"],
@@ -42,20 +31,21 @@ describe("Icon size prop", () => {
     ];
 
     iconSizes.forEach(([iconSize, expectedClassName]) => {
-      wrapper.setProps({ size: iconSize });
-      expect(wrapper.prop("className")).toContain(expectedClassName);
+      const { container } = render(<Icon {...defaultProps} size={iconSize} />);
+      expect(container.getElementsByClassName(expectedClassName).length).toBe(
+        1,
+      );
     });
   });
 });
 
 describe("Icon fill prop", () => {
   test("defaults to neutral", () => {
-    const wrapper = renderSubject();
-    expect(wrapper.prop("className")).toContain("fill-default");
+    const { container } = render(<Icon {...defaultProps} />);
+    expect(container.getElementsByClassName("fill-default").length).toBe(1);
   });
 
   test("changes the fill of an icon", () => {
-    const wrapper = renderSubject();
     const iconFills: Array<[IconFill, string]> = [
       ["danger", "fill-danger"],
       ["inverted", "fill-inverted"],
@@ -68,8 +58,10 @@ describe("Icon fill prop", () => {
     ];
 
     iconFills.forEach(([iconFill, expectedClassName]) => {
-      wrapper.setProps({ fill: iconFill });
-      expect(wrapper.prop("className")).toContain(expectedClassName);
+      const { container } = render(<Icon {...defaultProps} fill={iconFill} />);
+      expect(container.getElementsByClassName(expectedClassName).length).toBe(
+        1,
+      );
     });
   });
 });

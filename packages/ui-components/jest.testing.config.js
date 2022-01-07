@@ -7,9 +7,8 @@ module.exports = {
   roots: ["<rootDir>/src"],
   setupFilesAfterEnv: [
     "@testing-library/jest-dom/extend-expect",
-    "jest-enzyme",
   ],
-  testEnvironment: "enzyme",
+  testEnvironment: "jsdom",
   testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
   transform: {
     "^.+\\.tsx?$": "ts-jest",

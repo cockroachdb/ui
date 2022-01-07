@@ -1,38 +1,36 @@
 import React from "react";
-import { shallow } from "enzyme";
-import { Search } from "@cockroachlabs/icons";
-import { TextInput, TextInputProps } from "./index";
-import { BaseTextInput } from "./TextTypeInput";
+import { render, screen } from "@testing-library/react";
+import { TextInput } from "./index";
+
+const INPUT_LABEL = "Test input";
 
 describe("TextInput", () => {
   describe("Default props", () => {
     it("provides correct default values to inner <input /> element", () => {
-      const wrapper = shallow<TextInputProps>(<TextInput />);
-      const inputWrapper = wrapper.find(BaseTextInput);
-      const props = inputWrapper.props();
-      expect(props.disabled).toBeFalsy();
-      expect(props.value).toBeUndefined();
-      expect(props.className).toBeUndefined();
-      expect(props.id).toBeUndefined();
+      render(<TextInput ariaLabel={INPUT_LABEL} />);
+      const input = screen.getByLabelText(INPUT_LABEL);
+      expect(input).toBeEnabled();
+      expect(input).not.toHaveValue();
+      expect(input).not.toHaveAttribute("className");
+      expect(input).not.toHaveAttribute("id");
     });
   });
   describe("Style classes", () => {
     it("sets disabled prop when Input is disabled", () => {
-      const wrapper = shallow(<TextInput disabled />);
-      expect(wrapper.props().disabled).toBeTruthy();
+      render(<TextInput ariaLabel={INPUT_LABEL} disabled />);
+      expect(screen.getByLabelText(INPUT_LABEL)).toBeDisabled();
     });
 
     it("sets invalid prop when Input is disabled", () => {
-      const wrapper = shallow(<TextInput invalid />);
-      expect(wrapper.props().invalid).toBeTruthy();
+      render(<TextInput ariaLabel={INPUT_LABEL} invalid />);
+      expect(screen.getByLabelText(INPUT_LABEL)).toBeInvalid();
     });
   });
 });
 
 describe("Input with prefixed Icon", () => {
   it("renders Icon with TextInput component", () => {
-    const wrapper = shallow(<TextInput suffix={<Search />} />);
-    const suffixWrapper = wrapper.find(Search);
-    expect(suffixWrapper).toBeDefined();
+    render(<TextInput ariaLabel={INPUT_LABEL} suffix={<div>Suffix</div>} />);
+    screen.getByText("Suffix");
   });
 });
