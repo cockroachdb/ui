@@ -29,13 +29,7 @@ module.exports = {
       },
       {
         test: /\.(ts|js)x?$/,
-        use: [
-          "babel-loader",
-          {
-            loader: "astroturf/loader",
-            options: { extension: ".module.scss" },
-          },
-        ],
+        use: ["babel-loader"],
         exclude: /node_modules/,
       },
       // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
