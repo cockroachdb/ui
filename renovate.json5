@@ -42,10 +42,6 @@
         groupName: "sass packages",
       },
       {
-        matchPackagePatterns: ["^enzyme"],
-        groupName: "enzyme packages",
-      },
-      {
         matchPackageNames: ["jest", "ts-jest", "@types/jest"],
         groupName: "jest packages",
       },

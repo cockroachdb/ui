@@ -1,44 +1,35 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 
 import { Tooltip } from "./Tooltip";
 
+const TRIGGER_TEXT = "hover trigger";
+const HOVER_TEXT = "hover text";
+
 const TooltipExample = (
-  <Tooltip content={<div id="content">test</div>}>
-    <div id="hoverme">hover me</div>
+  <Tooltip content={<div id="content">{HOVER_TEXT}</div>}>
+    <div>{TRIGGER_TEXT}</div>
   </Tooltip>
 );
 
 describe("Tooltip", () => {
-  test("renders", () => {
-    const wrapper = shallow(TooltipExample);
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it("is shows children", () => {
-    const wrapper = shallow(TooltipExample);
-    expect(wrapper.find("#hoverme").text()).toBe("hover me");
-  });
-
   it("is shown on hover", () => {
-    const wrapper = shallow(TooltipExample);
-    expect(wrapper.find("[data-show]").length).toBeFalsy();
-    setTimeout(() => {
-      wrapper.find("#hoverme").simulate("mouseOver");
-      expect(wrapper.find("[data-show]").length).toBeTruthy();
-    }, 0);
+    render(TooltipExample);
+    expect(screen.getByText(HOVER_TEXT)).not.toHaveAttribute("data-show");
+    fireEvent.mouseOver(screen.getByText(TRIGGER_TEXT));
+    waitFor(() => {
+      expect(screen.getByText(HOVER_TEXT)).toHaveAttribute("data-show");
+    });
   });
 
   it("is not shown on hover if content is empty", () => {
-    const wrapper = shallow(
+    const { container } = render(
       <Tooltip content={undefined}>
-        <div id="hoverme">hover me</div>
+        <div>{TRIGGER_TEXT}</div>
       </Tooltip>,
     );
-    expect(wrapper.find('[data-jest="tooltip"]').length).toBeFalsy();
-    setTimeout(() => {
-      wrapper.find("#hoverme").simulate("mouseOver");
-      expect(wrapper.find('[data-jest="tooltip"]').length).toBeFalsy();
-    }, 0);
+    expect(container.querySelector('[data-jest="tooltip"]')).toBeNull();
+    fireEvent.mouseOver(screen.getByText(TRIGGER_TEXT));
+    expect(container.querySelector('[data-jest="tooltip"]')).toBeNull();
   });
 });
