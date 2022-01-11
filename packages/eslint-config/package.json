@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "eslint": "6.8.0",
-    "snyk": "1.812.0",
+    "snyk": "1.824.0",
     "typescript": "3.9.10"
   },
   "peerDependencies": {
