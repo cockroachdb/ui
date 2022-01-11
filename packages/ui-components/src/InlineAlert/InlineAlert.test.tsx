@@ -1,31 +1,23 @@
 import React from "react";
-import chromatism from "chromatism";
 import { render, screen } from "@testing-library/react";
-import {
-  ComponentInlineAlertBackgroundColorInfo,
-  ComponentInlineAlertBackgroundColorDanger,
-  ComponentInlineAlertBackgroundColorWarning,
-  ComponentInlineAlertBackgroundColorSuccess,
-} from "@cockroachlabs/design-tokens/dist/web/tokens.module";
 import { InlineAlert, InlineAlertIntent } from "./InlineAlert";
 
 describe("InlineAlert", () => {
   test("renders with correct intent", () => {
     const title = "Hello world!";
-    const testClassName = "test-classname";
-    const alertIntents: Array<[InlineAlertIntent, string]> = [
-      ["warning", ComponentInlineAlertBackgroundColorWarning],
-      ["success", ComponentInlineAlertBackgroundColorSuccess],
-      ["danger", ComponentInlineAlertBackgroundColorDanger],
-      ["info", ComponentInlineAlertBackgroundColorInfo],
+    const alertIntents: InlineAlertIntent[] = [
+      "warning",
+      "success",
+      "danger",
+      "info",
     ];
-    alertIntents.forEach(([intent, color]) => {
+    alertIntents.forEach((intent) => {
       const { container } = render(
-        <InlineAlert title={title} intent={intent} className={testClassName} />,
+        <InlineAlert title={title} intent={intent} />,
       );
-      const elem = container.getElementsByClassName(testClassName);
-      const style = window.getComputedStyle(elem[0]);
-      expect(chromatism.convert(style.backgroundColor).hex).toBe(color);
+      expect(container.getElementsByClassName(`intent-${intent}`).length).toBe(
+        1,
+      );
     });
   });
 
