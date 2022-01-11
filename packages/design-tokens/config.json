@@ -28,6 +28,10 @@
         {
           "format": "javascript/es6",
           "destination": "tokens.js"
+        },
+        {
+          "format": "javascript/module-flat",
+          "destination": "tokens.module.js"
         }
       ]
     },
