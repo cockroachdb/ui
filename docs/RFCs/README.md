@@ -37,12 +37,12 @@ guidance is intentionally vague. Many complex projects spread over
 multiple PRs do not require an RFC, though they do require adequate
 communication and discussion.
 
-It is encouraged to develop a [prototype](PROTOTYPING.md) concurrently
-with writing the RFC. One of the significant benefits of an RFC is
-that it forces bigger picture thinking which reviewers can then
-disect. In contrast, a prototype forces the details to be considered,
-shedding light on the unknown unknowns and helping to ensure that the
-RFC focuses on the important design considerations.
+It is encouraged to develop a prototype concurrently with writing the
+RFC. One of the significant benefits of an RFC is that it forces
+bigger picture thinking which reviewers can then disect. In contrast,
+a prototype forces the details to be considered, shedding light on the
+unknown unknowns and helping to ensure that the RFC focuses on the
+important design considerations.
 
 An RFC should be a high-level description which does not require
 formal correctness. There is utility in conciseness. Do not
