@@ -9,7 +9,9 @@ export type TimeUnit = {
 
 export const gteq = (x: number, y: number): boolean => x >= y;
 export const lt = (x: number, y: number): boolean => x < y;
-export const compare = (fn: Function) => (y: number) => (x: number) => fn(x, y);
+export const compare =
+  (fn: (X: number, y: number) => boolean) => (y: number) => (x: number) =>
+    fn(x, y);
 export const gteqUnit = compare(gteq);
 export const gteqZero = compare(gteq)(0);
 export const ltZero = compare(lt)(0);

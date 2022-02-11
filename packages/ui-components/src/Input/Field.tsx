@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { useState } from "react";
 import { Field, FieldProps, FieldRenderProps } from "react-final-form";
 
 import {

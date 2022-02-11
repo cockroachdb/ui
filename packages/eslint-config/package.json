@@ -16,8 +16,8 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@typescript-eslint/parser": "^2.34.0",
-    "eslint-config-prettier": "^8.0.0"
+    "@typescript-eslint/parser": "5.10.2",
+    "eslint-config-prettier": "8.3.0"
   },
   "devDependencies": {
     "eslint": "8.8.0",
@@ -25,12 +25,12 @@
     "typescript": "3.9.10"
   },
   "peerDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.6.1",
-    "eslint": ">=6",
-    "eslint-plugin-prettier": "^3.1.1 || ^4.0.0",
-    "eslint-plugin-react": "^7.16.0",
-    "eslint-plugin-react-hooks": "^2.3.0 || ^4.0.0",
-    "typescript": ">=2.8.0"
+    "@typescript-eslint/eslint-plugin": "^5.10.2",
+    "eslint": ">=8",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "typescript": ">=3.9.0"
   },
   "publishConfig": {
     "access": "public"
