@@ -2,13 +2,15 @@ import React, { useMemo } from "react";
 import classNames from "classnames/bind";
 
 import styles from "./InlineAlert.module.scss";
-import { Icon, IconIntent } from "../Icon/Icon";
+import { Icon } from "../Icon/Icon";
 import { Text } from "../Typography";
 
 const cx = classNames.bind(styles);
 
+export type InlineAlertIntent = "danger" | "info" | "success" | "warning";
+
 interface InlineAlertBaseProps {
-  intent?: IconIntent;
+  intent?: InlineAlertIntent;
   className?: string;
 }
 
@@ -40,7 +42,6 @@ export const InlineAlert: React.FC<InlineAlertProps> = ({
       case "warning":
         return "Caution";
       case "info":
-      default:
         return "InfoCircleFilled";
     }
   }, [intent]);
