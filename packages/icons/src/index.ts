@@ -134,6 +134,9 @@ import { default as CockroachMarkDarkMono } from "./components/CockroachMarkDark
 import { default as CockroachMarkLightFull } from "./components/CockroachMarkLightFull";
 import { default as CockroachMarkLightReduced } from "./components/CockroachMarkLightReduced";
 import { default as CockroachMarkLightMono } from "./components/CockroachMarkLightMono";
+import { default as CockroachShorthandBlack } from "./components/CockroachShorthandBlack";
+import { default as CockroachShorthandPurple } from "./components/CockroachShorthandPurple";
+import { default as CockroachShorthandWhite } from "./components/CockroachShorthandWhite";
 
 // other
 import { default as Community } from "./components/Community";
@@ -271,6 +274,9 @@ const Logos = {
   CockroachMarkLightFull,
   CockroachMarkLightReduced,
   CockroachMarkLightMono,
+  CockroachShorthandBlack,
+  CockroachShorthandPurple,
+  CockroachShorthandWhite,
 };
 
 export {

@@ -1,5 +1,5 @@
 import React, { FunctionComponent, ReactNode, CSSProperties } from "react";
-import get from "lodash/get";
+import capitalize from "lodash/capitalize";
 
 import { StoryContainer, StoryDescription } from "../layout";
 
@@ -10,7 +10,6 @@ import {
   Cards as CreditCardSet,
   Flags as FlagSet,
   Illustrations as IllustrationSet,
-  Logos as LogoSet,
 } from "@cockroachlabs/icons";
 import {
   Heading,
@@ -33,7 +32,12 @@ import {
   LogoBrand,
   LogoColor,
   LogoBackground,
+  LogoSize,
   Text,
+  LogoMarkSize,
+  LogoShorthand,
+  LogoShorthandColor,
+  LogoShorthandSize,
 } from "@cockroachlabs/ui-components";
 
 export default {
@@ -412,425 +416,142 @@ export const Illustrations = () => (
   </StoryContainer>
 );
 
+type logoBrandSection = {
+  title: string,
+  description: string,
+  brand: LogoBrand,
+  brandTitle: string,
+  sizes: Array<{
+    key: LogoSize,
+    height: string,
+    width: string,
+  }>
+}
+const logoBrandSections: logoBrandSection[] = [{
+  title: "Cockroach Labs Horizontal Logo",
+  description: "The Horizontal Logo is the preferred version, to be used whenever there is space. If the logo can only be used in black or white, those versions are available.",
+  brand: "cockroach-labs",
+  brandTitle: "Cockroach Labs",
+  sizes: [
+    { key: "default", height: "36px", width: "256px" },
+    { key: "small", height: "26px", width: "184px" },
+  ],
+}, {
+  title: "CockroachCloud Logo",
+  description: "The CockroachCloud logo is to be used when specifically referring to the Cockroach Cloud product (ie. CockroachCloud Console and CockroachCloud Docs). ",
+  brand: "cockroachcloud",
+  brandTitle: "CockroachCloud",
+  sizes: [
+    { key: "default", height: "36px", width: "256px" },
+    { key: "small", height: "26px", width: "184px" },
+  ],
+ }, {
+  title: "CockroachDB Logo",
+  description: "The CockroachDB logo is used when specifically referring to the Cockroach Database (ie. DB Console and CockroachDB Docs)",
+  brand: "cockroachdb",
+  brandTitle: "CockroachDB",
+  sizes: [
+    { key: "default", height: "36px", width: "216px" },
+    { key: "small", height: "26px", width: "156px" },
+  ],
+ }];
+const logoBackgrounds: Array<{ key: LogoBackground, color: string, text: string }> = [
+  { key: "light", color: "transparent", text: "inherit"},
+  { key: "dark", color: "#0d1628", text: "white" },
+];
+const logoColors: LogoColor[] = ["full", "reduced", "mono"];
+const logoMarkSizes: Array<{ key: LogoMarkSize, height: string, width: string}> = [
+  { key: "default", height: "86px", width: "86px"},
+  { key: "medium", height: "64px", width: "64px" },
+  { key: "small", height: "48px", width: "48px" }
+];
+const logoShorthandColors: Array<{ key: LogoShorthandColor, background: string, text: string}> = [
+  { key: "purple", background: "transparent", text: "inherit" },
+  { key: "black", background: "transparent", text: "inherit" },
+  { key: "white", background: "#0d1628", text: "white" },
+];
+const logoShorthandSizes: Array<{ key: LogoShorthandSize, height: string, width: string, label: string}> = [
+  { key: "xxl", label: "XXL", height: "80px", width: "80px" },
+  { key: "xl", label: "XL", height: "56px", width: "56px" },
+  { key: "large", label: "Large", height: "48px", width: "48px" },
+  { key: "medium", label: "Medium", height: "32px", width: "32px" },
+  { key: "small", label: "Small", height: "24px", width: "24px" },
+  { key: "tiny", label: "Tiny", height: "16px", width: "16px" },
+];
+
 export const Logos = () => (
   <StoryContainer>
     <Heading type="h1">Cockroach Labs Logos</Heading>
+    {logoBrandSections.map((section) => (
+      <>
+        <Heading type="h2">{section.title}</Heading>
+        <StoryDescription>
+          <Text type="body">{section.description}</Text>
+        </StoryDescription>
+        {logoBackgrounds.map((bg) => (
+          <IconDisplaySection style={{ backgroundColor: bg.color}}>
+            {section.sizes.map(size =>
+              logoColors.map((color) =>(
+                <IconDisplay>
+                    <IconLabel
+                      style={{ color: bg.text}}
+                      text={`${section.brandTitle} ${capitalize(color)} Color ${capitalize(bg.key)}`} />
+                    <Frame style={{ width: size.width, height: size.height }}>
+                      <Logo brand={section.brand} color={color} background={bg.key} />
+                    </Frame>
+                  </IconDisplay>
+              ))
+            )}
+          </IconDisplaySection>
+        ))}
+      </>
+    ))}
 
-    <Heading type="h2">Cockroach Labs Horizontal Logo</Heading>
-    <StoryDescription>
-      <Text type="body">The Horizontal Logo is the preferred version, 
-      to be used whenever there is space. If the logo can only be used
-      in black or white, those versions are available.
-      </Text>
-    </StoryDescription>
-    <IconDisplaySection>
-       <IconDisplay>
-          <IconLabel text="Cockroach Labs Full Color Light" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroach-labs" color="full" background="light" />
-          </Frame>
-        </IconDisplay>
-
-       <IconDisplay>
-          <IconLabel text="Cockroach Labs Reduced Color Light" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroach-labs" color="reduced" background="light" />
-          </Frame>
-        </IconDisplay>
-
-       <IconDisplay>
-          <IconLabel text="Cockroach Labs Mono Color Light" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroach-labs" color="mono" background="light" />
-          </Frame>
-        </IconDisplay>
-       <IconDisplay>
-          <IconLabel text="Cockroach Labs Full Color Light (small)" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroach-labs" color="full" background="light" size="small" />
-          </Frame>
-        </IconDisplay>
-
-       <IconDisplay>
-          <IconLabel text="Cockroach Labs Reduced Color Light (small)" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroach-labs" color="reduced" background="light" size="small" />
-          </Frame>
-        </IconDisplay>
-
-       <IconDisplay>
-          <IconLabel text="Cockroach Labs Mono Color Light (small)" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroach-labs" color="mono" background="light" size="small" />
-          </Frame>
-        </IconDisplay>
-    </IconDisplaySection>
-
-    <IconDisplaySection style={{ backgroundColor: "#0d1628"}}>
-       <IconDisplay>
-          <IconLabel style={{ color: "white"}} text="Cockroach Labs Full Color Dark" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroach-labs" color="full" background="dark" />
-          </Frame>
-        </IconDisplay>
-
-       <IconDisplay>
-          <IconLabel style={{ color: "white"}} text="Cockroach Labs Reduced Color Dark" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroach-labs" color="reduced" background="dark" />
-          </Frame>
-        </IconDisplay>
-
-       <IconDisplay>
-          <IconLabel style={{ color: "white"}} text="Cockroach Labs Mono Color Dark" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroach-labs" color="mono" background="dark" />
-          </Frame>
-        </IconDisplay>
-       <IconDisplay>
-          <IconLabel style={{ color: "white"}} text="Cockroach Labs Full Color Dark (small)" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroach-labs" color="full" background="dark" size="small" />
-          </Frame>
-        </IconDisplay>
-
-       <IconDisplay>
-          <IconLabel style={{ color: "white"}} text="Cockroach Labs Reduced Color Dark (small)" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroach-labs" color="reduced" background="dark" size="small" />
-          </Frame>
-        </IconDisplay>
-
-       <IconDisplay>
-          <IconLabel style={{ color: "white"}} text="Cockroach Labs Mono Color Dark (small)" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroach-labs" color="mono" background="dark" size="small" />
-          </Frame>
-        </IconDisplay>
-    </IconDisplaySection>
-
-    <Heading type="h2">CockroachCloud Logo</Heading>
+    <Heading type="h2">Cockroach Logo Mark</Heading>
     <StoryDescription>
       <Text type="body">
-        The CockroachCloud logo is to be used when specifically
-        referring to the Cockroach Cloud product (ie. CockroachCloud
-        Console and CockroachCloud Docs). 
+        The Cockroach Labs Logo Mark symbolizes the most highly-evolved
+        creature on the planet: the iridescent and ever-changing Cockroach.
       </Text>
     </StoryDescription>
-    <IconDisplaySection>
-       <IconDisplay>
-          <IconLabel text="CockroachCloud Full Color Light" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachcloud" color="full" background="light" />
-          </Frame>
-        </IconDisplay>
+    {logoBackgrounds.map(bg => (
+      <IconDisplaySection style={{ backgroundColor: bg.color}}>
+        {logoMarkSizes.map(size =>
+          logoColors.map(color => (
+            <IconDisplay>
+              <IconLabel
+                style={{ color: bg.text}}
+                text={`Cockroach Mark ${capitalize(color)} Color ${capitalize(bg.key)}`} />
+              <Frame style={{ width: size.width, height: size.height, margin: "1em auto" }}>
+                <LogoMark color={color} background={bg.key} />
+              </Frame>
+            </IconDisplay>
+          ))
+        )}
+      </IconDisplaySection>
+    ))}
 
-       <IconDisplay>
-          <IconLabel text="CockroachCloud Reduced Color Light" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachcloud" color="reduced" background="light" />
-          </Frame>
-        </IconDisplay>
-
-       <IconDisplay>
-          <IconLabel text="CockroachCloud Mono Color Light" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachcloud" color="mono" background="light" />
-          </Frame>
-        </IconDisplay>
-       <IconDisplay>
-          <IconLabel text="CockroachCloud Full Color Light (small)" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachcloud" color="full" background="light" size="small" />
-          </Frame>
-        </IconDisplay>
-
-       <IconDisplay>
-          <IconLabel text="CockroachCloud Reduced Color Light (small)" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachcloud" color="reduced" background="light" size="small" />
-          </Frame>
-        </IconDisplay>
-
-       <IconDisplay>
-          <IconLabel text="CockroachCloud Mono Color Light (small)" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachcloud" color="mono" background="light" size="small" />
-          </Frame>
-        </IconDisplay>
-    </IconDisplaySection>
-
-    <IconDisplaySection style={{ backgroundColor: "#0d1628"}}>
-       <IconDisplay>
-          <IconLabel style={{ color: "white"}} text="CockroachCloud Full Color Dark" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachcloud" color="full" background="dark" />
-          </Frame>
-        </IconDisplay>
-
-       <IconDisplay>
-          <IconLabel style={{ color: "white"}} text="CockroachCloud Reduced Color Dark" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachcloud" color="reduced" background="dark" />
-          </Frame>
-        </IconDisplay>
-
-       <IconDisplay>
-          <IconLabel style={{ color: "white"}} text="Cockroach Labs Mono Color Dark" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachcloud" color="mono" background="dark" />
-          </Frame>
-        </IconDisplay>
-       <IconDisplay>
-          <IconLabel style={{ color: "white"}} text="Cockroach Labs Full Color Dark (small)" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachcloud" color="full" background="dark" size="small" />
-          </Frame>
-        </IconDisplay>
-
-       <IconDisplay>
-          <IconLabel style={{ color: "white"}} text="CockroachCloud Reduced Color Dark (small)" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachcloud" color="reduced" background="dark" size="small" />
-          </Frame>
-        </IconDisplay>
-
-       <IconDisplay>
-          <IconLabel style={{ color: "white"}} text="CockroachCloud Mono Color Dark (small)" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachcloud" color="mono" background="dark" size="small" />
-          </Frame>
-        </IconDisplay>
-    </IconDisplaySection>
-
-    <Heading type="h2">CockroachDB Logo</Heading>
+    <Heading type="h2">Cockroach Shorthand Logo</Heading>
     <StoryDescription>
       <Text type="body">
-      The CockroachDB logo is used when specifically referring to the Cockroach Database (ie. DB Console and CockroachDB Docs) 
+        The Shorthand Logo is useful when only a small, square-shaped space is availabile.
+        Multiple versions are available for use in small sizes, all the way down to 24x24px.
       </Text>
     </StoryDescription>
-    <IconDisplaySection>
-       <IconDisplay>
-          <IconLabel text="CockroachDB Full Color Light" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachdb" color="full" background="light" />
+
+    <IconDisplaySection style={{ backgroundColor: "transparent"}}>
+    {logoShorthandColors.map(color => (
+      <IconDisplaySection style={{ backgroundColor: color.background}}>
+      {logoShorthandSizes.map(size => (
+        <IconDisplay>
+          <IconLabel style={{ color: color.text }} text={`Cockroach Shorthand ${size.label} ${capitalize(color.key)}`} />
+          <Frame style={{ width: size.width, height: size.height, margin: "1em auto"}}>
+            <LogoShorthand size={size.key} color={color.key} />
           </Frame>
         </IconDisplay>
-
-       <IconDisplay>
-          <IconLabel text="CockroachDB Reduced Color Light" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachdb" color="reduced" background="light" />
-          </Frame>
-        </IconDisplay>
-
-       <IconDisplay>
-          <IconLabel text="CockroachDB Mono Color Light" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachdb" color="mono" background="light" />
-          </Frame>
-        </IconDisplay>
-       <IconDisplay>
-          <IconLabel text="CockroachDB Full Color Light (small)" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachdb" color="full" background="light" size="small" />
-          </Frame>
-        </IconDisplay>
-
-       <IconDisplay>
-          <IconLabel text="CockroachDB Reduced Color Light (small)" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachdb" color="reduced" background="light" size="small" />
-          </Frame>
-        </IconDisplay>
-
-       <IconDisplay>
-          <IconLabel text="CockroachDB Mono Color Light (small)" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachdb" color="mono" background="light" size="small" />
-          </Frame>
-        </IconDisplay>
-    </IconDisplaySection>
-
-    <IconDisplaySection style={{ backgroundColor: "#0d1628"}}>
-       <IconDisplay>
-          <IconLabel style={{ color: "white"}} text="CockroachDB Full Color Dark" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachdb" color="full" background="dark" />
-          </Frame>
-        </IconDisplay>
-
-       <IconDisplay>
-          <IconLabel style={{ color: "white"}} text="CockroachDB Reduced Color Dark" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachdb" color="reduced" background="dark" />
-          </Frame>
-        </IconDisplay>
-
-       <IconDisplay>
-          <IconLabel style={{ color: "white"}} text="Cockroach Labs Mono Color Dark" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachdb" color="mono" background="dark" />
-          </Frame>
-        </IconDisplay>
-       <IconDisplay>
-          <IconLabel style={{ color: "white"}} text="Cockroach Labs Full Color Dark (small)" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachdb" color="full" background="dark" size="small" />
-          </Frame>
-        </IconDisplay>
-
-       <IconDisplay>
-          <IconLabel style={{ color: "white"}} text="CockroachDB Reduced Color Dark (small)" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachdb" color="reduced" background="dark" size="small" />
-          </Frame>
-        </IconDisplay>
-
-       <IconDisplay>
-          <IconLabel style={{ color: "white"}} text="CockroachDB Mono Color Dark (small)" />
-          <Frame style={{ width: "256px", height: "36px" }}>
-            <Logo brand="cockroachdb" color="mono" background="dark" size="small" />
-          </Frame>
-        </IconDisplay>
-    </IconDisplaySection>
-
-     <Heading type="h2">Cockroach Logo Mark</Heading>
-    <StoryDescription>
-      <Text type="body">
-      </Text>
-    </StoryDescription>
-    <IconDisplaySection>
-      {/* Default sizes */}
-      <IconDisplay>
-        <IconLabel text="Cockroach Mark Full Color Light" />
-        <Frame style={{ width: "86px", height: "86px", margin: "1em auto" }}>
-          <LogoMark color="full" background="light" />
-        </Frame>
-      </IconDisplay>
-
-      <IconDisplay>
-        <IconLabel text="Cockroach Mark Reduced Color Light" />
-        <Frame style={{ width: "86px", height: "86px", margin: "1em auto" }}>
-          <LogoMark color="reduced" background="light" />
-        </Frame>
-      </IconDisplay>
-
-      <IconDisplay>
-        <IconLabel text="Cockroach Mark Mono Color Light" />
-        <Frame style={{ width: "86px", height: "86px", margin: "1em auto" }}>
-          <LogoMark color="mono" background="light" />
-        </Frame>
-      </IconDisplay>
-      {/* Medium sizes */}
-      <IconDisplay>
-        <IconLabel text="Cockroach Mark Full Color Light (medium)" />
-        <Frame style={{ width: "64px", height: "64px", margin: "1em auto" }}>
-          <LogoMark color="full" background="light" size="medium" />
-        </Frame>
-      </IconDisplay>
-
-      <IconDisplay>
-        <IconLabel text="Cockroach Mark Reduced Color Light (medium)" />
-        <Frame style={{ width: "64px", height: "64px", margin: "1em auto" }}>
-          <LogoMark color="reduced" background="light" size="medium" />
-        </Frame>
-      </IconDisplay>
-
-      <IconDisplay>
-        <IconLabel text="Cockroach Mark Mono Color Light (medium)" />
-        <Frame style={{ width: "64px", height: "64px", margin: "1em auto" }}>
-          <LogoMark color="mono" background="light" size="medium" />
-        </Frame>
-      </IconDisplay>
-      {/* Small sizes */}
-      <IconDisplay>
-        <IconLabel text="Cockroach Mark Full Color Light (small)" />
-        <Frame style={{ width: "48px", height: "48px", margin: "1em auto" }}>
-          <LogoMark color="full" background="light" size="small" />
-        </Frame>
-      </IconDisplay>
-
-      <IconDisplay>
-        <IconLabel text="Cockroach Mark Reduced Color Light (small)" />
-        <Frame style={{ width: "48px", height: "48px", margin: "1em auto" }}>
-          <LogoMark color="reduced" background="light" size="small" />
-        </Frame>
-      </IconDisplay>
-
-      <IconDisplay>
-        <IconLabel text="Cockroach Mark Mono Color Light (small)" />
-        <Frame style={{ width: "48px", height: "48px", margin: "1em auto" }}>
-          <LogoMark color="mono" background="light" size="small" />
-        </Frame>
-      </IconDisplay>
-    </IconDisplaySection>
-      {/* Dark backgrounds */}
-
-    <IconDisplaySection style={{ backgroundColor: "#0d1628"}}>
-      {/* Default sizes */}
-      <IconDisplay>
-        <IconLabel style={{ color: "white"}} text="Cockroach Mark Full Color Dark" />
-        <Frame style={{ width: "86px", height: "86px", margin: "1em auto" }}>
-          <LogoMark color="full" background="dark" />
-        </Frame>
-      </IconDisplay>
-
-      <IconDisplay>
-        <IconLabel style={{ color: "white"}} text="Cockroach Mark Reduced Color Dark" />
-        <Frame style={{ width: "86px", height: "86px", margin: "1em auto" }}>
-          <LogoMark color="reduced" background="dark" />
-        </Frame>
-      </IconDisplay>
-
-      <IconDisplay>
-        <IconLabel style={{ color: "white"}} text="Cockroach Mark Mono Color Dark" />
-        <Frame style={{ width: "86px", height: "86px", margin: "1em auto" }}>
-          <LogoMark color="mono" background="dark" />
-        </Frame>
-      </IconDisplay>
-      {/* Medium sizes */}
-      <IconDisplay>
-        <IconLabel style={{ color: "white"}} text="Cockroach Mark Full Color Dark (medium)" />
-        <Frame style={{ width: "64px", height: "64px", margin: "1em auto" }}>
-          <LogoMark color="full" background="dark" size="medium" />
-        </Frame>
-      </IconDisplay>
-
-      <IconDisplay>
-        <IconLabel style={{ color: "white"}} text="Cockroach Mark Reduced Color Dark (medium)" />
-        <Frame style={{ width: "64px", height: "64px", margin: "1em auto" }}>
-          <LogoMark color="reduced" background="dark" size="medium" />
-        </Frame>
-      </IconDisplay>
-
-      <IconDisplay>
-        <IconLabel style={{ color: "white"}} text="Cockroach Mark Mono Color Dark (medium)" />
-        <Frame style={{ width: "64px", height: "64px", margin: "1em auto" }}>
-          <LogoMark color="mono" background="dark" size="medium" />
-        </Frame>
-      </IconDisplay>
-      {/* Small sizes */}
-      <IconDisplay>
-        <IconLabel style={{ color: "white"}} text="Cockroach Mark Full Color Dark (small)" />
-        <Frame style={{ width: "48px", height: "48px", margin: "1em auto" }}>
-          <LogoMark color="full" background="dark" size="small" />
-        </Frame>
-      </IconDisplay>
-
-      <IconDisplay>
-        <IconLabel style={{ color: "white"}} text="Cockroach Mark Reduced Color Dark (small)" />
-        <Frame style={{ width: "48px", height: "48px", margin: "1em auto" }}>
-          <LogoMark color="reduced" background="dark" size="small" />
-        </Frame>
-      </IconDisplay>
-
-      <IconDisplay>
-        <IconLabel style={{ color: "white"}} text="Cockroach Mark Mono Color Dark (small)" />
-        <Frame style={{ width: "48px", height: "48px", margin: "1em auto" }}>
-          <LogoMark color="mono" background="dark" size="small" />
-        </Frame>
-      </IconDisplay>
+      ))}
+      </IconDisplaySection>
+    ))}
     </IconDisplaySection>
   </StoryContainer>
 );

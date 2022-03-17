@@ -37,4 +37,12 @@ describe("upperCamelCase", () => {
 
     expect(result).toBe(expected);
   });
+
+  test("should capitalize a single word", () => {
+    const testString = "cockroach";
+    const result = upperCamelCase(testString);
+    const expected = "Cockroach";
+
+    expect(result).toBe(expected);
+  });
 });
