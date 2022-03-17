@@ -10,7 +10,11 @@ import objectToClassNames from "../utils/objectToClassnames";
 import styles from "./Logo.module.scss";
 
 export type LogoSize = "default" | "small";
-export type LogoBrand = "cockroach-labs" | "cockroachcloud" | "cockroachdb";
+export type LogoBrand =
+  | "cockroach-labs"
+  | "cockroachcloud"
+  | "cockroachdb"
+  | "cockroach-mark";
 export type LogoColor = "full" | "reduced" | "mono";
 export type LogoBackground = "dark" | "light";
 
@@ -44,7 +48,7 @@ export const Logo = ({
 
   const logoName = `${cc(brand)}${cc(background)}${cc(color)}`;
 
-  console.log(`classnames: ${oTCNames}`);
+  console.log(`brand: ${brand}, logoName: ${logoName}`);
 
   const Element = get(Logos, logoName, null);
 

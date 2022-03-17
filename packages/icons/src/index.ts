@@ -128,6 +128,12 @@ import { default as CockroachdbDarkMono } from "./components/CockroachdbDarkMono
 import { default as CockroachdbLightFull } from "./components/CockroachdbLightFull";
 import { default as CockroachdbLightReduced } from "./components/CockroachdbLightReduced";
 import { default as CockroachdbLightMono } from "./components/CockroachdbLightMono";
+import { default as CockroachMarkDarkFull } from "./components/CockroachMarkDarkFull";
+import { default as CockroachMarkDarkReduced } from "./components/CockroachMarkDarkReduced";
+import { default as CockroachMarkDarkMono } from "./components/CockroachMarkDarkMono";
+import { default as CockroachMarkLightFull } from "./components/CockroachMarkLightFull";
+import { default as CockroachMarkLightReduced } from "./components/CockroachMarkLightReduced";
+import { default as CockroachMarkLightMono } from "./components/CockroachMarkLightMono";
 
 // other
 import { default as Community } from "./components/Community";
@@ -259,6 +265,12 @@ const Logos = {
   CockroachdbLightFull,
   CockroachdbLightReduced,
   CockroachdbLightMono,
+  CockroachMarkDarkFull,
+  CockroachMarkDarkReduced,
+  CockroachMarkDarkMono,
+  CockroachMarkLightFull,
+  CockroachMarkLightReduced,
+  CockroachMarkLightMono,
 };
 
 export {
@@ -372,6 +384,12 @@ export {
   CockroachdbLightFull,
   CockroachdbLightReduced,
   CockroachdbLightMono,
+  CockroachMarkDarkFull,
+  CockroachMarkDarkReduced,
+  CockroachMarkDarkMono,
+  CockroachMarkLightFull,
+  CockroachMarkLightReduced,
+  CockroachMarkLightMono,
   // sets,
   SystemIcons,
   Pictograms,

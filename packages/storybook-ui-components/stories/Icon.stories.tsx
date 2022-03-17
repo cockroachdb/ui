@@ -29,6 +29,7 @@ import {
   FlagSize,
   flagNameCountryCodeMap,
   Logo,
+  LogoMark,
   LogoBrand,
   LogoColor,
   LogoBackground,
@@ -692,6 +693,144 @@ export const Logos = () => (
             <Logo brand="cockroachdb" color="mono" background="dark" size="small" />
           </Frame>
         </IconDisplay>
+    </IconDisplaySection>
+
+     <Heading type="h2">Cockroach Logo Mark</Heading>
+    <StoryDescription>
+      <Text type="body">
+      </Text>
+    </StoryDescription>
+    <IconDisplaySection>
+      {/* Default sizes */}
+      <IconDisplay>
+        <IconLabel text="Cockroach Mark Full Color Light" />
+        <Frame style={{ width: "86px", height: "86px", margin: "1em auto" }}>
+          <LogoMark color="full" background="light" />
+        </Frame>
+      </IconDisplay>
+
+      <IconDisplay>
+        <IconLabel text="Cockroach Mark Reduced Color Light" />
+        <Frame style={{ width: "86px", height: "86px", margin: "1em auto" }}>
+          <LogoMark color="reduced" background="light" />
+        </Frame>
+      </IconDisplay>
+
+      <IconDisplay>
+        <IconLabel text="Cockroach Mark Mono Color Light" />
+        <Frame style={{ width: "86px", height: "86px", margin: "1em auto" }}>
+          <LogoMark color="mono" background="light" />
+        </Frame>
+      </IconDisplay>
+      {/* Medium sizes */}
+      <IconDisplay>
+        <IconLabel text="Cockroach Mark Full Color Light (medium)" />
+        <Frame style={{ width: "64px", height: "64px", margin: "1em auto" }}>
+          <LogoMark color="full" background="light" size="medium" />
+        </Frame>
+      </IconDisplay>
+
+      <IconDisplay>
+        <IconLabel text="Cockroach Mark Reduced Color Light (medium)" />
+        <Frame style={{ width: "64px", height: "64px", margin: "1em auto" }}>
+          <LogoMark color="reduced" background="light" size="medium" />
+        </Frame>
+      </IconDisplay>
+
+      <IconDisplay>
+        <IconLabel text="Cockroach Mark Mono Color Light (medium)" />
+        <Frame style={{ width: "64px", height: "64px", margin: "1em auto" }}>
+          <LogoMark color="mono" background="light" size="medium" />
+        </Frame>
+      </IconDisplay>
+      {/* Small sizes */}
+      <IconDisplay>
+        <IconLabel text="Cockroach Mark Full Color Light (small)" />
+        <Frame style={{ width: "48px", height: "48px", margin: "1em auto" }}>
+          <LogoMark color="full" background="light" size="small" />
+        </Frame>
+      </IconDisplay>
+
+      <IconDisplay>
+        <IconLabel text="Cockroach Mark Reduced Color Light (small)" />
+        <Frame style={{ width: "48px", height: "48px", margin: "1em auto" }}>
+          <LogoMark color="reduced" background="light" size="small" />
+        </Frame>
+      </IconDisplay>
+
+      <IconDisplay>
+        <IconLabel text="Cockroach Mark Mono Color Light (small)" />
+        <Frame style={{ width: "48px", height: "48px", margin: "1em auto" }}>
+          <LogoMark color="mono" background="light" size="small" />
+        </Frame>
+      </IconDisplay>
+    </IconDisplaySection>
+      {/* Dark backgrounds */}
+
+    <IconDisplaySection style={{ backgroundColor: "#0d1628"}}>
+      {/* Default sizes */}
+      <IconDisplay>
+        <IconLabel style={{ color: "white"}} text="Cockroach Mark Full Color Dark" />
+        <Frame style={{ width: "86px", height: "86px", margin: "1em auto" }}>
+          <LogoMark color="full" background="dark" />
+        </Frame>
+      </IconDisplay>
+
+      <IconDisplay>
+        <IconLabel style={{ color: "white"}} text="Cockroach Mark Reduced Color Dark" />
+        <Frame style={{ width: "86px", height: "86px", margin: "1em auto" }}>
+          <LogoMark color="reduced" background="dark" />
+        </Frame>
+      </IconDisplay>
+
+      <IconDisplay>
+        <IconLabel style={{ color: "white"}} text="Cockroach Mark Mono Color Dark" />
+        <Frame style={{ width: "86px", height: "86px", margin: "1em auto" }}>
+          <LogoMark color="mono" background="dark" />
+        </Frame>
+      </IconDisplay>
+      {/* Medium sizes */}
+      <IconDisplay>
+        <IconLabel style={{ color: "white"}} text="Cockroach Mark Full Color Dark (medium)" />
+        <Frame style={{ width: "64px", height: "64px", margin: "1em auto" }}>
+          <LogoMark color="full" background="dark" size="medium" />
+        </Frame>
+      </IconDisplay>
+
+      <IconDisplay>
+        <IconLabel style={{ color: "white"}} text="Cockroach Mark Reduced Color Dark (medium)" />
+        <Frame style={{ width: "64px", height: "64px", margin: "1em auto" }}>
+          <LogoMark color="reduced" background="dark" size="medium" />
+        </Frame>
+      </IconDisplay>
+
+      <IconDisplay>
+        <IconLabel style={{ color: "white"}} text="Cockroach Mark Mono Color Dark (medium)" />
+        <Frame style={{ width: "64px", height: "64px", margin: "1em auto" }}>
+          <LogoMark color="mono" background="dark" size="medium" />
+        </Frame>
+      </IconDisplay>
+      {/* Small sizes */}
+      <IconDisplay>
+        <IconLabel style={{ color: "white"}} text="Cockroach Mark Full Color Dark (small)" />
+        <Frame style={{ width: "48px", height: "48px", margin: "1em auto" }}>
+          <LogoMark color="full" background="dark" size="small" />
+        </Frame>
+      </IconDisplay>
+
+      <IconDisplay>
+        <IconLabel style={{ color: "white"}} text="Cockroach Mark Reduced Color Dark (small)" />
+        <Frame style={{ width: "48px", height: "48px", margin: "1em auto" }}>
+          <LogoMark color="reduced" background="dark" size="small" />
+        </Frame>
+      </IconDisplay>
+
+      <IconDisplay>
+        <IconLabel style={{ color: "white"}} text="Cockroach Mark Mono Color Dark (small)" />
+        <Frame style={{ width: "48px", height: "48px", margin: "1em auto" }}>
+          <LogoMark color="mono" background="dark" size="small" />
+        </Frame>
+      </IconDisplay>
     </IconDisplaySection>
   </StoryContainer>
 );
