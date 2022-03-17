@@ -42,6 +42,11 @@ export const LogoShorthand = ({
     [className, size],
   );
 
+  // Here we are constructing the name of the Component transformed
+  // from the svg in @cockroachlabs/icons. For example the svg
+  // "cockroach-shorthand-purple.svg" becomes "CockroachShorthandPurple.tsx"
+  // To replicate the change in naming, we are using the utility function
+  // "upperCamelCase" (see test cases for usage).
   const logoShorthandName = `CockroachShorthand${ucc(color)}`;
 
   const Element = get(Logos, logoShorthandName, null);

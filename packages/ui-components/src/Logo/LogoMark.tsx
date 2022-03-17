@@ -37,6 +37,11 @@ export const LogoMark = ({
     [className, size],
   );
 
+  // Here we are constructing the name of the Component transformed
+  // from the svg in @cockroachlabs/icons. For example the svg
+  // "cockroach-mark-dark-mono.svg" becomes "CockroachMarkDarkMono.tsx"
+  // To replicate the change in naming, we are using the utility function
+  // "upperCamelCase" (see test cases for usage).
   const logoMarkName = `CockroachMark${ucc(background)}${ucc(color)}`;
 
   const Element = get(Logos, logoMarkName, null);
