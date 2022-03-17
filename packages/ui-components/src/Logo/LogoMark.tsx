@@ -1,11 +1,10 @@
 import React, { useMemo } from "react";
 import classnames from "classnames/bind";
 import get from "lodash/get";
-import upperFirst from "lodash/upperFirst";
-import camelCase from "lodash/camelCase";
 
 import { Logos } from "@cockroachlabs/icons";
 import objectToClassNames from "../utils/objectToClassnames";
+import ucc from "../utils/upperCamelCase";
 
 import { LogoColor, LogoBackground } from "./Logo";
 import styles from "./LogoMark.module.scss";
@@ -26,8 +25,6 @@ type LogoMarkProps = NativeLogoMarkProps & OwnLogoMarkProps;
 
 const cx = classnames.bind(styles);
 
-const cc = (s: string) => upperFirst(camelCase(s));
-
 export const LogoMark = ({
   size = "default",
   color = "full",
@@ -40,12 +37,11 @@ export const LogoMark = ({
     [className, size],
   );
 
-  const logoMarkName = `CockroachMark${cc(background)}${cc(color)}`;
+  const logoMarkName = `CockroachMark${ucc(background)}${ucc(color)}`;
 
   const Element = get(Logos, logoMarkName, null);
 
   if (Element === null) {
-    console.log("Element is null");
     return null;
   }
 

@@ -1,11 +1,10 @@
 import React, { useMemo } from "react";
 import classnames from "classnames/bind";
 import get from "lodash/get";
-import upperFirst from "lodash/upperFirst";
-import camelCase from "lodash/camelCase";
 
 import { Logos } from "@cockroachlabs/icons";
 import objectToClassNames from "../utils/objectToClassnames";
+import ucc from "../utils/upperCamelCase";
 
 import styles from "./Logo.module.scss";
 
@@ -30,8 +29,6 @@ type LogoProps = NativeLogoProps & OwnLogoProps;
 
 const cx = classnames.bind(styles);
 
-const cc = (s: string) => upperFirst(camelCase(s));
-
 export const Logo = ({
   size = "default",
   brand = "cockroach-labs",
@@ -40,20 +37,16 @@ export const Logo = ({
   className,
   ...props
 }: LogoProps) => {
-  const oTCNames = objectToClassNames({ size, brand });
   const classNames = useMemo(
-    () => cx("logo", oTCNames, className),
-    [className, oTCNames],
+    () => cx("logo", objectToClassNames({ size, brand }), className),
+    [className, size, brand],
   );
 
-  const logoName = `${cc(brand)}${cc(background)}${cc(color)}`;
-
-  console.log(`brand: ${brand}, logoName: ${logoName}`);
+  const logoName = `${ucc(brand)}${ucc(background)}${ucc(color)}`;
 
   const Element = get(Logos, logoName, null);
 
   if (Element === null) {
-    console.log("Element is null");
     return null;
   }
 
