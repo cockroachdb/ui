@@ -109,6 +109,35 @@ import { default as Taiwan } from "./components/Taiwan";
 import { default as UnitedKingdom } from "./components/UnitedKingdom";
 import { default as Usa } from "./components/Usa";
 
+// logos
+import { default as CockroachLabsDarkFull } from "./components/CockroachLabsDarkFull";
+import { default as CockroachLabsDarkReduced } from "./components/CockroachLabsDarkReduced";
+import { default as CockroachLabsDarkMono } from "./components/CockroachLabsDarkMono";
+import { default as CockroachLabsLightFull } from "./components/CockroachLabsLightFull";
+import { default as CockroachLabsLightReduced } from "./components/CockroachLabsLightReduced";
+import { default as CockroachLabsLightMono } from "./components/CockroachLabsLightMono";
+import { default as CockroachcloudDarkFull } from "./components/CockroachcloudDarkFull";
+import { default as CockroachcloudDarkReduced } from "./components/CockroachcloudDarkReduced";
+import { default as CockroachcloudDarkMono } from "./components/CockroachcloudDarkMono";
+import { default as CockroachcloudLightFull } from "./components/CockroachcloudLightFull";
+import { default as CockroachcloudLightReduced } from "./components/CockroachcloudLightReduced";
+import { default as CockroachcloudLightMono } from "./components/CockroachcloudLightMono";
+import { default as CockroachdbDarkFull } from "./components/CockroachdbDarkFull";
+import { default as CockroachdbDarkReduced } from "./components/CockroachdbDarkReduced";
+import { default as CockroachdbDarkMono } from "./components/CockroachdbDarkMono";
+import { default as CockroachdbLightFull } from "./components/CockroachdbLightFull";
+import { default as CockroachdbLightReduced } from "./components/CockroachdbLightReduced";
+import { default as CockroachdbLightMono } from "./components/CockroachdbLightMono";
+import { default as CockroachMarkDarkFull } from "./components/CockroachMarkDarkFull";
+import { default as CockroachMarkDarkReduced } from "./components/CockroachMarkDarkReduced";
+import { default as CockroachMarkDarkMono } from "./components/CockroachMarkDarkMono";
+import { default as CockroachMarkLightFull } from "./components/CockroachMarkLightFull";
+import { default as CockroachMarkLightReduced } from "./components/CockroachMarkLightReduced";
+import { default as CockroachMarkLightMono } from "./components/CockroachMarkLightMono";
+import { default as CockroachShorthandBlack } from "./components/CockroachShorthandBlack";
+import { default as CockroachShorthandPurple } from "./components/CockroachShorthandPurple";
+import { default as CockroachShorthandWhite } from "./components/CockroachShorthandWhite";
+
 // other
 import { default as Community } from "./components/Community";
 import { default as Docs } from "./components/Docs";
@@ -220,6 +249,36 @@ const Flags = {
   Usa,
 };
 
+const Logos = {
+  CockroachLabsDarkFull,
+  CockroachLabsDarkReduced,
+  CockroachLabsDarkMono,
+  CockroachLabsLightFull,
+  CockroachLabsLightReduced,
+  CockroachLabsLightMono,
+  CockroachcloudDarkFull,
+  CockroachcloudDarkReduced,
+  CockroachcloudDarkMono,
+  CockroachcloudLightFull,
+  CockroachcloudLightReduced,
+  CockroachcloudLightMono,
+  CockroachdbDarkFull,
+  CockroachdbDarkReduced,
+  CockroachdbDarkMono,
+  CockroachdbLightFull,
+  CockroachdbLightReduced,
+  CockroachdbLightMono,
+  CockroachMarkDarkFull,
+  CockroachMarkDarkReduced,
+  CockroachMarkDarkMono,
+  CockroachMarkLightFull,
+  CockroachMarkLightReduced,
+  CockroachMarkLightMono,
+  CockroachShorthandBlack,
+  CockroachShorthandPurple,
+  CockroachShorthandWhite,
+};
+
 export {
   // system icons
   ArrowLeft,
@@ -312,6 +371,31 @@ export {
   Taiwan,
   UnitedKingdom,
   Usa,
+  // logos
+  CockroachLabsDarkFull,
+  CockroachLabsDarkReduced,
+  CockroachLabsDarkMono,
+  CockroachLabsLightFull,
+  CockroachLabsLightReduced,
+  CockroachLabsLightMono,
+  CockroachcloudDarkFull,
+  CockroachcloudDarkReduced,
+  CockroachcloudDarkMono,
+  CockroachcloudLightFull,
+  CockroachcloudLightReduced,
+  CockroachcloudLightMono,
+  CockroachdbDarkFull,
+  CockroachdbDarkReduced,
+  CockroachdbDarkMono,
+  CockroachdbLightFull,
+  CockroachdbLightReduced,
+  CockroachdbLightMono,
+  CockroachMarkDarkFull,
+  CockroachMarkDarkReduced,
+  CockroachMarkDarkMono,
+  CockroachMarkLightFull,
+  CockroachMarkLightReduced,
+  CockroachMarkLightMono,
   // sets,
   SystemIcons,
   Pictograms,
@@ -319,6 +403,7 @@ export {
   Cards,
   Flags,
   Illustrations,
+  Logos,
   // other
   Community,
   Docs,
