@@ -41,6 +41,43 @@ module.exports = {
           { allow: ["arrowFunctions"] },
         ],
         "@typescript-eslint/no-unused-vars": "error",
+        "eqeqeq": ["error", "always", {"null": "ignore"}],
+        "@typescript-eslint/no-non-null-assertion": "error",
+        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/naming-convention": [
+          "error",
+          // matches the default config from @typescript-eslint/eslint-plugin@2
+          // as best as possible
+          {
+            "selector": "default",
+            "format": ["camelCase"],
+            "leadingUnderscore": "allow",
+            "trailingUnderscore": "allow"
+          },
+          {
+            "selector": "variable",
+            "format": ["camelCase", "UPPER_CASE", "PascalCase"],
+            "leadingUnderscore": "allow",
+            "trailingUnderscore": "allow"
+          },
+          {
+            "selector": "function",
+            "format": ["camelCase", "UPPER_CASE", "PascalCase"],
+            "leadingUnderscore": "allow",
+            "trailingUnderscore": "allow"
+          },
+          {"selector": "property",
+            "format": null
+          },
+          {
+            "selector": "enumMember",
+            "format": ["UPPER_CASE", "PascalCase"]
+          },
+          {
+            "selector": "typeLike",
+            "format": ["PascalCase"]
+          }
+        ]
       },
     },
   ],
