@@ -78,6 +78,7 @@ const InputField = ({
   validate,
   validateFields,
   name,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   InputFieldComponent,
   ...inputProps
 }: InternalFieldProps) => {
