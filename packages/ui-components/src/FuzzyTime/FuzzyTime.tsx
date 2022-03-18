@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes } from "react";
+import React, { FunctionComponent } from "react";
 import classnames from "classnames/bind";
 
 import { fuzzy } from "./util";
