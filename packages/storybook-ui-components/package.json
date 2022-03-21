@@ -23,7 +23,7 @@
     "@cockroachlabs/ui-components": "link:../../packages/ui-components"
   },
   "devDependencies": {
-    "@babel/core": "7.17.7",
+    "@babel/core": "7.17.8",
     "@storybook/addon-actions": "6.4.19",
     "@storybook/addon-docs": "6.4.19",
     "@storybook/addon-knobs": "6.4.0",
