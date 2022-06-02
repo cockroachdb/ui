@@ -1,0 +1,10 @@
+@import "../styles/tokens.scss";
+
+.anchor {
+  color: $color-font-link-base;
+  fill: $color-font-link-base;
+  &:hover {
+    color: $color-font-link-hover;
+    fill: $color-font-link-hover;
+  }
+}
