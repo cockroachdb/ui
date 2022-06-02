@@ -1,6 +1,6 @@
 {
   "name": "storybook-ui-components",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "Storybook supporting ui-components as a component catalog",
   "main": "index.js",
   "private": true,
