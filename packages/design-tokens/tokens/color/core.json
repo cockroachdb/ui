@@ -56,5 +56,15 @@
         "5": { "value": "#99000f" }
       }
     }
+  },
+  "brand": {
+    "dark-blue": { "value": "#0037a5" },
+    "iridescent-blue": { "value": "#00fced" },
+    "action-blue": { "value": "#0055ff" },
+    "light-blue": { "value": "#c2d5ff" },
+    "deep-purple": { "value": "#190f33" },
+    "action-purple": { "value": "#b921f1" },
+    "light-purple": { "value": "#f7d6ff" },
+    "electric-purple": { "value": "#6933ff" }
   }
 }
