@@ -59,6 +59,7 @@ export const BaseTextInput: React.FC<InternalTextProps> = (props) => {
     ariaLabelledBy,
     existingPassword = false,
     forgotPasswordLinkElement,
+    name,
     ...rest
   } = props;
 
@@ -130,7 +131,7 @@ export const MultilineTextInput = (props: MultilineTextInputProps) => {
       "crl-input--suffix": props.suffix,
       invalid: props.error || props.invalid,
     }),
-    name: name,
+    name: props.name,
     ["aria-label"]: props.ariaLabel,
     ["aria-invalid"]: !!props.error || props.invalid,
     ["aria-required"]: props.required,
