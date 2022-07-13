@@ -10,3 +10,4 @@ export * from "./ExpandableText/ExpandableText";
 export * from "./Spinner/Spinner";
 export * from "./Typography/";
 export * from "./Logo/";
+export * from "./Charts/barChart";
