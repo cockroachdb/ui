@@ -2,7 +2,7 @@ import React, { FunctionComponent, ReactElement } from "react";
 import { withKnobs, text, boolean, select } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import { Avatar, AvatarProps, Icon } from "@cockroachlabs/ui-components";
-import { StoryContainer, StoryDescription } from "../layout";
+import { StoryContainer, StoryDescription } from "./layout";
 
 interface AvatarDisplay {
   description: string;

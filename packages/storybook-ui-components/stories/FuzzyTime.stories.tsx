@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactNode } from "react";
 import { withKnobs, text } from "@storybook/addon-knobs";
 import { FuzzyTime } from "@cockroachlabs/ui-components";
-import { StoryContainer, StoryDescription, Label, Sample } from "../layout";
+import { StoryContainer, StoryDescription, Label, Sample } from "./layout";
 
 export default {
   title: "FuzzyTime",

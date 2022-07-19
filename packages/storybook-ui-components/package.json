@@ -20,19 +20,24 @@
   "homepage": "https://github.com/cockroachdb/ui#readme",
   "dependencies": {
     "@cockroachlabs/icons": "^0.5.2",
-    "@cockroachlabs/ui-components": "link:../../packages/ui-components"
+    "@cockroachlabs/ui-components": "link:../../packages/ui-components",
+    "@storybook/builder-webpack5": "^6.5.9",
+    "@storybook/manager-webpack5": "^6.5.9",
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.7.4",
+    "webpack": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.17.9",
-    "@storybook/addon-actions": "6.4.20",
-    "@storybook/addon-docs": "6.4.20",
-    "@storybook/addon-knobs": "6.4.0",
-    "@storybook/addon-links": "6.4.20",
-    "@storybook/addons": "6.4.20",
-    "@storybook/react": "6.4.20",
+    "@storybook/addon-actions": "6.5.9",
+    "@storybook/addon-docs": "6.5.9",
+    "@storybook/addon-knobs": "^6.4.0",
+    "@storybook/addon-links": "6.5.9",
+    "@storybook/addons": "6.5.9",
+    "@storybook/react": "6.5.9",
     "babel-loader": "8.2.4",
-    "ts-loader": "9.3.1",
-    "typescript": "4.7.4"
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.7.4"
   },
   "resolutions": {
     "@types/react": "16.14.24",

@@ -1,7 +1,7 @@
 import React from "react";
 import { withKnobs, select } from "@storybook/addon-knobs";
 import { Spinner } from "@cockroachlabs/ui-components";
-import { StoryContainer, StoryDescription  } from "../layout";
+import { StoryContainer, StoryDescription  } from "./layout";
 
 export default {
   title: "Spinner",
