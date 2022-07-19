@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactElement } from "react";
 import { withKnobs, text, select } from "@storybook/addon-knobs";
 import { Badge } from "@cockroachlabs/ui-components";
-import { StoryContainer, StoryDescription } from "../layout";
+import { StoryContainer, StoryDescription } from "./layout";
 
 export default {
   title: "Badge",

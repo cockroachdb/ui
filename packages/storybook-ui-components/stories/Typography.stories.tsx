@@ -1,6 +1,6 @@
 import React, { FunctionComponent, ReactNode } from "react";
 import { withKnobs, text, select } from "@storybook/addon-knobs";
-import { StoryContainer, StoryDescription, Label } from "../layout";
+import { StoryContainer, StoryDescription, Label } from "./layout";
 import {
   Text,
   TextType,

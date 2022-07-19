@@ -3,7 +3,7 @@ import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
 import { NumberInput, TextInput, EmailInput, NewPasswordInput, ExistingPasswordInput, CheckboxInput } from "@cockroachlabs/ui-components";
 import { Search } from "@cockroachlabs/icons";
 
-import { StoryContainer, StoryDescription } from "../layout";
+import { StoryContainer, StoryDescription } from "./layout";
 
 export default {
   title: "Input",

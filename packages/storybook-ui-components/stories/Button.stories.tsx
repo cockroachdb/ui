@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactNode } from "react";
 import { withKnobs, text, select } from "@storybook/addon-knobs";
 import { Button, ButtonIntent, ButtonSize } from "@cockroachlabs/ui-components";
-import { StoryContainer } from "../layout";
+import { StoryContainer } from "./layout";
 
 export default {
   title: "Button",

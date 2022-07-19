@@ -1,4 +1,7 @@
 module.exports = {
+  core: {
+    builder: "webpack5",
+  },
   stories: ["../stories/**/*.stories.(tsx|mdx)"],
   addons: [
     "@storybook/addon-actions",
@@ -6,7 +9,7 @@ module.exports = {
     "@storybook/addon-knobs/register",
     "@storybook/addon-docs",
   ],
-  webpackFinal: async config => {
+  webpackFinal: async (config) => {
     config.module.rules.push({
       test: /\.(ts|tsx)$/,
       loader: require.resolve("ts-loader"),

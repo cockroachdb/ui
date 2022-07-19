@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactNode, CSSProperties } from "react";
 import capitalize from "lodash/capitalize";
 
-import { StoryContainer, StoryDescription } from "../layout";
+import { StoryContainer, StoryDescription } from "./layout";
 
 import {
   SystemIcons as IconSet,

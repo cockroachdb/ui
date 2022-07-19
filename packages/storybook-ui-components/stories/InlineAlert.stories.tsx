@@ -1,7 +1,7 @@
 import React from "react";
 import { withKnobs, text, select } from "@storybook/addon-knobs";
 import { InlineAlert, InlineAlertIntent } from "@cockroachlabs/ui-components";
-import { StoryContainer, StoryDescription } from "../layout";
+import { StoryContainer, StoryDescription } from "./layout";
 
 export default {
   title: "InlineAlert",
