@@ -1,0 +1,28 @@
+@import "../styles/tokens.scss";
+
+.bar-chart {
+  :global(.recharts-cartesian-axis-tick-value) {
+    fill: black;
+    padding-right: 4px;
+  }
+
+  :global(.recharts-cartesian-axis-line) {
+    stroke: $color-core-neutral-3;
+    stroke-width: 2px;
+  }
+
+  :global(.recharts-cartesian-axis-tick-line) {
+    stroke: $color-core-neutral-3;
+    stroke-width: 2px;
+  }
+
+  :global(.recharts-tooltip-wrapper) {
+    border-radius: 6px;
+    overflow: hidden;
+    border: 0;
+    outline: 0;
+    background-color: $color-core-neutral-0;
+    @include crl-depth(1);
+  }
+}
+
