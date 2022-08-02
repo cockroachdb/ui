@@ -69,6 +69,15 @@
           "focused": { "value": "{color.intent.info.1.value}" }
         }
       },
+      "link-style": {
+        "font-color": {
+          "base": { "value": "{color.intent.info.3.value}" },
+          "hover": { "value": "{color.intent.info.4.value}" },
+          "active": { "value": "{color.intent.info.3.value}" },
+          "focused": { "value": "{color.intent.info.3.value}" },
+          "disabled": { "value": "{color.intent.info.2.value}" }
+        }
+      },
       "success": {
         "border-color": {
           "base": { "value": "{color.base.success.value}" },

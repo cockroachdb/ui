@@ -10,7 +10,8 @@ export type ButtonIntent =
   | "success"
   | "danger"
   | "secondary"
-  | "tertiary";
+  | "tertiary"
+  | "link-style";
 
 export type ButtonSize = "standard" | "small";
 
