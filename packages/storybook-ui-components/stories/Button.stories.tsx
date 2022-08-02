@@ -57,6 +57,10 @@ export const Example = () => (
           <Label>tertiary</Label>
           <Button intent="tertiary">Tertiary</Button>
         </ButtonDisplay>
+        <ButtonDisplay>
+          <Label>link style</Label>
+          <Button intent="link-style">Link Style</Button>
+        </ButtonDisplay>
       </ButtonDisplaySection>
     </section>
     <section>
@@ -109,6 +113,12 @@ export const Example = () => (
             Tertiary
           </Button>
         </ButtonDisplay>
+        <ButtonDisplay>
+          <Label>link style</Label>
+          <Button intent="link-style" disabled>
+            Link Style
+          </Button>
+        </ButtonDisplay>
       </ButtonDisplaySection>
       <h3>Button Elements</h3>
       <ButtonDisplaySection>
@@ -150,6 +160,7 @@ export const Demo = () => {
     "danger",
     "secondary",
     "tertiary",
+    "link-style",
   ];
   const sizes: Array<ButtonSize> = ["standard", "small"];
   return (

@@ -13,20 +13,24 @@ describe("Button: intent prop", () => {
     const { rerender } = render(<Button>intent test</Button>);
 
     // primary
-    rerender(<Button intent="primary">size test</Button>);
+    rerender(<Button intent="primary">intent test</Button>);
     expect(screen.getByRole("button")).toHaveClass("intent-primary");
 
     // success
-    rerender(<Button intent="success">size test</Button>);
+    rerender(<Button intent="success">intent test</Button>);
     expect(screen.getByRole("button")).toHaveClass("intent-success");
 
     // danger
-    rerender(<Button intent="danger">size test</Button>);
+    rerender(<Button intent="danger">intent test</Button>);
     expect(screen.getByRole("button")).toHaveClass("intent-danger");
 
     // tertiary
-    rerender(<Button intent="tertiary">size test</Button>);
+    rerender(<Button intent="tertiary">intent test</Button>);
     expect(screen.getByRole("button")).toHaveClass("intent-tertiary");
+
+    // link-style
+    rerender(<Button intent="link-style">intent test</Button>);
+    expect(screen.getByRole("button")).toHaveClass("intent-link-style");
   });
 });
 
