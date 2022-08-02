@@ -258,16 +258,64 @@
       fill: $component-button-tertiary-font-color-base;
     }
   }
+
+  &.intent-link-style {
+    background-color: transparent;
+    color: $component-button-link-style-font-color-base;
+    border: none;
+
+    &:hover {
+      color: $component-button-link-style-font-color-hover;
+
+      &:active,
+      &:focus {
+        color: $component-button-link-style-font-color-active;
+      }
+
+      svg {
+        fill: $component-button-link-style-font-color-hover;
+      }
+    }
+
+    &:active {
+      color: $component-button-link-style-font-color-active;
+    }
+
+    &:focus {
+      border: none;
+      outline: inherit;
+    }
+
+    &:disabled {
+      color: $component-button-link-style-font-color-disabled;
+
+      svg {
+        fill: $component-button-link-style-font-color-disabled;
+      }
+    }
+
+    svg {
+      fill: $component-button-link-style-font-color-base;
+    }
+  }
 }
 
 .size-standard {
   height: $crl-input-height;
   padding: crl-gutters(1) crl-gutters(1.5);
+
+  &.intent-link-style {
+    padding: 0;
+  }
 }
 
 .size-small {
   height: $crl-input-height-small;
   padding: crl-gutters(0.5) crl-gutters(1.5);
+
+  &.intent-link-style {
+    padding: 0;
+  }
 }
 
 .fluid {

@@ -20,12 +20,11 @@
   "homepage": "https://github.com/cockroachdb/ui#readme",
   "dependencies": {
     "@cockroachlabs/icons": "^0.5.2",
-    "@cockroachlabs/ui-components": "link:../../packages/ui-components",
+    "@cockroachlabs/ui-components": "^0.3.9",
     "@storybook/builder-webpack5": "^6.5.9",
     "@storybook/manager-webpack5": "^6.5.9",
     "ts-loader": "^9.3.1",
-    "typescript": "^4.7.4",
-    "webpack": "^5.0.0"
+    "typescript": "^4.7.4"
   },
   "devDependencies": {
     "@babel/core": "7.17.9",
@@ -37,7 +36,7 @@
     "@storybook/react": "6.5.9",
     "babel-loader": "8.2.4",
     "ts-loader": "^9.3.1",
-    "typescript": "^4.7.4"
+    "webpack": "^5.0.0"
   },
   "resolutions": {
     "prismjs": "^1.21.0"

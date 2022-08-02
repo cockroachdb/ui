@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* globals module, __dirname */
 const path = require("path");
 const WebpackBar = require("webpackbar");
 
