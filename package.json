@@ -2,14 +2,14 @@
   "name": "root",
   "private": true,
   "devDependencies": {
-    "lerna": "4.0.0"
+    "lerna": "^5.3.0"
   },
   "scripts": {
     "init": "yarn install && yarn lerna run build",
     "start": "lerna run start --parallel"
   },
   "resolutions": {
-    "dot-prop": "^6.0.0"
+    "@types/react": "^17.0.0"
   },
   "workspaces": [
     "packages/*"
