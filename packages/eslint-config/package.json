@@ -16,12 +16,12 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@typescript-eslint/parser": "5.18.0",
+    "@typescript-eslint/parser": "5.38.0",
     "eslint-config-prettier": "8.5.0"
   },
   "devDependencies": {
-    "eslint": "8.12.0",
-    "snyk": "1.896.0",
+    "eslint": "8.23.1",
+    "snyk": "1.1011.0",
     "typescript": "4.7.4"
   },
   "peerDependencies": {
