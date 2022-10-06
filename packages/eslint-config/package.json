@@ -20,8 +20,8 @@
     "eslint-config-prettier": "8.5.0"
   },
   "devDependencies": {
+    "@snyk/protect": "^1.1024.0",
     "eslint": "8.24.0",
-    "snyk": "1.996.0",
     "typescript": "4.8.4"
   },
   "peerDependencies": {
@@ -36,7 +36,7 @@
     "access": "public"
   },
   "scripts": {
-    "snyk-protect": "snyk protect",
+    "snyk-protect": "snyk-protect",
     "prepare": "yarn run snyk-protect"
   },
   "snyk": true,
