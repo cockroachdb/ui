@@ -5,7 +5,7 @@ import React, {
   useState,
 } from "react";
 import { usePopper } from "react-popper";
-import classNames from "classnames/bind";
+import classNames from "classnames";
 import css from "./Tooltip.module.scss";
 
 export type TooltipPosition =

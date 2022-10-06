@@ -1,5 +1,5 @@
 import React from "react";
-import classNames from "classnames/bind";
+import classNames from "classnames";
 import { CommonInputProps, CommonInput } from "./CommonInput";
 
 type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement>;
