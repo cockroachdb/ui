@@ -1,5 +1,5 @@
 import React from "react";
-import classNames from "classnames/bind";
+import classNames from "classnames";
 import { CommonInputProps, CommonInput } from "./CommonInput";
 import { isEmpty } from "lodash";
 import "./input.module.scss";
