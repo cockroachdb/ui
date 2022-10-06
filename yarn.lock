@@ -2962,6 +2962,11 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@snyk/protect@^1.1024.0":
+  version "1.1024.0"
+  resolved "https://registry.yarnpkg.com/@snyk/protect/-/protect-1.1024.0.tgz#090659dab3ec175646ef04b5bb5787c4360daedc"
+  integrity sha512-x73h7YS8MWLTOyBPCOhnipqseS3CNavjGvpg3VRqpEGdbHh2bhW2X6K03ZXQobGWXo6jAuG7Aey+Ad6iuY9qKw==
+
 "@storybook/addon-actions@6.5.12":
   version "6.5.12"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-6.5.12.tgz#9d2bf3bffa41cf4f92c7220c8f6e3a3f5da55019"
@@ -13790,11 +13795,6 @@ snapdragon@^0.8.1:
     source-map "^0.5.6"
     source-map-resolve "^0.5.0"
     use "^3.1.0"
-
-snyk@1.896.0:
-  version "1.896.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.896.0.tgz#7f2d6a4cb89bbadf270fba1bb91b88733eb6dbd7"
-  integrity sha512-Mf0opgb8ClBDtNQqKsSRnnbIgWk8qg5BYyKElkVtmzG8IJ2uGvLF6fhT9vKQPS4K1DcglDZ9Peystj5ghYh5fw==
 
 socks-proxy-agent@^7.0.0:
   version "7.0.0"
