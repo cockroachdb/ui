@@ -19,12 +19,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Lerna bootstrap
-        run: npx lerna bootstrap
+        run: lerna bootstrap
 
       - name: Build packages
-        run: npx lerna run build
+        run: lerna run build
 
       - name: Continuous Integration for all packages
-        run: npx lerna run ci --stream
+        run: lerna run ci --stream
         env:
           CI: true
