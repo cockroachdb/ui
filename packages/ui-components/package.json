@@ -51,7 +51,7 @@
     "@types/jest": "27.5.2",
     "@types/lodash": "4.14.186",
     "@types/node": "16.11.64",
-    "@types/react": "17.0.50",
+    "@types/react": "18.0.21",
     "@types/react-lines-ellipsis": "0.15.1",
     "@typescript-eslint/eslint-plugin": "5.39.0",
     "@typescript-eslint/parser": "5.39.0",
