@@ -22,7 +22,7 @@
   "devDependencies": {
     "eslint": "8.24.0",
     "snyk": "1.896.0",
-    "typescript": "4.7.4"
+    "typescript": "4.8.4"
   },
   "peerDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.10.2",
