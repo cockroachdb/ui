@@ -3,7 +3,7 @@
   "private": true,
   "devDependencies": {
     "auto": "^10.37.6",
-    "lerna": "5.6.2"
+    "lerna": "^5.6.2"
   },
   "scripts": {
     "init": "yarn install && yarn lerna run build",
@@ -22,12 +22,31 @@
     ],
     "noDefaultLabels": true,
     "labels": [
-      { "releaseType": "major", "name": "🤖 major" },
-      { "releaseType": "minor", "name": "🤖 minor" },
-      { "releaseType": "patch", "name": "🤖 patch" },
-      { "releaseType": "major", "name": "🤖 major" },
-      { "releaseType": "skip", "name": "🤖 skip-release" },
-      { "releaseType": "none", "name": ":memo: docs", "changelogTitle": "📝 Documentation" }
+      {
+        "releaseType": "major",
+        "name": "🤖 major"
+      },
+      {
+        "releaseType": "minor",
+        "name": "🤖 minor"
+      },
+      {
+        "releaseType": "patch",
+        "name": "🤖 patch"
+      },
+      {
+        "releaseType": "major",
+        "name": "🤖 major"
+      },
+      {
+        "releaseType": "skip",
+        "name": "🤖 skip-release"
+      },
+      {
+        "releaseType": "none",
+        "name": ":memo: docs",
+        "changelogTitle": "📝 Documentation"
+      }
     ]
   }
 }
