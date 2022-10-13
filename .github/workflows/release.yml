@@ -7,29 +7,23 @@ jobs:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Prepare repository
-        run: git fetch --unshallow --tags
-
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
         with:
-          node-version: 16.x
+          fetch-depth: 0
 
-      - name: Cache node modules
-        uses: actions/cache@v1
+      - name: Set up nodejs and yarn cache
+        uses: actions/setup-node@v3
         with:
-          path: node_modules
-          key: yarn-deps-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            yarn-deps-${{ hashFiles('yarn.lock') }}
+          node-version: 16
+          cache: 'yarn'
 
       - name: Create Release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          npm_config_loglevel: silly
+          npm_config_foreground_scripts: true
         run: |
           yarn install --frozen-lockfile
           yarn run release
