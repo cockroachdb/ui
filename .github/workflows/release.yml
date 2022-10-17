@@ -16,13 +16,11 @@ jobs:
         with:
           node-version: 16
           cache: 'yarn'
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.TEST }}
         run: |
           yarn install --frozen-lockfile
           lerna run build
