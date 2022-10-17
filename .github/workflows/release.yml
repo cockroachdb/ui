@@ -21,8 +21,9 @@ jobs:
 
       - name: Create Release
         env: #Tokens generated under github account: https://github.com/nathanstilwell
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           yarn install --frozen-lockfile
+          lerna run build
           yarn run release
