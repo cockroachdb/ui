@@ -25,4 +25,5 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           yarn install --frozen-lockfile
+          lerna run build
           yarn run release
