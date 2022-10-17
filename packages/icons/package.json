@@ -31,6 +31,5 @@
   "peerDependencies": {
     "react": "^17.0.2"
   },
-  "gitHead": "f9e7778c841194fa776c5dc45d62fb9caf408f22",
-  "nathan-test": "foo"
+  "gitHead": "f9e7778c841194fa776c5dc45d62fb9caf408f22"
 }
