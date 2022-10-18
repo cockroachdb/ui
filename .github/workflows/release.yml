@@ -1,7 +1,11 @@
 # Based on https://intuit.github.io/auto/docs/build-platforms/github-actions
 name: Release
 
-on: [push]
+on:
+  push:
+    branches:
+    - master
+  pull_request:
 
 jobs:
   release:
