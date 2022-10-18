@@ -11,6 +11,7 @@ export type BadgeIntent = "neutral" | "success" | "warning" | "danger" | "info";
 interface OwnBadgeProps {
   intent?: BadgeIntent;
   transformCase?: BadgeCase;
+  debug?: boolean;
 }
 type NativeDivProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,
@@ -24,6 +25,7 @@ const cx = classNames.bind(styles);
 export const Badge: FunctionComponent<BadgeProps> = ({
   intent = "neutral",
   transformCase = "uppercase",
+  debug = false,
   children,
   className,
   ...props
@@ -37,6 +39,12 @@ export const Badge: FunctionComponent<BadgeProps> = ({
   if (children !== undefined) {
     return (
       <div className={classnames} {...props}>
+        {debug && (
+          <pre>
+            intent :: {intent}
+            transformCase :: {transformCase}
+          </pre>
+        )}
         {children}
       </div>
     );
