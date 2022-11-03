@@ -35,139 +35,62 @@ Since CSS modules provides the ability to scope class names to a particular modu
 
 For more context on how we compose class names in general, see the [objectToClassNames](https://github.com/cockroachdb/ui/blob/master/packages/ui-components/src/utils/objectToClassnames.ts) utility function which expresses how we perform our mappings between component properties that are intended to impact the rendered visual and the module class names which support those visual changes.
 
-## Publishing
+## Automated Publishing
 
-When work has been merged to master, use [Lerna to publish](https://lerna.js.org/#command-publish). Since you are working on a fork, you most likely want to publish to the `upstream` [remote](https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes) by providing [`--git-remote`](https://github.com/lerna/lerna/tree/master/commands/version#--git-remote-name) switch to the `publish` command.
+A [Github workflow](https://docs.github.com/en/actions/using-workflows/about-workflows) has been setup
+[to automatically publish](https://github.com/cockroachdb/ui/blob/master/.github/workflows/release.yml) the packages of
+this monorepo using [`auto`](https://intuit.github.io/auto/index). `auto` was created to publish code modules from a
+continuous integration environment through pull request interaction. Publishing the packages in this repo is now as
+simple as adding labels to a pull request and merging. Each pull request will have a canary version published for testing.
+Semantic version increases (patch, minor, or major versions) can be controlled by applying the appropriate label to your
+pull request. Each time a version is published, a new [release](https://github.com/cockroachdb/ui/releases) will be created
+as well as [tags](https://github.com/cockroachdb/ui/tags) for each published package.
 
-```text
-> cd path/to/ui
-> npx lerna publish --git-remote upstream
-```
+### Branching vs Forking
+It is important to note that the [Release workflow](https://github.com/cockroachdb/ui/blob/master/.github/workflows/release.yml)
+uses [secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) to access tokens necessary to
+interact with pull requests and labels as well as publishing to npm. Most secrets are not accessible to the runner when
+a workflow is triggered from a
+[forked repository](https://docs.github.com/en/actions/security-guides/encrypted-secrets#using-encrypted-secrets-in-a-workflow).
+This means that when a pull request is created from a fork, the pull request will not be updated with a canary release.
+Version labels can still be applied and packages will still be published upon merging to master. If you would like to
+test your changes with a canary release, make sure to create a branch from the `cockroachdb/ui` rather than a branch
+from a forked repository.
 
-Lerna will ask you about how you would like to increase the version. We try to stick to [semantic versioning](https://semver.org/), so if you have questions about what the next version should be ask one of the [code owners](https://github.com/cockroachdb/ui/blob/master/CODEOWNERS).
+### Canary Releases
+When a pull request is created on a branch, the **Release** workflow will run and publish a canary version of the packages
+that have changes in the pull request. The version will be in the form of `X.X.X-canary.yyy.shortSha.#` and have the
+[distribution tag](https://docs.npmjs.com/cli/v8/commands/npm-dist-tag) "`canary`". Your PR description will be updated
+with a `<details>` block with instructions for installing the canary version.
 
-```text
-  > npx lerna publish --git-remote upstream
-lerna notice cli v3.20.2
-lerna info versioning independent
-lerna info Assuming all packages changed
-? Select a new version for @cockroachlabs/ui-components (currently 0.1.0-prerelease.3) (Use arrow keys)
-❯ Patch (0.1.0)
-  Minor (0.1.0)
-  Major (1.0.0)
-  Prepatch (0.1.1-prerelease.3)
-  Preminor (0.2.0-prerelease.3)
-  Premajor (1.0.0-prerelease.3)
-  Custom Prerelease
-  Custom Version
-```
+![Example update PR description](docs/assets/pr-canary-publish-dark.png)
 
-If you have permission to publish, Lerna will
+### Applying labels to Pull Requests
 
-- publish the package to npm
-- commit the version increase to github and push the change
-- add a [git tag](https://git-scm.com/book/en/v2/Git-Basics-Tagging) for the published version
+`auto` will look at the labels applied to pull request to make decisions about how to increase the version of packages
+when publishing after a merge. `auto` is configured to only look at certain labels (labels prefixed with 🤖). Here are
+the current labels and what they do,
 
-### Prerelease publishing
+|label           | description                                                                                                                        |
+|----------------|------------------------------------------------------------------------------------------------------------------------------------|
+|🤖 major        | increase the major version (i.e. - from 1.0.0 to 2.0.0). This is used to denote incompatible changes to the API of a package.      |
+|🤖 minor        | increase the minor version (i.e. - from 0.1.0 to 0.2.0). This is used to denote added functionality (that is backward compatible). |
+|🤖 patch        | increase the patch version (i.e. - from 0.0.1 to 0.0.2). This is used for bug fixes or refactoring that doesn't change the API.    |
+|🤖 skip-release | preserve the current version. |
 
-If you have changes that are experimental that you would like to publish to npm, you should publish these changes using a [prerelease version](https://semver.org/#spec-item-9). You can do this with Lerna by choosing `Custom Prerelease` when publishing. For simplicity's sake you should use the prerelease identifier `prerelease` if possible. If you are publishing a prerelease version you should also use the `--dist-tag next` option when invoking `lerna publish` (see [here](https://medium.com/@mbostock/prereleases-and-npm-e778fc5e2420) for details).
+Once a label is applied to a pull request, the version will be published when the pull request is merged.
 
-```text
-> npx lerna publish --dist-tag next
-lerna notice cli v3.20.2
-lerna info versioning independent
-lerna info Assuming all packages changed
-? Select a new version for @cockroachlabs/ui-components (currently 0.1.0-prerelease.3) (Use arrow keys)
-  Patch (0.1.0)
-  Minor (0.1.0)
-  Major (1.0.0)
-  Prepatch (0.1.1-prerelease.3)
-  Preminor (0.2.0-prerelease.3)
-  Premajor (1.0.0-prerelease.3)
-❯ Custom Prerelease
-  Custom Version
+## ⚠️ Auto publishing cautions ⚠️
 
-? Enter a prerelease identifier (default: "prerelease", yielding 0.1.0-prerelease.1) [type "prerelease" or press Enter]
-```
+### "Merging Quickly"
 
-# Troubleshooting
+One thing to be aware of is merging while a [Release job](https://github.com/cockroachdb/ui/actions/workflows/release.yml)
+is currently publishing. This may lead errors and failed publish jobs. To ensure this does not happen, I suggest a
+"look before you leap" approach of checking that a Release job isn't running before you merge. Read more about this
+issue [here](https://intuit.github.io/auto/docs/welcome/quick-merge).
 
-## Trouble installing Sass
-
-`ui-components` uses `node-sass` to preprocess our css modules. `node-sass` adds requirements for additional tools beyond `npm` and `yarn`. All of these tools can be installed using `xcode-select`.
-
-### _Do I have `xcode-select` installed?_
-
-Trying running this command,
-
-```
-> gcc --version
-```
-
-You have xcode-select installed if you see something like this,
-
-```
-Configured with: --prefix=/Library/Developer/CommandLineTools/usr --with-gxx-include-dir=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/4.2.1
-Apple clang version 11.0.3 (clang-1103.0.32.62)
-Target: x86_64-apple-darwin19.6.0
-Thread model: posix
-InstalledDir: /Library/Developer/CommandLineTools/usr/bin
-```
-
-... then you have it installed!!
-
-### _How do I install `xcode-select`?_
-
-To install, run this command and follow the prompts ...
-
-```
-> xcode-select --install
-```
-
-### _I have Xcode installed, but I get an error when trying to build ui-components._
-
-If you do not have XCode installed, or if you have updated your Macbook recently, you may see an error about certain tools being missing ...
-
-```
-...
-gyp info spawn args   '--generator-output',
-gyp info spawn args   'build',
-gyp info spawn args   '-Goutput_dir=.'
-gyp info spawn args ]
-No receipt for 'com.apple.pkg.CLTools_Executables' found at '/'.
-
-No receipt for 'com.apple.pkg.DeveloperToolsCLILeo' found at '/'.
-
-No receipt for 'com.apple.pkg.DeveloperToolsCLI' found at '/'.
-
-gyp: No Xcode or CLT version detected!
-gyp ERR! configure error
-gyp ERR! stack Error: `gyp` failed with exit code: 1
-gyp ERR! stack     at ChildProcess.onCpExit (/Users/nathanstilwell/Code/ui/packages/ui-components/node_modules/node-gyp/lib/configure.js:345:16)
-gyp ERR! stack     at ChildProcess.emit (events.js:314:20)
-gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:276:12)
-...
-```
-
-This may mean you need to re-install `xcode-select` with the following commands,
-
-```shell
-> sudo rm -rf $(xcode-select --print-path); # this will delete xcode-select
-> xcode-select --install; # this will reinstall the latest version
-```
-
-### I get an error that Sass doesn't support my environment
-
-If you see an error like this ...
-
-```
-ERROR in ./src/Avatar/Avatar.module.scss (./node_modules/css-loader/dist/cjs.js?modules=true!./node_modules/sass-loader/dist/cjs.js!./src/Avatar/Avatar.module.scss)
-Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
-
-Error: Node Sass does not yet support your current environment: OS X 64-bit with Unsupported runtime (83)
-
-For more information on which environments are supported please see:
-https://github.com/sass/node-sass/releases/tag/v4.13.1
-```
-
-that's our fault. Please file an issue with the error and label it as a bug please. In the meantime, you may need to downgrade your version of Node.
+### Canary PR description failure
+In testing these features I have occassionally run into the issue of creating a pull request, and then taking my sweet
+time to edit my PR description, then noticing that it wasn't updated with a canary version. It sounds like this is a
+[known to happen](https://github.com/intuit/auto/issues/481#issuecomment-563466150). If this happens you can re-run the
+Release job or push another change to your pull request to update the PR description.
