@@ -11,10 +11,14 @@ o888o o888o o888o o888o  888bod8P' `Y8bod8P' d888b      "888" 8""888P'
 */
 
 // System Icons
+import { default as ArrowRight } from "./components/ArrowRight";
 import { default as ArrowLeft } from "./components/ArrowLeft";
+import { default as ArrowUp } from "./components/ArrowUp";
+import { default as ArrowDown } from "./components/ArrowDown";
 import { default as Backup } from "./components/Backup";
 import { default as Bell } from "./components/Bell";
 import { default as Billing } from "./components/Billing";
+import { default as Calendar } from "./components/Calendar";
 import { default as CancelCircleFilled } from "./components/CancelCircleFilled";
 import { default as CancelCircle } from "./components/CancelCircle";
 import { default as Cancel } from "./components/Cancel";
@@ -25,23 +29,28 @@ import { default as CaretLeft } from "./components/CaretLeft";
 import { default as CaretRight } from "./components/CaretRight";
 import { default as CaretUp } from "./components/CaretUp";
 import { default as Caution } from "./components/Caution";
+import { default as CautionFilled } from "./components/CautionFilled";
 import { default as CheckCircleFilled } from "./components/CheckCircleFilled";
 import { default as CheckCircle } from "./components/CheckCircle";
 import { default as Check } from "./components/Check";
 import { default as CircleFilled } from "./components/CircleFilled";
-import { default as HelpCircleFilled } from "./components/HelpCircleFilled";
+import { default as Collapse } from "./components/Collapse";
 import { default as Copy } from "./components/Copy";
 import { default as Download } from "./components/Download";
+import { default as Envelope } from "./components/Envelope";
 import { default as EllipsisVertical } from "./components/EllipsisVertical";
 import { default as Ellipsis } from "./components/Ellipsis";
 import { default as ErrorCircleFilled } from "./components/ErrorCircleFilled";
 import { default as ErrorCircle } from "./components/ErrorCircle";
 import { default as ExternalLink } from "./components/ExternalLink";
+import { default as Expand } from "./components/Expand";
 import { default as EyeOff } from "./components/EyeOff";
 import { default as Eye } from "./components/Eye";
 import { default as FeatureFlags } from "./components/FeatureFlags";
 import { default as Gear } from "./components/Gear";
 import { default as GearFilled } from "./components/GearFilled";
+import { default as HelpCircle } from "./components/HelpCircle";
+import { default as HelpCircleFilled } from "./components/HelpCircleFilled";
 import { default as InfoCircleFilled } from "./components/InfoCircleFilled";
 import { default as InfoCircle } from "./components/InfoCircle";
 import { default as Invalid } from "./components/Invalid";
@@ -55,10 +64,17 @@ import { default as Org } from "./components/Org";
 import { default as Pencil } from "./components/Pencil";
 import { default as PlusCircle } from "./components/PlusCircle";
 import { default as Plus } from "./components/Plus";
+import { default as Refresh } from "./components/Refresh";
 import { default as Search } from "./components/Search";
+import { default as SoftArrowDown } from "./components/SoftArrowDown";
+import { default as SoftArrowLeft } from "./components/SoftArrowLeft";
+import { default as SoftArrowRight } from "./components/SoftArrowRight";
+import { default as SoftArrowUp } from "./components/SoftArrowUp";
+import { default as SoftArrowUpDown } from "./components/SoftArrowUpDown";
 import { default as Stack } from "./components/Stack";
 import { default as Star } from "./components/Star";
 import { default as Switch } from "./components/Switch";
+import { default as Table } from "./components/Table";
 import { default as Terminal } from "./components/Terminal";
 import { default as Time } from "./components/Time";
 import { default as User } from "./components/User";
@@ -173,9 +189,13 @@ o888ooooood8 o88'   888o  888bod8P' `Y8bod8P' d888b      "888" 8""888P'
 
 const SystemIcons = {
   ArrowLeft,
+  ArrowDown,
+  ArrowRight,
+  ArrowUp,
   Backup,
   Bell,
   Billing,
+  Calendar,
   CancelCircleFilled,
   CancelCircle,
   Cancel,
@@ -186,23 +206,28 @@ const SystemIcons = {
   CaretRight,
   CaretUp,
   Caution,
+  CautionFilled,
   CheckCircleFilled,
   CheckCircle,
   Check,
   CircleFilled,
-  HelpCircleFilled,
+  Collapse,
   Copy,
   Download,
   EllipsisVertical,
   Ellipsis,
+  Envelope,
   ErrorCircleFilled,
   ErrorCircle,
   ExternalLink,
+  Expand,
   EyeOff,
   Eye,
   FeatureFlags,
   Gear,
   GearFilled,
+  HelpCircle,
+  HelpCircleFilled,
   InfoCircleFilled,
   InfoCircle,
   Invalid,
@@ -216,10 +241,17 @@ const SystemIcons = {
   Pencil,
   PlusCircle,
   Plus,
+  Refresh,
   Search,
+  SoftArrowDown,
+  SoftArrowLeft,
+  SoftArrowRight,
+  SoftArrowUp,
+  SoftArrowUpDown,
   Stack,
   Star,
   Switch,
+  Table,
   Terminal,
   Time,
   User,
@@ -309,8 +341,12 @@ const Logos = {
 export {
   // system icons
   ArrowLeft,
+  ArrowDown,
+  ArrowRight,
+  ArrowUp,
   Backup,
   Bell,
+  Calendar,
   CancelCircleFilled,
   CancelCircle,
   Cancel,
@@ -321,19 +357,24 @@ export {
   CaretRight,
   CaretUp,
   Caution,
+  CautionFilled,
   CheckCircleFilled,
   CheckCircle,
   Check,
-  HelpCircleFilled,
+  Collapse,
   Copy,
   Download,
+  Envelope,
   EllipsisVertical,
   Ellipsis,
   ErrorCircleFilled,
   ErrorCircle,
+  Expand,
   EyeOff,
   Eye,
   Gear,
+  HelpCircle,
+  HelpCircleFilled,
   InfoCircleFilled,
   InfoCircle,
   Invalid,
@@ -347,9 +388,16 @@ export {
   Pencil,
   PlusCircle,
   Plus,
+  Refresh,
   Search,
+  SoftArrowDown,
+  SoftArrowRight,
+  SoftArrowUpDown,
+  SoftArrowUp,
+  SoftArrowLeft,
   Stack,
   Star,
+  Table,
   Terminal,
   Time,
   User,
