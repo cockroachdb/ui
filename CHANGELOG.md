@@ -1,3 +1,15 @@
+# (Fri Jan 06 2023)
+
+#### 📝 Documentation
+
+- doc: update CONTRIBUTING.md [#481](https://github.com/cockroachdb/ui/pull/481) ([@nathanstilwell](https://github.com/nathanstilwell))
+
+#### Authors: 1
+
+- Nathan Stilwell ([@nathanstilwell](https://github.com/nathanstilwell))
+
+---
+
 # (Tue Oct 18 2022)
 
 
