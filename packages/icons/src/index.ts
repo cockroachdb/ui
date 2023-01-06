@@ -14,6 +14,7 @@ o888o o888o o888o o888o  888bod8P' `Y8bod8P' d888b      "888" 8""888P'
 import { default as ArrowLeft } from "./components/ArrowLeft";
 import { default as Backup } from "./components/Backup";
 import { default as Bell } from "./components/Bell";
+import { default as Billing } from "./components/Billing";
 import { default as CancelCircleFilled } from "./components/CancelCircleFilled";
 import { default as CancelCircle } from "./components/CancelCircle";
 import { default as Cancel } from "./components/Cancel";
@@ -27,6 +28,7 @@ import { default as Caution } from "./components/Caution";
 import { default as CheckCircleFilled } from "./components/CheckCircleFilled";
 import { default as CheckCircle } from "./components/CheckCircle";
 import { default as Check } from "./components/Check";
+import { default as CircleFilled } from "./components/CircleFilled";
 import { default as HelpCircleFilled } from "./components/HelpCircleFilled";
 import { default as Copy } from "./components/Copy";
 import { default as Download } from "./components/Download";
@@ -34,9 +36,12 @@ import { default as EllipsisVertical } from "./components/EllipsisVertical";
 import { default as Ellipsis } from "./components/Ellipsis";
 import { default as ErrorCircleFilled } from "./components/ErrorCircleFilled";
 import { default as ErrorCircle } from "./components/ErrorCircle";
+import { default as ExternalLink } from "./components/ExternalLink";
 import { default as EyeOff } from "./components/EyeOff";
 import { default as Eye } from "./components/Eye";
+import { default as FeatureFlags } from "./components/FeatureFlags";
 import { default as Gear } from "./components/Gear";
+import { default as GearFilled } from "./components/GearFilled";
 import { default as InfoCircleFilled } from "./components/InfoCircleFilled";
 import { default as InfoCircle } from "./components/InfoCircle";
 import { default as Invalid } from "./components/Invalid";
@@ -53,6 +58,7 @@ import { default as Plus } from "./components/Plus";
 import { default as Search } from "./components/Search";
 import { default as Stack } from "./components/Stack";
 import { default as Star } from "./components/Star";
+import { default as Switch } from "./components/Switch";
 import { default as Terminal } from "./components/Terminal";
 import { default as Time } from "./components/Time";
 import { default as User } from "./components/User";
@@ -77,6 +83,11 @@ import { default as SleepyMoon } from "./components/SleepyMoon";
 import { default as Aws } from "./components/Aws";
 import { default as Datadog } from "./components/Datadog";
 import { default as Gcp } from "./components/Gcp";
+import { default as Github } from "./components/Github";
+import { default as Google } from "./components/Google";
+import { default as K3d } from "./components/K3D";
+import { default as Microsoft } from "./components/Microsoft";
+import { default as Slack } from "./components/Slack";
 
 // Credit Cards
 import { default as CreditCard } from "./components/CreditCard";
@@ -90,6 +101,7 @@ import { default as Unionpay } from "./components/Unionpay";
 
 // Country Flags
 import { default as Australia } from "./components/Australia";
+import { default as Bahrain } from "./components/Bahrain";
 import { default as Belgium } from "./components/Belgium";
 import { default as Brazil } from "./components/Brazil";
 import { default as Canada } from "./components/Canada";
@@ -98,11 +110,15 @@ import { default as France } from "./components/France";
 import { default as Germany } from "./components/Germany";
 import { default as HongKong } from "./components/Hongkong";
 import { default as India } from "./components/India";
+import { default as Indonesia } from "./components/Indonesia";
 import { default as Ireland } from "./components/Ireland";
+import { default as Italy } from "./components/Italy";
 import { default as Japan } from "./components/Japan";
 import { default as Korea } from "./components/Korea";
 import { default as Netherlands } from "./components/Netherlands";
+import { default as Poland } from "./components/Poland";
 import { default as Singapore } from "./components/Singapore";
+import { default as SouthAfrica } from "./components/SouthAfrica";
 import { default as Sweden } from "./components/Sweden";
 import { default as Switzerland } from "./components/Switzerland";
 import { default as Taiwan } from "./components/Taiwan";
@@ -143,22 +159,23 @@ import { default as Community } from "./components/Community";
 import { default as Docs } from "./components/Docs";
 import { default as Learning } from "./components/Learning";
 
-/** 
-oooooooooooo                                               .            
-`888'     `8                                             .o8            
- 888         oooo    ooo oo.ooooo.   .ooooo.  oooo d8b .o888oo  .oooo.o 
- 888oooo8     `88b..8P'   888' `88b d88' `88b `888""8P   888   d88(  "8 
- 888    "       Y888'     888   888 888   888  888       888   `"Y88b.  
- 888       o  .o8"'88b    888   888 888   888  888       888 . o.  )88b 
-o888ooooood8 o88'   888o  888bod8P' `Y8bod8P' d888b      "888" 8""888P' 
-                          888                                           
-                         o888o                                          
+/**
+oooooooooooo                                               .
+`888'     `8                                             .o8
+ 888         oooo    ooo oo.ooooo.   .ooooo.  oooo d8b .o888oo  .oooo.o
+ 888oooo8     `88b..8P'   888' `88b d88' `88b `888""8P   888   d88(  "8
+ 888    "       Y888'     888   888 888   888  888       888   `"Y88b.
+ 888       o  .o8"'88b    888   888 888   888  888       888 . o.  )88b
+o888ooooood8 o88'   888o  888bod8P' `Y8bod8P' d888b      "888" 8""888P'
+                          888
+                         o888o
 */
 
 const SystemIcons = {
   ArrowLeft,
   Backup,
   Bell,
+  Billing,
   CancelCircleFilled,
   CancelCircle,
   Cancel,
@@ -172,6 +189,7 @@ const SystemIcons = {
   CheckCircleFilled,
   CheckCircle,
   Check,
+  CircleFilled,
   HelpCircleFilled,
   Copy,
   Download,
@@ -179,9 +197,12 @@ const SystemIcons = {
   Ellipsis,
   ErrorCircleFilled,
   ErrorCircle,
+  ExternalLink,
   EyeOff,
   Eye,
+  FeatureFlags,
   Gear,
+  GearFilled,
   InfoCircleFilled,
   InfoCircle,
   Invalid,
@@ -198,6 +219,7 @@ const SystemIcons = {
   Search,
   Stack,
   Star,
+  Switch,
   Terminal,
   Time,
   User,
@@ -214,7 +236,7 @@ const Illustrations = {
   SleepyMoon,
 };
 
-const ThirdParty = { Aws, Datadog, Gcp };
+const ThirdParty = { Aws, Datadog, Gcp, Github, Google, K3d, Microsoft, Slack };
 
 const Cards = {
   CreditCard,
@@ -229,6 +251,7 @@ const Cards = {
 
 const Flags = {
   Australia,
+  Bahrain,
   Belgium,
   Brazil,
   Canada,
@@ -237,11 +260,15 @@ const Flags = {
   Germany,
   HongKong,
   India,
+  Indonesia,
   Ireland,
+  Italy,
   Japan,
   Korea,
   Netherlands,
+  Poland,
   Singapore,
+  SouthAfrica,
   Sweden,
   Switzerland,
   Taiwan,
