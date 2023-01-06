@@ -29,7 +29,6 @@ export interface TooltipProps {
   style?: TooltipStyle;
   content: ReactElement | string;
   visible?: boolean;
-  timeout?: number;
 }
 
 export const Tooltip: FunctionComponent<TooltipProps> = ({
@@ -38,7 +37,6 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
   children,
   content,
   visible = false,
-  timeout = 500,
 }) => {
   const [referenceElement, setReferenceElement] = useState(null);
   const [popperElement, setPopperElement] = useState(null);
@@ -81,21 +79,14 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
     );
   });
 
-  const timers: Array<ReturnType<typeof setTimeout>> = [];
   return (
     <div
       ref={setReferenceElement}
       onMouseOver={() => {
-        const t = setTimeout(() => {
-          popperElement.setAttribute("data-show", "");
-        }, timeout);
-        timers.push(t);
+        popperElement.setAttribute("data-show", "");
       }}
       onMouseLeave={() => {
-        timers.forEach((t: ReturnType<typeof setTimeout>) => {
-          clearTimeout(t);
-          popperElement.removeAttribute("data-show");
-        });
+        popperElement.removeAttribute("data-show");
       }}
     >
       {wrappedChildren}
