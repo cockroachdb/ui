@@ -1,7 +1,7 @@
-import { create } from "@storybook/theming/create";
+import { create } from "@storybook/theming";
 
 //
-// See https://storybook.js.org/docs/configurations/theming/ for details
+// See https://storybook.js.org/docs/react/configure/theming for details
 //
 
 export default create({
