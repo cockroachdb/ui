@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import classNames from "classnames/bind";
 
 import styles from "./InlineAlert.module.scss";
-import { Icon } from "../Icon/Icon";
+import { Icon, IconFill } from "../Icon/Icon";
 import { Text } from "../Typography";
 
 const cx = classNames.bind(styles);
@@ -49,7 +49,11 @@ export const InlineAlert: React.FC<InlineAlertProps> = ({
   return (
     <div className={cx("root", `intent-${intent}`, className)}>
       <div className={cx("icon-container")}>
-        <Icon iconName={iconName} size="default" fill={intent} />
+        <Icon
+          iconName={iconName}
+          size="default"
+          fill={String(intent) as IconFill}
+        />
       </div>
       <div className={cx("container")}>
         {title && (
