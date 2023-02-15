@@ -16,11 +16,12 @@
 }
 
 .title {
-  margin-bottom: crl-gutters(0.5);
+  margin-bottom: 0px;
 }
 
 .icon-container {
   padding: 0 crl-gutters(2);
+  display: flex;
 }
 
 .intent-info {
