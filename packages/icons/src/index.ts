@@ -57,6 +57,7 @@ import { default as Terminal } from "./components/Terminal";
 import { default as Time } from "./components/Time";
 import { default as User } from "./components/User";
 import { default as World } from "./components/World";
+import { default as Upload } from "./components/Upload";
 
 // Pictograms
 import { default as Add } from "./components/Add";
@@ -408,4 +409,5 @@ export {
   Community,
   Docs,
   Learning,
+  Upload,
 };
