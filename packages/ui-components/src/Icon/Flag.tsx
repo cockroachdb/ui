@@ -35,6 +35,7 @@ export const flagNameCountryCodeMap: Array<{
 }> = [
   { code: "aus", flag: "Australia" },
   { code: "bel", flag: "Belgium" },
+  { code: "bhr", flag: "Bahrain" },
   { code: "bra", flag: "Brazil" },
   { code: "can", flag: "Canada" },
   { code: "che", flag: "Switzerland" },
@@ -44,14 +45,17 @@ export const flagNameCountryCodeMap: Array<{
   { code: "gbr", flag: "UnitedKingdom" },
   { code: "hkg", flag: "HongKong" },
   { code: "ind", flag: "India" },
+  { code: "idn", flag: "Indonesia" },
   { code: "irl", flag: "Ireland" },
   { code: "jpn", flag: "Japan" },
   { code: "kor", flag: "Korea" },
   { code: "nld", flag: "Netherlands" },
+  { code: "pol", flag: "Poland" },
   { code: "sgp", flag: "Singapore" },
   { code: "swe", flag: "Sweden" },
   { code: "twn", flag: "Taiwan" },
   { code: "usa", flag: "Usa" },
+  { code: "zaf", flag: "SouthAfrica" },
 ];
 
 const getFlagNameFromCountryCode = (countryCode: string): keyof typeof Flags =>

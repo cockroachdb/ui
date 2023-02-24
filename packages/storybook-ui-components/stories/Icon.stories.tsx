@@ -131,7 +131,7 @@ export const SystemIcons = () => (
           <IconDisplay key={name}>
             <IconLabel text={name} />
             <IconFrame>
-              <Icon iconName={name} />
+              <Icon iconName={name} size="large" />
             </IconFrame>
           </IconDisplay>
         ))}
@@ -145,7 +145,7 @@ export const SystemIcons = () => (
           <IconDisplay key={s.key}>
             <IconLabel text={`${s.key} (${s.size}px)`} />
             <IconFrame>
-              <Icon iconName="PlusCircle" size={s.key} />
+              <Icon iconName="Eye" size={s.key} />
             </IconFrame>
           </IconDisplay>
         ))}
@@ -163,7 +163,7 @@ export const SystemIcons = () => (
             >
               <IconLabel text={fill} />
               <IconFrame>
-                <Icon iconName="Plus" fill={fill} />
+                <Icon iconName="GearFilled" fill={fill} size="large" />
               </IconFrame>
             </IconDisplay>
           );
