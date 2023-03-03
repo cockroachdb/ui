@@ -8,7 +8,7 @@
   "scripts": {
     "init": "yarn install && yarn lerna run build",
     "start": "lerna run start --parallel",
-    "release": "auto shipit -v"
+    "release": "auto shipit"
   },
   "resolutions": {},
   "workspaces": [
