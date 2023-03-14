@@ -9,11 +9,13 @@ import objectToClassnames from "../utils/objectToClassnames";
 
 export type IconSize =
   | "tiny"
+  | "x-small"
   | "small"
   | "default"
   | "medium"
   | "large"
-  | "x-large";
+  | "x-large"
+  | "xx-large";
 
 export type IconIntent =
   | "danger"

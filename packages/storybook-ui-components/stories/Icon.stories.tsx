@@ -89,11 +89,14 @@ const keys = Object.keys as <T>(o: T) => Extract<keyof T, string>[];
 const IconNames: Array<keyof typeof IconSet> = keys(IconSet);
 
 const sizes: Array<{ key: IconSize; size: number }> = [
+  { key: "tiny", size: 8 },
+  { key: "x-small", size: 12 },
   { key: "small", size: 16 },
-  { key: "default", size: 24 },
-  { key: "medium", size: 32 },
-  { key: "large", size: 48 },
-  { key: "x-large", size: 56 },
+  { key: "default", size: 16 },
+  { key: "medium", size: 20 },
+  { key: "large", size: 24 },
+  { key: "x-large", size: 32 },
+  { key: "xx-large", size: 64 },
 ];
 const fills: Array<IconFill> = [
   "danger",
