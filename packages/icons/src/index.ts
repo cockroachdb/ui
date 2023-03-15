@@ -68,6 +68,7 @@ import Refresh from "./components/Refresh";
 import Search from "./components/Search";
 import Stack from "./components/Stack";
 import Star from "./components/Star";
+import Switch from "./components/Switch";
 import Table from "./components/Table";
 import Terminal from "./components/Terminal";
 import Time from "./components/Time";
@@ -212,6 +213,7 @@ const SystemIcons = {
   Search,
   Stack,
   Star,                    //deprecated
+  Switch,
   Table,
   Terminal,
   Time,
@@ -338,6 +340,7 @@ export {
   Search,
   Stack,
   Star,
+  Switch,
   Table,
   Terminal,
   Time,
