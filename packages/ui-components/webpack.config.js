@@ -2,6 +2,7 @@
 /* globals module, __dirname */
 const path = require("path");
 const WebpackBar = require("webpackbar");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: "development",
@@ -27,7 +28,11 @@ module.exports = {
       {
         test: /\.module\.scss$/,
         exclude: /node_modules/,
-        use: ["style-loader", "css-loader?modules=true", "sass-loader"],
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader?modules=true",
+          "sass-loader",
+        ],
       },
       {
         test: /\.(ts|js)x?$/,
@@ -44,6 +49,7 @@ module.exports = {
   },
 
   plugins: [
+    new MiniCssExtractPlugin(),
     new WebpackBar({
       name: "ui-components",
       color: "cyan",

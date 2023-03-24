@@ -7,10 +7,17 @@ const cx = classNames.bind(styles);
 
 export type SpinnerSize = "default" | "large" | "small";
 
-export interface SpinnerProps {
+type OwnSpinnerProps = {
   size?: SpinnerSize;
   className?: string;
-}
+};
+
+type NativeSpinnerProps = Omit<
+  React.SVGProps<SVGSVGElement>,
+  keyof OwnSpinnerProps
+>;
+
+export type SpinnerProps = NativeSpinnerProps & OwnSpinnerProps;
 
 export const Spinner: React.FC<SpinnerProps> = ({
   size = "default",
