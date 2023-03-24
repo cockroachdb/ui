@@ -22,12 +22,7 @@ export default {
   ],
 } as ComponentMeta<typeof NavBar>;
 
-export const Basic: ComponentStory<typeof NavBar> = ({currentOrg, user}) => {
-  const orgs = [
-    {name: "MovR", id: "111-222-333",},
-    {name: "HoovR", id: "123-123-123", },
-    {name: "Miele", id: "vacuum", },
-  ];
+const Template: ComponentStory<typeof NavBar> = ({currentOrg, user, orgs}) => {
   return <NavBar
     currentOrg={currentOrg}
     orgs={orgs}
@@ -45,9 +40,15 @@ export const Basic: ComponentStory<typeof NavBar> = ({currentOrg, user}) => {
   </NavBar>
 };
 
+export const Basic: typeof Template = Template.bind({});
 Basic.args = {
   currentOrg: "MovR",
   user: {
     name: "Jeremy",
   },
+  orgs: [
+    {name: "MovR", id: "111-222-333",},
+    {name: "HoovR", id: "123-123-123", },
+    {name: "Miele", id: "vacuum", },
+  ],
 };

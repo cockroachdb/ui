@@ -64,5 +64,6 @@ export default function NavBar(props: NavbarProps) {
         {...orgAndUser}
       </Box>
     </Toolbar>
+    <Divider/>
   </AppBar>
 }
