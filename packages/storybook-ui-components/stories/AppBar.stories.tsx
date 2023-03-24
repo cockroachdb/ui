@@ -2,10 +2,10 @@ import React from "react";
 
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import MenuItem from "@mui/material/MenuItem";
-import { NavBar, NavItem, NavMenu } from "@cockroachlabs/ui-components-mui";
+import { ThemeProvider, NavBar, NavItem, NavMenu } from "@cockroachlabs/ui-components-mui";
 
 export default {
-  title: "Navigation Bar",
+  title: "MUI/Navigation Bar",
   component: NavBar,
   argTypes: {
     currentOrg: {
@@ -13,6 +13,13 @@ export default {
       type: "string",
     },
   },
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        {Story()}
+      </ThemeProvider>
+    ),
+  ],
 } as ComponentMeta<typeof NavBar>;
 
 export const Basic: ComponentStory<typeof NavBar> = ({currentOrg, user}) => {
