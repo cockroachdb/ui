@@ -2,7 +2,14 @@ module.exports = {
   core: {
     builder: "webpack5",
   },
-  stories: ["../stories/**/*.stories.@(tsx|mdx)"],
+  webpackFinal: async (config) => {
+    config.module.rules.push({
+      resolve: { fullySpecified: false },
+    });
+    return config;
+  },
+  stories: ["../stories/**/*.stories.mdx", "../stories/**/*.stories.@(tsx|mdx)"],
   addons: [
+    "@storybook/addon-essentials",
   ]
 };
