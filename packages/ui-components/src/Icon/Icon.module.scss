@@ -1,7 +1,7 @@
 @import "../styles/tokens.scss";
 
 .icon {
-  fill: $color-core-neutral-7;
+  fill: currentColor;
 
   &:disabled {
     pointer-events: none;
