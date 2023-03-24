@@ -10,6 +10,7 @@ import Avatar from "@mui/material/Avatar";
 import NavMenu from "./NavMenu";
 import Toolbar from "@mui/material/Toolbar";
 import Divider from "@mui/material/Divider";
+import { alpha } from "@mui/material/styles";
 
 interface Org {
   name: string;
@@ -64,6 +65,6 @@ export default function NavBar(props: NavbarProps) {
         {...orgAndUser}
       </Box>
     </Toolbar>
-    <Divider/>
+    <Divider sx={{borderColor: alpha("#fff", 0.7), borderBottomThickness: "3px"}}/>
   </AppBar>
 }
