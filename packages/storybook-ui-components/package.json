@@ -7,7 +7,7 @@
   "scripts": {
     "build-storybook": "build-storybook -c .storybook -o public",
     "storybook": "start-storybook -p 6006",
-    "start": "npm run storybook"
+    "start": "start-storybook -p 6006"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   "dependencies": {
     "@cockroachlabs/icons": "^0.7.3",
     "@cockroachlabs/ui-components": "^0.6.5",
+    "@cockroachlabs/ui-components-mui": "*",
     "@storybook/builder-webpack5": "6.5.16",
     "@storybook/manager-webpack5": "6.5.16",
     "ts-loader": "9.4.2",
