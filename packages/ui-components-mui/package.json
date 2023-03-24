@@ -2,11 +2,14 @@
   "name": "@cockroachlabs/ui-components-mui",
   "version": "0.1.0",
   "description": "!EXPERIMENTAL! UI Components, but written with @mui/material as a base.",
+  "type": "module",
+  "sideEffects": false,
   "main": "dist/index.js",
   "repository": "https://github.com/cockroachdb/ui",
   "author": "Cockroach Labs <npmjs@cockroachlabs.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/react": "^17.0.0",
     "react": "^17.0.0",
     "typescript": "^5.0.2"
   },
@@ -17,5 +20,9 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/material": "^5.11.14"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc --watch"
   }
 }
