@@ -34,6 +34,7 @@ import Check from "./components/Check";
 import CheckCircle from "./components/CheckCircle";
 import CheckCircleFilled from "./components/CheckCircleFilled";
 import CircleFilled from "./components/CircleFilled";
+import Cluster from "./components/Cluster";
 import Collapse from "./components/Collapse";
 import Copy from "./components/Copy";
 import Download from "./components/Download";
@@ -45,6 +46,7 @@ import ErrorCircle from "./components/ErrorCircle";
 import Expand from "./components/Expand";
 import EyeOff from "./components/EyeOff";
 import Eye from "./components/Eye";
+import Folder from "./components/Folder";
 import Gear from "./components/Gear";
 import GearFilled from "./components/GearFilled";
 import FeatureFlags from "./components/FeatureFlags";
@@ -53,6 +55,7 @@ import HelpCircleFilled from "./components/HelpCircleFilled";
 import InfoCircle from "./components/InfoCircle";
 import InfoCircleFilled from "./components/InfoCircleFilled";
 import Invalid from "./components/Invalid";
+import Lightbulb from "./components/Lightbulb";
 import List from "./components/List";
 import Lock from "./components/Lock";
 import LockFilled from "./components/LockFilled";
@@ -77,7 +80,6 @@ import World from "./components/World";
 
 // Pictograms
 import Add from "./components/Add";
-import Cluster from "./components/Cluster";
 import Email from "./components/Email";
 import Globe from "./components/Globe";
 import Location from "./components/Location";
@@ -179,6 +181,7 @@ const SystemIcons = {
   CheckCircle,
   CheckCircleFilled,
   CircleFilled,
+  Cluster,
   Collapse,
   Copy,
   Download,
@@ -190,6 +193,7 @@ const SystemIcons = {
   Expand,
   EyeOff,
   Eye,
+  Folder,
   Gear,
   GearFilled,
   FeatureFlags,
@@ -198,6 +202,7 @@ const SystemIcons = {
   InfoCircle,
   InfoCircleFilled,
   Invalid,
+  Lightbulb,
   List,
   LockFilled,
   Lock,
@@ -221,7 +226,7 @@ const SystemIcons = {
   World,
 };
 
-const Pictograms = { Add, Cluster, Email, Globe, Location, Monitoring };
+const Pictograms = { Add, Email, Globe, Location, Monitoring };
 
 const Illustrations = {
   MagnifyingGlass,
@@ -306,6 +311,7 @@ export {
   CheckCircle,
   CheckCircleFilled,
   CircleFilled,
+  Cluster,
   Collapse,
   Copy,
   Download,
@@ -317,6 +323,7 @@ export {
   Expand,
   EyeOff,
   Eye,
+  Folder,
   Gear,
   GearFilled,
   FeatureFlags,
@@ -325,6 +332,7 @@ export {
   InfoCircle,
   InfoCircleFilled,
   Invalid,
+  Lightbulb,
   List,
   LockFilled,
   Lock,
@@ -348,7 +356,6 @@ export {
   World,
   // pictograms
   Add,
-  Cluster,
   Email,
   Globe,
   Location,
