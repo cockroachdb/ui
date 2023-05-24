@@ -1,4 +1,47 @@
 /**
+ * @cockroachlabs/icons
+ *
+ * This index file serves as the difinitive list of the icons contained in the
+ * icons package for cockroach labs ui. While all icons that are a part of this
+ * collection are exported individually, there are also "sets" or groups of icons
+ * with similar use cases and properties (that correspond to convinience
+ * components in @cockroachlabs/ui-components/src/Icon).
+ *
+ * The current categorization of these icons is based on CRDB Design System v1.
+ * See the "Iconography" section of this Figma file,
+ * https://www.figma.com/file/B5AtEGdRbW3VxiBdg62TB8Xw/CRDB-Design-System-v1
+ *
+ *
+ * System icons - Vector images containing a single color intended for
+ * use at small sizes (8px -32px). Their single color allows them to have their
+ * fill overridden with the design system intent colors.
+ *
+ * Pictograms (or Pictogram icons) - Vector images containing two colors (a
+ * solid fill color and a transparent fill color) for use at medium sizes (36px
+ * - 56px). The low number of colors allow the fill to be overridden with an
+ * intent color. (At the time of writing only "primary" is defined, but any color
+ * could be used as a `fill` override).
+ *
+ * Illustrations - More complex vector images containing multiple (3 or
+ * more) fill colors for use at a large size (the size it was designed for).
+ *
+ * 3rd Party Icons - Multicolored vector images representing the logo of
+ * an external company for use at small and medium sizes (16px - 56px)
+ *
+ * Credit Cards - Multicolored vector images representing a payment processor
+ * for use at small sizes (16px - 32px)
+ *
+ * Flags - Multicolored vector images representing a geographic region for use
+ * at small sizes (16px - 32px)
+ *
+ * Other - There are a small number of Pictogram icons that contain many colors
+ * (or more accurately a single color and a gradient of colors) that behave as
+ * Pictograms, but are not meant to have their fill overidden. This is not an
+ * exported group.
+ *
+ */
+
+/**
 ooooo                                                     .
 `888'                                                   .o8
  888  ooo. .oo.  .oo.   oo.ooooo.   .ooooo.  oooo d8b .o888oo  .oooo.o
