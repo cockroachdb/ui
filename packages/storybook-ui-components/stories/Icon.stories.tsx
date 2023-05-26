@@ -56,7 +56,7 @@ const IconDisplay = ({
     style={{
       textAlign: "center",
       backgroundColor: backgroundColor,
-      margin: "2rem 1.5rem",
+      margin: "2rem 1.5rem 0",
       padding: "0 0.5rem",
     }}
   >
@@ -121,7 +121,7 @@ export const SystemIcons = () => (
           <IconDisplay key={name}>
             <IconLabel text={name} />
             <IconFrame>
-              <Icon iconName={name} size="large" />
+              <Icon iconName={name} size="x-large" style={{ margin: "auto" }} />
             </IconFrame>
           </IconDisplay>
         ))}
@@ -135,7 +135,7 @@ export const SystemIcons = () => (
           <IconDisplay key={s.key}>
             <IconLabel text={`${s.key} (${s.size}px)`} />
             <IconFrame>
-              <Icon iconName="Eye" size={s.key} />
+              <Icon iconName="Eye" size={s.key} style={{ margin: "auto" }} />
             </IconFrame>
           </IconDisplay>
         ))}
@@ -153,7 +153,7 @@ export const SystemIcons = () => (
             >
               <IconLabel text={fill} />
               <IconFrame>
-                <Icon iconName="GearFilled" fill={fill} size="large" />
+                <Icon iconName="GearFilled" fill={fill} size="large" style={{ margin: "auto" }} />
               </IconFrame>
             </IconDisplay>
           );
@@ -238,7 +238,7 @@ export const ThirdPartyIcons = () => (
         <IconDisplay key={name}>
           <IconLabel text={name} />
           <IconFrame>
-            <ThirdPartyIcon iconName={name} />
+            <ThirdPartyIcon iconName={name} style={{ margin: "auto" }} />
           </IconFrame>
         </IconDisplay>
       ))}
@@ -251,7 +251,7 @@ export const ThirdPartyIcons = () => (
           <IconDisplay key={s.key}>
             <IconLabel text={`${s.key} (${s.size}px)`} />
             <IconFrame>
-              <ThirdPartyIcon iconName="Gcp" size={s.key} />
+              <ThirdPartyIcon iconName="Gcp" size={s.key} style={{ margin: "auto" }} />
             </IconFrame>
           </IconDisplay>
         ))}
