@@ -54,6 +54,13 @@
         "3": { "value": "#ff3b4e" },
         "4": { "value": "#c32534" },
         "5": { "value": "#99000f" }
+      },
+      "blue-gray": {
+        "1": { "value": "#828391" },
+        "2": { "value": "#696b7b" },
+        "3": { "value": "#56586a" },
+        "4": { "value": "#3b3e53" },
+        "5": { "value": "#131522" }
       }
     }
   },
@@ -65,6 +72,7 @@
     "deep-purple": { "value": "#190f33" },
     "action-purple": { "value": "#b921f1" },
     "light-purple": { "value": "#f7d6ff" },
-    "electric-purple": { "value": "#6933ff" }
+    "electric-purple": { "value": "#6933ff" },
+    "electric-teal": { "value": "#58ffd2" }
   }
 }
