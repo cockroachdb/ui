@@ -5,9 +5,8 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "build-storybook": "build-storybook -c .storybook -o public",
-    "storybook": "start-storybook -p 6006",
-    "start": "npm run storybook"
+    "build-storybook": "storybook build -c .storybook -o public",
+    "start": "storybook dev -p 6006"
   },
   "repository": {
     "type": "git",
@@ -21,20 +20,26 @@
   "dependencies": {
     "@cockroachlabs/icons": "^0.7.4",
     "@cockroachlabs/ui-components": "^0.7.2",
-    "@storybook/builder-webpack5": "6.5.16",
-    "@storybook/manager-webpack5": "6.5.16",
     "ts-loader": "9.4.2",
     "typescript": "4.8.4"
   },
   "devDependencies": {
     "@babel/core": "7.21.0",
-    "@storybook/addon-actions": "6.5.16",
-    "@storybook/addon-docs": "6.5.16",
-    "@storybook/addon-knobs": "6.4.0",
-    "@storybook/addon-links": "6.5.16",
-    "@storybook/addons": "6.5.16",
-    "@storybook/react": "6.5.16",
+    "@babel/preset-env": "^7.22.5",
+    "@babel/preset-react": "^7.22.5",
+    "@babel/preset-typescript": "^7.22.5",
+    "@storybook/addon-actions": "7.0.20",
+    "@storybook/addon-controls": "^7.0.20",
+    "@storybook/addon-docs": "7.0.20",
+    "@storybook/addon-knobs": "7.0.2",
+    "@storybook/addon-links": "7.0.20",
+    "@storybook/addons": "7.0.20",
+    "@storybook/react": "7.0.20",
+    "@storybook/react-webpack5": "7.0.20",
     "babel-loader": "8.3.0",
+    "react": "17",
+    "react-dom": "17",
+    "storybook": "7.0.20",
     "ts-loader": "9.4.2",
     "webpack": "5.75.0"
   },

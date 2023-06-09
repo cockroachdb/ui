@@ -1,15 +1,60 @@
 import React from "react";
-import { withKnobs, text, select } from "@storybook/addon-knobs";
-import { Tooltip } from "@cockroachlabs/ui-components";
+import type { Meta, StoryObj } from "@storybook/react";
+import { text, select } from "@storybook/addon-knobs";
 import { StoryContainer, StoryDescription } from "./layout";
+import { Tooltip } from "@cockroachlabs/ui-components";
 
-export default {
+const meta: Meta<typeof Tooltip> = {
   title: "Tooltip",
-  components: Tooltip,
-  decorators: [withKnobs],
+  component: Tooltip,
+  tags: ["autodocs"],
+  decorators: [
+    (Story) => (
+      <StoryContainer>
+        <Story />
+      </StoryContainer>
+    ),
+  ],
+  argTypes: {
+    placement: {
+      options: ["left", "left-start", "left-end", "right", "right-start", "right-end", "top", "top-start", "top-end", "bottom", "bottom-start", "bottom-end"],
+      control: "select",
+    },
+    style: {
+      options: ["default", "light", "dark", "tableTitle"],
+      control: "select",
+    }
+  }
+};
+export default meta;
+
+type Story = StoryObj<typeof Tooltip>;
+
+export const Example: Story = {
+  args: {
+    content: "Hello, world",
+    placement: "top",
+    style: "default",
+  },
+  tags: ["autodocs"],
+  render: (props) => {
+    return (
+      <div style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        height: 300,
+      }}>
+        <Tooltip placement={props.placement} content={props.content}>
+          Hover me
+        </Tooltip>
+      </div>
+    );
+  },
 };
 
-export const Example = () => {
+export const Corpus = () => {
   const text = (
     <span>
       reasonable tooltip text,
@@ -176,25 +221,25 @@ export const PlainString = () => (
 
 export const Inline = () => (
   <StoryContainer>
-      <div style={{padding: "5px"}}>
-          <Tooltip
-            content={text(
-              "Text",
-              "should be centered around inline element",
-            )}
-          >
-            <span style={{ backgroundColor: "yellow", padding: "5px" }}>I'm an inline element</span>
-          </Tooltip>
-      </div>
-      <div style={{padding: "5px"}}>
-          <Tooltip
-            content={text(
-              "Text",
-              "should be centered around block element",
-            )}
-          >
-            <div style={{ backgroundColor: "yellow", padding: "5px" }}>I'm a block element</div>
-          </Tooltip>
-      </div>
+    <div style={{ padding: "5px" }}>
+      <Tooltip
+        content={text(
+          "Text",
+          "should be centered around inline element",
+        )}
+      >
+        <span style={{ backgroundColor: "yellow", padding: "5px" }}>I'm an inline element</span>
+      </Tooltip>
+    </div>
+    <div style={{ padding: "5px" }}>
+      <Tooltip
+        content={text(
+          "Text",
+          "should be centered around block element",
+        )}
+      >
+        <div style={{ backgroundColor: "yellow", padding: "5px" }}>I'm a block element</div>
+      </Tooltip>
+    </div>
   </StoryContainer>
 );
