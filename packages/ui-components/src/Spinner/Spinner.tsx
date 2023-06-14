@@ -6,7 +6,7 @@ import { IconIntent } from "../Icon";
 
 const cx = classNames.bind(styles);
 
-export type SpinnerSize = "default" | "large" | "small" | "x-small";
+export type SpinnerSize = "default" | "large" | "medium" | "small" | "x-small";
 
 export type SpinnerFill = IconIntent | "inverted";
 

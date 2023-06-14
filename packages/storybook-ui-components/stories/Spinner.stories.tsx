@@ -5,13 +5,14 @@ import { StoryContainer, StoryDescription  } from "./layout";
 
 import { IconDisplaySection, IconDisplay, IconLabel, IconFrame } from "./Icon.stories";
 
-const sizes: Array<{ key: SpinnerSize; size: number }> = [
-  { key: "x-small", size: 16 },
-  { key: "small", size: 24 },
+const sizes: { key: SpinnerSize; size: number }[] = [
+  { key: "x-small", size: 12 },
+  { key: "small", size: 16 },
+  { key: "medium", size: 24 },
   { key: "default", size: 40 },
   { key: "large", size: 64 },
 ];
-const fills: Array<SpinnerFill> = [
+const fills: SpinnerFill[] = [
   "danger",
   "default",
   "info",
@@ -53,7 +54,6 @@ export const Demo: Story = {
     size: "default",
     fill: "default",
   },
-  tags: ["autodocs"],
   render: (props) => {
     return (
       <StoryContainer>
