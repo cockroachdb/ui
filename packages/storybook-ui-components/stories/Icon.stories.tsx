@@ -32,7 +32,7 @@ export default {
   component: Icon,
 };
 
-const IconDisplaySection = ({ children, style }: { children: ReactNode, style?: CSSProperties }) => (
+export const IconDisplaySection = ({ children, style }: { children: ReactNode, style?: CSSProperties }) => (
   <section
     style={{
       display: "flex",
@@ -45,7 +45,7 @@ const IconDisplaySection = ({ children, style }: { children: ReactNode, style?: 
   </section>
 );
 
-const IconDisplay = ({
+export const IconDisplay = ({
   children,
   backgroundColor = "transparent",
 }: {
@@ -63,14 +63,14 @@ const IconDisplay = ({
     {children}
   </div>
 );
-const IconFrame = ({ children }: { children: ReactNode }) => (
+export const IconFrame = ({ children, style }: { children: ReactNode, style?: CSSProperties }) => (
   <div
-    style={{ display: "flex", height: "75px", width: "75px", margin: "auto" }}
+    style={{ display: "flex", height: "75px", width: "75px", margin: "auto", ...style }}
   >
     {children}
   </div>
 );
-const Frame = ({
+export const Frame = ({
   style,
   children,
 }: {
@@ -78,7 +78,7 @@ const Frame = ({
   children: ReactNode;
 }) => <div style={{ margin: "1rem", ...style }}>{children}</div>;
 
-const IconLabel: FunctionComponent<{
+export const IconLabel: FunctionComponent<{
   text: string;
   style?: CSSProperties,
 }> = ({ text, style }) => (

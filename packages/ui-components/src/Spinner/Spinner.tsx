@@ -2,13 +2,17 @@ import React from "react";
 import classNames from "classnames/bind";
 import styles from "./Spinner.module.scss";
 import objectToClassnames from "../utils/objectToClassnames";
+import { IconIntent } from "../Icon";
 
 const cx = classNames.bind(styles);
 
-export type SpinnerSize = "default" | "large" | "small";
+export type SpinnerSize = "default" | "large" | "medium" | "small" | "x-small";
+
+export type SpinnerFill = IconIntent | "inverted";
 
 type OwnSpinnerProps = {
   size?: SpinnerSize;
+  fill?: SpinnerFill;
   className?: string;
 };
 
@@ -21,16 +25,24 @@ export type SpinnerProps = NativeSpinnerProps & OwnSpinnerProps;
 
 export const Spinner: React.FC<SpinnerProps> = ({
   size = "default",
+  fill = "default",
   className,
+  "aria-label": ariaLabel = "Loading...",
+  ...props
 }) => {
-  const classNames = cx("spinner", objectToClassnames({ size }), className);
+  const classNames = cx(
+    "spinner",
+    objectToClassnames({ size, fill }),
+    className,
+  );
   return (
     <svg
       className={classNames}
       viewBox="0 0 100 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      aria-label="Loading..."
+      aria-label={ariaLabel}
+      {...props}
     >
       <circle
         fillRule="evenodd"
