@@ -57,7 +57,7 @@ export const Demo: Story = {
   render: (props) => {
     return (
       <StoryContainer>
-        <Spinner size={props.size} fill={props.fill} />
+        <Spinner size={props.size} fill={props.fill} aria-label="Demo loading ..." />
       </StoryContainer>
     );
   },

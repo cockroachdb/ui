@@ -27,6 +27,8 @@ export const Spinner: React.FC<SpinnerProps> = ({
   size = "default",
   fill = "default",
   className,
+  "aria-label": ariaLabel = "Loading...",
+  ...props
 }) => {
   const classNames = cx(
     "spinner",
@@ -39,7 +41,8 @@ export const Spinner: React.FC<SpinnerProps> = ({
       viewBox="0 0 100 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      aria-label="Loading..."
+      aria-label={ariaLabel}
+      {...props}
     >
       <circle
         fillRule="evenodd"
