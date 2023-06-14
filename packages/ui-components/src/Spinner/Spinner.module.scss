@@ -12,21 +12,47 @@ svg.spinner {
     transform-origin: 50% 50%;
     animation: spinner 3s linear infinite;
   }
+
+  &.fill-info circle {
+    stroke: $color-base-blue;
+  }
+
+  &.fill-primary circle {
+    stroke: $color-base-purple;
+  }
+
+  &.fill-success circle {
+    stroke: $color-base-green;
+  }
+
+  &.fill-danger circle {
+    stroke: $color-base-red;
+  }
+  &.fill-warning circle {
+    stroke: $color-base-orange;
+  }
+  &.fill-inverted circle {
+    stroke: $color-base-white;
+  }
 }
 
 .size-default {
-  width: crl-gutters(5);
-  height: crl-gutters(5);
+  width: 40px;
+  height: 40px;
 }
 
+.size-x-small {
+  width: 16px;
+  height: 16px;
+}
 .size-small {
-  width: crl-gutters(3);
-  height: crl-gutters(3);
+  width: 24px;
+  height: 24px;
 }
 
 .size-large {
-  width: crl-gutters(8);
-  height: crl-gutters(8);
+  width: 64px;
+  height: 64px;
 }
 
 @keyframes spinner {
