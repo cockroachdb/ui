@@ -18,13 +18,13 @@ jobs:
           node-version: 16
           cache: 'yarn'
 
-      - name: Lerna bootstrap
-        run: lerna bootstrap
+      - name: Monorepo init
+        run: yarn
 
       - name: Build packages
-        run: lerna run build
+        run: yarn run lerna run build
 
       - name: Continuous Integration for all packages
-        run: lerna run ci --stream
+        run: yarn run lerna run ci --stream
         env:
           CI: true
