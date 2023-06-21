@@ -397,18 +397,19 @@ export {
   Time,
   User,
   World,
-  // pictograms
+  // Pictograms
   Add,
   Email,
   Globe,
   Location,
   Monitoring,
+  // Illustrations
   MagnifyingGlass,
   Menu,
   Nodes,
   NotFound,
   SleepyMoon,
-  // 3rd party
+  // Third party
   Aws,
   Azure,
   Datadog,
@@ -419,7 +420,7 @@ export {
   Microsoft,
   Slack,
   Zendesk,
-  // credit cards
+  // Credit Cards
   CreditCard,
   Visa,
   Amex,
@@ -428,7 +429,7 @@ export {
   Mastercard,
   Jcb,
   Unionpay,
-  // flags
+  // Flags
   Australia,
   Belgium,
   Brazil,
