@@ -14,7 +14,7 @@ type OwnThirdPartyIconProps = {
   size?: ThirdPartySize;
 };
 
-type ThirdPartyIconProps = SVGProps<SVGElement> & OwnThirdPartyIconProps;
+export type ThirdPartyIconProps = SVGProps<SVGElement> & OwnThirdPartyIconProps;
 
 const cx = classnames.bind(styles);
 

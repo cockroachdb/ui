@@ -9,7 +9,7 @@ type OwnIllustrationProps = {
   illustrationName: keyof typeof Illustrations;
 };
 
-type IllustrationProps = SVGProps<SVGAElement> & OwnIllustrationProps;
+export type IllustrationProps = SVGProps<SVGAElement> & OwnIllustrationProps;
 
 const cx = classnames.bind(styles);
 

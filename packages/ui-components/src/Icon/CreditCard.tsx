@@ -14,7 +14,7 @@ type OwnCreditCardProps = {
   size?: CreditCardSize;
 };
 
-type CreditCardProps = SVGProps<SVGElement> & OwnCreditCardProps;
+export type CreditCardProps = SVGProps<SVGElement> & OwnCreditCardProps;
 
 const cx = classnames.bind(styles);
 
