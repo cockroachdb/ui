@@ -20,7 +20,7 @@ type NativePictogramProps = Omit<
   React.SVGProps<SVGSVGElement>,
   keyof OwnPictogramProps
 >;
-type PictogramProps = NativePictogramProps & OwnPictogramProps;
+export type PictogramProps = NativePictogramProps & OwnPictogramProps;
 
 const cx = classnames.bind(styles);
 

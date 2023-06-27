@@ -23,7 +23,7 @@ type OwnFlagPropsWithCountryCode = {
   countryCode: string;
 };
 
-type FlagProps = SVGProps<SVGElement> &
+export type FlagProps = SVGProps<SVGElement> &
   OwnBaseFlagProps &
   (OwnFlagPropsWithFlagName | OwnFlagPropsWithCountryCode);
 
