@@ -79,6 +79,7 @@ import CheckCircleFilled from "./components/CheckCircleFilled";
 import CircleFilled from "./components/CircleFilled";
 import Cluster from "./components/Cluster";
 import Collapse from "./components/Collapse";
+import Comment from "./components/Comment";
 import Copy from "./components/Copy";
 import Download from "./components/Download";
 import Ellipsis from "./components/Ellipsis";
@@ -118,6 +119,7 @@ import Switch from "./components/Switch";
 import Table from "./components/Table";
 import Terminal from "./components/Terminal";
 import Time from "./components/Time";
+import Trash from "./components/Trash";
 import User from "./components/User";
 import World from "./components/World";
 
@@ -226,6 +228,7 @@ const SystemIcons = {
   CircleFilled,
   Cluster,
   Collapse,
+  Comment,
   Copy,
   Download,
   Ellipsis,
@@ -265,6 +268,7 @@ const SystemIcons = {
   Table,
   Terminal,
   Time,
+  Trash,
   User,
   World,
 };
@@ -356,6 +360,7 @@ export {
   CircleFilled,
   Cluster,
   Collapse,
+  Comment,
   Copy,
   Download,
   Ellipsis,
@@ -395,6 +400,7 @@ export {
   Table,
   Terminal,
   Time,
+  Trash,
   User,
   World,
   // Pictograms
