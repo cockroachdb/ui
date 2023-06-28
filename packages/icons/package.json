@@ -1,6 +1,6 @@
 {
   "name": "@cockroachlabs/icons",
-  "version": "0.7.5",
+  "version": "0.7.6",
   "description": "Icons for Cockroach UI exported as React Components",
   "files": [
     "dist/"
