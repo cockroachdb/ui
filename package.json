@@ -2,18 +2,15 @@
   "name": "root",
   "private": true,
   "devDependencies": {
-    "auto": "10.43.0",
-    "lerna": "5.6.2"
+    "auto": "11.0.4",
+    "lerna": "^7.2.0"
   },
   "scripts": {
-    "init": "yarn install && yarn lerna run build",
-    "start": "lerna run start --parallel",
+    "start": "pnpm run --recursive --parallel start",
+    "test": "pnpm run --recursive test",
+    "build": "pnpm run --recursive build",
     "release": "auto shipit"
   },
-  "resolutions": {},
-  "workspaces": [
-    "packages/*"
-  ],
   "repository": "cockroachdb/ui",
   "author": "Cockroach Labs <npmjs@cockroachlabs.com>",
   "auto": {
@@ -48,5 +45,11 @@
         "changelogTitle": "📝 Documentation"
       }
     ]
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react-lines-ellipsis>@types/react": "17",
+      "@types/recharts>@types/react": "17"
+    }
   }
 }

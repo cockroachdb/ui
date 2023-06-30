@@ -13,9 +13,7 @@
   "types": "dist/web/tokens.d.ts",
   "scripts": {
     "build": "style-dictionary build",
-    "clean": "style-dictionary clean",
-    "prepare": "npm run clean && npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "style-dictionary clean"
   },
   "license": "MIT",
   "devDependencies": {

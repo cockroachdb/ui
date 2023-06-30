@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* globals module, __dirname */
 const path = require("path");
-const WebpackBar = require("webpackbar");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
@@ -55,11 +54,6 @@ module.exports = {
 
   plugins: [
     new MiniCssExtractPlugin(),
-    new WebpackBar({
-      name: "ui-components",
-      color: "cyan",
-      profile: true,
-    }),
   ],
 
   // When importing a module whose path matches one of the following, just

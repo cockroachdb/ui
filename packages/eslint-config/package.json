@@ -37,7 +37,7 @@
   },
   "scripts": {
     "snyk-protect": "snyk-protect",
-    "prepare": "yarn run snyk-protect"
+    "prepare": "snyk-protect"
   },
   "snyk": true,
   "gitHead": "f9e7778c841194fa776c5dc45d62fb9caf408f22"

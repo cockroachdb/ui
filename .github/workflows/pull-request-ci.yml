@@ -13,18 +13,22 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8.6
+
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'yarn'
+          cache: "pnpm"
 
-      - name: Monorepo init
-        run: yarn
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Build packages
-        run: yarn run lerna run build
+        run: pnpm build
 
-      - name: Continuous Integration for all packages
-        run: yarn run lerna run ci --stream
+      - name: Test packages
+        run: pnpm test
         env:
           CI: true
