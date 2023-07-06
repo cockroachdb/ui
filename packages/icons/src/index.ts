@@ -455,14 +455,14 @@ export {
   Taiwan,
   UnitedKingdom,
   Usa,
-  // sets,
+  // Sets,
   SystemIcons,
   Pictograms,
   ThirdParty,
   Cards,
   Flags,
   Illustrations,
-  // other
+  // Other
   Community,
   Docs,
   Learning,
