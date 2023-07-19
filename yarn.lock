@@ -7736,21 +7736,7 @@ crypto-random-string@^2.0.0:
   resolved "https://registry.yarnpkg.com/crypto-random-string/-/crypto-random-string-2.0.0.tgz#ef2a7a966ec11083388369baa02ebead229b30d5"
   integrity sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==
 
-css-loader@^6.7.1:
-  version "6.8.1"
-  resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-6.8.1.tgz#0f8f52699f60f5e679eab4ec0fcd68b8e8a50a88"
-  integrity sha512-xDAXtEVGlD0gJ07iclwWVkLoZOpEvAWaSyf6W18S2pOC//K8+qUDIx8IIT3D+HjnmkJPQeesOPv5aiUaJsCM2g==
-  dependencies:
-    icss-utils "^5.1.0"
-    postcss "^8.4.21"
-    postcss-modules-extract-imports "^3.0.0"
-    postcss-modules-local-by-default "^4.0.3"
-    postcss-modules-scope "^3.0.0"
-    postcss-modules-values "^4.0.0"
-    postcss-value-parser "^4.2.0"
-    semver "^7.3.8"
-
-css-loader@^6.8.1:
+css-loader@^6.7.1, css-loader@^6.8.1:
   version "6.8.1"
   resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-6.8.1.tgz#0f8f52699f60f5e679eab4ec0fcd68b8e8a50a88"
   integrity sha512-xDAXtEVGlD0gJ07iclwWVkLoZOpEvAWaSyf6W18S2pOC//K8+qUDIx8IIT3D+HjnmkJPQeesOPv5aiUaJsCM2g==
@@ -15538,9 +15524,9 @@ wildcard@^2.0.0:
   integrity sha512-JcKqAHLPxcdb9KM49dufGXn2x3ssnfjbcaQdLlfZsL9rH9wgDQjUtDxbo8NE0F6SFvydeu1VhZe7hZuHsB2/pw==
 
 word-wrap@^1.2.3, word-wrap@~1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/word-wrap/-/word-wrap-1.2.3.tgz#610636f6b1f703891bd34771ccb17fb93b47079c"
-  integrity sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/word-wrap/-/word-wrap-1.2.4.tgz#cb4b50ec9aca570abd1f52f33cd45b6c61739a9f"
+  integrity sha512-2V81OA4ugVo5pRo46hAoD2ivUJx8jXmWXfUkY4KFNw0hEptvN0QfH3K4nHiwzGeKl5rFKedV48QVoqYavy4YpA==
 
 wordwrap@^1.0.0:
   version "1.0.0"
