@@ -8,15 +8,14 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "npm run build:generate:stripfill && npm run build:generate:preserve && npm run build:typescript",
+    "build": "run-s build:generate:stripfill build:generate:preserve build:typescript",
     "build:typescript": "tsc",
     "build:generate:stripfill": "svgr --typescript --icon -d src/components svg/customFill",
     "build:generate:preserve": "svgr --typescript --icon --no-runtime-config -d src/components svg/preserveFill",
-    "build:watch": "tsc --watch",
+    "build:watch": "tsc --watch --preserveWatchOutput",
     "clean": "rimraf dist src/components",
-    "prepare": "npm run clean && npm run build",
     "test": "node notests.js",
-    "start": "npm run build:watch"
+    "start": "pnpm run build:watch"
   },
   "license": "MIT",
   "devDependencies": {

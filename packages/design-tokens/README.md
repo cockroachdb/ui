@@ -5,13 +5,13 @@ Uses [style-dictionary](https://github.com/amzn/style-dictionary) to transform t
 ## Install dependencies
 
 ```
-yarn
+pnpm install
 ```
 
 ## Generate tokens from json
 
 ```
-npm run build
+pnpm run build
 ```
 
 ## Exported Tokens

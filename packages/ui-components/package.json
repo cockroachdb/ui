@@ -9,7 +9,7 @@
   "main": "dist/main.js",
   "types": "dist/types/index.d.ts",
   "scripts": {
-    "build": "npm run build:typescript && npm run build:bundle",
+    "build": "npm-run-all build:typescript build:bundle",
     "build:bundle": "webpack --mode production",
     "build:typescript": "tsc",
     "build:watch": "webpack --mode development --watch",
@@ -17,19 +17,19 @@
     "clean": "rm -rf  ./dist/*",
     "lint": "eslint \"src/**/*.{tsx,ts,js}\"",
     "lint:fix": "eslint \"src/**/*.{tsx,ts,js}\" --fix",
-    "prepare": "npm run clean && npm run build",
-    "test": "jest --watch",
-    "test:version": "npm version prerelease --preid='alpha'",
-    "test:publish": "npm publish --tag testing",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:version": "pnpm version prerelease --preid='alpha'",
+    "test:publish": "pnpm publish --tag testing",
     "publish-test-version": "npm-run-all test:version test:publish",
-    "start": "npm run build:watch"
+    "start": "pnpm run build:watch"
   },
   "keywords": [],
   "license": "MIT",
   "dependencies": {
-    "@cockroachlabs/icons": "^0.7.6",
+    "@cockroachlabs/icons": "workspace:../icons",
     "@popperjs/core": "^2.9.2",
-    "@types/recharts": "^1.8.23",
+    "lodash": "^4.17.21",
     "react-lines-ellipsis": "^0.15.0",
     "react-popper": "^2.2.5",
     "recharts": "^2.1.12"
@@ -42,8 +42,8 @@
     "@babel/preset-env": "7.20.2",
     "@babel/preset-react": "7.18.6",
     "@babel/preset-typescript": "7.21.0",
-    "@cockroachlabs/design-tokens": "^0.4.12",
-    "@cockroachlabs/eslint-config": "^1.0.5",
+    "@cockroachlabs/design-tokens": "workspace:../design-tokens",
+    "@cockroachlabs/eslint-config": "workspace:../eslint-config",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "12.1.5",
     "@types/classnames": "2.3.0",
@@ -52,6 +52,8 @@
     "@types/node": "16.18.14",
     "@types/react": "17.0.53",
     "@types/react-lines-ellipsis": "0.15.1",
+    "@types/recharts": "^1.8.23",
+    "@types/testing-library__jest-dom": "^5.14.6",
     "@typescript-eslint/eslint-plugin": "5.54.0",
     "@typescript-eslint/parser": "5.54.0",
     "babel-loader": "8.3.0",
@@ -68,6 +70,7 @@
     "jest-environment-jsdom": "29.4.3",
     "jest-runner-eslint": "1.1.0",
     "mini-css-extract-plugin": "^2.7.5",
+    "npm-run-all": "4.1.5",
     "prettier": "2.8.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -86,6 +89,5 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
-  "resolutions": {},
   "gitHead": "a77405daccfaf2d38cc08ef7c322172ee93776fd"
 }
