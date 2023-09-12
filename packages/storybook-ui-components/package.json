@@ -21,7 +21,7 @@
     "@cockroachlabs/icons": "workspace:../icons",
     "@cockroachlabs/ui-components": "workspace:../ui-components",
     "ts-loader": "9.4.2",
-    "typescript": "4.8.4"
+    "typescript": "5.x"
   },
   "devDependencies": {
     "@babel/core": "7.21.0",

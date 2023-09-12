@@ -29,6 +29,10 @@ module.exports = {
     },
   },
   parser: "@typescript-eslint/parser",
+  parserOptions: {
+    // Prefer a ./tsconfig.eslint.json, otherwise fall back to ./tsconfig.json.
+    project: [ "./tsconfig.eslint.json", "./tsconfig.json" ],
+  },
   overrides: [
     {
       files: ["**/*.{tsx,ts}"],
