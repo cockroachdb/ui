@@ -1,6 +1,5 @@
 import React, { useMemo, SVGProps } from "react";
 import classnames from "classnames/bind";
-import get from "lodash/get";
 
 import { ThirdParty } from "@cockroachlabs/icons";
 import styles from "./ThirdPartyIcon.module.scss";
@@ -14,7 +13,8 @@ type OwnThirdPartyIconProps = {
   size?: ThirdPartySize;
 };
 
-export type ThirdPartyIconProps = SVGProps<SVGElement> & OwnThirdPartyIconProps;
+export type ThirdPartyIconProps = SVGProps<SVGSVGElement> &
+  OwnThirdPartyIconProps;
 
 const cx = classnames.bind(styles);
 
@@ -28,9 +28,9 @@ export const ThirdPartyIcon = ({
     () => cx("icon", objectToClassNames({ size }), className),
     [className, size],
   );
-  const Element = get(ThirdParty, iconName, null);
+  const Element = ThirdParty[iconName];
 
-  if (Element === null) {
+  if (Element == null) {
     return null;
   }
 
