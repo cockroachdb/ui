@@ -5,11 +5,11 @@
     "noImplicitAny": true,
     "module": "commonjs",
     "moduleResolution": "Node",
-    "target": "es6",
+    "target": "es2020",
     "jsx": "react",
     "esModuleInterop": true,
     "declaration": true,
-    "outDir": "./dist",
+    "outDir": "./dist/cjs/",
     "skipLibCheck": true, 
   },
   "exclude": [
