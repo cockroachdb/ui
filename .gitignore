@@ -24,6 +24,9 @@ node_modules
 # Output of 'npm pack'
 *.tgz
 
+# Parcel build cache
+.parcel-cache
+
 # Yarn Integrity file
 .yarn-integrity
 

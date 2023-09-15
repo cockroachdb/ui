@@ -1,3 +1,4 @@
+/// <reference types="./declaration.d.ts"/>
 export * from "./Avatar/Avatar";
 export * from "./Badge/Badge";
 export * from "./Button/Button";
