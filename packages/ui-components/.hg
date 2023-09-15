@@ -1,0 +1,19 @@
+# This is not a Mercurial repo.
+#
+# parcel 2.9.3 handles pnpm workspaces strangely, and walks the file system
+# upwards looking for a lockfile, a .git file or directory, or a .hg file or
+# directory:
+#
+# https://github.com/parcel-bundler/parcel/blob/5ac45672bb603841bf294c66019930be4354625a/packages/core/core/src/resolveOptions.js#L72
+#
+# Without this .hg file, parcel would continue walking to the root of this git
+# repo (../../ from here) and install dependencies there. We don't actually want
+# that, and would prefer if packages installed for a package were listed in that
+# package's dependencies. The presence of this file is enough to keep parcel
+# properly rooted within this workspace package, so this .hg file must remain.
+# I'm sorry for the confusing naming --- it seems like the least-bad option.
+#
+# There's an open issue in parcel to address this upstream, but it hasn't been
+# resolved as-of September 2023:
+#
+# https://github.com/parcel-bundler/parcel/issues/7206
