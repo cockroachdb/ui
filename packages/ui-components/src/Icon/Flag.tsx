@@ -1,6 +1,5 @@
 import React, { useMemo, SVGProps } from "react";
 import classnames from "classnames/bind";
-import get from "lodash/get";
 
 import { Flags } from "@cockroachlabs/icons";
 import styles from "./card.module.scss";
@@ -23,7 +22,7 @@ type OwnFlagPropsWithCountryCode = {
   countryCode: string;
 };
 
-export type FlagProps = SVGProps<SVGElement> &
+export type FlagProps = SVGProps<SVGSVGElement> &
   OwnBaseFlagProps &
   (OwnFlagPropsWithFlagName | OwnFlagPropsWithCountryCode);
 
@@ -73,9 +72,9 @@ export const Flag = ({
     [className, size],
   );
   const flagName = flagNameProp || getFlagNameFromCountryCode(countryCode);
-  const Element = get(Flags, flagName, null);
+  const Element = Flags[flagName];
 
-  if (Element === null) {
+  if (Element == null) {
     return null;
   }
 

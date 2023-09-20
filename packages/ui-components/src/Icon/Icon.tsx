@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
 import classNames from "classnames/bind";
-import get from "lodash/get";
 
 import { SystemIcons } from "@cockroachlabs/icons";
 import styles from "./Icon.module.scss";
@@ -55,9 +54,9 @@ export const Icon = ({
     () => cx("icon", objectToClassnames({ size, fill }), className),
     [className, size, fill],
   );
-  const Element = get(SystemIcons, iconName, null);
+  const Element = SystemIcons[iconName];
 
-  if (Element === null) {
+  if (Element == null) {
     return null;
   }
 

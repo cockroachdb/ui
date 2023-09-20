@@ -1,6 +1,5 @@
 import React, { useMemo, SVGProps } from "react";
 import classnames from "classnames/bind";
-import get from "lodash/get";
 
 import { Illustrations } from "@cockroachlabs/icons";
 import styles from "./Illustration.module.scss";
@@ -9,7 +8,7 @@ type OwnIllustrationProps = {
   illustrationName: keyof typeof Illustrations;
 };
 
-export type IllustrationProps = SVGProps<SVGAElement> & OwnIllustrationProps;
+export type IllustrationProps = SVGProps<SVGSVGElement> & OwnIllustrationProps;
 
 const cx = classnames.bind(styles);
 
@@ -20,9 +19,9 @@ export const Illustration = ({
 }: IllustrationProps) => {
   const classNames = useMemo(() => cx("illustration", className), [className]);
 
-  const Element = get(Illustrations, illustrationName, null);
+  const Element = Illustrations[illustrationName];
 
-  if (Element === null) {
+  if (Element == null) {
     return null;
   }
 

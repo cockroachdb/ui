@@ -1,7 +1,6 @@
 import React from "react";
 import classNames from "classnames";
 import { CommonInputProps, CommonInput } from "./CommonInput";
-import { isEmpty } from "lodash";
 import "./input.module.scss";
 
 export interface TextAndNumberProps
@@ -82,7 +81,7 @@ export const BaseTextInput: React.FC<InternalTextProps> = (props) => {
 
   const labelDiv = (
     <>
-      {!isEmpty(label) && (
+      {label !== "" && (
         <label
           aria-label={name}
           className={classNames({

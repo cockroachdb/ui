@@ -1,6 +1,5 @@
 import React, { useMemo, SVGProps } from "react";
 import classnames from "classnames/bind";
-import get from "lodash/get";
 
 import { Cards } from "@cockroachlabs/icons";
 import styles from "./card.module.scss";
@@ -14,7 +13,7 @@ type OwnCreditCardProps = {
   size?: CreditCardSize;
 };
 
-export type CreditCardProps = SVGProps<SVGElement> & OwnCreditCardProps;
+export type CreditCardProps = SVGProps<SVGSVGElement> & OwnCreditCardProps;
 
 const cx = classnames.bind(styles);
 
@@ -28,9 +27,9 @@ export const CreditCard = ({
     () => cx("card", objectToClassNames({ size }), className),
     [className, size],
   );
-  const Element = get(Cards, creditCardName, null);
+  const Element = Cards[creditCardName];
 
-  if (Element === null) {
+  if (Element == null) {
     return null;
   }
 

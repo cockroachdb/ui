@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
 import classnames from "classnames/bind";
-import get from "lodash/get";
 
 import { Pictograms } from "@cockroachlabs/icons";
 import styles from "./Pictogram.module.scss";
@@ -35,9 +34,9 @@ export const Pictogram = ({
     () => cx("pictogram", objectToClassNames({ size, fill }), className),
     [className, size, fill],
   );
-  const Element = get(Pictograms, pictogramName, null);
+  const Element = Pictograms[pictogramName];
 
-  if (Element === null) {
+  if (Element == null) {
     return null;
   }
 

@@ -1,10 +1,6 @@
 import upperCamelCase from "./upperCamelCase";
 
 describe("upperCamelCase", () => {
-  test("should be a function", () => {
-    expect(typeof upperCamelCase).toBe("function");
-  });
-
   test("should convert a sausage case string to an UpperCamelCase string", () => {
     const testString = "cockroach-labs-serverless-database-service";
     const result = upperCamelCase(testString);
