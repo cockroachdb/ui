@@ -10,6 +10,12 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
+  "files": [
+    "dist/",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "npm-run-all build:typescript build:bundle",
     "build:bundle": "parcel build",
