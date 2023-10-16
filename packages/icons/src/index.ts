@@ -81,6 +81,7 @@ import Cluster from "./components/Cluster";
 import Collapse from "./components/Collapse";
 import Comment from "./components/Comment";
 import Copy from "./components/Copy";
+import Doc from "./components/Doc";
 import Download from "./components/Download";
 import Ellipsis from "./components/Ellipsis";
 import EllipsisVertical from "./components/EllipsisVertical";
@@ -108,6 +109,7 @@ import Minus from "./components/Minus";
 import Open from "./components/Open";
 import Org from "./components/Org";
 import Pencil from "./components/Pencil";
+import Play from "./components/Play";
 import Plus from "./components/Plus";
 import PlusCircle from "./components/PlusCircle";
 import PlusCircleFilled from "./components/PlusCircleFilled";
@@ -230,6 +232,7 @@ const SystemIcons = {
   Collapse,
   Comment,
   Copy,
+  Doc,
   Download,
   Ellipsis,
   EllipsisVertical,
@@ -257,6 +260,7 @@ const SystemIcons = {
   Open,
   Org,
   Pencil,
+  Play,
   Plus,
   PlusCircle,
   PlusCircleFilled,
@@ -389,6 +393,7 @@ export {
   Open,
   Org,
   Pencil,
+  Play,
   Plus,
   PlusCircle,
   PlusCircleFilled,
