@@ -46,7 +46,7 @@
     "@parcel/transformer-sass": "^2.9.3",
     "@parcel/transformer-typescript-types": "^2.9.3",
     "@testing-library/jest-dom": "5.16.5",
-    "@testing-library/react": "12.1.5",
+    "@testing-library/react": "14.3.0",
     "@types/classnames": "2.3.0",
     "@types/jest": "29.4.0",
     "@types/lodash": "4.14.191",
