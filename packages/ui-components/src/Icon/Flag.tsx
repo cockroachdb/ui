@@ -50,6 +50,7 @@ export const flagNameCountryCodeMap: Array<{
   { code: "idn", flag: "Indonesia" },
   { code: "irl", flag: "Ireland" },
   { code: "isr", flag: "Israel" },
+  { code: "ita", flag: "Italy" },
   { code: "jpn", flag: "Japan" },
   { code: "kor", flag: "Korea" },
   { code: "nld", flag: "Netherlands" },
