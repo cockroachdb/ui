@@ -167,6 +167,7 @@ import Belgium from "./components/Belgium";
 import Brazil from "./components/Brazil";
 import Bahrain from "./components/Bahrain";
 import Canada from "./components/Canada";
+import Chile from "./components/Chile";
 import Finland from "./components/Finland";
 import France from "./components/France";
 import Germany from "./components/Germany";
@@ -174,15 +175,20 @@ import HongKong from "./components/Hongkong";
 import India from "./components/India";
 import Indonesia from "./components/Indonesia";
 import Ireland from "./components/Ireland";
+import Israel from "./components/Israel";
 import Japan from "./components/Japan";
 import Korea from "./components/Korea";
 import Netherlands from "./components/Netherlands";
+import Norway from "./components/Norway";
 import Poland from "./components/Poland";
+import Qatar from "./components/Qatar";
 import Singapore from "./components/Singapore";
+import Spain from "./components/Spain";
 import SouthAfrica from "./components/SouthAfrica";
 import Sweden from "./components/Sweden";
 import Switzerland from "./components/Switzerland";
 import Taiwan from "./components/Taiwan";
+import UnitedArabEmirates from "./components/UnitedArabEmirates";
 import UnitedKingdom from "./components/UnitedKingdom";
 import Usa from "./components/Usa";
 
@@ -317,6 +323,7 @@ const Flags = {
   Belgium,
   Brazil,
   Canada,
+  Chile,
   Finland,
   France,
   Germany,
@@ -324,15 +331,20 @@ const Flags = {
   India,
   Indonesia,
   Ireland,
+  Israel,
   Japan,
   Korea,
   Netherlands,
+  Norway,
   Poland,
+  Qatar,
   Singapore,
   SouthAfrica,
+  Spain,
   Sweden,
   Switzerland,
   Taiwan,
+  UnitedArabEmirates,
   UnitedKingdom,
   Usa,
 };
@@ -445,19 +457,25 @@ export {
   Belgium,
   Brazil,
   Canada,
+  Chile,
   Finland,
   France,
   Germany,
   HongKong,
   India,
   Ireland,
+  Israel,
   Japan,
   Korea,
   Netherlands,
+  Norway,
+  Qatar,
   Singapore,
+  Spain,
   Sweden,
   Switzerland,
   Taiwan,
+  UnitedArabEmirates,
   UnitedKingdom,
   Usa,
   // sets,
