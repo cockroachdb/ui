@@ -176,6 +176,7 @@ import India from "./components/India";
 import Indonesia from "./components/Indonesia";
 import Ireland from "./components/Ireland";
 import Israel from "./components/Israel";
+import Italy from "./components/Italy";
 import Japan from "./components/Japan";
 import Korea from "./components/Korea";
 import Netherlands from "./components/Netherlands";
@@ -332,6 +333,7 @@ const Flags = {
   Indonesia,
   Ireland,
   Israel,
+  Italy,
   Japan,
   Korea,
   Netherlands,
@@ -465,6 +467,7 @@ export {
   India,
   Ireland,
   Israel,
+  Italy,
   Japan,
   Korea,
   Netherlands,
