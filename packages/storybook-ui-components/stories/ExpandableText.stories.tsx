@@ -12,7 +12,7 @@ export default {
 
 export const Default = () => (
   <div style={{ width: divWidth }}>
-    <ExpandableText text={fourLinetext} />
+    <ExpandableText text={fourLinetext} maxLine={4} />
   </div>
 );
 

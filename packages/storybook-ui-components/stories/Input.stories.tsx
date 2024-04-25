@@ -18,7 +18,7 @@ export const Number = () => {
       <h1>Number Input</h1>
 
       <NumberInput
-        initialValue={number("Initial value", 0)}
+        defaultValue={number("Initial value", 0)}
         value={value}
         disabled={boolean("disabled", false)}
         invalid={boolean("invalid", false)}
@@ -40,7 +40,7 @@ export const Text = () => {
       </StoryDescription>
 
       <TextInput
-        initialValue={text("Initial value", "some text")}
+        defaultValue={text("Initial value", "some text")}
         disabled={boolean("disabled", false)}
         invalid={boolean("invalid", false)}
       />
@@ -77,6 +77,7 @@ export const Email = () => {
       </StoryDescription>
 
       <EmailInput
+        validatorLabel={text("validatorLabel", "validate email")}
         disabled={boolean("disabled", false)}
         invalid={boolean("invalid", false)}
       />
@@ -94,6 +95,7 @@ export const NewPassword = () => {
       </StoryDescription>
 
       <NewPasswordInput
+        validatorLabel={text("validatorLabel", "validate password")}
         disabled={boolean("disabled", false)}
         invalid={boolean("invalid", false)}
         required={boolean("required", true)}
