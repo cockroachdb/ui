@@ -1,5 +1,5 @@
 // .storybook/preview.ts
-import "@cockroachlabs/ui-components/dist/main.css"
+import "@cockroachlabs/ui-components/dist/cjs/index.css"
 
 const preview = {
   parameters: {},
