@@ -38,7 +38,7 @@ importers:
         version: 8.6.0(eslint@8.49.0)
       eslint-plugin-prettier:
         specifier: ^4.0.0
-        version: 4.2.1(eslint-config-prettier@8.6.0)(eslint@8.49.0)(prettier@2.8.4)
+        version: 4.2.1(eslint-config-prettier@8.6.0)(eslint@8.49.0)(prettier@3.3.3)
       eslint-plugin-react:
         specifier: ^7.28.0
         version: 7.32.2(eslint@8.49.0)
@@ -233,7 +233,7 @@ importers:
         version: 8.6.0(eslint@8.49.0)
       eslint-plugin-prettier:
         specifier: 4.2.1
-        version: 4.2.1(eslint-config-prettier@8.6.0)(eslint@8.49.0)(prettier@2.8.4)
+        version: 4.2.1(eslint-config-prettier@8.6.0)(eslint@8.49.0)(prettier@3.3.3)
       eslint-plugin-react:
         specifier: 7.32.2
         version: 7.32.2(eslint@8.49.0)
@@ -262,8 +262,8 @@ importers:
         specifier: ^2.9.3
         version: 2.9.3(typescript@5.2.2)
       prettier:
-        specifier: 2.8.4
-        version: 2.8.4
+        specifier: 3.3.3
+        version: 3.3.3
       react:
         specifier: 17.0.2
         version: 17.0.2
@@ -11250,7 +11250,7 @@ packages:
     dependencies:
       eslint: 8.49.0
 
-  /eslint-plugin-prettier@4.2.1(eslint-config-prettier@8.6.0)(eslint@8.49.0)(prettier@2.8.4):
+  /eslint-plugin-prettier@4.2.1(eslint-config-prettier@8.6.0)(eslint@8.49.0)(prettier@3.3.3):
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -11263,7 +11263,7 @@ packages:
     dependencies:
       eslint: 8.49.0
       eslint-config-prettier: 8.6.0(eslint@8.49.0)
-      prettier: 2.8.4
+      prettier: 3.3.3
       prettier-linter-helpers: 1.0.0
 
   /eslint-plugin-react-hooks@4.6.0(eslint@8.49.0):
@@ -15230,9 +15230,6 @@ packages:
     resolution: {integrity: sha512-2GTVocFkwblV/TIg9AmT7TI2fO4xdWkyN8aFUEVtiVNWt96GTR3FgQyHFValfCbcj1k9Xf962Ws2hYXYUr9k1Q==}
     engines: {node: '>= 12.0.0'}
     hasBin: true
-    peerDependenciesMeta:
-      '@parcel/core':
-        optional: true
     dependencies:
       '@parcel/config-default': 2.9.3(@parcel/core@2.9.3)(typescript@5.2.2)
       '@parcel/core': 2.9.3
@@ -15591,16 +15588,16 @@ packages:
     dependencies:
       fast-diff: 1.2.0
 
-  /prettier@2.8.4:
-    resolution: {integrity: sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==}
-    engines: {node: '>=10.13.0'}
-    hasBin: true
-
   /prettier@2.8.8:
     resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
+
+  /prettier@3.3.3:
+    resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
+    engines: {node: '>=14'}
+    hasBin: true
 
   /pretty-error@4.0.0:
     resolution: {integrity: sha512-AoJ5YMAcXKYxKhuJGdcvse+Voc6v1RgnsR3nWcYU7q4t6z0Q6T86sv5Zq8VIRbOWWFpvdGE83LtdSMNd+6Y0xw==}
