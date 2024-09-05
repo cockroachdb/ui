@@ -41,6 +41,6 @@
     "react-dom": "17",
     "storybook": "7.0.20",
     "ts-loader": "9.4.2",
-    "webpack": "5.75.0"
+    "webpack": "5.94.0"
   }
 }
