@@ -17,19 +17,19 @@
   "license": "MIT",
   "dependencies": {
     "@typescript-eslint/parser": "6.7.0",
-    "eslint-config-prettier": "8.6.0"
+    "eslint-config-prettier": "9.1.0"
   },
   "devDependencies": {
     "@snyk/protect": "1.1111.0",
-    "eslint": "8.49.0",
+    "eslint": "9.13.0",
     "typescript": "5.x"
   },
   "peerDependencies": {
     "@typescript-eslint/eslint-plugin": ">=6.7.0",
     "eslint": ">=8",
-    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-prettier": "^4.0.0 || ^5.0.0",
     "eslint-plugin-react": "^7.28.0",
-    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-react-hooks": "^4.3.0 || ^5.0.0",
     "typescript": "5.x"
   },
   "publishConfig": {
