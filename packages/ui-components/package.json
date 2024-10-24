@@ -50,7 +50,7 @@
     "@types/classnames": "2.3.0",
     "@types/jest": "29.4.0",
     "@types/lodash": "4.14.191",
-    "@types/node": "16.18.14",
+    "@types/node": "20.17.0",
     "@types/react": "17.0.53",
     "@types/react-lines-ellipsis": "0.15.1",
     "@types/recharts": "^1.8.23",
